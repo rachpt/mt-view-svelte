@@ -6,7 +6,7 @@
   import Waterfall from "./sites/_index.svelte";
   import {
     _Global_Masonry,
-    _show_mode,
+    _list_viewMode,
     _iframe_switch,
     _iframe_url,
     _current_domain,
@@ -27,10 +27,10 @@
   // @ts-ignore
   // _ORIGIN_TL_Node.style.display = "none";
   $: {
-    _ORIGIN_TL_Node.style.display = $_show_mode ? "none" : "block";
-    nextPageNode.style.display = $_show_mode ? "none" : "block";
+    _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+    nextPageNode.style.display = $_list_viewMode ? "none" : "block";
 
-    waterfallNode.style.display = $_show_mode ? "block" : "none";
+    waterfallNode.style.display = $_list_viewMode ? "block" : "none";
   }
 
   // 这里检测 Masonry 是否加载成功了 ------------------

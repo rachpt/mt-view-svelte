@@ -5,7 +5,7 @@
     _current_bgColor,
     _show_originTable,
     _Global_Masonry,
-    _show_mode,
+    _list_viewMode,
     _card_width,
     _CARD_SHOW,
     _SITE_SETTING,
@@ -95,7 +95,7 @@
     // $_show_originTable = $_show_originTable == 0 ? 1 : 0;
     // originTable.style.display = $_show_originTable === 1 ? "" : "none";
 
-    $_show_mode = !$_show_mode;
+    $_list_viewMode = !$_list_viewMode;
 
     window.CHANGE_CARD_LAYOUT();
   }
@@ -174,7 +174,7 @@
   <div class="sideP__out">
     <!-- 按钮1: 显示原有列表 -->
     <button class="sideP__btn" on:click={__show_originTable}>
-      {#if $_show_mode}
+      {#if $_list_viewMode}
         <div>
           <svg
             enable-background="new 0 0 64 64"
@@ -391,7 +391,7 @@
             title_green="瀑布流"
             title_red="原始表格"
             label="原始表格模式仅支持点击图片显示iframe和加载下一页"
-            bind:checked={$_show_mode}
+            bind:checked={$_list_viewMode}
             func={() => {
               window.CHANGE_CARD_LAYOUT();
             }}
