@@ -81,10 +81,6 @@
     // UI -> 1. 边栏配置
     const componentSidePanel = new Sidepanel({
       target: document.body,
-      props: {
-        // 传递给组件的属性
-        originTable: _ORIGIN_TL_Node,
-      },
     });
 
     // UI -> 2. 瀑布流配置

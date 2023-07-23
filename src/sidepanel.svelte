@@ -83,24 +83,16 @@
 
   // ------------------------------------------------
 
-  /** 父传值: 原有种子列表*/
-  export let originTable;
-
-  // ------------------------------------------------
-
   /** 按钮1函数: 显示原有列表*/
   function __show_originTable() {
-    // console.log($_show_originTable);
-
-    // $_show_originTable = $_show_originTable == 0 ? 1 : 0;
-    // originTable.style.display = $_show_originTable === 1 ? "" : "none";
-
     $_list_viewMode = !$_list_viewMode;
 
+    // @ts-ignore
     window.CHANGE_CARD_LAYOUT();
   }
 
   /** 按钮2函数: 手动整理瀑布流布局*/
+  // @ts-ignore
   function __sort_masonry() {
     // @ts-ignore
     $_Global_Masonry.layout();
@@ -393,6 +385,7 @@
             label="原始表格模式仅支持点击图片显示iframe和加载下一页"
             bind:checked={$_list_viewMode}
             func={() => {
+              // @ts-ignore
               window.CHANGE_CARD_LAYOUT();
             }}
           />
