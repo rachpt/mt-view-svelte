@@ -88,7 +88,7 @@
     $_list_viewMode = !$_list_viewMode;
 
     // @ts-ignore
-    window.CHANGE_CARD_LAYOUT();
+    if (window.CHANGE_CARD_LAYOUT) window.CHANGE_CARD_LAYOUT();
   }
 
   /** 按钮2函数: 手动整理瀑布流布局*/

@@ -22,6 +22,7 @@ export const config = {
     "*/viewrequests.php*",
     "*/seek.php*",
   ],
+  "run-at": "document-start",
   grant: "none",
   license: "MIT",
 

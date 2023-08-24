@@ -83,7 +83,29 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
     - [x] 侧边栏右侧位置保护(from tg by 天 胖)
     - [x] 将是否打开原有列表记忆在 localstorage 里(from tg by 天 胖)
     - [x] 给列表模式加点击 iframe 显示详情(from tg by 天 胖)
-    - [ ] TODO: 排列模式:按照列的模式加紧(from tg by 天 胖)
+    - [ ] TODO: 排列模式:按照列的模式加紧(from tg by 天 胖)  
+    基本搞定了, 想想怎么在UI上整合进去就行, 代码也要改, 下面的不过是伪代码罢了.
+        ```javascript
+        function resizeMasonry(columns,gutter=10) {
+          // 最少两列
+          if(columns<=1 || gutter<=1) {
+            console.warn('卡片列数或卡片间隔过小, 列数不小于2, 间隔不小于1')
+            return
+          }
+
+          // 算宽度
+          const widthContainer =  document.querySelector('div.waterfall').clientWidth;
+          const widthCard = (widthContainer - (columns-1)*gutter)/(columns-1);
+
+          // 配置宽度
+          Array.from(document.querySelectorAll('.card')).forEach(el=>el.style.width = widthCard+'px'); 
+          masonry.options.columnWidth = widthCard; 
+          masonry.options.gutter = gutter ; 
+          masonry.layout();
+
+          // 往 localstorage 里写列数和间隔
+        }
+        ```
 
 - 样式类
     - [x] iframe 两侧颜色降低亮度(from tg by LNN)
