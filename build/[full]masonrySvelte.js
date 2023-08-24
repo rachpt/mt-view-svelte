@@ -10,6 +10,7 @@
 // @icon            https://avatars.githubusercontent.com/u/23617963
 // @match           https://kamept.com/*
 // @match           https://kp.m-team.cc/*
+// @match           https://test2.m-team.cc/*
 // @match           https://pterclub.com/*
 // @exclude         */offers.php*
 // @exclude         */index.php*
@@ -17,6 +18,7 @@
 // @exclude         */viewrequests.php*
 // @exclude         */seek.php*
 // @grant           none
+// @run-at          document-start
 // ==/UserScript==
 
 (t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.switch.svelte-2vaqag.svelte-2vaqag{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-2vaqag.svelte-2vaqag{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-2vaqag.svelte-2vaqag{color:green;font-weight:800}.title_red.svelte-2vaqag.svelte-2vaqag{color:red;font-weight:800}.s_title.svelte-2vaqag:has(.hint):hover ._hint.svelte-2vaqag{display:block}._hint.svelte-2vaqag.svelte-2vaqag{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-2vaqag.svelte-2vaqag{width:0px;height:0px;display:none;visibility:hidden}label.svelte-2vaqag.svelte-2vaqag{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-2vaqag.svelte-2vaqag:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-2vaqag:checked~label.svelte-2vaqag{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-2vaqag:checked~label.svelte-2vaqag:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-mdsgbd.svelte-mdsgbd{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-mdsgbd.svelte-mdsgbd:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-mdsgbd.svelte-mdsgbd{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-mdsgbd.svelte-mdsgbd:hover{cursor:move}.sideP__out.svelte-mdsgbd.svelte-mdsgbd{display:flex;flex-direction:column}.sideP__btn.svelte-mdsgbd.svelte-mdsgbd{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-mdsgbd.svelte-mdsgbd:hover{background-color:#6531ff}.configP.svelte-mdsgbd.svelte-mdsgbd{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-mdsgbd.svelte-mdsgbd{position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-mdsgbd.svelte-mdsgbd::-webkit-scrollbar{display:none}.configP_title.svelte-mdsgbd.svelte-mdsgbd{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-mdsgbd.svelte-mdsgbd p{font-size:18px;font-weight:500}.configP_title.svelte-mdsgbd.svelte-mdsgbd button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-mdsgbd.svelte-mdsgbd{margin:16px 18px}.section.svelte-mdsgbd.svelte-mdsgbd button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-mdsgbd.svelte-mdsgbd .s_title{text-align:center}.section.svelte-mdsgbd.svelte-mdsgbd .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-mdsgbd.svelte-mdsgbd .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-mdsgbd .section.svelte-mdsgbd:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-mdsgbd.svelte-mdsgbd{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-vdh3h6.svelte-vdh3h6{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-vdh3h6.svelte-vdh3h6:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-vdh3h6.svelte-vdh3h6{padding:2px 0}.card-holder.svelte-vdh3h6.svelte-vdh3h6{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-vdh3h6.svelte-vdh3h6{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-vdh3h6.svelte-vdh3h6{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-vdh3h6.svelte-vdh3h6{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-vdh3h6.svelte-vdh3h6:hover{-webkit-line-clamp:100}.cl-center.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-vdh3h6.svelte-vdh3h6:has(span){padding-top:2px}.card-details.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-vdh3h6.svelte-vdh3h6{height:100%;position:relative}.card-image.svelte-vdh3h6 img.svelte-vdh3h6{width:100%;object-fit:cover}.card-alter.svelte-vdh3h6.svelte-vdh3h6{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-vdh3h6.svelte-vdh3h6{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-vdh3h6.svelte-vdh3h6{color:#00f}._2XFree.svelte-vdh3h6.svelte-vdh3h6{color:green}.card-description.svelte-vdh3h6.svelte-vdh3h6{padding-left:4px;padding-right:4px}.card-index.svelte-vdh3h6.svelte-vdh3h6{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-vdh3h6.svelte-vdh3h6{padding:1px 2px;cursor:pointer}.hot.svelte-vdh3h6.svelte-vdh3h6,.new.svelte-vdh3h6.svelte-vdh3h6{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-2j14uu{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;margin:10px 0;padding:0 10px}div#_iframe.svelte-1wevt6e{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}iframe.svelte-1wevt6e{height:96%;margin:auto} ');
@@ -2594,7 +2596,7 @@
     return store;
   }
   const _Global_Masonry = writable({});
-  const _show_mode = persistStore("_showMode", 1);
+  const _list_viewMode = persistStore("_listViewMode", 1);
   const _iframe_switch = writable(0);
   const _iframe_url = writable("https://kamept.com/index.php");
   const _current_domain = persistStore("_domain", "");
@@ -3066,7 +3068,7 @@
       }
     };
   }
-  function create_fragment$6(ctx) {
+  function create_fragment$7(ctx) {
     let div1;
     let div0;
     let t0;
@@ -3250,7 +3252,7 @@
       }
     };
   }
-  function instance$6($$self, $$props, $$invalidate) {
+  function instance$7($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { type = "switch" } = $$props;
     let { title_fixed = "" } = $$props;
@@ -3309,7 +3311,7 @@
   class Switch extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$6, create_fragment$6, safe_not_equal, {
+      init(this, options, instance$7, create_fragment$7, safe_not_equal, {
         type: 1,
         title_fixed: 2,
         title_green: 3,
@@ -3555,7 +3557,7 @@
       ctx[9] == "kp.m-team.cc" && create_if_block_8$2(ctx)
     );
     function switch0_checked_binding(value) {
-      ctx[27](value);
+      ctx[26](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
@@ -3564,20 +3566,20 @@
       label: "原始表格模式仅支持点击图片显示iframe和加载下一页",
       func: (
         /*func*/
-        ctx[26]
+        ctx[25]
       )
     };
     if (
-      /*$_show_mode*/
+      /*$_list_viewMode*/
       ctx[4] !== void 0
     ) {
-      switch0_props.checked = /*$_show_mode*/
+      switch0_props.checked = /*$_list_viewMode*/
       ctx[4];
     }
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[28](value);
+      ctx[27](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3596,7 +3598,7 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[29](value);
+      ctx[28](value);
     }
     let switch2_props = {
       title_fixed: "侧边栏debug按钮",
@@ -3614,7 +3616,7 @@
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[30](value);
+      ctx[29](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3635,7 +3637,7 @@
       ctx[11] && create_if_block_7$2(ctx)
     );
     function switch4_checked_binding(value) {
-      ctx[35](value);
+      ctx[34](value);
     }
     let switch4_props = {
       title_fixed: "卡片信息",
@@ -3658,7 +3660,7 @@
       ctx[20]
     );
     function switch5_checked_binding(value) {
-      ctx[36](value);
+      ctx[35](value);
     }
     let switch5_props = { title_fixed: "显示种子名称" };
     if (
@@ -3671,7 +3673,7 @@
     switch5 = new Switch({ props: switch5_props });
     binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
     function switch6_checked_binding(value) {
-      ctx[37](value);
+      ctx[36](value);
     }
     let switch6_props = { title_fixed: "显示置顶和免费" };
     if (
@@ -3684,7 +3686,7 @@
     switch6 = new Switch({ props: switch6_props });
     binding_callbacks.push(() => bind(switch6, "checked", switch6_checked_binding));
     function switch7_checked_binding(value) {
-      ctx[38](value);
+      ctx[37](value);
     }
     let switch7_props = { title_fixed: "显示副标题" };
     if (
@@ -3697,7 +3699,7 @@
     switch7 = new Switch({ props: switch7_props });
     binding_callbacks.push(() => bind(switch7, "checked", switch7_checked_binding));
     function switch8_checked_binding(value) {
-      ctx[39](value);
+      ctx[38](value);
     }
     let switch8_props = { title_fixed: "显示标签" };
     if (
@@ -3710,7 +3712,7 @@
     switch8 = new Switch({ props: switch8_props });
     binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
     function switch9_checked_binding(value) {
-      ctx[40](value);
+      ctx[39](value);
     }
     let switch9_props = { title_fixed: "显示 [大小/下载/收藏]" };
     if (
@@ -3723,7 +3725,7 @@
     switch9 = new Switch({ props: switch9_props });
     binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
     function switch10_checked_binding(value) {
-      ctx[41](value);
+      ctx[40](value);
     }
     let switch10_props = { title_fixed: "显示上传时间" };
     if (
@@ -3736,7 +3738,7 @@
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
-      ctx[42](value);
+      ctx[41](value);
     }
     let switch11_props = { title_fixed: "显示 [评论/上传/下载/完成]" };
     if (
@@ -3882,7 +3884,7 @@
               button0,
               "click",
               /*click_handler_1*/
-              ctx[24]
+              ctx[23]
             ),
             listen(
               button1,
@@ -3892,7 +3894,7 @@
             ),
             listen(div8, "click", self(
               /*click_handler_5*/
-              ctx[57]
+              ctx[56]
             ))
           ];
           mounted = true;
@@ -3923,10 +3925,10 @@
           check_outros();
         }
         const switch0_changes = {};
-        if (!updating_checked && dirty[0] & /*$_show_mode*/
+        if (!updating_checked && dirty[0] & /*$_list_viewMode*/
         16) {
           updating_checked = true;
-          switch0_changes.checked = /*$_show_mode*/
+          switch0_changes.checked = /*$_list_viewMode*/
           ctx2[4];
           add_flush_callback(() => updating_checked = false);
         }
@@ -4135,7 +4137,7 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[25](value);
+      ctx[24](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
@@ -4236,7 +4238,7 @@
         ctx2[12] ? "" : "无延迟"}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
         4096 | dirty[2] & /*$$scope*/
-        32) {
+        16) {
           switch_1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch_1.$set(switch_1_changes);
@@ -4282,13 +4284,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[31]
+              ctx[30]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[31]
+              ctx[30]
             )
           ];
           mounted = true;
@@ -4312,7 +4314,7 @@
       }
     };
   }
-  function create_fragment$5(ctx) {
+  function create_fragment$6(ctx) {
     let div4;
     let div0;
     let t0;
@@ -4329,7 +4331,7 @@
     let dispose;
     function select_block_type(ctx2, dirty) {
       if (
-        /*$_show_mode*/
+        /*$_list_viewMode*/
         ctx2[4]
       )
         return create_if_block_10$2;
@@ -4411,7 +4413,7 @@
         append(div3, t5);
         if (if_block1)
           if_block1.m(div3, null);
-        ctx[23](div4);
+        ctx[22](div4);
         insert(target, t6, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
@@ -4436,7 +4438,7 @@
               button1,
               "click",
               /*click_handler*/
-              ctx[22]
+              ctx[21]
             ),
             listen(
               div5,
@@ -4539,7 +4541,7 @@
         if_block0.d();
         if (if_block1)
           if_block1.d();
-        ctx[23](null);
+        ctx[22](null);
         if (detaching)
           detach(t6);
         if (if_block2)
@@ -4560,12 +4562,12 @@
       target = max;
     return target;
   }
-  function instance$5($$self, $$props, $$invalidate) {
+  function instance$6($$self, $$props, $$invalidate) {
     let $_iframe_switch;
     let $_turnPage;
     let $_CARD_SHOW;
     let $_card_width;
-    let $_show_mode;
+    let $_list_viewMode;
     let $_panelPos;
     let $_current_bgColor;
     let $_show_configPanel;
@@ -4574,12 +4576,12 @@
     let $_SITE_SETTING;
     let $_show_nexus_pic;
     let $_delay_nexus_pic;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(61, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(60, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(62, $_card_width = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(63, $$value));
-    component_subscribe($$self, _show_mode, ($$value) => $$invalidate(4, $_show_mode = $$value));
+    component_subscribe($$self, _card_width, ($$value) => $$invalidate(61, $_card_width = $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(62, $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(4, $_list_viewMode = $$value));
     component_subscribe($$self, _panelPos, ($$value) => $$invalidate(5, $_panelPos = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
     component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(7, $_show_configPanel = $$value));
@@ -4613,10 +4615,10 @@
         alert("无需重置瀑布流边栏位置");
       set_store_value(_panelPos, $_panelPos = { x: 0, y: 0 }, $_panelPos);
     }
-    let { originTable } = $$props;
     function __show_originTable() {
-      set_store_value(_show_mode, $_show_mode = !$_show_mode, $_show_mode);
-      window.CHANGE_CARD_LAYOUT();
+      set_store_value(_list_viewMode, $_list_viewMode = !$_list_viewMode, $_list_viewMode);
+      if (window.CHANGE_CARD_LAYOUT)
+        window.CHANGE_CARD_LAYOUT();
     }
     function config_changeWidth() {
       set_store_value(_card_width, $_card_width = $_card_width == 300 ? 200 : 300, $_card_width);
@@ -4669,8 +4671,8 @@
       window.CHANGE_CARD_LAYOUT();
     };
     function switch0_checked_binding(value) {
-      $_show_mode = value;
-      _show_mode.set($_show_mode);
+      $_list_viewMode = value;
+      _list_viewMode.set($_list_viewMode);
     }
     function switch1_checked_binding(value) {
       $_turnPage = value;
@@ -4795,16 +4797,12 @@
       sortMasonry();
     };
     const click_handler_5 = () => set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
-    $$self.$$set = ($$props2) => {
-      if ("originTable" in $$props2)
-        $$invalidate(21, originTable = $$props2.originTable);
-    };
     return [
       sideDom,
       label_switchMode,
       $_turnPage,
       $_CARD_SHOW,
-      $_show_mode,
+      $_list_viewMode,
       $_panelPos,
       $_current_bgColor,
       $_show_configPanel,
@@ -4821,7 +4819,6 @@
       config_switchMode,
       config_changeLoadMode,
       sortMasonryBundle,
-      originTable,
       click_handler,
       div4_binding,
       click_handler_1,
@@ -4863,14 +4860,14 @@
   class Sidepanel extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$5, create_fragment$5, safe_not_equal, { originTable: 21 }, null, [-1, -1, -1]);
+      init(this, options, instance$6, create_fragment$6, safe_not_equal, {}, null, [-1, -1, -1]);
     }
   }
-  const CONFIG$1 = {
+  const CONFIG$2 = {
     /** 默认的种子表格 dom selector */
     torrentListTable: "table.torrents",
     /** 将 种子列表dom 的信息变为 json对象列表 */
-    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$1,
+    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$2,
     /** 加载图片等待时的默认图片 */
     LOADING_PIC: "pic/logo2_100.png",
     /** 如果站点有自定义的icon, 可以用自定义的 */
@@ -4912,17 +4909,17 @@
       let np = document.querySelector("img#nexus-preview");
       if (np)
         np.style.zIndex = 12e3;
-      table_Iframe_Set$1();
+      table_Iframe_Set$2();
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
       var script = document.createElement("script");
       script.src = "https://kamept.com/js/nexus.js";
       document.head.appendChild(script);
-      table_Iframe_Set$1();
+      table_Iframe_Set$2();
     }
   };
-  function table_Iframe_Set$1() {
+  function table_Iframe_Set$2() {
     const lists = Array.from(document.querySelectorAll(".torrentname"));
     lists.forEach((el) => el.addEventListener("click", function(event) {
       event.preventDefault();
@@ -4930,7 +4927,7 @@
       _iframe_url.set(el.children[0].children[0].children[1].querySelector("a").href + "#kdescr");
     }));
   }
-  function TORRENT_LIST_TO_JSON$1(torrent_list_Dom) {
+  function TORRENT_LIST_TO_JSON$2(torrent_list_Dom) {
     const rows = torrent_list_Dom.querySelectorAll("tbody tr");
     const data = [];
     rows.forEach((row) => {
@@ -4943,7 +4940,7 @@
       const categoryNumber = categoryLink.slice(-3);
       const _categoryImg = categoryImg.cloneNode(true);
       _categoryImg.className = "card-category-img";
-      const torrentIndex = CONFIG$1.INDEX++;
+      const torrentIndex = CONFIG$2.INDEX++;
       const torrentNameLink = row.querySelector(".torrentname a");
       const torrentName = torrentNameLink ? torrentNameLink.textContent.trim() : "";
       const torrentLink = torrentNameLink.href;
@@ -5020,9 +5017,208 @@
     });
     return data;
   }
-  const CONFIG = {
+  const CONFIG$1 = {
     /** 默认的种子表格 dom selector */
     torrentListTable: "table.torrents",
+    /** 将 种子列表dom 的信息变为 json对象列表 */
+    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$1,
+    /** 加载图片等待时的默认图片 */
+    LOADING_PIC: "logo.png",
+    /**如果站点有自定义的icon, 可以用自定义的 */
+    ICON: {},
+    /**如果站点有必要设置分类颜色, 可以用自定义的 */
+    CATEGORY: {
+      // 成人分类
+      410: "#f52bcb",
+      // 有码 HD
+      429: "#f52bcb",
+      // 无码 HD
+      424: "#db55a9",
+      // 有码 Xvid
+      430: "#db55a9",
+      // 无码 Xvid
+      437: "#f77afa",
+      // 有码 DVD
+      426: "#f77afa",
+      // 无码 DVD
+      431: "#19a7ec",
+      // 有码 BluRay
+      432: "#19a7ec",
+      // 无码 BluRay
+      440: "#f52bcb",
+      // GAY
+      436: "#bb1e9a",
+      // 0 day
+      425: "#bb1e9a",
+      // 写真 video
+      433: "#bb1e9a",
+      // 写真 pic
+      411: "#f49800",
+      // H-Game
+      412: "#f49800",
+      // H-Anime
+      413: "#f49800",
+      // H-Comic
+      // 综合分类
+      401: "#c74854",
+      // Movie SD
+      419: "#c01a20",
+      // Movie HD
+      420: "#c74854",
+      // Movie DVD    
+      421: "#00a0e9",
+      // Movie BluRay
+      439: "#1b2a51",
+      // Movie Remux
+      403: "#c74854",
+      // TV SD
+      402: "#276fb8",
+      // TV HD
+      435: "#4dbebd ",
+      // TV DVD
+      438: "#1897d6",
+      // TV BluRay
+      404: "#23ac38",
+      // 纪录教育
+      405: "#996c34",
+      // Anime
+      407: "#23ac38",
+      // Sport
+      422: "#f39800",
+      // Software
+      423: "#f39800",
+      // Game
+      427: "#f39800",
+      // EBook
+      409: "#996c34",
+      // Other
+      // 音乐分类
+      406: "#8a57a1",
+      // MV
+      408: "#8a57a1",
+      // Music AAC/ALAC
+      434: "#8a57a1"
+      // Music 无损
+    },
+    /** 索引 */
+    INDEX: 0,
+    /** iframe 宽度 */
+    Iframe_Width: 1260,
+    /** NOTE: 站点特殊操作 */
+    special: function() {
+      table_Iframe_Set$1();
+    },
+    /** NOTE: 站点下一页加载后操作 */
+    pageLoaded: function() {
+      table_Iframe_Set$1();
+    }
+  };
+  function table_Iframe_Set$1() {
+    const lists = Array.from(document.querySelectorAll("td.torrentimg a"));
+    lists.forEach((el) => el.addEventListener("click", function(event) {
+      event.preventDefault();
+      _iframe_switch.set(1);
+      _iframe_url.set(el.href + "#kdescr");
+    }));
+  }
+  function TORRENT_LIST_TO_JSON$1(torrent_list_Dom) {
+    const rows = torrent_list_Dom.querySelectorAll("tbody tr");
+    const data = [];
+    rows.forEach((row) => {
+      const categoryImg = row.querySelector("td:nth-child(1) > a > img");
+      const category = categoryImg ? categoryImg.title : "";
+      if (!category)
+        return;
+      const categoryLinkDOM = categoryImg.parentNode;
+      const categoryLink = categoryLinkDOM.href;
+      const categoryNumber = categoryLink.slice(-3);
+      const str = categoryImg.style.backgroundImage;
+      const regex = /url\("(.*)"\)/;
+      const result = str.match(regex);
+      const _categoryImg = result && result.length > 1 ? result[1] : null;
+      const torrentIndex = CONFIG$1.INDEX++;
+      const torrentNameLink = row.querySelector(".torrentname a");
+      const torrentName = torrentNameLink ? torrentNameLink.title.trim() : "";
+      const torrentLink = torrentNameLink.href;
+      const pattern = /id=(\d+)&hit/;
+      const match = torrentLink.match(pattern);
+      const torrentId = match ? parseInt(match[1]) : null;
+      const imgDom = row.querySelector(".torrentname img");
+      const _mouseOver = imgDom.getAttribute("onmouseover");
+      const raw1 = _mouseOver ? _mouseOver.split(",")[2].toString() : "";
+      const picLink = raw1 ? raw1.slice(raw1.indexOf("'") + 1, raw1.lastIndexOf("'")) : "/pic/nopic.jpg";
+      const desCell = row.querySelector(".torrentname td:nth-child(2)");
+      const length = desCell.childNodes.length - 1;
+      const desDom = desCell.childNodes[length];
+      const description = desDom.nodeName == "#text" ? desDom.textContent.trim() : "";
+      const place_at_the_top = row.querySelectorAll(".torrentname img.sticky");
+      const pattMsg = place_at_the_top[0] ? place_at_the_top[0].title : "";
+      const tempTagDom = row.querySelectorAll(".torrentname font");
+      const freeTypeImg = row.querySelector('img[class^="pro_"]');
+      const freeType = freeTypeImg ? "_" + freeTypeImg.alt.replace(/\s+/g, "") : "";
+      const freeRemainingTimeSpan = row.querySelector(".torrentname td:nth-child(2) span");
+      const freeRemainingTime = freeRemainingTimeSpan ? freeRemainingTimeSpan.innerText : "";
+      const tagSpans = row.querySelectorAll(".torrentname img[class^='label_']");
+      const tagsDOM = Array.from(tagSpans);
+      let tags = tagSpans ? tagsDOM.map((el) => el.title.trim()) : [];
+      const raw_tags = tagsDOM.map((el) => el.outerHTML).join("&nbsp;");
+      const downloadLink = `download.php?id=${torrentId}`;
+      const collectLink = `javascript: bookmark(${torrentId},${torrentIndex});`;
+      const collectDOM = row.querySelector(".torrentname a[id^='bookmark']");
+      const collectState = collectDOM.children[0].alt;
+      const commentsLink = row.querySelector("td.rowfollow:nth-child(3) a");
+      const comments = commentsLink ? parseInt(commentsLink.textContent) : 0;
+      const uploadDateSpan = row.querySelector("td:nth-child(4) span");
+      const uploadDate = uploadDateSpan ? uploadDateSpan.title : "";
+      const sizeCell = row.querySelector("td:nth-child(5)");
+      const size = sizeCell ? sizeCell.textContent.trim() : "";
+      const seedersLink = row.querySelector("td:nth-child(6) a");
+      const seeders = seedersLink ? parseInt(seedersLink.textContent) : 0;
+      const leechersCell = row.querySelector("td:nth-child(7)");
+      const leechers = leechersCell ? parseInt(leechersCell.textContent) : 0;
+      const snatchedLink = row.querySelector("td:nth-child(8) a");
+      const snatched = snatchedLink ? parseInt(snatchedLink.textContent) : 0;
+      const rowData = {
+        torrentIndex,
+        _categoryImg,
+        category,
+        categoryLink,
+        categoryNumber,
+        torrent_name: torrentName,
+        torrentLink,
+        torrentId,
+        picLink,
+        place_at_the_top,
+        pattMsg,
+        downloadLink,
+        collectLink,
+        collectState,
+        tempTagDom,
+        freeTypeImg,
+        free_type: freeType,
+        free_remaining_time: freeRemainingTime,
+        raw_tags,
+        tagsDOM,
+        tags,
+        description,
+        comments,
+        upload_date: uploadDate,
+        size,
+        seeders,
+        leechers,
+        snatched
+      };
+      data.push(rowData);
+    });
+    return data;
+  }
+  const CONFIG = {
+    /** 是否非 NexusPHP 架构 */
+    noneNexusPHP: true,
+    /** 架构 */
+    architecture: "NEW_MT",
+    /** 默认的种子表格 dom selector */
+    torrentListTable: "div.ant-table-content",
     /** 将 种子列表dom 的信息变为 json对象列表 */
     TORRENT_LIST_TO_JSON,
     /** 加载图片等待时的默认图片 */
@@ -5216,8 +5412,9 @@
     return data;
   }
   const SITE = {
-    "kamept.com": CONFIG$1,
-    "kp.m-team.cc": CONFIG
+    "kamept.com": CONFIG$2,
+    "kp.m-team.cc": CONFIG$1,
+    "test2.m-team.cc": CONFIG
   };
   function GET_CURRENT_PT_DOMAIN() {
     const domain = window.location.hostname;
@@ -5231,6 +5428,12 @@
     const res = ((_a = SITE[domain]) == null ? void 0 : _a.torrentListTable) ?? null;
     console.log("|-> 站点selector:", res);
     return res;
+  }
+  function GET_SITE_ARCHITECTURE() {
+    var _a, _b;
+    const domain = GET_CURRENT_PT_DOMAIN();
+    console.log((_a = SITE[domain]) == null ? void 0 : _a.architecture);
+    return (_b = SITE[domain]) == null ? void 0 : _b.architecture;
   }
   const CARD = {
     /** 瀑布流卡片宽度 */
@@ -6809,7 +7012,7 @@
       }
     };
   }
-  function create_fragment$4(ctx) {
+  function create_fragment$5(ctx) {
     let div4;
     let div3;
     let div0;
@@ -6874,19 +7077,19 @@
         attr(div0, "class", "card-category svelte-vdh3h6");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
-        set_style(div0, "background-color", CONFIG$1.CATEGORY[
+        set_style(div0, "background-color", CONFIG$2.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
         ] ?? "transparent");
-        set_style(div0, "color", CONFIG$1.CATEGORY[
+        set_style(div0, "color", CONFIG$2.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
-        ] ? getTextColor$1(CONFIG$1.CATEGORY[
+        ] ? getTextColor$1(CONFIG$2.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
         attr(img, "class", "card-image--img nexus-lazy-load_Kesa svelte-vdh3h6");
-        if (!src_url_equal(img.src, img_src_value = CONFIG$1.LOADING_PIC))
+        if (!src_url_equal(img.src, img_src_value = CONFIG$2.LOADING_PIC))
           attr(img, "src", img_src_value);
         attr(img, "data-src", img_data_src_value = /*torrentInfo*/
         ctx[0].picLink);
@@ -6973,17 +7176,17 @@
         }
         if (dirty & /*torrentInfo*/
         1) {
-          set_style(div0, "background-color", CONFIG$1.CATEGORY[
+          set_style(div0, "background-color", CONFIG$2.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
           ] ?? "transparent");
         }
         if (dirty & /*torrentInfo*/
         1) {
-          set_style(div0, "color", CONFIG$1.CATEGORY[
+          set_style(div0, "color", CONFIG$2.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
-          ] ? getTextColor$1(CONFIG$1.CATEGORY[
+          ] ? getTextColor$1(CONFIG$2.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
           ]) : "black");
@@ -7110,7 +7313,7 @@
   const func$1 = (e) => e.outerHTML;
   const func_1$1 = (e) => e.outerHTML;
   const func_3$1 = (e) => e.outerHTML;
-  function instance$4($$self, $$props, $$invalidate) {
+  function instance$5($$self, $$props, $$invalidate) {
     let $_iframe_url;
     let $_iframe_switch;
     let $_current_bgColor;
@@ -7172,7 +7375,7 @@
   class Kamept extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$4, create_fragment$4, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
+      init(this, options, instance$5, create_fragment$5, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
     }
   }
   function create_if_block_16(ctx) {
@@ -8741,7 +8944,7 @@
       }
     };
   }
-  function create_fragment$3(ctx) {
+  function create_fragment$4(ctx) {
     let div4;
     let div3;
     let div0;
@@ -8816,19 +9019,19 @@
         attr(div0, "class", "card-category svelte-1fw75v2");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
-        set_style(div0, "background-color", CONFIG.CATEGORY[
+        set_style(div0, "background-color", CONFIG$1.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
         ] ?? "transparent");
-        set_style(div0, "color", CONFIG.CATEGORY[
+        set_style(div0, "color", CONFIG$1.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
-        ] ? getTextColor(CONFIG.CATEGORY[
+        ] ? getTextColor(CONFIG$1.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
         attr(img1, "class", "card-image--img nexus-lazy-load_Kesa svelte-1fw75v2");
-        if (!src_url_equal(img1.src, img1_src_value = CONFIG.LOADING_PIC))
+        if (!src_url_equal(img1.src, img1_src_value = CONFIG$1.LOADING_PIC))
           attr(img1, "src", img1_src_value);
         attr(img1, "data-src", img1_data_src_value = /*torrentInfo*/
         ctx[0].picLink);
@@ -8929,17 +9132,17 @@
         }
         if (dirty & /*torrentInfo*/
         1) {
-          set_style(div0, "background-color", CONFIG.CATEGORY[
+          set_style(div0, "background-color", CONFIG$1.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
           ] ?? "transparent");
         }
         if (dirty & /*torrentInfo*/
         1) {
-          set_style(div0, "color", CONFIG.CATEGORY[
+          set_style(div0, "color", CONFIG$1.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
-          ] ? getTextColor(CONFIG.CATEGORY[
+          ] ? getTextColor(CONFIG$1.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
           ]) : "black");
@@ -9076,7 +9279,7 @@
   const func = (e) => e.outerHTML;
   const func_1 = (e) => e.outerHTML;
   const func_3 = (e) => e.outerHTML;
-  function instance$3($$self, $$props, $$invalidate) {
+  function instance$4($$self, $$props, $$invalidate) {
     let $_iframe_url;
     let $_iframe_switch;
     let $_SITE_SETTING;
@@ -9141,7 +9344,7 @@
   class Mteam extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$3, create_fragment$3, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
+      init(this, options, instance$4, create_fragment$4, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
     }
   }
   function get_each_context_1(ctx, list, i) {
@@ -9487,7 +9690,7 @@
       }
     };
   }
-  function create_fragment$2(ctx) {
+  function create_fragment$3(ctx) {
     let current_block_type_index;
     let if_block0;
     let t;
@@ -9619,7 +9822,7 @@
       }
     };
   }
-  function instance$2($$self, $$props, $$invalidate) {
+  function instance$3($$self, $$props, $$invalidate) {
     var _a;
     let $_Global_Masonry;
     let $_card_width;
@@ -9807,7 +10010,43 @@
   class Index extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$2, create_fragment$2, safe_not_equal, { originTable: 7, waterfallNode: 8 });
+      init(this, options, instance$3, create_fragment$3, safe_not_equal, { originTable: 7, waterfallNode: 8 });
+    }
+  }
+  function create_fragment$2(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.innerHTML = `<span>asl;kdfjas;ljfdaslkjfsakl;djfsla;k</span>`;
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function instance$2($$self, $$props, $$invalidate) {
+    let { originTable } = $$props;
+    let { waterfallNode } = $$props;
+    $$self.$$set = ($$props2) => {
+      if ("originTable" in $$props2)
+        $$invalidate(0, originTable = $$props2.originTable);
+      if ("waterfallNode" in $$props2)
+        $$invalidate(1, waterfallNode = $$props2.waterfallNode);
+    };
+    return [originTable, waterfallNode];
+  }
+  class Index_NEW_MT extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance$2, create_fragment$2, safe_not_equal, { originTable: 0, waterfallNode: 1 });
     }
   }
   function create_else_block(ctx) {
@@ -10142,12 +10381,12 @@
   function instance($$self, $$props, $$invalidate) {
     let $_show_configPanel;
     let $_iframe_switch;
-    let $_show_mode;
+    let $_list_viewMode;
     let $_iframe_url;
     let $_current_domain;
     component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(9, $_show_configPanel = $$value));
     component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(0, $_iframe_switch = $$value));
-    component_subscribe($$self, _show_mode, ($$value) => $$invalidate(5, $_show_mode = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
     component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(1, $_iframe_url = $$value));
     component_subscribe($$self, _current_domain, ($$value) => $$invalidate(2, $_current_domain = $$value));
     console.log(`[${( new Date()).toLocaleTimeString()}]<--------------------------HMR-------------------------->`);
@@ -10173,30 +10412,35 @@
       }
     }
     onMount(() => {
-      new Sidepanel({
-        target: document.body,
-        props: {
-          // 传递给组件的属性
-          originTable: _ORIGIN_TL_Node2
-        }
-      });
-      new Index({
-        target: waterfallNode,
-        props: {
-          // 传递给组件的属性
-          originTable: _ORIGIN_TL_Node2,
-          waterfallNode
-        }
-      });
+      new Sidepanel({ target: document.body });
+      if (!GET_SITE_ARCHITECTURE()) {
+        new Index({
+          target: waterfallNode,
+          props: {
+            // 传递给组件的属性
+            originTable: _ORIGIN_TL_Node2,
+            waterfallNode
+          }
+        });
+      } else if (GET_SITE_ARCHITECTURE() == "NEW_MT") {
+        new Index_NEW_MT({
+          target: waterfallNode,
+          props: {
+            // 传递给组件的属性
+            originTable: _ORIGIN_TL_Node2,
+            waterfallNode
+          }
+        });
+      }
       new BtnTurnPage({ target: nextPageNode });
     });
     $$self.$$.update = () => {
-      if ($$self.$$.dirty & /*$_show_mode*/
+      if ($$self.$$.dirty & /*$_list_viewMode*/
       32) {
         {
-          _ORIGIN_TL_Node2.style.display = $_show_mode ? "none" : "block";
-          nextPageNode.style.display = $_show_mode ? "none" : "block";
-          waterfallNode.style.display = $_show_mode ? "block" : "none";
+          _ORIGIN_TL_Node2.style.display = $_list_viewMode ? "none" : "block";
+          nextPageNode.style.display = $_list_viewMode ? "none" : "block";
+          waterfallNode.style.display = $_list_viewMode ? "block" : "none";
         }
       }
     };
@@ -10206,7 +10450,7 @@
       $_current_domain,
       toggleIframe,
       key_closePanels,
-      $_show_mode
+      $_list_viewMode
     ];
   }
   class Main extends SvelteComponent {

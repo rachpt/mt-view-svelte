@@ -14,6 +14,7 @@ export const config = {
     "https://kamept.com/*",
     "https://kp.m-team.cc/*",
     "https://pterclub.com/*",
+    "https://test2.m-team.cc/*",
   ],
   exclude: [
     "*/offers.php*",
