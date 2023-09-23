@@ -44,7 +44,7 @@
   function GET_CARD_GUTTER(containerDom, card_width) {
     // 获取容器宽度
     const _width = containerDom.clientWidth;
-    console.log(containerDom);
+    // console.log(containerDom);
 
     // 获取一个合适的 gutter
     const card_real_width = card_width + CARD.CARD_BORDER;
@@ -52,7 +52,9 @@
     const gutter = (_width - columns * card_real_width) / (columns - 1);
     console.log(`列数:${columns} 间隔:${gutter}`);
     console.log(
-      `容器宽:${_width} 列宽:${masonry ? masonry.columnWidth : "masonry 丢失!!!"}`
+      `容器宽:${_width} 列宽:${
+        masonry ? masonry.columnWidth : "masonry 丢失!!!"
+      }`
     );
 
     return Math.floor(gutter);
@@ -98,7 +100,7 @@
         "413",
       ],
       pageNumber: 1,
-      pageSize: 20,
+      pageSize: 100,
       sortDirection: "DESC",
       sortField: "CREATED_DATE",
       visible: 1,
@@ -120,13 +122,44 @@
         // 处理数据
         infoList = [...list];
       })
+      .then(() => {
+        // Nexus Tools
+        NEXUS_TOOLS();
+
+        // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
+        // @ts-ignore
+        window.NEXUS_TOOLS = NEXUS_TOOLS;
+      })
       .catch((error) => {
         // 处理错误
         console.error("Error:", error);
       });
   }
 
+  // URL path 劫持函数 ------------------------------------------------
+  // 保存原始的 pushState 方法
+  const originalPushState = history.pushState;
+  function OverWritePushState() {
+    // 重写 pushState 方法
+    history.pushState = function (state, title, path) {
+      // 在这里执行自定义逻辑
+      // NOTE: 获取目标 URL Path
+      // console.log("pushState ---> state:", state);
+      // console.log("pushState ---> title:", title);
+      console.log("pushState ---> URL:", path);
+
+      // 调用原始的 pushState 方法
+      originalPushState.apply(history, arguments);
+
+      // 在这里可以执行额外的操作，例如触发自定义事件等
+      // NOTE: 重新加载 Waterfall 内容
+    };
+  }
+
   onMount(() => {
+    // 劫持 path 变化 => 页面内主循环函数
+    OverWritePushState();
+
     // 生成瀑布流
     // @ts-ignore
     masonry = new Masonry(waterfallNode, {
@@ -157,13 +190,6 @@
     // window.addEventListener("scroll", function () {
     //   scan_and_launch();
     // });
-
-    // Nexus Tools
-    NEXUS_TOOLS();
-
-    // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
-    // @ts-ignore
-    window.NEXUS_TOOLS = NEXUS_TOOLS;
 
     Request();
   });
