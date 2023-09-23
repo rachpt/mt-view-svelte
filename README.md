@@ -95,7 +95,7 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
 
           // 算宽度
           const widthContainer =  document.querySelector('div.waterfall').clientWidth;
-          const widthCard = (widthContainer - (columns-1)*gutter)/(columns-1);
+          const widthCard = (widthContainer - (columns-1)*gutter)/(columns);
 
           // 配置宽度
           Array.from(document.querySelectorAll('.card')).forEach(el=>el.style.width = widthCard+'px'); 
