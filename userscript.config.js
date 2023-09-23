@@ -23,7 +23,10 @@ export const config = {
     "*/viewrequests.php*",
     "*/seek.php*",
   ],
-  "run-at": "document-start",
+  
+  // 暂时弃用这个设计, 可能没啥用还容易导致 bug
+  // "run-at": "document-start",
+
   grant: "none",
   license: "MIT",
 

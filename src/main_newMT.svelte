@@ -29,8 +29,7 @@
   let triggerNext = false;
 
   // ----------------------------
-
-  let observer;
+  // FIXME: 不记得这里是干什么了, 实在没啥用可以删掉
 
   function stopChecking() {
     if (observer) {
@@ -52,10 +51,11 @@
     }
   }
 
-  checkForElement(); // 立即检查一次
+  // checkForElement(); // 立即检查一次
+  // let observer;
+  // observer = new MutationObserver(checkForElement);
+  // observer.observe(document.body, { childList: true, subtree: true });
 
-  observer = new MutationObserver(checkForElement);
-  observer.observe(document.body, { childList: true, subtree: true });
   // 面板相关 ------------------------------------------------
 
   /** 关闭 iframe */

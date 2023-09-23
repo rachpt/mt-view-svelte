@@ -137,9 +137,7 @@
       <!-- src={config.LOADING_PIC} -->
       <img
         class="card-image--img nexus-lazy-load_Kesa"
-        src={torrentInfo.imageList[0]
-          ? torrentInfo.imageList[0]
-          : config.LOADING_PIC}
+        src={config.LOADING_PIC}
         data-src={torrentInfo.imageList[0] ? torrentInfo.imageList[0] : ""}
         alt={torrentInfo.name}
         on:load={sort_masonry}
