@@ -2,8 +2,6 @@ import BtnReload from './component/btnReload.svelte';
 import AppNP from './main.svelte';
 import AppNMT from './main_newMT.svelte';
 // ----
-import './utils/jquery-3.7.0.min'
-// ----
 import { GET_TORRENT_LIST_SELECTOR, GET_SITE_ARCHITECTURE } from './sites/index.js';
 // -------------------------------------------------------------
 
