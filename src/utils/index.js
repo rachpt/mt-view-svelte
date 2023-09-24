@@ -72,7 +72,6 @@ function doSortMasonry() {
   // console.log(`实际执行次数: ${_time}`);
   console.log(`呼叫整理次数: ${_SORT_COUNT.Call}   实际整理次数: ${_SORT_COUNT.Run}`);
   masonry.layout()
-  masonry.reloadItems()
 }
 
 /**外部呼叫整理 Masonry: 根据速度调整 */

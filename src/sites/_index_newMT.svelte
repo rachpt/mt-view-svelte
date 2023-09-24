@@ -123,6 +123,9 @@
         infoList = [...list];
       })
       .then(() => {
+        // 这里专用
+        masonry.reloadItems()
+
         // Nexus Tools
         NEXUS_TOOLS();
 
