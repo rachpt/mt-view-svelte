@@ -127,6 +127,20 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
       - [ ] 去除匹配站点的域名展示
       - [ ] 去除匹配站点的原始匹配
 
+- TODO: 对 M-team 新架构的功能计划
+  - [ ] 瀑布流
+      - [ ] 对 localstorage & URL path 相关参数的完整识别及劫持
+        - [x] 获取当前所在 path -> 分区 / pageSize 获取下拉请求的 search 参数
+        - [ ] 搞定刷新的 loading
+        - [ ] 搞定加载下一页
+      - [ ] 获取背景颜色 -> 并封装到所有站点配置项目里
+      - [x] 图片加载失败 svg 缺省图片
+        - [ ] TODO: 有待向 kame.svelte 推广
+      - [x] 无预览图片 svg 缺省图片
+        - [ ] TODO: 有待向 kame.svelte 推广
+      - [ ] 对小 icon 等进行 base64 的处理
+      - [ ] 处理 ant-submenu 等 z-index 遮挡问题
+
 </details>
 
 ---
