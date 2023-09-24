@@ -111,6 +111,11 @@
 </div>
 
 <style scoped>
+  *,
+  :after,
+  :before {
+    box-sizing: content-box;
+  }
   .switch {
     width: 100%;
 

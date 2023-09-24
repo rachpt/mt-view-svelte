@@ -328,7 +328,7 @@
     <div class="configP_holder">
       <!-- 标题区 -->
       <div class="configP_title">
-        <p>详细配置面板</p>
+        <p style="margin: auto 0">详细配置面板</p>
         <!-- ---------------- 返回按钮 ---------------- -->
         <button on:click={() => ($_show_configPanel = false)}>
           <!-- <svg height="28" width="28" viewBox="0 0 48 48">

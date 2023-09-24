@@ -65,7 +65,7 @@ export const _delay_nexus_pic = persistStore('_delay_nexus_pic', 600);
 // 卡片类变量 -------------------------------------
 /** 卡片宽度 */
 // export const _card_width = writable(200);
-export const _card_width = persistStore('_card_width', 200);
+export const _card_width = persistStore('_card_width', 300);
 
 /** 卡片设置: 全站点配置 & 各个站点配置 */
 const site_setting = {

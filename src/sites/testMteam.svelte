@@ -249,12 +249,12 @@
 <style>
   /* 卡片分类 */
   .card-category {
-    height: 24px;
+    height: 22px;
     padding: 0 2px;
     border: 1px;
     background: black;
     color: white;
-    font-weight: 600;
+    font-weight: 900;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
