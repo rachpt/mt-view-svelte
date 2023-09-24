@@ -10,7 +10,12 @@
     _show_configPanel,
   } from "../stores";
   import { onMount } from "svelte";
-  import { sortMasonry, NEXUS_TOOLS, debounce } from "../utils";
+  import {
+    sortMasonry,
+    NEXUS_TOOLS,
+    debounce,
+    parseLocalStorage,
+  } from "../utils";
   import { CARD, PAGE, ICON } from "../default.config";
   import {
     GLOBAL_SITE,
@@ -76,7 +81,7 @@
   //   console.log(infoList);
   // }
 
-  function Request() {
+  function RequestExample() {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
     const url = "https://test2.m-team.cc/api/torrent/search";
@@ -99,7 +104,7 @@
         "412",
         "413",
       ],
-      pageNumber: 1,
+      pageNumber: 7,
       pageSize: 100,
       sortDirection: "DESC",
       sortField: "CREATED_DATE",
@@ -124,7 +129,7 @@
       })
       .then(() => {
         // 这里专用
-        masonry.reloadItems()
+        masonry.reloadItems();
 
         // Nexus Tools
         NEXUS_TOOLS();
@@ -135,7 +140,45 @@
       })
       .catch((error) => {
         // 处理错误
-        console.error("Error:", error);
+        console.error("网络请求错误:", error);
+      });
+  }
+
+  function Request(payload) {
+    // ------------ 页面请求
+    console.log("当前页面 path:\t", location.pathname);
+    const url = "https://test2.m-team.cc/api/torrent/search";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // 在这里处理返回的数据
+        console.log(data);
+        const list = data.data.data;
+
+        // 处理数据
+        infoList = [...list];
+      })
+      .then(() => {
+        // 这里专用
+        masonry.reloadItems();
+
+        // Nexus Tools
+        NEXUS_TOOLS();
+
+        // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
+        // @ts-ignore
+        window.NEXUS_TOOLS = NEXUS_TOOLS;
+      })
+      .catch((error) => {
+        // 处理错误
+        console.error("网络请求错误:", error);
       });
   }
 
@@ -149,8 +192,46 @@
       // NOTE: 获取目标 URL Path
       // console.log("pushState ---> state:", state);
       // console.log("pushState ---> title:", title);
-      console.log("pushState ---> URL:", path);
+      console.log(
+        `%c ====> URL跳转劫持: %c${path}`,
+        "color: cyan",
+        "color: white"
+      );
 
+      if (path.includes("/browse/") || path == "/browse") {
+        console.log("--->属于 browse 范围, search 启动");
+        const categoryParam =
+          path == "/browse" ? "safe" : path.slice("/browse/".length);
+        console.log(`search param:\t`, categoryParam);
+
+        const lsInfo = parseLocalStorage("persist:persist");
+        // 获取 categoryParam
+        const searchCateParam = lsInfo.sysinfo.categoryList[categoryParam];
+        console.log(searchCateParam);
+
+        // 获取 pageSize
+        const pageSizeParam = lsInfo.sysinfo.pageSize.torrent;
+
+        // payload 示例
+        // categories:[],
+        // pageNumber: 7,
+        // pageSize: 100,
+        // sortDirection: "DESC",
+        // sortField: "CREATED_DATE",
+        // visible: 1,
+        const payload = {
+          categories: searchCateParam,
+          pageNumber: 1,
+          pageSize: pageSizeParam,
+          sortDirection: "DESC",
+          sortField: "CREATED_DATE",
+          visible: 1,
+        };
+
+        Request(payload);
+      }
+
+      // FIXME: 别动这个就行
       // 调用原始的 pushState 方法
       originalPushState.apply(history, arguments);
 
@@ -194,7 +275,7 @@
     //   scan_and_launch();
     // });
 
-    Request();
+    RequestExample();
   });
 </script>
 

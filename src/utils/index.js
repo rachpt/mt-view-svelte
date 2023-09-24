@@ -5,7 +5,7 @@
 import { get } from 'svelte/store'
 import { _show_nexus_pic, _delay_nexus_pic } from '../stores'
 
-export { debounce, throttle, sortMasonry, NEXUS_TOOLS }
+export { debounce, throttle, sortMasonry, NEXUS_TOOLS, parseLocalStorage }
 /**瀑布流执行次数 */
 const _SORT_COUNT = {
   /**外部呼叫函数次数 */
@@ -379,3 +379,53 @@ function NEXUS_TOOLS() {
     imgList.forEach((img) => io.observe(img));
   }
 }
+
+// NOTE: 4. 解析还原 localstorage 对象
+// 
+/**从 localStorage 中原数据对象 
+ * 'persist:persist' & 'persist:torrent'
+ * @param {*} key localStorage 的 item_key 值
+ */
+function parseLocalStorage(key) {
+  const storage = localStorage.getItem(key);
+
+  if (storage) {
+    try {
+      // 尝试解析值为 JSON
+      const parsedValue = JSON.parse(storage);
+
+      // 检查是否解析成功且是一个对象
+      if (typeof parsedValue === 'object' && parsedValue !== null) {
+        // 遍历对象的属性
+        for (const key in parsedValue) {
+          if (Object.hasOwnProperty.call(parsedValue, key)) {
+            const value = parsedValue[key];
+
+            // 检查值是否是被字符串化后的对象
+            if (typeof value === 'string') {
+              // if (typeof value === 'string' && value.includes('\\{') && value.includes('\\}')) {
+              try {
+                const parsedObject = JSON.parse(value);
+                parsedValue[key] = parsedObject;
+              } catch (error) {
+                // 忽略解析错误
+              }
+            }
+          }
+        }
+
+        // 此时 parsedValue 包含了还原后的对象，包括那些被字符串化的对象
+        // console.log('还原后的对象:', parsedValue);
+        return parsedValue;
+      } else {
+        console.error('localStorage 中的值不是一个对象');
+      }
+    } catch (error) {
+      console.error('无法解析 localStorage 中的值为 JSON:', error);
+    }
+  } else {
+    console.error('localStorage 中不存在 key 为 persist:persist 的值, 可能是本站 api 改变了');
+  }
+}
+
+window.parseLocalStorage = parseLocalStorage;
