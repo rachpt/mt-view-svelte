@@ -9,6 +9,8 @@
   } from "../stores";
   import { sortMasonry } from "../utils";
   import { config } from "./testMteam";
+  import _PicErrorLOGO from "../assets/pic_error.svg";
+  import _PicNoLOGO from "../assets/pic_no.svg";
 
   // ------------------------------------------------
 
@@ -86,6 +88,9 @@
   function card_hide_detail() {
     _hover = false;
   }
+
+  /** 本地: 图片是否加载错误*/
+  let _picError = false;
 </script>
 
 <div
@@ -131,18 +136,52 @@
       </div>
     {/if}
 
-    <!-- 预览图 -->
-    <div class="card-image">
+    <!-- NOTE: 预览图, 图片加载错误会显示 svg -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="card-image" on:click={showDetailIframe}>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <!-- src={config.LOADING_PIC} -->
-      <img
-        class="card-image--img nexus-lazy-load_Kesa"
-        src={config.LOADING_PIC}
-        data-src={torrentInfo.imageList[0] ? torrentInfo.imageList[0] : ""}
-        alt={torrentInfo.name}
-        on:load={sort_masonry}
-        on:click={showDetailIframe}
-      />
+      {#if !_picError}
+        <!-- NOTE: 正常显示图片 -->
+        {#if torrentInfo.imageList[0]}
+          <img
+            class="nexus-lazy-load_Kesa"
+            src={config.LOADING_PIC}
+            data-src={torrentInfo.imageList[0] ? torrentInfo.imageList[0] : ""}
+            alt={torrentInfo.name}
+            on:load={sort_masonry}
+            on:error={() => {
+              console.log(`________pic error: ${index}`);
+              _picError = true;
+            }}
+          />
+        {:else}
+          <!-- NOTE: 种子没有图片 -->
+          <div class="pic_error" style="">
+            <div>
+              <img
+                style="height: 100%;width: 100px;"
+                src={_PicNoLOGO}
+                alt="no pic"
+                on:load={sort_masonry}
+              />
+            </div>
+            <div>本种没有图片</div>
+          </div>
+        {/if}
+      {:else}
+        <!-- NOTE: 图片加载失败 -> 缺省 svg 图片 -->
+        <div class="pic_error" style="">
+          <div>
+            <img
+              style="height: 100%;width: 100px;"
+              src={_PicErrorLOGO}
+              alt="pic error"
+              on:load={sort_masonry}
+            />
+          </div>
+          <div>图片加载失败</div>
+        </div>
+      {/if}
 
       <!-- 索引标号 -->
       <div class="card-index">
@@ -352,6 +391,15 @@
   .card-image img {
     width: 100%;
     object-fit: cover;
+  }
+
+  /* 图片加载失败 */
+  .pic_error {
+    height: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* 卡片可选信息 */
