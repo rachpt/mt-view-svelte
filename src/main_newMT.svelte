@@ -86,30 +86,35 @@
   }
 
   $: {
+    // 一组: 原表格
     _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
-    nextPageNode.style.display = $_list_viewMode ? "none" : "block";
 
+    // 一组: 瀑布流 + 按钮
+    nextPageNode.style.display = $_list_viewMode ? "block" : "none";
     waterfallNode.style.display = $_list_viewMode ? "block" : "none";
   }
 
+  // FIXME: 放置节点位置不再是原表格位置, 而是状态栏
   // 表格父节点
-  const parentNode = _ORIGIN_TL_Node.parentNode;
+  const stateBar = document.querySelector(".ant-card-small");
+  const parentNode = stateBar.parentNode;
+
+  // 放置随表格的下一页按钮的节点
+  const nextPageNode = document.createElement("div");
+  // 添加class
+  nextPageNode.classList.add("nextPage");
+  // 将随表格的下一页按钮的节点放置在表格节点上面
+  parentNode.insertBefore(nextPageNode, stateBar.nextSibling);
 
   // 放置瀑布流的节点
   const waterfallNode = document.createElement("div");
   // 添加class
   waterfallNode.classList.add("waterfall");
   // 将瀑布流节点放置在表格节点上面
-  parentNode.insertBefore(waterfallNode, _ORIGIN_TL_Node.nextSibling);
-
-  // 放置随表格的下一页按钮的节点
-  const nextPageNode = document.createElement("div");
-  // 添加class
-  nextPageNode.classList.add("nextPage");
-  // 将瀑布流节点放置在表格节点上面
-  parentNode.insertBefore(nextPageNode, _ORIGIN_TL_Node.nextSibling);
-
+  parentNode.insertBefore(waterfallNode, stateBar.nextSibling);
   // console.log(waterfallNode);
+
+  // 给状态栏上 z-index
 
   // ------------------------------------------------
   let masonry;
