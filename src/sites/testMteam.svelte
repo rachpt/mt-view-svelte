@@ -150,7 +150,7 @@
             alt={torrentInfo.name}
             on:load={sort_masonry}
             on:error={() => {
-              console.log(`________pic error: ${index}`);
+              // console.log(`________pic error: ${index}`);
               _picError = true;
             }}
           />
