@@ -104,15 +104,37 @@
 {#if $_iframe_switch}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div id="_iframe" on:click={toggleIframe} transition:fade={{ duration: 300 }}>
-    <iframe
-      src={$_iframe_url}
-      frameborder="0"
-      title="wow"
-      style="width:
-        {GLOBAL_SITE[$_current_domain]
-        ? GLOBAL_SITE[$_current_domain].Iframe_Width
-        : 1000}px"
-    />
+    <div class="_iframe">
+      <iframe
+        src={$_iframe_url}
+        frameborder="0"
+        title="wow"
+        style="width:
+      {GLOBAL_SITE[$_current_domain]
+          ? GLOBAL_SITE[$_current_domain].Iframe_Width
+          : 1000}px"
+      />
+      <div class="_iframeCloseBtn" on:click={toggleIframe}>
+        <!-- svg 关闭 icon -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_iconCarrier">
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="#1C274C"
+              stroke-width="1.5"
+            />
+            <path
+              d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
+              stroke="#1C274C"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
   </div>
 {/if}
 
@@ -132,10 +154,31 @@
     display: flex;
   }
 
-  iframe {
+  div._iframe {
     /* width: 1246px; */
     height: 96%;
 
     margin: auto;
+
+    position: relative;
+  }
+
+  div._iframe iframe {
+    height: 100%;
+
+    border-radius: 20px;
+  }
+
+  ._iframeCloseBtn {
+    width: 40px;
+    height: 40px;
+    background: white;
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    border-radius: 40px;
   }
 </style>
