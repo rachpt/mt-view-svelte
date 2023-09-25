@@ -110,6 +110,7 @@
   const waterfallNode = document.createElement("div");
   // 添加class
   waterfallNode.classList.add("waterfall");
+  waterfallNode.classList.add("waterfall_newMT");
   // 将瀑布流节点放置在表格节点上面
   parentNode.insertBefore(waterfallNode, stateBar.nextSibling);
   // console.log(waterfallNode);

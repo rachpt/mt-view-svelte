@@ -53,12 +53,12 @@
   /* 卡片: 收藏按钮 */
   #_turnPage {
     width: 100%;
-    height: 32px;
-    border-radius: 16px;
+    height: 34px;
+    border-radius: 12px;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 16px;
 
-    margin: 10px 0;
+    margin: 0;
     padding: 0 10px;
 
     /* position: absolute; */

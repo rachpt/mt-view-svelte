@@ -249,7 +249,7 @@
 <style>
   /* 卡片分类 */
   .card-category {
-    height: 22px;
+    height: 18px;
     padding: 0 2px;
     border: 1px;
     background: black;
