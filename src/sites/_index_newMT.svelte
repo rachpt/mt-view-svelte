@@ -46,6 +46,8 @@
     CHANGE_CARD_LAYOUT();
   }
 
+  // 1. 获取当前域名 & 背景颜色 --------------------------------------------------------------------------------------
+  $_current_domain = GET_CURRENT_PT_DOMAIN();
 
   /** 获取主题背景色 */
   const bgColor = GET_SITE_BACKGROUND_COLOR();
