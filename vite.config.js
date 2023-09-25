@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import monkey from 'vite-plugin-monkey';
+import { join } from 'path'
 // --------------------
 import { config } from './userscript.config.js'
 
@@ -18,4 +19,9 @@ export default defineConfig({
       userscript: config
     }),
   ],
+  resolve: {
+    alias: {
+      '@': join(__dirname, 'src')
+    }
+  }
 });
