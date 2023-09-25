@@ -208,12 +208,10 @@
         <div class="card-line">
           <!-- 大小 -->
           <div class="cl-center">
-            {@html ICON.SIZE}&nbsp;{(
-              Number(torrentInfo.size) /
-              1024 /
-              1024 /
-              1024
-            ).toFixed(2) + "G"}
+            <img src={config.ICON.SIZE} alt="SVG_Size" />
+            <div>
+              {(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(2) + "G"}
+            </div>
           </div>
 
           <!-- TODO: 下载 -->
@@ -234,12 +232,17 @@
 
         <!-- 各种数据: 评论/上传/下载/完成 -->
         <div class="card-line">
-          {@html ICON.COMMENT}&nbsp;<b>{torrentInfo.status.comments}</b
-          >&nbsp;&nbsp;
-          {@html ICON.SEEDERS}&nbsp;<b>{torrentInfo.status.seeders}</b
-          >&nbsp;&nbsp;
-          {@html ICON.LEECHERS}&nbsp;<b>{torrentInfo.status.leechers}</b
-          >&nbsp;&nbsp;
+          <img src={config.ICON.COMMENT} alt="SVG_Comment" />
+          &nbsp;
+          <b>{torrentInfo.status.comments}</b>
+          &nbsp;&nbsp;
+          <img src={config.ICON.SEEDERS} alt="SVG_Seeders" />
+          &nbsp;
+          <b>{torrentInfo.status.seeders}</b>
+          &nbsp;&nbsp;
+          <img src={config.ICON.LEECHERS} alt="SVG_Leechers" />
+          &nbsp;
+          <b>{torrentInfo.status.leechers}</b>
         </div>
       </div>
     {/if}

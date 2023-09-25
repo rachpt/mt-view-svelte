@@ -1,4 +1,10 @@
 import { _iframe_switch, _iframe_url } from '../stores'
+// -------------------------------
+import SVG_Size from "@/assets/icon_size.svg";
+import SVG_Comment from "@/assets/icon_comment.svg";
+import SVG_Seeders from "@/assets/icon_seeders.svg";
+import SVG_Leechers from "@/assets/icon_leechers.svg";
+// -------------------------------
 export { CONFIG as config };
 const CONFIG = {
   /** 是否非 NexusPHP 架构 */
@@ -17,7 +23,27 @@ const CONFIG = {
   LOADING_PIC: "https://test2.m-team.cc/static/media/logo.80b63235eaf702e44a8d.png",
 
   /**如果站点有自定义的icon, 可以用自定义的 */
-  ICON: {},
+  ICON: {
+    /** 大小图标 */
+    SIZE: SVG_Size,
+    /** 评论图标 */
+    COMMENT: SVG_Comment,
+    /** 上传人数图标 */
+    SEEDERS: SVG_Seeders,
+    /** 下载人数图标 */
+    LEECHERS: SVG_Leechers,
+    /** 已完成人数图标 */
+    SNATCHED:
+      '<img class="snatched" src="pic/trans.gif" alt="snatched" title="完成数">',
+    /** 下载图标 */
+    DOWNLOAD:
+      '<img class="download" src="pic/trans.gif" style=" transform: translateY(1px);" alt="download" title="下载本种">',
+    /** 未收藏图标 */
+    COLLET:
+      '<img class="delbookmark" src="pic/trans.gif" alt="Unbookmarked" title="收藏">',
+    /** 已收藏图标 */
+    COLLETED: '<img class="bookmark" src="pic/trans.gif" alt="Bookmarked">',
+  },
 
   /**如果站点有必要设置分类颜色, 可以用自定义的 */
   CATEGORY_COLOR: {
