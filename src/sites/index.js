@@ -30,11 +30,19 @@ function GET_TORRENT_LIST_SELECTOR() {
   return res
 }
 
-/** NOTE: 获取站点架构: 主要应对新MT架构的 */
+/** NOTE: 获取站点架构: 主要应对新MT架构的 
+ * nexusPHP: SITE[domain]?.architecture = null
+*/
 function GET_SITE_ARCHITECTURE() {
   const domain = GET_CURRENT_PT_DOMAIN();
   console.log("PT架构:\t", SITE[domain]?.architecture);
   return SITE[domain]?.architecture;
+}
+
+/**NOTE: 获取站点背景颜色 */
+function GET_SITE_BACKGROUND_COLOR() {
+  const domain = GET_CURRENT_PT_DOMAIN();
+  return SITE[domain]?.get_bg_color()
 }
 
 export {
@@ -42,4 +50,5 @@ export {
   SITE as GLOBAL_SITE,
   GET_TORRENT_LIST_SELECTOR,
   GET_SITE_ARCHITECTURE,
+  GET_SITE_BACKGROUND_COLOR,
 }

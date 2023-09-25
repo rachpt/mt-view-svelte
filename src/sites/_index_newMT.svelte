@@ -21,6 +21,7 @@
     GLOBAL_SITE,
     GET_CURRENT_PT_DOMAIN,
     GET_TORRENT_LIST_SELECTOR,
+    GET_SITE_BACKGROUND_COLOR,
   } from "./index";
   import "../utils/masonry.pkgd.Kesa";
   import TestMteam from "./testMteam.svelte";
@@ -32,7 +33,11 @@
   /** 父传值: 瀑布流dom*/
   export let waterfallNode;
 
-  // 组件函数 ------------------------------------------------
+  // 变量声明 & 配置 ------------------------------------------------
+  // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
+  // @ts-ignore
+  window.NEXUS_TOOLS = NEXUS_TOOLS;
+
   let masonry;
   $: if (masonry) {
     CARD.CARD_WIDTH = $_card_width;
@@ -41,6 +46,13 @@
     CHANGE_CARD_LAYOUT();
   }
 
+
+  /** 获取主题背景色 */
+  const bgColor = GET_SITE_BACKGROUND_COLOR();
+  $_current_bgColor = bgColor;
+  console.log("背景颜色:", bgColor);
+
+  // 组件函数 ------------------------------------------------
   /** 根据容器宽度和卡片宽度动态调整卡片间隔 gutter
    * @param {object} containerDom 容器dom
    * @param {number} card_width 卡片宽度
@@ -85,25 +97,11 @@
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
     const url = "https://test2.m-team.cc/api/torrent/search";
+    // 获取 safe category list
+    const safeInfo =
+      parseLocalStorage("persist:persist").sysinfo.categoryList["safe"];
     const payload = {
-      categories: [
-        "115",
-        "120",
-        "410",
-        "429",
-        "424",
-        "430",
-        "426",
-        "437",
-        "431",
-        "432",
-        "436",
-        "425",
-        "433",
-        "411",
-        "412",
-        "413",
-      ],
+      categories: safeInfo,
       pageNumber: 7,
       pageSize: 100,
       sortDirection: "DESC",
@@ -133,10 +131,6 @@
 
         // Nexus Tools
         NEXUS_TOOLS();
-
-        // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
-        // @ts-ignore
-        window.NEXUS_TOOLS = NEXUS_TOOLS;
       })
       .catch((error) => {
         // 处理错误
@@ -171,10 +165,6 @@
 
         // Nexus Tools
         NEXUS_TOOLS();
-
-        // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
-        // @ts-ignore
-        window.NEXUS_TOOLS = NEXUS_TOOLS;
       })
       .catch((error) => {
         // 处理错误

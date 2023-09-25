@@ -136,6 +136,13 @@ const CONFIG = {
   /** iframe 宽度 */
   Iframe_Width: 1260,
 
+  /**获取背景颜色*/
+  get_bg_color: function () {
+    return getComputedStyle(document.documentElement).getPropertyValue(
+      "--bg-3"
+    );
+  },
+
   /** NOTE: 站点特殊操作 */
   special: function () {
     table_Iframe_Set();

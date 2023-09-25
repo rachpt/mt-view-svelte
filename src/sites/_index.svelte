@@ -16,6 +16,7 @@
     GLOBAL_SITE,
     GET_CURRENT_PT_DOMAIN,
     GET_TORRENT_LIST_SELECTOR,
+    GET_SITE_BACKGROUND_COLOR,
   } from "./index";
   import "../utils/masonry.pkgd.Kesa";
 
@@ -32,6 +33,11 @@
 
   /** 父传值: 瀑布流dom*/
   export let waterfallNode;
+
+  // 变量声明 ------------------------------------------------
+  // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
+  // @ts-ignore
+  window.NEXUS_TOOLS = NEXUS_TOOLS;
 
   // 组件函数 ------------------------------------------------
 
@@ -113,10 +119,9 @@
   // console.log($_current_domain);
 
   /** 获取主题背景色 */
-  const mainOuterDOM = document.querySelector("table.mainouter");
-  const themeColor = window.getComputedStyle(mainOuterDOM)["background-color"];
-  $_current_bgColor = themeColor;
-  console.log("背景颜色:", themeColor);
+  const bgColor = GET_SITE_BACKGROUND_COLOR();
+  $_current_bgColor = bgColor;
+  console.log("背景颜色:", bgColor);
 
   // 2. 根据当前域名拿到对应的数据 --------------------------------------------------------------------------------------
   const config = GLOBAL_SITE[$_current_domain];
@@ -301,10 +306,6 @@
 
     // Nexus Tools
     NEXUS_TOOLS();
-
-    // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
-    // @ts-ignore
-    window.NEXUS_TOOLS = NEXUS_TOOLS;
   });
 
   /** 更新项目配置*/
