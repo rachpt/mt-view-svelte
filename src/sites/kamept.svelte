@@ -8,6 +8,7 @@
   } from "../stores";
   import { sortMasonry } from "../utils";
   import { config } from "./kamept";
+  import _PicErrorLOGO from "../assets/pic_error.svg";
 
   // ------------------------------------------------
 
@@ -82,6 +83,9 @@
   function card_hide_detail() {
     _hover = false;
   }
+
+  /** 本地: 图片是否加载错误*/
+  let _picError = false;
 </script>
 
 <div
@@ -132,14 +136,34 @@
     <!-- 预览图 -->
     <div class="card-image">
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <img
-        class="card-image--img nexus-lazy-load_Kesa"
-        src={config.LOADING_PIC}
-        data-src={torrentInfo.picLink}
-        alt={torrentInfo.torrentName}
-        on:load={sort_masonry}
-        on:click={showDetailIframe}
-      />
+      {#if !_picError}
+        <!-- NOTE: 正常显示图片 -->
+        <img
+          class="nexus-lazy-load_Kesa"
+          src={config.LOADING_PIC}
+          data-src={torrentInfo.picLink}
+          alt={torrentInfo.torrentName}
+          on:load={sort_masonry}
+          on:click={showDetailIframe}
+          on:error={() => {
+            // console.log(`________pic error: ${index}`);
+            _picError = true;
+          }}
+        />
+      {:else}
+        <!-- NOTE: 图片加载失败 -> 缺省 svg 图片 -->
+        <div class="pic_error" style="">
+          <div>
+            <img
+              style="height: 100%;width: 100px;"
+              src={_PicErrorLOGO}
+              alt="pic error"
+              on:load={sort_masonry}
+            />
+          </div>
+          <div>图片加载失败</div>
+        </div>
+      {/if}
 
       <!-- 索引标号 -->
       <div class="card-index">

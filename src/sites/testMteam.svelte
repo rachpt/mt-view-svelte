@@ -393,15 +393,6 @@
     object-fit: cover;
   }
 
-  /* 图片加载失败 */
-  .pic_error {
-    height: 100px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   /* 卡片可选信息 */
   .card-alter {
     text-align: center;

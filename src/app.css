@@ -44,3 +44,12 @@ button#btnSwitchMode {
 button#sort_masonry {
   top: 100px;
 }
+
+/* 卡片: 图片加载失败 */
+.pic_error {
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
