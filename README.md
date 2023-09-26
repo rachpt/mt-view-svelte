@@ -140,6 +140,8 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
         - [x] 对 icon 进行 svg 改造
   - [ ] 小 bug
       - [x] 延时触发 Nexus_Tools, 避免懒加载失效
+      - [ ] 整合 localstorage 条目, 像 newMT 的 localstorage 一样干净
+
 
 </details>
 
