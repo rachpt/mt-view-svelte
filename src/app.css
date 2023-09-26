@@ -60,3 +60,8 @@ button#sort_masonry {
   justify-content: center;
   align-items: center;
 }
+
+/* newMT: 菜单栏专用*/
+.ant-menu-submenu {
+  z-index: 12000;
+}
