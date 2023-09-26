@@ -5,14 +5,14 @@ div.waterfall {
   padding-bottom: 60px;
   border-radius: 20px;
   height: 100%;
-  
+
   /* margin: 0 auto; */
   margin: 20px auto;
-  
+
   transition: height 0.3s;
 }
 
-/* mt 新架构瀑布流容器专用 */
+/* newMT: 瀑布流容器专用*/
 div.waterfall_newMT {
   padding-top: 0;
   padding-bottom: 0;

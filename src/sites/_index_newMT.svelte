@@ -327,7 +327,7 @@
 >
   {#if !loading_hide}
     <!-- loading 占位 -->
-    <div class="loading_Holder" transition:fade={{ duration: 200 }}>
+    <div class="loading_Holder" transition:fade={{ duration: 600 }}>
       <div class="loading_SubHolder">
         <div class="loading_Text">页面切换加载中...</div>
       </div>
