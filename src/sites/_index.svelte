@@ -106,11 +106,6 @@
   }
   window.turnPage = turnPage;
 
-  /** 延迟调用 Nexus Tool */
-  function nexus_tool_delay() {
-    setTimeout(NEXUS_TOOLS, 500);
-  }
-
   // ------------------------------------------------
   // FIXME: 瀑布流渲染流程------------------------------------------------
 
@@ -310,27 +305,17 @@
 
   /** 更新项目配置*/
   afterUpdate(() => {
-    console.log("afterUpdate-------------------->");
+    // console.log("afterUpdate-------------------->");
 
     // 配置 onMount 和 翻页的协同响应, 避免被其他 dom 刷新干扰重复调用
     if (masonry && onMountSignal) {
-      console.log("reload Items-------------------->");
       masonry.reloadItems();
       masonry.layout();
-      // setTimeout(NEXUS_TOOLS, 500);
 
       // NOTE: 修复了直接调用 Nexus 会导致懒加载失效的 bug
-      setTimeout(NEXUS_TOOLS, 600);
-
-      // masonry.on("layoutComplete", nexus_tool_delay);
-      // setTimeout(() => {
-      //   masonry.off("layoutComplete", nexus_tool_delay);
-      // }, 1500);
-
-      // masonry.on("layoutComplete", function () {
-      //   setTimeout(NEXUS_TOOLS, 500);
-      // });
-      // NEXUS_TOOLS();
+      masonry.once("layoutComplete", () => {
+        NEXUS_TOOLS();
+      });
     }
   });
 </script>
