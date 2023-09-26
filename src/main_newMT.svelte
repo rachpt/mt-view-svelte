@@ -106,13 +106,19 @@
   // 将随表格的下一页按钮的节点放置在表格节点上面
   parentNode.insertBefore(nextPageNode, stateBar.nextSibling);
 
-  // 放置瀑布流的节点
+  // 声明 瀑布流DOM节点 & 瀑布流父DOM节点
+  // 瀑布流DOM节点
   const waterfallNode = document.createElement("div");
-  // 添加class
   waterfallNode.classList.add("waterfall");
   waterfallNode.classList.add("waterfall_newMT");
-  // 将瀑布流节点放置在表格节点上面
-  parentNode.insertBefore(waterfallNode, stateBar.nextSibling);
+  // 瀑布流父DOM节点
+  const waterfallParentNode = document.createElement("div");
+  waterfallParentNode.classList.add("waterfallParent");
+  // 父子安排
+  waterfallParentNode.append(waterfallNode);
+
+  // 将瀑布流父节点放置在表格节点上面
+  parentNode.insertBefore(waterfallParentNode, stateBar.nextSibling);
   // console.log(waterfallNode);
 
   // 给状态栏上 z-index
@@ -132,8 +138,8 @@
       target: waterfallNode,
       props: {
         // 传递给组件的属性
-        originTable: _ORIGIN_TL_Node,
         waterfallNode,
+        waterfallParentNode,
       },
     });
 

@@ -10,16 +10,21 @@
     _show_configPanel,
   } from "../stores";
   import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
   import {
     sortMasonry,
     NEXUS_TOOLS,
+    // @ts-ignore
     debounce,
     parseLocalStorage,
   } from "../utils";
+  // @ts-ignore
   import { CARD, PAGE, ICON } from "../default.config";
   import {
+    // @ts-ignore
     GLOBAL_SITE,
     GET_CURRENT_PT_DOMAIN,
+    // @ts-ignore
     GET_TORRENT_LIST_SELECTOR,
     GET_SITE_BACKGROUND_COLOR,
   } from "./index";
@@ -27,24 +32,38 @@
   import TestMteam from "./testMteam.svelte";
   // 父子参数 ------------------------------------------------
 
-  /** 父传值: 原有种子列表dom*/
-  export let originTable;
-
   /** 父传值: 瀑布流dom*/
   export let waterfallNode;
 
-  // 变量声明 & 配置 ------------------------------------------------
+  /** 父传值: 瀑布流父dom*/
+  export let waterfallParentNode;
+
+  // 0. 变量声明 & 配置 ------------------------------------------------
   // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
+  // Nexus_Tools 绑定
   // @ts-ignore
   window.NEXUS_TOOLS = NEXUS_TOOLS;
 
+  // 瀑布流变量声明
   let masonry;
+
+  // 卡片宽度变化相应
+  // @ts-ignore
   $: if (masonry) {
     CARD.CARD_WIDTH = $_card_width;
     console.log("卡片宽度:\t", CARD.CARD_WIDTH);
 
     CHANGE_CARD_LAYOUT();
   }
+
+  // loading 相关变量
+  /** loading 样式变化 trigger 声明 */
+  let loading_hide = false;
+  /** loading 第一次 trigger 声明 */
+  let loading_first = true;
+
+  // loading 初始化 -> 瀑布流父 DOM 保留高度
+  waterfallParentNode.style.height = "116px";
 
   // 1. 获取当前域名 & 背景颜色 --------------------------------------------------------------------------------------
   $_current_domain = GET_CURRENT_PT_DOMAIN();
@@ -54,7 +73,7 @@
   $_current_bgColor = bgColor;
   console.log("背景颜色:", bgColor);
 
-  // 组件函数 ------------------------------------------------
+  // 2. 组件函数 ------------------------------------------------
   /** 根据容器宽度和卡片宽度动态调整卡片间隔 gutter
    * @param {object} containerDom 容器dom
    * @param {number} card_width 卡片宽度
@@ -87,14 +106,16 @@
     sortMasonry("fast");
     sortMasonry("fast");
   }
+  // @ts-ignore
   window.CHANGE_CARD_LAYOUT = CHANGE_CARD_LAYOUT;
 
-  // 请求函数 ------------------------------------------------
+  // 3. 请求函数 ------------------------------------------------
   let infoList = [];
   // $: {
   //   console.log(infoList);
   // }
 
+  /**初始化 search 请求->已封装好载荷(payload)*/
   function RequestExample() {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
@@ -131,8 +152,16 @@
         // 这里专用
         masonry.reloadItems();
 
-        // Nexus Tools
-        NEXUS_TOOLS();
+        // loading 解除 & loading 非第一次标记
+        loading_first = false;
+        loading_hide = true;
+        waterfallParentNode.style.height = "auto";
+
+        // Nexus Tools 延时生效
+        masonry.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
+        // setTimeout(NEXUS_TOOLS, 600);
       })
       .catch((error) => {
         // 处理错误
@@ -140,6 +169,9 @@
       });
   }
 
+  /**常规 search 请求
+   * @param payload 自定义载荷(payload)
+   */
   function Request(payload) {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
@@ -165,8 +197,14 @@
         // 这里专用
         masonry.reloadItems();
 
-        // Nexus Tools
-        NEXUS_TOOLS();
+        // loading 解除
+        loading_hide = true;
+
+        // Nexus Tools 延时生效
+        masonry.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
+        // setTimeout(NEXUS_TOOLS, 600);
       })
       .catch((error) => {
         // 处理错误
@@ -174,12 +212,16 @@
       });
   }
 
-  // URL path 劫持函数 ------------------------------------------------
+  // 4. URL path 劫持函数 ------------------------------------------------
   // 保存原始的 pushState 方法
   const originalPushState = history.pushState;
   function OverWritePushState() {
     // 重写 pushState 方法
+    // @ts-ignore
     history.pushState = function (state, title, path) {
+      // loading 开启
+      loading_hide = false;
+
       // 在这里执行自定义逻辑
       // NOTE: 获取目标 URL Path
       // console.log("pushState ---> state:", state);
@@ -190,27 +232,31 @@
         "color: white"
       );
 
+      // 判读是否在 /browse path 内, 在就进行 search api 筛选
+      // @ts-ignore
       if (path.includes("/browse/") || path == "/browse") {
+        // 从 path 中获取 search api 中 category 的部分
         console.log("--->属于 browse 范围, search 启动");
         const categoryParam =
+          // @ts-ignore
           path == "/browse" ? "safe" : path.slice("/browse/".length);
         console.log(`search param:\t`, categoryParam);
-
         const lsInfo = parseLocalStorage("persist:persist");
         // 获取 categoryParam
         const searchCateParam = lsInfo.sysinfo.categoryList[categoryParam];
         console.log(searchCateParam);
-
         // 获取 pageSize
         const pageSizeParam = lsInfo.sysinfo.pageSize.torrent;
 
-        // payload 示例
-        // categories:[],
-        // pageNumber: 7,
-        // pageSize: 100,
-        // sortDirection: "DESC",
-        // sortField: "CREATED_DATE",
-        // visible: 1,
+        // 装载 payload
+        /** payload 示例
+        /* categories:[],
+        /* pageNumber: 7,
+        /* pageSize: 100,
+        /* sortDirection: "DESC",
+        /* sortField: "CREATED_DATE",
+        /* visible: 1,
+        */
         const payload = {
           categories: searchCateParam,
           pageNumber: 1,
@@ -232,10 +278,8 @@
     };
   }
 
+  /** onMount, 启动!!!!!!!!!!!!!!!!*/
   onMount(() => {
-    // 劫持 path 变化 => 页面内主循环函数
-    OverWritePushState();
-
     // 生成瀑布流
     // @ts-ignore
     masonry = new Masonry(waterfallNode, {
@@ -267,13 +311,89 @@
     //   scan_and_launch();
     // });
 
+    // 初始化 search 请求
     RequestExample();
+
+    // 劫持 path 变化 => 页面内主循环函数
+    OverWritePushState();
   });
 </script>
 
-<!-- 卡片渲染模版 -->
-{#if $_current_domain == "test2.m-team.cc"}
-  {#each infoList as info, index (info.id)}
-    <TestMteam {index} torrentInfo={info} cardWidth={CARD.CARD_WIDTH} {ICON} />
-  {/each}
-{/if}
+<div
+  class:masonry_Holder_unload_1st={!loading_hide && loading_first}
+  class:masonry_Holder_loaded_1st={loading_hide && loading_first}
+  class:masonry_Holder_unloaded={!loading_hide && !loading_first}
+  class:masonry_Holder_loaded={loading_hide && !loading_first}
+>
+  {#if !loading_hide}
+    <!-- loading 占位 -->
+    <div class="loading_Holder" transition:fade={{ duration: 200 }}>
+      <div class="loading_SubHolder">
+        <div class="loading_Text">页面切换加载中...</div>
+      </div>
+    </div>
+  {/if}
+
+  <!-- 卡片渲染模版 -->
+  {#if $_current_domain == "test2.m-team.cc"}
+    {#each infoList as info, index (info.id)}
+      <TestMteam
+        {index}
+        torrentInfo={info}
+        cardWidth={CARD.CARD_WIDTH}
+        {ICON}
+      />
+    {/each}
+  {/if}
+</div>
+
+<style>
+  /* 四种 loading 状态的 Masonry Holder */
+  .masonry_Holder_unload_1st {
+    height: 96px;
+    background: grey;
+    position: relative;
+  }
+  .masonry_Holder_loaded_1st {
+    position: unset;
+    background: transparent;
+    padding: 0;
+  }
+  .masonry_Holder_unloaded {
+    position: unset;
+    background: transparent;
+  }
+  .masonry_Holder_loaded {
+    position: relative;
+    background: transparent;
+  }
+
+  /* loading holder 的几个样式 */
+  .loading_Holder {
+    background-color: #bccad6;
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 10001;
+
+    border-radius: 8px;
+
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+
+    /* opacity: 0.9; */
+  }
+  .loading_SubHolder {
+    position: relative;
+    padding: 40px 0;
+  }
+
+  .loading_Text {
+    position: sticky;
+    top: 40px;
+  }
+</style>
