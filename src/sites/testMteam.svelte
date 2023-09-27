@@ -84,15 +84,31 @@
   let _hover = false;
   function card_show_detail() {
     _hover = true;
+
+    // 鼠标悬浮显示边框阴影
+    thisDom.style.boxShadow = `
+    ${_categoryColor ?? _defaultColor} 5px 5px 0px, 
+    rgba(0, 0, 0, 0.1) -1px -1px 0px`;
   }
   function card_hide_detail() {
     _hover = false;
+
+    // 鼠标移开边框阴影消失
+    thisDom.style.boxShadow = "";
   }
 
   /** 本地: 图片是否加载错误*/
   let _picError = false;
+
+  /** 本地: 分类颜色*/
+  const _categoryColor = config.CATEGORY_COLOR[torrentInfo.category];
+  const _defaultColor = "rgba(255, 255, 255, 0.5)";
+
+  // bind:this
+  let thisDom;
 </script>
 
+<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
   class="card"
   style="
@@ -101,12 +117,24 @@
     : 'block'};
     width: {cardWidth}px; 
     z-index:{10000 - index}; 
-    background-color:{$_current_bgColor}"
+    border-color: {_categoryColor ?? _defaultColor};
+    background-color:{$_current_bgColor};
+    background: linear-gradient(
+      to bottom, 
+      {_categoryColor ?? _defaultColor} 18px,
+      {$_current_bgColor} 18px);
+    "
+  bind:this={thisDom}
 >
   <div
     class="card-holder"
     on:mouseenter={card_show_detail}
     on:mouseleave={card_hide_detail}
+    style="background: linear-gradient(
+      to bottom, 
+      {_categoryColor ?? _defaultColor} 18px,
+      rgba(255, 255, 255, 0.4) 18px,
+      rgba(255, 255, 255, 0));"
   >
     <!-- 分区类别 -->
     <div
@@ -114,11 +142,9 @@
       data-href={"https://test2.m-team.cc/browse?cat=" + torrentInfo.category}
       style="
         background-color: 
-          {config.CATEGORY_COLOR[torrentInfo.category] ?? 'transparent'};
+          {_categoryColor ?? 'transparent'};
         color:
-          {config.CATEGORY_COLOR[torrentInfo.category]
-        ? getTextColor(config.CATEGORY_COLOR[torrentInfo.category])
-        : 'black'}"
+          {_categoryColor ? getTextColor(_categoryColor) : 'black'}"
     >
       <!-- 分类图标 -->
       <img class="card_category-img" src={torrentInfo._categoryImg} alt="" />
@@ -285,7 +311,7 @@
   .card {
     /* width: ${CARD.CARD_WIDTH}px; */
     /* width: 200px; */
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid;
     border-radius: 16px;
     /* background-color: ${themeColor}; */
     /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
@@ -302,8 +328,7 @@
 
   /* 指针卡片悬浮效果 */
   .card:hover {
-    box-shadow: rgba(115, 0, 255, 0.3) 5px 5px 0px,
-      rgba(0, 0, 0, 0.1) -1px -1px 0px;
+    /* box-shadow: rgba(115, 0, 255, 0.3) 5px 5px 0px, rgba(0, 0, 0, 0.1) -1px -1px 0px; */
   }
 
   /* 卡片标题 */
@@ -314,11 +339,11 @@
   /* 卡片内部容器 */
   .card-holder {
     background-color: rgba(255, 255, 255, 0.5);
-    background: linear-gradient(
+    /* background: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.4),
       rgba(255, 255, 255, 0)
-    );
+    ); */
     /* padding-bottom: 6px; */
   }
 
