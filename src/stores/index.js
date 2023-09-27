@@ -27,6 +27,9 @@ function persistStore(key, startValue) {
     localStorage.setItem(persistName, JSON.stringify(data));
   });
 
+  // FIXME: 对旧版本词条的处理, 过几个月也许可以去掉这个玩意儿, 减少损害其他东西的可能性
+  if (localStorage.getItem(key)) localStorage.removeItem(key)
+
   return store;
 }
 
