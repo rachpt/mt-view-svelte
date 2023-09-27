@@ -2,15 +2,29 @@ import { writable } from 'svelte/store';
 import { sortMasonry } from "../utils";
 
 // ----------------------------------------------------------------
+// localstorage 持久化处理 -------------------------------------
+/**localstorage 里瀑布流字段对象的 key 名称*/
+const persistName = 'Kesa:Masonry';
 
-/** 持久化 Stores -> 配置联动 localstorage*/
+/** localstorage 数据持久化 svelte stores 函数
+ * @param {*} key 在 localstorage 瀑布流对象里的 key 值
+ * @param {*} startValue 初始化默认值
+ * @returns svelte stores 对象
+ */
 function persistStore(key, startValue) {
-  const savedValue = localStorage.getItem(key);
-  const initialValue = savedValue ? JSON.parse(savedValue) : startValue;
+  // 判断 localstorage 中有无瀑布流字段对象
+  if (!localStorage.getItem(persistName)) localStorage.setItem(persistName, "{}");
+
+  // 有 ls 中的值就挂载, 没有就从默认值创建, 并根据值注册 svelte store 初始化对象
+  const savedValue = JSON.parse(localStorage.getItem(persistName))[key];
+  const initialValue = savedValue ?? startValue;
   const store = writable(initialValue);
 
+  // 对 svelte store 对象进行订阅以取得全局变化调用
   store.subscribe(value => {
-    localStorage.setItem(key, JSON.stringify(value));
+    const data = JSON.parse(localStorage.getItem(persistName)) ?? {};
+    data[key] = value;
+    localStorage.setItem(persistName, JSON.stringify(data));
   });
 
   return store;
