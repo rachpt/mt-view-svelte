@@ -141,6 +141,7 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
   - [ ] 小 bug
       - [x] 处理 ant-submenu 等 z-index 遮挡问题
       - [x] 延时触发 Nexus_Tools, 避免懒加载失效
+      - [x] 点到非 /browse 页面 loading 依然会出现
 
 
 </details>

@@ -95,23 +95,16 @@
   }
 
   // FIXME: 放置节点位置不再是原表格位置, 而是状态栏
-  // 表格父节点
+  // -----锚点: 状态栏DOM & 状态栏父DOM
   const stateBar = document.querySelector(".ant-card-small");
   const parentNode = stateBar.parentNode;
 
-  // 放置随表格的下一页按钮的节点
-  const nextPageNode = document.createElement("div");
-  // 添加class
-  nextPageNode.classList.add("nextPage");
-  // 将随表格的下一页按钮的节点放置在表格节点上面
-  parentNode.insertBefore(nextPageNode, stateBar.nextSibling);
-
-  // 声明 瀑布流DOM节点 & 瀑布流父DOM节点
-  // 瀑布流DOM节点
+  // -----声明: 瀑布流DOM & 瀑布流父DOM
+  // 瀑布流DOM
   const waterfallNode = document.createElement("div");
   waterfallNode.classList.add("waterfall");
   waterfallNode.classList.add("waterfall_newMT");
-  // 瀑布流父DOM节点
+  // 瀑布流父DOM
   const waterfallParentNode = document.createElement("div");
   waterfallParentNode.classList.add("waterfallParent");
   // 父子安排
@@ -120,6 +113,13 @@
   // 将瀑布流父节点放置在表格节点上面
   parentNode.insertBefore(waterfallParentNode, stateBar.nextSibling);
   // console.log(waterfallNode);
+
+  // ------声明: 翻页 Button DOM
+  const nextPageNode = document.createElement("div");
+  // 添加class
+  nextPageNode.classList.add("nextPage");
+  // 放进 瀑布流父DOM 里
+  waterfallParentNode.append(nextPageNode);
 
   // 给状态栏上 z-index
 

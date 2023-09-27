@@ -235,6 +235,9 @@
       // 判读是否在 /browse path 内, 在就进行 search api 筛选
       // @ts-ignore
       if (path.includes("/browse/") || path == "/browse") {
+        // 在 /browse 内即显示 waterfallParentNode
+        waterfallParentNode.style.display = "block";
+
         // 从 path 中获取 search api 中 category 的部分
         console.log("--->属于 browse 范围, search 启动");
         const categoryParam =
@@ -267,6 +270,9 @@
         };
 
         Request(payload);
+      } else {
+        // 不在 /browse 内即不显示 waterfallParentNode
+        waterfallParentNode.style.display = "none";
       }
 
       // FIXME: 别动这个就行
