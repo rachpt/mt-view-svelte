@@ -381,6 +381,9 @@ function NEXUS_TOOLS() {
 }
 
 // NOTE: 4. 解析还原 localstorage 对象
+const ls_test_list = {};
+// window.ls_test_list = ls_test_list;
+
 // 
 /**从 localStorage 中原数据对象 
  * 'persist:persist' & 'persist:torrent'
@@ -391,6 +394,26 @@ function parseLocalStorage(key) {
 
   if (storage) {
     try {
+      // 缓存读取: 本地 localstorage 文本缓存和对象缓存
+      if (ls_test_list[key]) {
+        if (storage === ls_test_list[key].string) {
+          console.log('%c====> 读取 localstorage 缓存成功~', 'color: green;');
+          return ls_test_list[key].object
+        }
+        else {
+          console.log('%c====> 更新 localstorage 缓存~', 'color: orange;');
+          // console.log('对比前后 localstorage :\t', storage === ls_test_list[key].string);
+          // console.log(ls_test_list[key].timestamp);
+
+          // console.log(storage);
+          // console.log(ls_test_list[key].string);
+        }
+      }
+      else {
+        // 没有时初始化
+        ls_test_list[key] = {}
+      }
+
       // 尝试解析值为 JSON
       const parsedValue = JSON.parse(storage);
 
@@ -414,6 +437,17 @@ function parseLocalStorage(key) {
           }
         }
 
+        // DEBUG: 对比 缓存 和 ls 的数据
+        // if (ls_test_list[key]) {
+        // console.log(ls_test_list[key].object);
+        // console.log(parsedValue);
+        // }
+
+        // 缓存写入: localstorage 文本缓存和对象缓存
+        ls_test_list[key].string = storage
+        ls_test_list[key].object = parsedValue
+        ls_test_list[key].timestamp = new Date().getTime();
+
         // 此时 parsedValue 包含了还原后的对象，包括那些被字符串化的对象
         // console.log('还原后的对象:', parsedValue);
         return parsedValue;
@@ -424,7 +458,7 @@ function parseLocalStorage(key) {
       console.error('无法解析 localStorage 中的值为 JSON:', error);
     }
   } else {
-    console.error('localStorage 中不存在 key 为 persist:persist 的值, 可能是本站 api 改变了');
+    console.error(`localStorage 中不存在 key 为 ${key} 的值, 可能是本站 api 改变了`);
   }
 }
 

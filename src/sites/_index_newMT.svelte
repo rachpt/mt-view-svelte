@@ -120,16 +120,20 @@
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
     const url = "https://test2.m-team.cc/api/torrent/search";
+
     // 获取 safe category list
-    const safeInfo =
-      parseLocalStorage("persist:persist").sysinfo.categoryList["safe"];
+    // const safeInfo = parseLocalStorage("persist:persist").sysinfo.categoryList["safe"];
+
+    let pageSize = Number(
+      parseLocalStorage("persist:persist").sysinfo.pageSize.torrent
+    );
+
     const payload = {
-      categories: safeInfo,
+      categories: UrlPath_2_ParamList(),
       pageNumber: 7,
-      pageSize: 100,
+      pageSize,
       sortDirection: "DESC",
       sortField: "CREATED_DATE",
-      visible: 1,
     };
 
     fetch(url, {
@@ -169,8 +173,23 @@
       });
   }
 
+  /** payload 示例
+  /* categories:[],
+  /* pageNumber: 7,
+  /* pageSize: 100,
+  /* sortDirection: "DESC",
+  /* sortField: "CREATED_DATE",
+  /* visible: 1,
+  */
+
   /**常规 search 请求
-   * @param payload 自定义载荷(payload)
+   * 详见 {@link https://test2.m-team.cc/api/doc.html#/%E5%B8%B8%E8%A7%84%E6%8E%A5%E5%8F%A3/%E7%A7%8D%E5%AD%90/search newMT接口文档}
+   * @param {object} payload - 自定义载荷(payload)
+   * @param {number[]} payload.categories - 分类
+   * @param {number} payload.pageNumber - 页数
+   * @param {number} payload.pageSize - 每页种子数
+   * @param {string} payload.sortDirection - 正倒序(ACS,DESC)
+   * @param {string} payload.sortField - 自定义载荷(CREATED_DATE,SIZE)
    */
   function Request(payload) {
     // ------------ 页面请求
@@ -213,6 +232,21 @@
   }
 
   // 4. URL path 劫持函数 ------------------------------------------------
+
+  /**URL路径转化 => search api 参数列表
+   * @param path 默认值为 URL pathname
+   */
+  function UrlPath_2_ParamList(path = location.pathname) {
+    const categoryParam =
+      // @ts-ignore
+      path == "/browse" ? "safe" : path.slice("/browse/".length);
+    console.log(`search param:\t`, categoryParam);
+    // 从 localstorage 中获取 category 相应的 categoryParam
+    const lsInfo = parseLocalStorage("persist:persist");
+    // @ts-ignore
+    return Array.from(lsInfo.sysinfo.categoryList[categoryParam]);
+  }
+
   // 保存原始的 pushState 方法
   const originalPushState = history.pushState;
   function OverWritePushState() {
@@ -235,38 +269,27 @@
       // 判读是否在 /browse path 内, 在就进行 search api 筛选
       // @ts-ignore
       if (path.includes("/browse/") || path == "/browse") {
+        console.log("--->属于 browse 范围, search 启动");
+
         // 在 /browse 内即显示 waterfallParentNode
         waterfallParentNode.style.display = "block";
 
         // 从 path 中获取 search api 中 category 的部分
-        console.log("--->属于 browse 范围, search 启动");
-        const categoryParam =
-          // @ts-ignore
-          path == "/browse" ? "safe" : path.slice("/browse/".length);
-        console.log(`search param:\t`, categoryParam);
-        const lsInfo = parseLocalStorage("persist:persist");
-        // 获取 categoryParam
-        const searchCateParam = lsInfo.sysinfo.categoryList[categoryParam];
-        console.log(searchCateParam);
+        // @ts-ignore
+        const searchApiList = UrlPath_2_ParamList(path);
+
         // 获取 pageSize
-        const pageSizeParam = lsInfo.sysinfo.pageSize.torrent;
+        const lsInfo = parseLocalStorage("persist:persist");
+        const pageSizeParam = Number(lsInfo.sysinfo.pageSize.torrent);
 
         // 装载 payload
-        /** payload 示例
-        /* categories:[],
-        /* pageNumber: 7,
-        /* pageSize: 100,
-        /* sortDirection: "DESC",
-        /* sortField: "CREATED_DATE",
-        /* visible: 1,
-        */
+
         const payload = {
-          categories: searchCateParam,
+          categories: searchApiList,
           pageNumber: 1,
           pageSize: pageSizeParam,
           sortDirection: "DESC",
           sortField: "CREATED_DATE",
-          visible: 1,
         };
 
         Request(payload);
