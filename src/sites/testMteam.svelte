@@ -322,7 +322,7 @@
 
     cursor: pointer;
 
-    box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 0px, rgba(0, 0, 0, 0.1) -1px -1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 0px, rgba(0, 0, 0, 0.1) -1px -1px 0px;
     transition: box-shadow 0.2s;
   }
 
