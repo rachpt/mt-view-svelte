@@ -67,7 +67,7 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
 <summary>TODO LIST</summary>
 
 - 宏观类
-    - [ ] TODO: 在 readme.md 中把架构图画出来以防屎山(from tg by @兔纸)
+    - [ ] (已放弃) 在 readme.md 中把架构图画出来以防屎山(from tg by @兔纸)
 
 - 功能类
     - [ ] 原 table 也随着滑动到底部自动添加数据
@@ -76,7 +76,8 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
       - [ ] 排序区按钮(from tg by 天 胖)
       - [ ] 卡片宽度 & 间距宽度 调整
       - [ ] 简洁模式 & 详细模式 切换
-      - [ ] 跟随预览 & 中间预览 切换(from tg by 天 胖)
+      - [ ] TODO: 图片中心眼睛 logo
+        - [ ] 跟随预览 & 中间预览 切换(from tg by 天 胖)
     - [x] 加个 ESC 按钮退出 iframe 显示(from tg by LNN)
     - [x] Nexus 触摸显示大图放个半秒再显示？避免划过显示一堆不想看的？(from tg by LNN & 龟龟)
     - [x] 配置一下标题的隐藏(from tg by LNN)
@@ -112,7 +113,7 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
     - [x] 边栏整体向 bilibili-evolve 看齐(from tg by LNN)
     - [x] MT卡片分类文字居中(from tg by 天 胖)
     - [ ] TODO: 将 'new' 'hot' 和 index 一样放在图片上下左右
-    - [ ] TODO: 改改阴影, 学习 [如何用 CSS 中写出超级美丽的阴影效果](https://juejin.cn/post/7034323356459466760)(from tg by Kyaru)
+    - [x] (已放弃) 改改阴影, 学习 [如何用 CSS 中写出超级美丽的阴影效果](https://juejin.cn/post/7034323356459466760)(from tg by Kyaru)
     - [ ] 刚进种子页面会出现蚂蚁线, 考虑改进一下?(from tg by LNN)
 
 
@@ -144,6 +145,7 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
       - [x] 延时触发 Nexus_Tools, 避免懒加载失效
       - [x] 点到非 /browse 页面 loading 依然会出现
       - [ ] TODO: /browse 出来又回来 originTable 出现了
+      - [x] TODO: 详细配置面板样式小问题
   - [ ] 对没有加载到的 src 进行预加载(大活儿, 不着急)
       ```javascript
       // 图片链接数组

@@ -343,7 +343,7 @@
             fill="none"
             height="28"
             width="28"
-            stroke="currentColor"
+            stroke="black"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
@@ -741,6 +741,9 @@
   }
 
   .configP_holder {
+    /* 修复 newMT 架构 重置css 的样式覆盖*/
+    box-sizing: content-box;
+
     position: absolute;
     right: 20px;
     top: 20px;
