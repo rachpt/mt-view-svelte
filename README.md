@@ -144,8 +144,8 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
       - [x] 处理 ant-submenu 等 z-index 遮挡问题
       - [x] 延时触发 Nexus_Tools, 避免懒加载失效
       - [x] 点到非 /browse 页面 loading 依然会出现
-      - [ ] TODO: /browse 出来又回来 originTable 出现了
-      - [x] TODO: 详细配置面板样式小问题
+      - [x] /browse 出来又回来 originTable 出现了
+      - [x] 详细配置面板样式小问题
   - [ ] 对没有加载到的 src 进行预加载(大活儿, 不着急)
       ```javascript
       // 图片链接数组

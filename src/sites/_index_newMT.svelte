@@ -38,6 +38,12 @@
   /** 父传值: 瀑布流父dom*/
   export let waterfallParentNode;
 
+  /** 父传值: 原列表dom*/
+  // export let _ORIGIN_TL_Node;
+
+  /** 父传值: 重置原列表节点DOM函数*/
+  export let update_ORIGIN_TL_Node;
+
   // 0. 变量声明 & 配置 ------------------------------------------------
   // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
   // Nexus_Tools 绑定
@@ -190,8 +196,10 @@
    * @param {number} payload.pageSize - 每页种子数
    * @param {string} payload.sortDirection - 正倒序(ACS,DESC)
    * @param {string} payload.sortField - 自定义载荷(CREATED_DATE,SIZE)
+   * @param {function} successCallback - 成功后的回调函数
    */
-  function Request(payload) {
+
+  function Request(payload, successCallback = null) {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
     const url = "https://test2.m-team.cc/api/torrent/search";
@@ -223,6 +231,8 @@
         masonry.once("layoutComplete", () => {
           NEXUS_TOOLS();
         });
+
+        if (successCallback) successCallback();
         // setTimeout(NEXUS_TOOLS, 600);
       })
       .catch((error) => {
@@ -247,8 +257,14 @@
     return Array.from(lsInfo.sysinfo.categoryList[categoryParam]);
   }
 
+  // FIXME: 这里在每次切换 /browse 又回来之后, _ORIGIN_TL_Node 会丢失
+  // 解决方法: 加一个 trigger, 跳转后重置 _ORIGIN_TL_Node
+  /**是否原列表节点消失*/
+  let isOriginLost = false;
+
   // 保存原始的 pushState 方法
   const originalPushState = history.pushState;
+  /**劫持pushState方法*/
   function OverWritePushState() {
     // 重写 pushState 方法
     // @ts-ignore
@@ -283,7 +299,6 @@
         const pageSizeParam = Number(lsInfo.sysinfo.pageSize.torrent);
 
         // 装载 payload
-
         const payload = {
           categories: searchApiList,
           pageNumber: 1,
@@ -292,10 +307,16 @@
           sortField: "CREATED_DATE",
         };
 
-        Request(payload);
+        // 检查原列表节点DOM是否消失, 如消失在 request 回调函数中重置原列表节点DOM
+        let callback = null;
+        if (isOriginLost) callback = update_ORIGIN_TL_Node;
+        Request(payload, callback);
       } else {
         // 不在 /browse 内即不显示 waterfallParentNode
         waterfallParentNode.style.display = "none";
+
+        // 原列表节点消失 -> 标记 trigger
+        isOriginLost = true;
       }
 
       // FIXME: 别动这个就行
@@ -303,7 +324,7 @@
       originalPushState.apply(history, arguments);
 
       // 在这里可以执行额外的操作，例如触发自定义事件等
-      // NOTE: 重新加载 Waterfall 内容
+      // NOTE: [可选]重新加载 Waterfall 内容
     };
   }
 

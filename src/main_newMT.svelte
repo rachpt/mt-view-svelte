@@ -23,6 +23,24 @@
 
   // 1. 隐藏原种子列表并进行前置操作 --------------------------------------------------------------------------------------
   let _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+  window._ORIGIN_TL_Node = _ORIGIN_TL_Node;
+
+  /**重置原列表节点DOM*/
+  function update_ORIGIN_TL_Node() {
+    console.log("--------> 更新 _ORIGIN_TL_Node");
+
+    if (
+      document.querySelector(GET_TORRENT_LIST_SELECTOR()) != _ORIGIN_TL_Node
+    ) {
+      console.log("--------> 已替换 _ORIGIN_TL_Node");
+      _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+      // console.log(_ORIGIN_TL_Node);
+
+      // 重新配置原表格DOM显示 or 隐藏
+      _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+    }
+  }
+
   // while (!_ORIGIN_TL_Node) {
   //   _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
   // }
@@ -138,8 +156,16 @@
       target: waterfallNode,
       props: {
         // 传递给组件的属性
+
+        // 瀑布流DOM & 瀑布流父DOM
         waterfallNode,
         waterfallParentNode,
+
+        // 原列表DOM
+        // _ORIGIN_TL_Node,
+
+        // 重置原列表节点DOM函数
+        update_ORIGIN_TL_Node,
       },
     });
 
