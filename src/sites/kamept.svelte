@@ -134,7 +134,8 @@
     {/if}
 
     <!-- 预览图 -->
-    <div class="card-image">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="card-image" on:click={showDetailIframe}>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       {#if !_picError}
         <!-- NOTE: 正常显示图片 -->
@@ -144,7 +145,6 @@
           data-src={torrentInfo.picLink}
           alt={torrentInfo.torrentName}
           on:load={sort_masonry}
-          on:click={showDetailIframe}
           on:error={() => {
             // console.log(`________pic error: ${index}`);
             _picError = true;
