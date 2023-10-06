@@ -5,7 +5,7 @@
 import { get } from 'svelte/store'
 import { _show_nexus_pic, _delay_nexus_pic } from '../stores'
 
-export { debounce, throttle, sortMasonry, NEXUS_TOOLS, parseLocalStorage }
+export { debounce, debounceImmediate, throttle, sortMasonry, NEXUS_TOOLS, parseLocalStorage }
 /**瀑布流执行次数 */
 const _SORT_COUNT = {
   /**外部呼叫函数次数 */
@@ -14,7 +14,7 @@ const _SORT_COUNT = {
   Run: 0,
 }
 // NOTE: 1. 抽象工具-------------------------------
-/** 防抖函数
+/** 防抖函数 -> 先不执行
  * @param {function} func 操作函数
  * @param {number} delay 延迟
  * @returns
@@ -33,6 +33,32 @@ function debounce(func, delay) {
     }, delay);
   };
 }
+
+/** 防抖函数 -> 立即执行
+ * @param {function} func 操作函数
+ * @param {number} delay 延迟
+ * @returns
+ */
+function debounceImmediate(func, delay) {
+  let timeout;
+  return function () {
+    const immediate = !timeout;
+
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+
+    timeout = setTimeout(() => {
+      // func.apply(this, arguments);
+      timeout = null;
+    }, delay);
+
+    if (immediate) {
+      func.apply(this, arguments);
+    }
+  };
+}
+
 
 /** 节流函数
  * @param {*} func 操作函数

@@ -130,15 +130,16 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
 
 - NOTE: 对 M-team 新架构的功能计划
   - [ ] 瀑布流
-      - [ ] 对 localstorage & URL path 相关参数的完整识别及劫持
+      - [x] 对 localstorage & URL path 相关参数的完整识别及劫持
         - [x] 获取当前所在 path -> 分区 / pageSize 获取下拉请求的 search 参数
         - [x] 搞定刷新的 loading
         - [x] 初始化加载 -> 封装参数转换函数 & localstorage 持久化函数的 文本 & 对象 的本地缓存
-        - [ ] TODO: 搞定加载下一页
+        - [x] 搞定加载下一页
       - [x] 卡片处理
         - [x] 获取背景颜色 -> 并封装到所有站点配置项目里
         - [x] 图片加载失败 & 无预览图片 svg 缺省图片 -> 已向其他支持的站点推广
         - [x] 对 icon 进行 svg 改造
+        - [ ] TODO: 将卡片各个部分的显示隐藏配置完整
       - [x] 整合 localstorage 条目, 像 newMT 的 localstorage 一样干净
   - [ ] 小 bug
       - [x] 处理 ant-submenu 等 z-index 遮挡问题

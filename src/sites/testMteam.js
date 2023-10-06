@@ -22,6 +22,28 @@ const CONFIG = {
   /** 加载图片等待时的默认图片 */
   LOADING_PIC: "https://test2.m-team.cc/static/media/logo.80b63235eaf702e44a8d.png",
 
+  /** 网站 host*/
+  HOST: "https://test2.m-team.cc",
+
+  /** 网站 api */
+  API: {
+    /** 查询 */
+    search: {
+      url: "/api/torrent/search",
+      method: "POST",
+
+      // payload 示例
+      // payload: {
+      //   categories: [],
+      //   pageNumber: 7,
+      //   pageSize: 100,
+      //   sortDirection: "DESC",
+      //   sortField: "CREATED_DATE",
+      //   visible: 1,
+      // }
+    },
+  },
+
   /**如果站点有自定义的icon, 可以用自定义的 */
   ICON: {
     /** 大小图标 */

@@ -39,8 +39,7 @@ function persistStore(key, startValue) {
 /** 全局Masonry */
 export const _Global_Masonry = writable({});
 
-/** 种子列表显示模式: 表格(0) or 瀑布流(1) */
-export const _list_viewMode = persistStore('_listViewMode', 1);
+
 
 // iframe变量 -------------------------------------
 /** iframe 开关 */
@@ -57,9 +56,8 @@ export const _current_domain = persistStore('_domain', "");
 export const _current_bgColor = persistStore('_bgColor', "");
 
 // 配置类变量 -------------------------------------
-/** 是否显示原始种子列表 */
-export const _show_originTable = writable(0)
-// export const _show_originTable = persistStore('_show_ori_table', 0);
+/** 种子列表显示模式: 表格(0) or 瀑布流(1) */
+export const _list_viewMode = persistStore('_listViewMode', 1);
 
 /** 是否显示侧边栏 */
 export const _show_configPanel = writable(false)
@@ -106,7 +104,7 @@ _SITE_SETTING.subscribe(value => {
   }
 })
 
-/** 卡片显示_总开关 */
+/** 卡片显示_总开关 对象*/
 const show_switch = {
   // 全局总开关
   all: false,
@@ -127,6 +125,7 @@ const show_switch = {
   statistics: false,
 }
 // export const _CARD_SHOW = writable(show_switch);
+/** 卡片显示_总开关 Store对象 */
 export const _CARD_SHOW = persistStore('_card_show', show_switch);
 let mark = false;
 _CARD_SHOW.subscribe(value => {

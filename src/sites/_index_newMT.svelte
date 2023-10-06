@@ -8,6 +8,7 @@
     _iframe_switch,
     _iframe_url,
     _show_configPanel,
+    _list_viewMode,
   } from "../stores";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
@@ -17,6 +18,7 @@
     // @ts-ignore
     debounce,
     parseLocalStorage,
+    debounceImmediate,
   } from "../utils";
   // @ts-ignore
   import { CARD, PAGE } from "../default.config";
@@ -30,6 +32,7 @@
   } from "./index";
   import "../utils/masonry.pkgd.Kesa";
   import TestMteam from "./testMteam.svelte";
+  import { config } from "./testMteam";
   // 父子参数 ------------------------------------------------
 
   /** 父传值: 瀑布流dom*/
@@ -45,6 +48,10 @@
   export let update_ORIGIN_TL_Node;
 
   // 0. 变量声明 & 配置 ------------------------------------------------
+
+  // search api
+  const searchApiURL = config.HOST + config.API.search.url;
+
   // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
   // Nexus_Tools 绑定
   // @ts-ignore
@@ -125,7 +132,6 @@
   function RequestExample() {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
-    const url = "https://test2.m-team.cc/api/torrent/search";
 
     // 获取 safe category list
     // const safeInfo = parseLocalStorage("persist:persist").sysinfo.categoryList["safe"];
@@ -136,13 +142,13 @@
 
     const payload = {
       categories: UrlPath_2_ParamList(),
-      pageNumber: 7,
+      pageNumber: 1,
       pageSize,
       sortDirection: "DESC",
       sortField: "CREATED_DATE",
     };
 
-    fetch(url, {
+    fetch(searchApiURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -202,9 +208,9 @@
   function Request(payload, successCallback = null) {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
-    const url = "https://test2.m-team.cc/api/torrent/search";
+    // const url = "https://test2.m-team.cc/api/torrent/search";
 
-    fetch(url, {
+    fetch(searchApiURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -328,6 +334,99 @@
     };
   }
 
+  // 5. 翻页相关部分 ------------------------------------------------
+  // 设定初始页数
+  PAGE.$setPage(1);
+
+  /** 延迟加载事件 */
+  let debounceLoad;
+  // 对延迟加载事件进行防抖
+  debounceLoad = debounceImmediate(loadNextPage, PAGE.GAP);
+
+  /**NOTE: 滚动DOM ( newMT 的 滚动DOM 不是 body, 是 .ant-layout)*/
+  const scrollDOM = document.querySelector(".ant-layout");
+  /**滑动翻页函数判定*/
+  function scan_and_launch() {
+    const scrollHeight = scrollDOM.scrollHeight;
+    const clientHeight = scrollDOM.clientHeight;
+    const scrollTop = scrollDOM.scrollTop || scrollDOM.scrollTop;
+    // console.log(scrollHeight, clientHeight, scrollTop);
+    if (scrollTop + clientHeight >= scrollHeight - PAGE.DISTANCE_newMT) {
+      // TODO: 注意写这里
+      if ($_turnPage) {
+        debounceLoad();
+      } else {
+        console.log("加载模式: 按钮");
+      }
+
+      // 这里整理一下瀑布流, 往往这里会出一点格式问题
+      sortMasonry();
+    }
+  }
+
+  /**页数记录专用对象*/
+  const PageManager = {};
+
+  /** 加载下一页的本体函数 */
+  function loadNextPage() {
+    // -- 1. 对 目标页数页数 & 单页数量 进行统计 -> 打包要 POST 的 payload
+    const payload = {
+      categories: UrlPath_2_ParamList(),
+      pageNumber: PAGE.$getCurrentPage() + 1,
+      pageSize: Number(
+        parseLocalStorage("persist:persist").sysinfo.pageSize.torrent
+      ),
+      sortDirection: "DESC",
+      sortField: "CREATED_DATE",
+    };
+
+    // -- 2. fetch payload, 并在获得后更新 List
+    fetch(searchApiURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // 在这里处理返回的数据
+        console.log(data);
+        const list = data.data.data;
+
+        // 处理数据
+        infoList = [...infoList, ...list];
+      })
+      .then(() => {
+        // 这里专用
+        masonry.reloadItems();
+
+        // Nexus Tools 延时生效
+        masonry.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
+
+        // -- 3. 收尾, 更新当前页数等
+        // 页数处理
+        PAGE.$turnPage();
+      })
+      .catch((error) => {
+        // 处理错误
+        console.error("网络请求错误:", error);
+      });
+  }
+  // window.loadNextPage = loadNextPage;
+
+  /** 翻页组件调用函数
+   * @param event
+   */
+  function turnPage() {
+    // 加载下一页
+    if (!$_turnPage) debounceLoad();
+  }
+  window.$$$turnPage = turnPage;
+
+  // 6. onMount 启动 ------------------------------------------------
   /** onMount, 启动!!!!!!!!!!!!!!!!*/
   onMount(() => {
     // 生成瀑布流
@@ -356,10 +455,10 @@
       }
     });
 
-    // // 滚动到底部检测
-    // window.addEventListener("scroll", function () {
-    //   scan_and_launch();
-    // });
+    // 滚动到底部检测
+    scrollDOM.addEventListener("scroll", function () {
+      if ($_list_viewMode) scan_and_launch();
+    });
 
     // 初始化 search 请求
     RequestExample();

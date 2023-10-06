@@ -11,7 +11,12 @@
   } from "../stores";
   import { onMount, afterUpdate } from "svelte";
 
-  import { sortMasonry, NEXUS_TOOLS, debounce } from "../utils";
+  import {
+    sortMasonry,
+    NEXUS_TOOLS,
+    debounce,
+    debounceImmediate,
+  } from "../utils";
   import {
     GLOBAL_SITE,
     GET_CURRENT_PT_DOMAIN,
@@ -165,7 +170,7 @@
   }
 
   // |-- 4.2 加载下一页
-  debounceLoad = debounce(loadNextPage, PAGE.GAP);
+  debounceLoad = debounceImmediate(loadNextPage, PAGE.GAP);
 
   /** 加载下一页的本体函数 */
   function loadNextPage() {

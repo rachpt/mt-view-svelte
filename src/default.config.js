@@ -32,6 +32,9 @@ const PAGE = {
   /** 翻页: 底部检测视点与底部距离 */
   DISTANCE: 300,
 
+  /** newMT 翻页: 底部检测视点与底部距离 */
+  DISTANCE_newMT: 900,
+
   /** 翻页: 是否为初始跳转页面 */
   IS_ORIGIN: true,
 
@@ -49,6 +52,25 @@ const PAGE = {
 
   /** 翻页: 下一页的加载方式: Button | Slip */
   SWITCH_MODE: "Button",
+
+  /**获取当前页*/
+  $getCurrentPage: () => {
+    PAGE.PAGE_CURRENT = PAGE.PAGE_CURRENT ?? 0;
+    PAGE.PAGE_NEXT = PAGE.PAGE_CURRENT + 1;
+    return PAGE.PAGE_CURRENT;
+  },
+  /**获取下一页*/
+  $getNextPage: () => PAGE.PAGE_NEXT,
+  /**翻页*/
+  $turnPage: () => {
+    PAGE.PAGE_CURRENT = PAGE.PAGE_NEXT;
+    PAGE.PAGE_NEXT = PAGE.PAGE_CURRENT + 1;
+  },
+  /**设定页*/
+  $setPage: (index) => {
+    PAGE.PAGE_CURRENT = index;
+    PAGE.PAGE_NEXT = PAGE.PAGE_CURRENT + 1;
+  },
 };
 
 /** 网站图标链接 */
