@@ -3,7 +3,6 @@
   import { fade } from "svelte/transition";
   import {
     _current_bgColor,
-    _show_originTable,
     _Global_Masonry,
     _list_viewMode,
     _card_width,

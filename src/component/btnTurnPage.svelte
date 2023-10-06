@@ -20,7 +20,7 @@
 
     // 加载下一页
     // if (!$_turnPage) debounceLoad();
-    window.turnPage(event);
+    window.$$$turnPage();
 
     // 加载下一页3秒防抖
     if (!isButtonDisabled) {

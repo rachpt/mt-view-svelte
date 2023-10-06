@@ -75,8 +75,9 @@
   export let torrentInfo;
   /** 父传值: 卡片宽度*/
   export let cardWidth;
+
   /** 父传值: 静态图片链接*/
-  export let ICON;
+  // export let ICON;
 
   // ------------------------------------------------
 

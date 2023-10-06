@@ -19,7 +19,7 @@
     parseLocalStorage,
   } from "../utils";
   // @ts-ignore
-  import { CARD, PAGE, ICON } from "../default.config";
+  import { CARD, PAGE } from "../default.config";
   import {
     // @ts-ignore
     GLOBAL_SITE,
@@ -387,12 +387,7 @@
   <!-- 卡片渲染模版 -->
   {#if $_current_domain == "test2.m-team.cc"}
     {#each infoList as info, index (info.id)}
-      <TestMteam
-        {index}
-        torrentInfo={info}
-        cardWidth={CARD.CARD_WIDTH}
-        {ICON}
-      />
+      <TestMteam {index} torrentInfo={info} cardWidth={CARD.CARD_WIDTH} />
     {/each}
   {/if}
 </div>
