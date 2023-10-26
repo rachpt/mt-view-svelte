@@ -14,32 +14,35 @@
 
   // ------------------------------------------------
 
+  /**fetch API 处理
+   * @param api API名称
+   * @param payload 载荷
+   * @param func 回调处理函数
+   */
+  function fetchData(api, payload, func) {
+    if (!config.API[api]) {
+      console.warn(`没有名为 ${api} 的 API 接口.`);
+      return;
+    }
+    const url = config.HOST + config.API[api].url;
+    const method = config.API[api].method;
+
+    fetch(url, { method, body: payload })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        func(data);
+      })
+      .catch((error) => console.error(error));
+  }
+  // @ts-ignore
+  window.fetchData = fetchData;
+
+  // ------------------------------------------------
+
   /** 调用瀑布流整理*/
   function sort_masonry() {
     sortMasonry();
-  }
-
-  /**执行收藏动作并对制定卡片切换图标
-   * @param {string} jsCodeLink js的收藏代码
-   * @param {string} card_id 种子卡片id
-   */
-  function COLLET_AND_ICON_CHANGE(jsCodeLink, card_id) {
-    // console.log(jsCodeLink, card_id);
-    try {
-      // 收藏链接
-      window.location.href = jsCodeLink;
-
-      // 操作相应的收藏图片
-      const btn = document.querySelector(`div#${card_id}`);
-      const img = btn.children[0];
-      img.className =
-        img.className == "delbookmark" ? "bookmark" : "delbookmark";
-      // console.log(btn);
-      console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
-    } catch (error) {
-      // GUI 通知一下捏
-      console.error(error);
-    }
   }
 
   /** 根据背景颜色动态调整文字黑白
@@ -61,6 +64,7 @@
     return brightness < 128 ? "white" : "black";
   }
 
+  /**显示 iframe*/
   function showDetailIframe() {
     $_iframe_switch = 1;
     $_iframe_url = torrentInfo.torrentLink + "#kdescr";
@@ -78,6 +82,43 @@
 
   /** 父传值: 静态图片链接*/
   // export let ICON;
+
+  // ------------------------------------------------
+
+  // 示例: 下载
+  // const formdata = new FormData();
+  // formdata.append("id", 713437);
+  // fetchData("genDlToken", formdata, (data) => console.log(data));
+
+  // 示例: 收藏 -> make true 是收藏, false 是取消收藏
+  // const formdata = new FormData();
+  // formdata.append("id", 713437);
+  // formdata.append("make", true);
+  // fetchData("collection", formdata, (data) => console.log(data));
+
+  /**下载种子*/
+  function torrent_download() {
+    const formdata = new FormData();
+    formdata.append("id", torrentInfo.id);
+    fetchData("genDlToken", formdata, (data) => {
+      console.log(data);
+      if (data.data) window.open(data.data, "_blank");
+    });
+  }
+
+  // @ts-ignore
+  let collectionMark = Boolean(torrentInfo.collection);
+  /**收藏种子*/
+  function torrent_collection() {
+    const formdata = new FormData();
+    formdata.append("id", torrentInfo.id);
+    // @ts-ignore
+    formdata.append("make", !collectionMark);
+    fetchData("collection", formdata, (data) => {
+      console.log(data);
+      collectionMark = !collectionMark;
+    });
+  }
 
   // ------------------------------------------------
 
@@ -131,8 +172,7 @@
     class="card-holder"
     on:mouseenter={card_show_detail}
     on:mouseleave={card_hide_detail}
-    style="background: linear-gradient(
-      to bottom, 
+    style="background: linear-gradient (to bottom, 
       {_categoryColor ?? _defaultColor} 18px,
       rgba(255, 255, 255, 0.4) 18px,
       rgba(255, 255, 255, 0));"
@@ -218,34 +258,144 @@
 
     <!-- NOTE: 完整内部显示 -->
     {#if $_CARD_SHOW.all || _hover}
-      <!-- TODO: 置顶 && 免费类型&剩余时间 -->
-      <!-- 置顶 && 免费类型&剩余时间 -->
-
       <!-- 副标题 -->
       {#if torrentInfo.smallDescr}
-        <a class="card-description" href={torrentInfo.torrentLink}>
-          {torrentInfo.smallDescr}
-        </a>
+        <div class="card-description">
+          <a href={torrentInfo.torrentLink}>
+            {torrentInfo.smallDescr}
+          </a>
+        </div>
       {/if}
 
-      <!-- TODO: 标签 Tags -->
+      <!-- TODO: 置顶 && 免费类型&剩余时间 -->
+      <!-- 置顶 && 免费类型&剩余时间 -->
+      {#if torrentInfo.status.discount || torrentInfo.status.toppingLevel}
+        <div class="cl-tags">
+          {#if torrentInfo.status.discount}
+            <div class="_tag _tag_discount_50">
+              {torrentInfo.status.discount}
+              {torrentInfo.status.discountEndTime
+                ? ":" + torrentInfo.status.discountEndTime
+                : ""}
+            </div>
+          {/if}
+
+          {#if torrentInfo.status.toppingLevel}
+            <div class="_tag">{torrentInfo.status.toppingLevel}</div>
+          {/if}
+        </div>
+      {/if}
+
+      <!-- 来自开发者的介绍:
+        if ((val & 1) === 1) { ret.push("diy"); DIV }
+        if ((val & 2) === 2) { ret.push("dub"); 国配 }
+        if ((val & 4) === 4) { ret.push("sub"); 中字 } 
+      -->
+      {#if torrentInfo.labels != 0}
+        <div class="cl-tags">
+          <!--  标签 Tags -->
+          {#if (torrentInfo.labels & 1) === 1}
+            <div class="_tag _tag_diy">DIY</div>
+          {/if}
+          {#if (torrentInfo.labels & 2) === 2}
+            <div class="_tag _tag_dub">国配</div>
+          {/if}
+          {#if (torrentInfo.labels & 4) === 4}
+            <div class="_tag _tag_sub">中字</div>
+          {/if}
+        </div>
+      {/if}
 
       <div class="card-details">
         <!-- 各种功能: 大小/下载/收藏 -->
         <div class="card-line">
-          <!-- 大小 -->
           <div class="cl-center">
-            <img src={config.ICON.SIZE} alt="SVG_Size" />
-            <div>
-              {(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(2) + "G"}
+            <!-- 大小 -->
+            <div class="cl-btn">
+              <span class="icon_holder">
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  height="25"
+                  width="25"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="
+                    vertical-align: middle; 
+                    --darkreader-inline-fill: currentColor; 
+                    --darkreader-inline-stroke: currentColor;"
+                >
+                  <path
+                    d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                  />
+                  <path
+                    d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"
+                  />
+                </svg>
+              </span>
+              &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
+                2
+              ) + "G"}
+            </div>
+
+            <!-- 下载 -->
+            &nbsp;&nbsp;
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div
+              class="cl-btn"
+              on:click={torrent_download}
+              style="cursor: pointer;"
+            >
+              <span class="icon_holder">
+                <svg
+                  viewBox="64 64 896 896"
+                  focusable="false"
+                  data-icon="download"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
+                  />
+                </svg>
+              </span>
+              <!-- &nbsp;下载 -->
+            </div>
+
+            <!-- 收藏 -->
+            &nbsp;&nbsp;
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div
+              class="cl-btn"
+              on:click={torrent_collection}
+              style="cursor: pointer;"
+            >
+              <span
+                class="icon_holder"
+                style="color: {collectionMark ? 'orange' : 'black'}"
+              >
+                <svg
+                  viewBox="64 64 896 896"
+                  focusable="false"
+                  data-icon="star"
+                  width="1em"
+                  height="1em"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                  />
+                </svg>
+              </span>
+              <!-- &nbsp;{collectionMark ? "取消" : "收藏"} -->
             </div>
           </div>
-
-          <!-- TODO: 下载 -->
-          &nbsp;&nbsp;
-
-          <!-- TODO: 收藏 -->
-          &nbsp;&nbsp;
         </div>
 
         <!-- 种子id, 默认不显示 -->
@@ -253,7 +403,7 @@
 
         <!-- 上传时间 -->
         <div class="card-line">
-          <b>上传时间:</b>
+          <!-- <b>上传时间:</b> -->
           {torrentInfo.status.createdDate}
         </div>
 
@@ -321,7 +471,7 @@
 
     overflow: hidden;
 
-    cursor: pointer;
+    /* cursor: pointer; */
 
     box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 0px, rgba(0, 0, 0, 0.1) -1px -1px 0px;
     transition: box-shadow 0.2s;
@@ -368,6 +518,8 @@
     overflow: hidden;
 
     transition: color 0.3s;
+
+    color: black;
   }
 
   /* 卡片标题: hover时变为正常 */
@@ -392,11 +544,60 @@
     gap: 2px;
 
     padding-top: 4px;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
   }
 
-  .cl-tags:has(span) {
-    padding-top: 2px;
+  /* ICON */
+  .icon_holder {
+    border-color: #2f4879;
+    border-radius: 100px;
+    height: 20px;
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cl-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-wrap: wrap; */
+
+    /* gap: 2px; */
+
+    padding: 1px 6px;
+
+    /* border: 1px solid black; */
+    border-radius: 8px;
+
+    background-color: rgb(237, 243, 255);
+  }
+
+  /* 标签 */
+  ._tag {
+    /* padding: 1px 6px; */
+    height: 1.3em;
+    line-height: 1.3em;
+    padding: 0 0.5em;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  ._tag_diy {
+    background-color: rgb(90, 189, 72);
+  }
+  ._tag_dub {
+    background-color: rgb(90, 59, 20);
+  }
+  ._tag_sub {
+    background-color: rgb(59, 74, 127);
+  }
+  ._tag_discount_50 {
+    background-color: rgb(255, 85, 0);
+    color: #ffffff;
   }
 
   /* 卡片简介总容器 */
@@ -406,7 +607,8 @@
     align-items: center;
     flex-direction: column;
 
-    /* padding-top: 2px; */
+    padding-top: 2px;
+    padding-bottom: 2px;
   }
 
   /* 卡片图像div */
@@ -456,10 +658,19 @@
     /* background-color: #0e0 */
   }
 
-  /* 卡片索引 */
+  /* 卡片副标题 */
   .card-description {
     padding-left: 4px;
     padding-right: 4px;
+    padding: 2px 4px 2px;
+  }
+
+  .card-description a {
+    color: black;
+  }
+
+  .card-description a:hover {
+    color: black;
   }
 
   /* 卡片索引 */
@@ -498,8 +709,4 @@
     padding-right: 2px;
     border-radius: 4px;
   }
-
-  /* 上面是我自己脚本的css */
-  /* --------------------------------------- */
-  /* 下面是改进原有的css */
 </style>
