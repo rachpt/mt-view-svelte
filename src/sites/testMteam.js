@@ -6,6 +6,7 @@ import SVG_Seeders from "@/assets/icon_seeders.svg";
 import SVG_Leechers from "@/assets/icon_leechers.svg";
 import SVG_Download from "@/assets/icon_download.svg";
 import SVG_Collection from "@/assets/icon_collection.svg";
+import SVG_Time from "@/assets/icon_time.svg";
 // -------------------------------
 export { CONFIG as config };
 const CONFIG = {
@@ -65,6 +66,10 @@ const CONFIG = {
     DOWNLOAD: SVG_Download,
     /** 收藏图标 */
     COLLECTION: SVG_Collection,
+    /** 置顶图标 (没用, 看的是 css URL) */
+    PIN: '/static/trans.gif',
+    /** 时间图标 */
+    TIME: SVG_Time,
   },
 
   /**如果站点有必要设置分类颜色, 可以用自定义的 */

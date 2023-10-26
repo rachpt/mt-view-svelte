@@ -84,6 +84,37 @@
   // export let ICON;
 
   // ------------------------------------------------
+  // 下载免费打折相关
+  const _discount = torrentInfo.status.discount;
+  const _discountEndTime = torrentInfo.status.discountEndTime;
+  const _discountText = {
+    FREE: "免费",
+    PERCENT_50: "50%",
+  };
+  const _discountCalcTime = () => {
+    const now = new Date();
+    const end = new Date(_discountEndTime);
+    const res = Math.floor((end.getTime() - now.getTime()) / (1000 * 3600));
+    // console.log(res);
+    return res;
+  };
+
+  // ------------------------------------------------
+  // 上传时间相关
+  const _createdDate = torrentInfo.status.createdDate;
+  const _createdCalcTime = () => {
+    const now = new Date();
+    const then = new Date(_createdDate);
+    const gap = now.getTime() - then.getTime();
+
+    const day = Math.floor(gap / (1000 * 3600 * 24));
+    const hour = Math.floor((gap % (1000 * 3600 * 24)) / (1000 * 3600));
+
+    return { day, hour };
+  };
+  const _CT = _createdCalcTime();
+
+  // ------------------------------------------------
 
   // 示例: 下载
   // const formdata = new FormData();
@@ -299,17 +330,31 @@
       <!-- 置顶 && 免费类型&剩余时间 -->
       {#if torrentInfo.status.discount || torrentInfo.status.toppingLevel}
         <div class="cl-tags">
-          {#if torrentInfo.status.discount}
-            <div class="_tag _tag_discount_50">
-              {torrentInfo.status.discount}
-              {torrentInfo.status.discountEndTime
-                ? ":" + torrentInfo.status.discountEndTime
-                : ""}
-            </div>
+          <!-- 置顶 -->
+          {#if torrentInfo.status.toppingLevel}
+            <!-- <div class="_tag">{torrentInfo.status.toppingLevel}</div> -->
+            <img
+              style="
+              background: url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px;
+              height: 14px;
+              width: 14px;"
+              src={config.ICON.PIN}
+              alt="SVG_Comment"
+            />
+            &nbsp;
           {/if}
 
-          {#if torrentInfo.status.toppingLevel}
-            <div class="_tag">{torrentInfo.status.toppingLevel}</div>
+          <!-- 免费类型 -->
+          {#if _discount != "NORMAL"}
+            <div
+              class="_tag"
+              class:_tag_discount_free={_discount == "FREE"}
+              class:_tag_discount_50={_discount == "PERCENT_50"}
+            >
+              {_discountText[_discount]}{_discountEndTime
+                ? " : " + _discountCalcTime() + " 小时"
+                : ""}
+            </div>
           {/if}
         </div>
       {/if}
@@ -435,9 +480,11 @@
         <!--<div class="card-line"><b>Torrent ID:</b> ${torrentId}</div> -->
 
         <!-- 上传时间 -->
-        <div class="card-line">
+        <div class="card-line cl-btn">
           <!-- <b>上传时间:</b> -->
-          {torrentInfo.status.createdDate}
+          <img src={config.ICON.TIME} alt="SVG_Time" />
+          &nbsp;{`${_CT.day} 日`}
+          {_CT.hour ? `${_CT.hour} 时` : ""}
         </div>
 
         <!-- 各种数据: 评论/上传/下载/完成 -->
@@ -534,7 +581,7 @@
   /* 卡片行默认样式 */
   .card-line {
     margin-top: 1px;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
 
     display: flex;
     justify-content: space-evenly;
@@ -614,22 +661,28 @@
     line-height: 1.3em;
     padding: 0 0.5em;
     border-radius: 6px;
-    color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   }
   ._tag_diy {
+    color: #ffffff;
     background-color: rgb(90, 189, 72);
   }
   ._tag_dub {
+    color: #ffffff;
     background-color: rgb(90, 59, 20);
   }
   ._tag_sub {
+    color: #ffffff;
     background-color: rgb(59, 74, 127);
   }
   ._tag_discount_50 {
     background-color: rgb(255, 85, 0);
+    color: #ffffff;
+  }
+  ._tag_discount_free {
+    background-color: rgb(16, 142, 233);
     color: #ffffff;
   }
 
