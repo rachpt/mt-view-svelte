@@ -889,8 +889,8 @@
     align-items: center;
     flex-direction: column;
 
-    padding-top: 2px;
-    padding-bottom: 2px;
+    /* padding-top: 2px; */
+    /* padding-bottom: 2px; */
   }
 
   /* 卡片图像div */

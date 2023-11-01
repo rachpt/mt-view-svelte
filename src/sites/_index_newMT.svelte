@@ -151,12 +151,7 @@
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
 
-    // 获取 safe category list
-    // const safeInfo = parseLocalStorage("persist:persist").sysinfo.categoryList["safe"];
-
-    let pageSize = Number(
-      parseLocalStorage("persist:persist").sysinfo.pageSize.torrent ?? 20
-    );
+    let pageSize = getPageSize();
 
     const payload = {
       categories: UrlPath_2_ParamList(),
@@ -265,6 +260,14 @@
       });
   }
 
+  /** 获取 ls 里的 pageSize */
+  function getPageSize() {
+    const sysinfo = parseLocalStorage("persist:persist").sysinfo;
+    if (!sysinfo.pageSize) return 20;
+    if (!sysinfo.pageSize.torrent) return 20;
+    return Number(sysinfo.pageSize.torrent);
+  }
+
   // 4. URL path 劫持函数 ------------------------------------------------
 
   /**URL路径转化 => search api 参数列表
@@ -317,8 +320,7 @@
         const searchApiList = UrlPath_2_ParamList(path);
 
         // 获取 pageSize
-        const lsInfo = parseLocalStorage("persist:persist");
-        const pageSizeParam = Number(lsInfo.sysinfo.pageSize.torrent);
+        const pageSizeParam = getPageSize();
 
         // 装载 payload
         const payload = {
@@ -384,9 +386,7 @@
     const payload = {
       categories: UrlPath_2_ParamList(),
       pageNumber: PAGE.$getCurrentPage() + 1,
-      pageSize: Number(
-        parseLocalStorage("persist:persist").sysinfo.pageSize.torrent
-      ),
+      pageSize: getPageSize(),
       sortDirection: "DESC",
       sortField: "CREATED_DATE",
     };
