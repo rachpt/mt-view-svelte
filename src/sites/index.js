@@ -20,13 +20,17 @@ function GET_CURRENT_PT_DOMAIN() {
 /** 判断该页面是否存在种子列表
  * @returns selector
  */
+let cache_selector;
 function GET_TORRENT_LIST_SELECTOR() {
+  if (cache_selector) return cache_selector;
+
   const domain = GET_CURRENT_PT_DOMAIN();
   console.log("|-> 当前站点: ", domain);
   console.log('|-> 当前页面: ', window.location.pathname);
 
   const res = SITE[domain]?.torrentListTable ?? null;
   console.log('|-> 站点selector:', res);
+  cache_selector = res;
   return res
 }
 

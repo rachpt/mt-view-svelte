@@ -264,9 +264,7 @@
   }
 
   // FIXME: 这里在每次切换 /browse 又回来之后, _ORIGIN_TL_Node 会丢失
-  // 解决方法: 加一个 trigger, 跳转后重置 _ORIGIN_TL_Node
-  /**是否原列表节点消失*/
-  let isOriginLost = false;
+  // 解决方法: 每次跳页面重置 _ORIGIN_TL_Node
 
   // 保存原始的 pushState 方法
   const originalPushState = history.pushState;
@@ -313,16 +311,11 @@
           sortField: "CREATED_DATE",
         };
 
-        // 检查原列表节点DOM是否消失, 如消失在 request 回调函数中重置原列表节点DOM
-        let callback = null;
-        if (isOriginLost) callback = update_ORIGIN_TL_Node;
-        Request(payload, callback);
+        // 默认每次切换页面重置 ORIGIN_TL_Node
+        Request(payload, update_ORIGIN_TL_Node);
       } else {
         // 不在 /browse 内即不显示 waterfallParentNode
         waterfallParentNode.style.display = "none";
-
-        // 原列表节点消失 -> 标记 trigger
-        isOriginLost = true;
       }
 
       // FIXME: 别动这个就行
