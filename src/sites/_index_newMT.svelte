@@ -111,8 +111,26 @@
     return Math.floor(gutter);
   }
 
+  /** 切换显示模式 */
+  function ChangeShowMode() {
+    const _$_ORIGIN_TL_Node = document.querySelector(
+      GET_TORRENT_LIST_SELECTOR()
+    );
+    const _$nextPageNode = document.querySelector(".nextPage");
+    const _$waterfallNode = document.querySelector(
+      ".waterfall.waterfall_newMT"
+    );
+    // 一组: 原表格
+    _$_ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+    // 一组: 瀑布流 + 按钮
+    _$nextPageNode.style.display = $_list_viewMode ? "block" : "none";
+    _$waterfallNode.style.display = $_list_viewMode ? "block" : "none";
+  }
+
   /** 调整卡片布局 */
   function CHANGE_CARD_LAYOUT() {
+    ChangeShowMode();
+
     // console.log("card width changed.");
     masonry.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width);
     masonry.options.columnWidth = $_card_width;

@@ -103,77 +103,120 @@
     console.log("等待初始化......");
   }
 
-  $: {
-    // 一组: 原表格
-    _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
-
-    // 一组: 瀑布流 + 按钮
-    nextPageNode.style.display = $_list_viewMode ? "block" : "none";
-    waterfallNode.style.display = $_list_viewMode ? "block" : "none";
-  }
-
-  // FIXME: 放置节点位置不再是原表格位置, 而是状态栏
-  // -----锚点: 状态栏DOM & 状态栏父DOM
-  const stateBar = document.querySelector(".ant-card-small");
-  const parentNode = stateBar.parentNode;
-
-  // -----声明: 瀑布流DOM & 瀑布流父DOM
-  // 瀑布流DOM
-  const waterfallNode = document.createElement("div");
-  waterfallNode.classList.add("waterfall");
-  waterfallNode.classList.add("waterfall_newMT");
-  // 瀑布流父DOM
-  const waterfallParentNode = document.createElement("div");
-  waterfallParentNode.classList.add("waterfallParent");
-  // 父子安排
-  waterfallParentNode.append(waterfallNode);
-
-  // 将瀑布流父节点放置在表格节点上面
-  parentNode.insertBefore(waterfallParentNode, stateBar.nextSibling);
-  // console.log(waterfallNode);
-
-  // ------声明: 翻页 Button DOM
-  const nextPageNode = document.createElement("div");
-  // 添加class
-  nextPageNode.classList.add("nextPage");
-  // 放进 瀑布流父DOM 里
-  waterfallParentNode.append(nextPageNode);
+  // FIXME: 打包模式读不到一开始的 DOM, 这样处理了
+  // $: {
+  //   // 一组: 原表格
+  //   _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+  //   // 一组: 瀑布流 + 按钮
+  //   nextPageNode.style.display = $_list_viewMode ? "block" : "none";
+  //   waterfallNode.style.display = $_list_viewMode ? "block" : "none";
+  // }
 
   // 给状态栏上 z-index
 
   // ------------------------------------------------
   let masonry;
   /** 启动项目配置*/
-  onMount(() => {
-    // UI -> 1. 边栏配置
-    const componentSidePanel = new Sidepanel({
-      target: document.body,
-    });
 
-    // UI -> 2. 瀑布流配置
-    // -------------- NEW_MT 架构组件
-    const newMT_Masonry = new NEW_MT_Waterfall({
-      target: waterfallNode,
-      props: {
-        // 传递给组件的属性
+  // FIXME: 打包模式读不到一开始的 DOM, 这样处理了
+  /**延迟获取 DOM
+   * @param selector
+   * @param maxRetries
+   * @param interval
+   * @param func 获取后的回调函数
+   */
+  function getDOMElement(
+    selector,
+    maxRetries = 5,
+    interval = 200,
+    func = (el) => {}
+  ) {
+    const element = document.querySelector(selector);
+    if (element) {
+      func(element);
+      return element;
+    }
 
-        // 瀑布流DOM & 瀑布流父DOM
-        waterfallNode,
-        waterfallParentNode,
+    if (maxRetries > 0) {
+      // 如果还有重试次数，延迟一段时间后再次尝试
+      setTimeout(() => {
+        getDOMElement(selector, maxRetries - 1, interval, func);
+      }, interval);
+    } else {
+      // 达到最大重试次数后仍未找到元素，可以在这里添加处理逻辑
+      console.log(`无法找到元素: ${selector}`);
+    }
+  }
 
-        // 原列表DOM
-        // _ORIGIN_TL_Node,
+  /**瀑布流DOM*/
+  let waterfallNode;
+  /**瀑布流父DOM*/
+  let waterfallParentNode;
+  /**翻页 Button DOM*/
+  let nextPageNode;
 
-        // 重置原列表节点DOM函数
-        update_ORIGIN_TL_Node,
-      },
-    });
+  // 获取固定 DOM 并开始挂载
+  const stateBar = getDOMElement(
+    ".ant-card.ant-card-small",
+    5,
+    200,
+    (_stateBar) => {
+      // 获取 DOM
+      const parentNode = _stateBar.parentNode;
 
-    // UI -> 3. 原表格下一页按钮配置
-    const componentBtnTurnPage = new BtnTurnPage({
-      target: nextPageNode,
-    });
-  });
+      // ----- 声明: 瀑布流DOM & 瀑布流父DOM
+      // 瀑布流DOM
+      waterfallNode = document.createElement("div");
+      waterfallNode.classList.add("waterfall");
+      waterfallNode.classList.add("waterfall_newMT");
+      // 瀑布流父DOM
+      waterfallParentNode = document.createElement("div");
+      waterfallParentNode.classList.add("waterfallParent");
+      // 父子安排
+      waterfallParentNode.append(waterfallNode);
+
+      // 将瀑布流父节点放置在表格节点上面
+      parentNode.insertBefore(waterfallParentNode, _stateBar.nextSibling);
+      // console.log(waterfallNode);
+
+      // ------声明: 翻页 Button DOM
+      nextPageNode = document.createElement("div");
+      // 添加class
+      nextPageNode.classList.add("nextPage");
+      // 放进 瀑布流父DOM 里
+      waterfallParentNode.append(nextPageNode);
+
+      // ----- 挂载: 各种 Svelte 组件
+
+      // UI -> 1. 边栏配置
+      const componentSidePanel = new Sidepanel({
+        target: document.body,
+      });
+
+      // UI -> 2. 瀑布流配置
+      const newMT_Masonry = new NEW_MT_Waterfall({
+        target: waterfallNode,
+        props: {
+          // 传递给组件的属性
+
+          // 瀑布流DOM & 瀑布流父DOM
+          waterfallNode,
+          waterfallParentNode,
+
+          // 原列表DOM
+          // _ORIGIN_TL_Node,
+
+          // 重置原列表节点DOM函数
+          update_ORIGIN_TL_Node,
+        },
+      });
+
+      // UI -> 3. 原表格下一页按钮配置
+      const componentBtnTurnPage = new BtnTurnPage({
+        target: nextPageNode,
+      });
+    }
+  );
 </script>
 
 <!-- iframe 详情 -->
