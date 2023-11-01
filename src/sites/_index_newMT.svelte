@@ -137,7 +137,7 @@
     // const safeInfo = parseLocalStorage("persist:persist").sysinfo.categoryList["safe"];
 
     let pageSize = Number(
-      parseLocalStorage("persist:persist").sysinfo.pageSize.torrent
+      parseLocalStorage("persist:persist").sysinfo.pageSize.torrent ?? 20
     );
 
     const payload = {
