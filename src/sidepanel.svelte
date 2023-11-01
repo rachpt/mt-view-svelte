@@ -432,7 +432,7 @@
 
           <!-- 按钮: 切换宽度 -->
           <button class="sideP__btn" on:click={config_changeWidth}>
-            切换宽度(开发中)
+            切换宽度(开发中): {$_card_width}
           </button>
 
           <!-- NOTE: 废弃的旧型样式 -->

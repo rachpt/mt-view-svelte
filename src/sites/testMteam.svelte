@@ -503,6 +503,202 @@
         </div>
       </div>
     {/if}
+
+    <!-- NOTE: 可选外部显示 -->
+    {#if !($_CARD_SHOW.all || _hover)}
+      <!-- TODO: 置顶 && 免费类型&剩余时间 -->
+      <!-- 置顶 && 免费类型&剩余时间 -->
+      {#if $_CARD_SHOW.free && (torrentInfo.status.discount || torrentInfo.status.toppingLevel)}
+        <div class="cl-tags">
+          <!-- 置顶 -->
+          {#if torrentInfo.status.toppingLevel}
+            <!-- <div class="_tag">{torrentInfo.status.toppingLevel}</div> -->
+            <img
+              style="
+              background: url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px;
+              height: 14px;
+              width: 14px;"
+              src={config.ICON.PIN}
+              alt="SVG_Comment"
+            />
+            &nbsp;
+          {/if}
+
+          <!-- 免费类型 -->
+          {#if _discount != "NORMAL"}
+            <div
+              class="_tag"
+              class:_tag_discount_free={_discount == "FREE"}
+              class:_tag_discount_50={_discount == "PERCENT_50"}
+            >
+              {_discountText[_discount]}{_discountEndTime
+                ? " : " + _discountCalcTime() + " 小时"
+                : ""}
+            </div>
+          {/if}
+        </div>
+      {/if}
+
+      <!-- 副标题 -->
+      {#if $_CARD_SHOW.sub_title && torrentInfo.smallDescr}
+        <div class="card-description">
+          <a href={torrentInfo.torrentLink}>
+            {torrentInfo.smallDescr}
+          </a>
+        </div>
+      {/if}
+
+      <!-- 标签 Tags -->
+      <!-- 来自开发者的介绍:
+        if ((val & 1) === 1) { ret.push("diy"); DIV }
+        if ((val & 2) === 2) { ret.push("dub"); 国配 }
+        if ((val & 4) === 4) { ret.push("sub"); 中字 } 
+      -->
+      {#if $_CARD_SHOW.tags && torrentInfo.labels != 0}
+        <div class="cl-tags">
+          <!--  标签 Tags -->
+          {#if (torrentInfo.labels & 1) === 1}
+            <div class="_tag _tag_diy">DIY</div>
+          {/if}
+          {#if (torrentInfo.labels & 2) === 2}
+            <div class="_tag _tag_dub">国配</div>
+          {/if}
+          {#if (torrentInfo.labels & 4) === 4}
+            <div class="_tag _tag_sub">中字</div>
+          {/if}
+        </div>
+      {/if}
+
+      <div class="card-details">
+        <!-- 各种功能: 大小/下载/收藏 -->
+        {#if $_CARD_SHOW.size_download_collect}
+          <div class="card-line">
+            <div class="cl-center">
+              <!-- 大小 -->
+              <div class="cl-btn">
+                <span class="icon_holder">
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 24 24"
+                    height="25"
+                    width="25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="
+                    vertical-align: middle; 
+                    --darkreader-inline-fill: currentColor; 
+                    --darkreader-inline-stroke: currentColor;"
+                  >
+                    <path
+                      d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                    />
+                    <path
+                      d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"
+                    />
+                  </svg>
+                </span>
+                &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
+                  2
+                ) + "G"}
+              </div>
+
+              <!-- 下载 -->
+              &nbsp;&nbsp;
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <div
+                class="cl-btn"
+                on:click={torrent_download}
+                style="cursor: pointer;"
+              >
+                <span class="icon_holder">
+                  <svg
+                    viewBox="64 64 896 896"
+                    focusable="false"
+                    data-icon="download"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
+                    />
+                  </svg>
+                </span>
+                <!-- &nbsp;下载 -->
+              </div>
+
+              <!-- 收藏 -->
+              &nbsp;&nbsp;
+              <!-- svelte-ignore a11y-click-events-have-key-events -->
+              <div
+                class="cl-btn"
+                on:click={handleCollection}
+                style="cursor: pointer;"
+              >
+                <span class="icon_holder">
+                  <!-- NOTE:svelte promise 测试 -->
+                  {#await promise}
+                    <span style="display: flex; align-items: center;">···</span>
+                  {:then res}
+                    <!-- <p>{res.message}</p> -->
+                    <svg
+                      viewBox="64 64 896 896"
+                      focusable="false"
+                      data-icon="star"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      style="color: {collectionMark ? 'orange' : 'black'}"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"
+                      />
+                    </svg>
+                  {:catch error}
+                    <p style="color: red">{error.message}</p>
+                  {/await}
+                </span>
+              </div>
+            </div>
+          </div>
+        {/if}
+
+        <!-- 种子id, 默认不显示 -->
+        <!--<div class="card-line"><b>Torrent ID:</b> ${torrentId}</div> -->
+
+        <!-- 上传时间 -->
+        {#if $_CARD_SHOW.upload_time}
+          <div class="card-line cl-btn">
+            <!-- <b>上传时间:</b> -->
+            <img src={config.ICON.TIME} alt="SVG_Time" />
+            &nbsp;{`${_CT.day} 日`}
+            {_CT.hour ? `${_CT.hour} 时` : ""}
+          </div>
+        {/if}
+
+        <!-- 各种数据: 评论/上传/下载/完成 -->
+        {#if $_CARD_SHOW.statistics}
+          <div class="card-line">
+            <img src={config.ICON.COMMENT} alt="SVG_Comment" />
+            &nbsp;
+            <b>{torrentInfo.status.comments}</b>
+            &nbsp;&nbsp;
+            <img src={config.ICON.SEEDERS} alt="SVG_Seeders" />
+            &nbsp;
+            <b>{torrentInfo.status.seeders}</b>
+            &nbsp;&nbsp;
+            <img src={config.ICON.LEECHERS} alt="SVG_Leechers" />
+            &nbsp;
+            <b>{torrentInfo.status.leechers}</b>
+          </div>
+        {/if}
+      </div>
+    {/if}
   </div>
 </div>
 
