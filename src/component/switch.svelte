@@ -65,7 +65,7 @@
           stroke-width="4"
         />
       </svg>
-      <div class="_hint">{label}</div>
+      <div class="_hint">{@html label}</div>
     {/if}
 
     <!-- 固定条目名称 -->

@@ -3,7 +3,7 @@
  */
 
 import { get } from 'svelte/store'
-import { _show_nexus_pic, _delay_nexus_pic } from '../stores'
+import { _show_nexus_pic, _delay_nexus_pic, _animated } from '../stores'
 
 export { debounce, debounceImmediate, throttle, sortMasonry, NEXUS_TOOLS, parseLocalStorage }
 /**瀑布流执行次数 */
@@ -100,15 +100,25 @@ function doSortMasonry() {
   masonry.layout()
 }
 
-/**外部呼叫整理 Masonry: 根据速度调整 */
+/**外部呼叫整理 Masonry: 根据速度调整, 有动画和无动画是不一样的捏
+ * @param {*} speed 速度
+ */
 function sortMasonry(speed = 'normal') {
-  _SORT_COUNT.Call++
-  if (masonry) {
-    if (speed === 'fast') {
-      throttleSort_fast()
-    } else {
-      throttleSort()
+  if (get(_animated)) {
+    _SORT_COUNT.Call++
+    if (masonry) {
+      if (speed === 'fast') {
+        throttleSort_fast()
+      } else {
+        throttleSort()
+      }
     }
+  }
+
+  else {
+    _SORT_COUNT.Call++
+    if (masonry)
+      doSortMasonry()
   }
 }
 

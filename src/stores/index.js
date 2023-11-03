@@ -78,6 +78,10 @@ export const _show_nexus_pic = persistStore('_show_nexus_pic', 1);
 export const _delay_nexus_pic = persistStore('_delay_nexus_pic', 600);
 
 // 卡片类变量 -------------------------------------
+
+/** 是否显示卡片过渡动画 */
+export const _animated = persistStore('_animated', true);
+
 /** 卡片宽度 */
 // export const _card_width = writable(200);
 export const _card_width = persistStore('_card_width', 300);

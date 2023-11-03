@@ -16,6 +16,7 @@
     _delay_nexus_pic,
     _show_configPanel,
     _current_domain,
+    _animated,
   } from "./stores";
 
   import { sortMasonry } from "./utils";
@@ -359,7 +360,7 @@
       <!-- ---------------- 站点专业配置 ---------------- -->
 
       <!-- MT 专用配置 -->
-      {#if $_current_domain == "kp.m-team.cc"}
+      {#if $_current_domain == "kp.m-team.cc" || $_current_domain == "test2.m-team.cc"}
         <div class="section">
           <h1 class="s_title">MT专用配置</h1>
           <div class="s_panel">
@@ -381,7 +382,9 @@
             title_fixed={"显示模式"}
             title_green="瀑布流"
             title_red="原始表格"
-            label="原始表格模式仅支持点击图片显示iframe和加载下一页"
+            label={$_current_domain == "test2.m-team.cc"
+              ? ""
+              : "原始表格模式仅支持点击图片显示iframe和加载下一页"}
             bind:checked={$_list_viewMode}
             func={() => {
               // @ts-ignore
@@ -389,6 +392,7 @@
             }}
           />
 
+          <br />
           <Switch
             title_fixed={"加载下一页方式"}
             title_green="按钮(默认)"
@@ -397,13 +401,18 @@
             bind:checked={$_turnPage}
             green_state={false}
           />
+
+          <br />
           <Switch
-            title_fixed={"侧边栏debug按钮"}
-            title_green="隐藏(默认)"
-            title_red="显示(开发用)"
-            bind:checked={$_show_debug_btn}
-            green_state={false}
+            title_fixed={"卡片移动动画"}
+            title_green="开启"
+            title_red="关闭"
+            label="开启关闭瀑布流卡片高度变化时的缓动动画"
+            bind:checked={$_animated}
+            green_state={true}
           />
+
+          <br />
           <Switch
             title_fixed={"悬浮预览大图"}
             title_green="默认开启"
@@ -430,88 +439,19 @@
             </Switch>
           {/if}
 
+          <br />
+          <Switch
+            title_fixed={"侧边栏debug按钮"}
+            title_green="隐藏(默认)"
+            title_red="显示(开发用)"
+            bind:checked={$_show_debug_btn}
+            green_state={false}
+          />
+
           <!-- 按钮: 切换宽度 -->
           <button class="sideP__btn" on:click={config_changeWidth}>
             切换宽度(开发中): {$_card_width}
           </button>
-
-          <!-- NOTE: 废弃的旧型样式 -->
-          {#if false}
-            <!-- 按钮: 切换下一页加载模式 -->
-            <button
-              class="sideP__btn"
-              on:click={config_switchMode}
-              style="background-color:{!$_turnPage ? '#59CD90' : '#FBC4AB'}"
-            >
-              加载下一页: {label_switchMode}
-              {#if $_turnPage}
-                <span
-                  style="color: red;"
-                  title="MT等网站频繁使用可能会导致 120"
-                >
-                  (谨慎使用!)
-                </span>
-              {:else}
-                (默认)
-              {/if}
-            </button>
-
-            <!-- 按钮: 显示侧边栏 debug 按钮 -->
-            <button
-              class="sideP__btn"
-              on:click={() => {
-                $_show_debug_btn = !$_show_debug_btn;
-              }}
-              style="background-color:{$_show_debug_btn
-                ? '#59CD90'
-                : '#FBC4AB'}"
-            >
-              显示侧边栏 debug 按钮:
-              {#if $_show_debug_btn}
-                <span style="color: green;">是</span>
-              {:else}
-                <span style="color: red;">否</span>(默认)
-              {/if}
-            </button>
-
-            <!-- 按钮: 显示鼠标悬浮预览大图 -->
-            <button
-              class="sideP__btn"
-              on:click={() => {
-                $_show_nexus_pic = !$_show_nexus_pic;
-              }}
-              style="background-color:{$_show_nexus_pic
-                ? '#59CD90'
-                : '#FBC4AB'}"
-            >
-              是否显示鼠标悬浮预览大图:
-              {#if $_show_nexus_pic}
-                <span style="color: green;">是</span>(默认)
-              {:else}
-                <span style="color: red;">否</span>
-              {/if}
-            </button>
-
-            <!-- 按钮: 悬浮预览延迟 -->
-            <button
-              class="sideP__btn"
-              on:click={() => {
-                $_delay_nexus_pic = $_delay_nexus_pic == 0 ? 600 : 0;
-              }}
-              style="background-color:{$_delay_nexus_pic
-                ? '#59CD90'
-                : '#FBC4AB'}"
-              disabled={!$_show_nexus_pic}
-            >
-              是否延迟悬浮预览:
-              {#if $_delay_nexus_pic != 0}
-                <span style="color: green;">延迟{$_delay_nexus_pic}ms</span
-                >(默认)
-              {:else}
-                <span style="color: red;">不延迟</span>
-              {/if}
-            </button>
-          {/if}
         </div>
       </div>
 

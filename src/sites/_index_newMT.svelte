@@ -9,6 +9,7 @@
     _iframe_url,
     _show_configPanel,
     _list_viewMode,
+    _animated,
   } from "../stores";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
@@ -437,6 +438,11 @@
   }
   window.$$$turnPage = turnPage;
 
+  // NOTE: 响应式变化: 卡片动画缓动
+  $: {
+    if (masonry) masonry.options.transitionDuration = $_animated ? "0.4s" : "0";
+  }
+
   // 6. onMount 启动 ------------------------------------------------
   /** onMount, 启动!!!!!!!!!!!!!!!!*/
   onMount(() => {
@@ -446,6 +452,8 @@
       itemSelector: ".card",
       columnWidth: $_card_width,
       gutter: GET_CARD_GUTTER(waterfallNode, $_card_width),
+      // transitions Duration 默认值为 0.4
+      transitionDuration: $_animated ? 0.4 : 0,
     });
 
     // 绑定各种全局变量
