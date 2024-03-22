@@ -2,7 +2,7 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.0
+// @version         1.1.3
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
@@ -10,18 +10,17 @@
 // @icon            https://avatars.githubusercontent.com/u/23617963
 // @match           https://kamept.com/*
 // @match           https://kp.m-team.cc/*
-// @match           https://test2.m-team.cc/*
 // @match           https://pterclub.com/*
+// @match           https://test2.m-team.cc/*
 // @exclude         */offers.php*
 // @exclude         */index.php*
 // @exclude         */forums.php*
 // @exclude         */viewrequests.php*
 // @exclude         */seek.php*
 // @grant           none
-// @run-at          document-start
 // ==/UserScript==
 
-(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.switch.svelte-2vaqag.svelte-2vaqag{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-2vaqag.svelte-2vaqag{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-2vaqag.svelte-2vaqag{color:green;font-weight:800}.title_red.svelte-2vaqag.svelte-2vaqag{color:red;font-weight:800}.s_title.svelte-2vaqag:has(.hint):hover ._hint.svelte-2vaqag{display:block}._hint.svelte-2vaqag.svelte-2vaqag{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-2vaqag.svelte-2vaqag{width:0px;height:0px;display:none;visibility:hidden}label.svelte-2vaqag.svelte-2vaqag{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-2vaqag.svelte-2vaqag:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-2vaqag:checked~label.svelte-2vaqag{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-2vaqag:checked~label.svelte-2vaqag:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-mdsgbd.svelte-mdsgbd{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-mdsgbd.svelte-mdsgbd:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-mdsgbd.svelte-mdsgbd{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-mdsgbd.svelte-mdsgbd:hover{cursor:move}.sideP__out.svelte-mdsgbd.svelte-mdsgbd{display:flex;flex-direction:column}.sideP__btn.svelte-mdsgbd.svelte-mdsgbd{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-mdsgbd.svelte-mdsgbd:hover{background-color:#6531ff}.configP.svelte-mdsgbd.svelte-mdsgbd{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-mdsgbd.svelte-mdsgbd{position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-mdsgbd.svelte-mdsgbd::-webkit-scrollbar{display:none}.configP_title.svelte-mdsgbd.svelte-mdsgbd{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-mdsgbd.svelte-mdsgbd p{font-size:18px;font-weight:500}.configP_title.svelte-mdsgbd.svelte-mdsgbd button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-mdsgbd.svelte-mdsgbd{margin:16px 18px}.section.svelte-mdsgbd.svelte-mdsgbd button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-mdsgbd.svelte-mdsgbd .s_title{text-align:center}.section.svelte-mdsgbd.svelte-mdsgbd .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-mdsgbd.svelte-mdsgbd .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-mdsgbd .section.svelte-mdsgbd:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-mdsgbd.svelte-mdsgbd{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-vdh3h6.svelte-vdh3h6{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-vdh3h6.svelte-vdh3h6:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-vdh3h6.svelte-vdh3h6{padding:2px 0}.card-holder.svelte-vdh3h6.svelte-vdh3h6{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-vdh3h6.svelte-vdh3h6{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-vdh3h6.svelte-vdh3h6{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-vdh3h6.svelte-vdh3h6{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-vdh3h6.svelte-vdh3h6:hover{-webkit-line-clamp:100}.cl-center.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-vdh3h6.svelte-vdh3h6:has(span){padding-top:2px}.card-details.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-vdh3h6.svelte-vdh3h6{height:100%;position:relative}.card-image.svelte-vdh3h6 img.svelte-vdh3h6{width:100%;object-fit:cover}.card-alter.svelte-vdh3h6.svelte-vdh3h6{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-vdh3h6.svelte-vdh3h6{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-vdh3h6.svelte-vdh3h6{color:#00f}._2XFree.svelte-vdh3h6.svelte-vdh3h6{color:green}.card-description.svelte-vdh3h6.svelte-vdh3h6{padding-left:4px;padding-right:4px}.card-index.svelte-vdh3h6.svelte-vdh3h6{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-vdh3h6.svelte-vdh3h6{padding:1px 2px;cursor:pointer}.hot.svelte-vdh3h6.svelte-vdh3h6,.new.svelte-vdh3h6.svelte-vdh3h6{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-2j14uu{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;margin:10px 0;padding:0 10px}div#_iframe.svelte-1wevt6e{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}iframe.svelte-1wevt6e{height:96%;margin:auto} ');
+(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-vdh3h6.svelte-vdh3h6{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-vdh3h6.svelte-vdh3h6:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-vdh3h6.svelte-vdh3h6{padding:2px 0}.card-holder.svelte-vdh3h6.svelte-vdh3h6{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-vdh3h6.svelte-vdh3h6{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-vdh3h6.svelte-vdh3h6{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-vdh3h6.svelte-vdh3h6{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-vdh3h6.svelte-vdh3h6:hover{-webkit-line-clamp:100}.cl-center.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-vdh3h6.svelte-vdh3h6:has(span){padding-top:2px}.card-details.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-vdh3h6.svelte-vdh3h6{height:100%;position:relative}.card-image.svelte-vdh3h6 img.svelte-vdh3h6{width:100%;object-fit:cover}.card-alter.svelte-vdh3h6.svelte-vdh3h6{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-vdh3h6.svelte-vdh3h6{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-vdh3h6.svelte-vdh3h6{color:#00f}._2XFree.svelte-vdh3h6.svelte-vdh3h6{color:green}.card-description.svelte-vdh3h6.svelte-vdh3h6{padding-left:4px;padding-right:4px}.card-index.svelte-vdh3h6.svelte-vdh3h6{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-vdh3h6.svelte-vdh3h6{padding:1px 2px;cursor:pointer}.hot.svelte-vdh3h6.svelte-vdh3h6,.new.svelte-vdh3h6.svelte-vdh3h6{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-xpikqe.svelte-xpikqe{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-xpikqe.svelte-xpikqe{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-xpikqe.svelte-xpikqe{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-xpikqe.svelte-xpikqe{padding:2px 0}.card-holder.svelte-xpikqe.svelte-xpikqe{background-color:#ffffff80}.card-line.svelte-xpikqe.svelte-xpikqe{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-xpikqe.svelte-xpikqe{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-xpikqe.svelte-xpikqe:hover{-webkit-line-clamp:100}.cl-center.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-xpikqe.svelte-xpikqe{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-xpikqe.svelte-xpikqe{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5abd48}._tag_dub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5a3b14}._tag_sub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-xpikqe.svelte-xpikqe{background-color:#f50;color:#fff}._tag_discount_free.svelte-xpikqe.svelte-xpikqe{background-color:#108ee9;color:#fff}.card-details.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-xpikqe.svelte-xpikqe{height:100%;position:relative}.card-image.svelte-xpikqe img.svelte-xpikqe{width:100%;object-fit:cover}.card-description.svelte-xpikqe.svelte-xpikqe{padding:2px 4px}.card-description.svelte-xpikqe a.svelte-xpikqe,.card-description.svelte-xpikqe a.svelte-xpikqe:hover{color:#000}.card-index.svelte-xpikqe.svelte-xpikqe{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
 
 (function () {
   'use strict';
@@ -33,6 +32,9 @@
     for (const k in src)
       tar[k] = src[k];
     return tar;
+  }
+  function is_promise(value) {
+    return !!value && (typeof value === "object" || typeof value === "function") && typeof value.then === "function";
   }
   function run(fn) {
     return fn();
@@ -150,6 +152,7 @@
       }
     };
   }
+  const globals = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
   function append(target, node) {
     target.appendChild(node);
   }
@@ -231,6 +234,9 @@
     } else {
       node.style.setProperty(key, value, important ? "important" : "");
     }
+  }
+  function toggle_class(element2, name, toggle) {
+    element2.classList[toggle ? "add" : "remove"](name);
   }
   function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
     const e = document.createEvent("CustomEvent");
@@ -577,6 +583,84 @@
       }
     };
   }
+  function handle_promise(promise2, info) {
+    const token = info.token = {};
+    function update2(type, index, key, value) {
+      if (info.token !== token)
+        return;
+      info.resolved = value;
+      let child_ctx = info.ctx;
+      if (key !== void 0) {
+        child_ctx = child_ctx.slice();
+        child_ctx[key] = value;
+      }
+      const block = type && (info.current = type)(child_ctx);
+      let needs_flush = false;
+      if (info.block) {
+        if (info.blocks) {
+          info.blocks.forEach((block2, i) => {
+            if (i !== index && block2) {
+              group_outros();
+              transition_out(block2, 1, 1, () => {
+                if (info.blocks[i] === block2) {
+                  info.blocks[i] = null;
+                }
+              });
+              check_outros();
+            }
+          });
+        } else {
+          info.block.d(1);
+        }
+        block.c();
+        transition_in(block, 1);
+        block.m(info.mount(), info.anchor);
+        needs_flush = true;
+      }
+      info.block = block;
+      if (info.blocks)
+        info.blocks[index] = block;
+      if (needs_flush) {
+        flush();
+      }
+    }
+    if (is_promise(promise2)) {
+      const current_component2 = get_current_component();
+      promise2.then((value) => {
+        set_current_component(current_component2);
+        update2(info.then, 1, info.value, value);
+        set_current_component(null);
+      }, (error) => {
+        set_current_component(current_component2);
+        update2(info.catch, 2, info.error, error);
+        set_current_component(null);
+        if (!info.hasCatch) {
+          throw error;
+        }
+      });
+      if (info.current !== info.pending) {
+        update2(info.pending, 0);
+        return true;
+      }
+    } else {
+      if (info.current !== info.then) {
+        update2(info.then, 1, info.value, promise2);
+        return true;
+      }
+      info.resolved = promise2;
+    }
+  }
+  function update_await_block_branch(info, ctx, dirty) {
+    const child_ctx = ctx.slice();
+    const { resolved } = info;
+    if (info.current === info.then) {
+      child_ctx[info.value] = resolved;
+    }
+    if (info.current === info.catch) {
+      child_ctx[info.error] = resolved;
+    }
+    info.block.p(child_ctx, dirty);
+  }
   function outro_and_destroy_block(block, lookup) {
     transition_out(block, 1, 1, () => {
       lookup.delete(block.key);
@@ -775,6 +859,82 @@
       }
     }
   }
+  function create_fragment$a(ctx) {
+    let div;
+    let button;
+    let t0;
+    let br;
+    let t1;
+    let button_style_value;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div = element("div");
+        button = element("button");
+        t0 = text("检测到种子列表");
+        br = element("br");
+        t1 = text("刷新以显示瀑布流");
+        attr(button, "style", button_style_value = /*trigger*/
+        ctx[0] ? "display: block" : "display:none");
+        attr(button, "id", "_Reload");
+        attr(button, "class", "svelte-1me98ya");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, button);
+        append(button, t0);
+        append(button, br);
+        append(button, t1);
+        if (!mounted) {
+          dispose = listen(button, "click", Reload);
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & /*trigger*/
+        1 && button_style_value !== (button_style_value = /*trigger*/
+        ctx2[0] ? "display: block" : "display:none")) {
+          attr(button, "style", button_style_value);
+        }
+      },
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function Reload() {
+    location.reload();
+  }
+  function instance$a($$self, $$props, $$invalidate) {
+    let firstLinkBrowse;
+    let currentLinkBrowse;
+    let first = true;
+    let trigger = false;
+    if (first) {
+      firstLinkBrowse = location.pathname.includes("/browse");
+      first = false;
+    }
+    setInterval(
+      () => {
+        currentLinkBrowse = location.pathname.includes("/browse");
+        $$invalidate(0, trigger = !firstLinkBrowse && currentLinkBrowse);
+      },
+      2e3
+    );
+    return [trigger];
+  }
+  class BtnReload extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+    }
+  }
   /*!
    * Masonry PACKAGED v4.2.2
    * Cascading grid layout library
@@ -784,8 +944,8 @@
    */
   (function(window2, factory8) {
     if (typeof define == "function" && define.amd) {
-      define("jquery-bridget/jquery-bridget", ["jquery"], function(jQuery2) {
-        return factory8(window2, jQuery2);
+      define("jquery-bridget/jquery-bridget", ["jquery"], function(jQuery) {
+        return factory8(window2, jQuery);
       });
     } else {
       window2.jQueryBridget = factory8(
@@ -793,7 +953,7 @@
         window2.jQuery
       );
     }
-  })(window, function factory(window2, jQuery2) {
+  })(window, function factory(window2, jQuery) {
     var arraySlice = Array.prototype.slice;
     var console2 = window2.console;
     var logError = typeof console2 == "undefined" ? function() {
@@ -801,7 +961,7 @@
       console2.error(message);
     };
     function jQueryBridget(namespace, PluginClass, $2) {
-      $2 = $2 || jQuery2 || window2.jQuery;
+      $2 = $2 || jQuery || window2.jQuery;
       if (!$2) {
         return;
       }
@@ -860,14 +1020,14 @@
       }
       $2.bridget = jQueryBridget;
     }
-    updateJQuery(jQuery2 || window2.jQuery);
+    updateJQuery(jQuery || window2.jQuery);
     return jQueryBridget;
   });
-  (function(global, factory8) {
+  (function(global2, factory8) {
     if (typeof define == "function" && define.amd) {
       define("ev-emitter/ev-emitter", factory8);
     } else {
-      global.EvEmitter = factory8();
+      global2.EvEmitter = factory8();
     }
   })(typeof window != "undefined" ? window : globalThis, function() {
     function EvEmitter() {
@@ -1206,7 +1366,7 @@
         var jsDashElems = document.querySelectorAll(".js-" + dashedNamespace);
         var elems = utils.makeArray(dataAttrElems).concat(utils.makeArray(jsDashElems));
         var dataOptionsAttr = dataAttr + "-options";
-        var jQuery2 = window2.jQuery;
+        var jQuery = window2.jQuery;
         elems.forEach(function(elem) {
           var attr2 = elem.getAttribute(dataAttr) || elem.getAttribute(dataOptionsAttr);
           var options;
@@ -1219,8 +1379,8 @@
             return;
           }
           var instance2 = new WidgetClass(elem, options);
-          if (jQuery2) {
-            jQuery2.data(elem, namespace, instance2);
+          if (jQuery) {
+            jQuery.data(elem, namespace, instance2);
           }
         });
       });
@@ -1606,7 +1766,7 @@
     }
   })(window, function factory6(window2, EvEmitter, getSize, utils, Item) {
     var console2 = window2.console;
-    var jQuery2 = window2.jQuery;
+    var jQuery = window2.jQuery;
     var noop2 = function() {
     };
     var GUID = 0;
@@ -1620,8 +1780,8 @@
         return;
       }
       this.element = queryElement;
-      if (jQuery2) {
-        this.$element = jQuery2(this.element);
+      if (jQuery) {
+        this.$element = jQuery(this.element);
       }
       this.options = utils.extend({}, this.constructor.defaults);
       this.option(options);
@@ -1839,10 +1999,10 @@
     proto.dispatchEvent = function(type, event, args) {
       var emitArgs = event ? [event].concat(args) : args;
       this.emitEvent(type, emitArgs);
-      if (jQuery2) {
-        this.$element = this.$element || jQuery2(this.element);
+      if (jQuery) {
+        this.$element = this.$element || jQuery(this.element);
         if (event) {
-          var $event = jQuery2.Event(event);
+          var $event = jQuery.Event(event);
           $event.type = type;
           this.$element.trigger($event, args);
         } else {
@@ -2044,8 +2204,8 @@
       var id = this.element.outlayerGUID;
       delete instances[id];
       delete this.element.outlayerGUID;
-      if (jQuery2) {
-        jQuery2.removeData(this.element, this.constructor.namespace);
+      if (jQuery) {
+        jQuery.removeData(this.element, this.constructor.namespace);
       }
     };
     Outlayer.data = function(elem) {
@@ -2062,8 +2222,8 @@
       Layout.data = Outlayer.data;
       Layout.Item = subclass(Item);
       utils.htmlInit(Layout, namespace);
-      if (jQuery2 && jQuery2.bridget) {
-        jQuery2.bridget(namespace, Layout);
+      if (jQuery && jQuery.bridget) {
+        jQuery.bridget(namespace, Layout);
       }
       return Layout;
     };
@@ -2314,17 +2474,19 @@
     /**函数实际执行次数 */
     Run: 0
   };
-  let timer = null;
-  function debounce(func2, delay) {
+  function debounceImmediate(func2, delay) {
+    let timeout;
     return function() {
-      if (timer) {
-        console.warn("debounce dupe!!!!!!");
-        clearTimeout(timer);
+      const immediate = !timeout;
+      if (timeout) {
+        clearTimeout(timeout);
       }
-      timer = setTimeout(function() {
-        func2.apply(this, arguments);
-        timer = null;
+      timeout = setTimeout(() => {
+        timeout = null;
       }, delay);
+      if (immediate) {
+        func2.apply(this, arguments);
+      }
     };
   }
   function throttle(func2, delay) {
@@ -2354,260 +2516,281 @@
     masonry.layout();
   }
   function sortMasonry(speed = "normal") {
-    _SORT_COUNT.Call++;
-    if (masonry) {
-      if (speed === "fast") {
-        throttleSort_fast();
-      } else {
-        throttleSort();
+    if (get_store_value(_animated)) {
+      _SORT_COUNT.Call++;
+      if (masonry) {
+        if (speed === "fast") {
+          throttleSort_fast();
+        } else {
+          throttleSort();
+        }
       }
+    } else {
+      _SORT_COUNT.Call++;
+      if (masonry)
+        doSortMasonry();
     }
   }
   function NEXUS_TOOLS() {
-    console.log("------------------------NEXUS TOOLS------------------------");
-    jQuery(document).ready(function() {
-      function getImgPosition(event, imgEle2) {
-        let imgWidth = imgEle2.prop("naturalWidth");
-        let imgHeight = imgEle2.prop("naturalHeight");
-        let ratio = imgWidth / imgHeight;
-        let offsetX = 0;
-        let offsetY = 0;
-        let width = window.innerWidth - event.clientX;
-        let height = window.innerHeight - event.clientY;
-        let changeOffsetY = 0;
-        let changeOffsetX = false;
-        if (event.clientX > window.innerWidth / 2 && event.clientX + imgWidth > window.innerWidth) {
-          changeOffsetX = true;
-          width = event.clientX;
+    console.log("------------------------ NEXUS TOOLS Without jQuery ------------------------");
+    function getMinRatio(pic, container) {
+      return Math.min(container.width / pic.width, container.height / pic.height);
+    }
+    function previewPosition(event, imgEle2) {
+      let imgWidth = imgEle2.naturalWidth ?? 0;
+      let imgHeight = imgEle2.naturalHeight ?? 0;
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const distanceToTop = mouseY;
+      const distanceToBottom = viewportHeight - mouseY;
+      const distanceToLeft = mouseX;
+      const distanceToRight = viewportWidth - mouseX;
+      const picSize = {
+        width: imgWidth,
+        height: imgHeight
+      };
+      const containerSize = {
+        bot: {
+          width: viewportWidth,
+          height: distanceToBottom
+        },
+        top: {
+          width: viewportWidth,
+          height: distanceToTop
+        },
+        right: {
+          width: distanceToRight,
+          height: viewportHeight
+        },
+        left: {
+          width: distanceToLeft,
+          height: viewportHeight
         }
-        if (event.clientY > window.innerHeight / 2) {
-          if (event.clientY + imgHeight / 2 > window.innerHeight) {
-            changeOffsetY = 1;
-            height = event.clientY;
-          } else if (event.clientY + imgHeight > window.innerHeight) {
-            changeOffsetY = 2;
-            height = event.clientY;
+      };
+      let maxRatio = 0;
+      let maxPosition = "";
+      for (const key in containerSize) {
+        if (Object.hasOwnProperty.call(containerSize, key)) {
+          const element2 = containerSize[key];
+          if (getMinRatio(picSize, element2) > maxRatio) {
+            maxRatio = getMinRatio(picSize, element2);
+            maxPosition = key;
           }
         }
-        if (imgWidth > width) {
-          imgWidth = width;
-          imgHeight = imgWidth / ratio;
-        }
-        if (imgHeight > height) {
-          imgHeight = height;
-          imgWidth = imgHeight * ratio;
-        }
-        if (changeOffsetX) {
-          offsetX = -imgWidth;
-        }
-        if (changeOffsetY == 1) {
-          offsetY = -(imgHeight - (window.innerHeight - event.clientY));
-        } else if (changeOffsetY == 2) {
-          offsetY = -imgHeight / 2;
-        }
-        return { imgWidth, imgHeight, offsetX, offsetY };
       }
-      function getMinRatio(pic, container) {
-        return Math.min(container.width / pic.width, container.height / pic.height);
-      }
-      function previewPosition_Kesa(event, imgEle2) {
-        let imgWidth = imgEle2.prop("naturalWidth") ?? 0;
-        let imgHeight = imgEle2.prop("naturalHeight") ?? 0;
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        const distanceToTop = mouseY;
-        const distanceToBottom = viewportHeight - mouseY;
-        const distanceToLeft = mouseX;
-        const distanceToRight = viewportWidth - mouseX;
-        const picSize = {
-          width: imgWidth,
-          height: imgHeight
-        };
-        const containerSize = {
-          bot: {
-            width: viewportWidth,
-            height: distanceToBottom
-          },
-          top: {
-            width: viewportWidth,
-            height: distanceToTop
-          },
-          right: {
-            width: distanceToRight,
-            height: viewportHeight
-          },
-          left: {
-            width: distanceToLeft,
-            height: viewportHeight
-          }
-        };
-        let maxRatio = 0;
-        let maxPosition = "";
-        for (const key in containerSize) {
-          if (Object.hasOwnProperty.call(containerSize, key)) {
-            const element2 = containerSize[key];
-            if (getMinRatio(picSize, element2) > maxRatio) {
-              maxRatio = getMinRatio(picSize, element2);
-              maxPosition = key;
+      const result = {
+        top: {
+          left: 0,
+          top: 0,
+          width: viewportWidth + "px",
+          height: distanceToTop + "px"
+        },
+        bot: {
+          left: 0,
+          top: distanceToTop + "px",
+          width: viewportWidth + "px",
+          height: distanceToBottom + "px"
+        },
+        left: {
+          left: 0,
+          top: 0,
+          width: distanceToLeft + "px",
+          height: viewportHeight + "px"
+        },
+        right: {
+          left: distanceToLeft + "px",
+          top: 0,
+          width: distanceToRight + "px",
+          height: viewportHeight + "px"
+        },
+        default: {
+          left: 0,
+          top: 0,
+          width: 0,
+          height: 0
+        }
+      };
+      const container = maxPosition != "" ? result[maxPosition] : result["default"];
+      return container;
+    }
+    function createKesaPreview(color) {
+      const parent = document.createElement("div");
+      parent.id = "kp_container";
+      parent.style.backgroundColor = color;
+      parent.style.opacity = "1";
+      parent.style.position = "Fixed";
+      parent.style.zIndex = "20000";
+      parent.style.pointerEvents = "none";
+      parent.style.transition = "all .3s";
+      const img1 = document.createElement("img");
+      img1.className = "kp_img";
+      img1.style.position = "absolute";
+      img1.style.zIndex = "20002";
+      img1.style.pointerEvents = "none";
+      img1.style.width = "100%";
+      img1.style.height = "100%";
+      img1.style.objectFit = "contain";
+      parent.appendChild(img1);
+      const img2 = document.createElement("img");
+      img2.className = "kp_img";
+      img2.style.position = "absolute";
+      img2.style.zIndex = "20001";
+      img2.style.pointerEvents = "none";
+      img2.style.width = "100%";
+      img2.style.height = "100%";
+      img2.style.objectFit = "cover";
+      img2.style.filter = "blur(8px)";
+      parent.appendChild(img2);
+      return parent;
+    }
+    let imgEle;
+    const existingContainer = document.getElementById("kp_container");
+    const kesa_preview = existingContainer ? existingContainer : createKesaPreview("");
+    document.body.appendChild(kesa_preview);
+    const selector = "img.preview_Kesa";
+    let buffer = null;
+    function handleMouseOver(e) {
+      imgEle = e.target;
+      buffer = setTimeout(() => {
+        if (get_store_value(_show_nexus_pic)) {
+          let src = imgEle.getAttribute("src");
+          if (src) {
+            if (kesa_preview) {
+              const kpImgElements = kesa_preview.querySelectorAll(".kp_img");
+              kpImgElements.forEach((kpImg) => {
+                kpImg.setAttribute("src", src);
+              });
             }
           }
+          const cssPos = previewPosition(e, imgEle);
+          kesa_preview.style.left = cssPos.left;
+          kesa_preview.style.top = cssPos.top;
+          kesa_preview.style.width = cssPos.width;
+          kesa_preview.style.height = cssPos.height;
+          kesa_preview.style.display = "block";
         }
-        const result = {
-          top: {
-            left: 0,
-            top: 0,
-            width: viewportWidth,
-            height: distanceToTop
-          },
-          bot: {
-            left: 0,
-            top: distanceToTop,
-            width: viewportWidth,
-            height: distanceToBottom
-          },
-          left: {
-            left: 0,
-            top: 0,
-            width: distanceToLeft,
-            height: viewportHeight
-          },
-          right: {
-            left: distanceToLeft,
-            top: 0,
-            width: distanceToRight,
-            height: viewportHeight
-          },
-          default: {
-            left: 0,
-            top: 0,
-            width: 0,
-            height: 0
-          }
-        };
-        const container = maxPosition != "" ? result[maxPosition] : result["default"];
-        return container;
-      }
-      function getPosition(event, position) {
-        return {
-          left: event.pageX + position.offsetX,
-          top: event.pageY + position.offsetY,
-          width: position.imgWidth,
-          height: position.imgHeight
-        };
-      }
-      const selector = "img.preview_Kesa";
-      let imgEle;
-      let imgPosition;
-      if (!jQuery("#nexus-preview").length) {
-        const _previewDom = document.body.appendChild(document.createElement("img"));
-        _previewDom.id = "nexus-preview";
-      }
-      jQuery("#nexus-preview");
-      function createKesaPreview(color) {
-        const parent = jQuery("<div>", {
-          id: "kp_container",
-          css: {
-            backgroundColor: color,
-            opacity: 1,
-            position: "fixed",
-            zIndex: 2e4,
-            pointerEvents: "none",
-            transition: "all .3s"
-          }
-        });
-        parent.append(jQuery("<img>", {
-          class: "kp_img",
-          css: {
-            position: "absolute",
-            zIndex: 20002,
-            pointerEvents: "none",
-            width: "100%",
-            height: "100%",
-            objectFit: "contain"
-          }
-        }));
-        parent.append(jQuery("<img>", {
-          class: "kp_img",
-          css: {
-            position: "absolute",
-            zIndex: 20001,
-            pointerEvents: "none",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            filter: `blur(8px)`
-          }
-        }));
-        return parent;
-      }
-      const kesa_preview = jQuery("#kp_container").length > 0 ? jQuery("#kp_container") : createKesaPreview("");
-      jQuery("body").append(kesa_preview);
-      let buffer = null;
-      jQuery("body").on("mouseover", selector, function(e) {
-        imgEle = jQuery(this);
-        buffer = setTimeout(() => {
-          if (get_store_value(_show_nexus_pic)) {
-            imgPosition = getImgPosition(e, imgEle);
-            getPosition(e, imgPosition);
-            let src = imgEle.attr("src");
-            if (src) {
-              if (kesa_preview)
-                kesa_preview.find(".kp_img").attr("src", src);
-            }
-            kesa_preview.css(previewPosition_Kesa(e, imgEle)).show();
-          }
-        }, get_store_value(_delay_nexus_pic));
-      }).on("mouseout", selector, function(e) {
-        kesa_preview.hide();
-        if (buffer)
-          clearTimeout(buffer);
-      }).on("mousemove", selector, function(e) {
-        imgPosition = getImgPosition(e, imgEle);
-        getPosition(e, imgPosition);
-        kesa_preview.css(previewPosition_Kesa(e, imgEle));
-      });
-      if ("IntersectionObserver" in window) {
-        let imgList = [...document.querySelectorAll(".nexus-lazy-load_Kesa")];
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            const el = entry.target;
-            entry.intersectionRatio;
-            if (entry.isIntersecting && !el.classList.contains("preview_Kesa")) {
-              const source = el.dataset.src;
-              el.src = source;
-              el.classList.add("preview_Kesa");
-              sortMasonry();
-            }
-          });
-        });
-        imgList.forEach((img) => io.observe(img));
+      }, get_store_value(_delay_nexus_pic));
+    }
+    function handleMouseOut() {
+      kesa_preview.style.display = "none";
+      if (buffer)
+        clearTimeout(buffer);
+    }
+    function handleMouseMove(e) {
+      const cssPos = previewPosition(e, imgEle);
+      kesa_preview.style.left = cssPos.left;
+      kesa_preview.style.top = cssPos.top;
+      kesa_preview.style.width = cssPos.width;
+      kesa_preview.style.height = cssPos.height;
+    }
+    document.body.addEventListener("mouseover", function(e) {
+      if (e.target.matches(selector)) {
+        handleMouseOver(e);
       }
     });
+    document.body.addEventListener("mouseout", function(e) {
+      if (e.target.matches(selector)) {
+        handleMouseOut();
+      }
+    });
+    document.body.addEventListener("mousemove", function(e) {
+      if (e.target.matches(selector)) {
+        handleMouseMove(e);
+      }
+    });
+    if ("IntersectionObserver" in window) {
+      let imgList = [...document.querySelectorAll(".nexus-lazy-load_Kesa")];
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          entry.intersectionRatio;
+          if (entry.isIntersecting && !el.classList.contains("preview_Kesa")) {
+            const source = el.dataset.src;
+            el.src = source;
+            el.classList.add("preview_Kesa");
+            sortMasonry();
+          }
+        });
+      });
+      imgList.forEach((img) => io.observe(img));
+    }
   }
+  const ls_test_list = {};
+  function parseLocalStorage(key) {
+    const storage = localStorage.getItem(key);
+    if (storage) {
+      try {
+        if (ls_test_list[key]) {
+          if (storage === ls_test_list[key].string) {
+            console.log("%c====> 读取 localstorage 缓存成功~", "color: green;");
+            return ls_test_list[key].object;
+          } else {
+            console.log("%c====> 更新 localstorage 缓存~", "color: orange;");
+          }
+        } else {
+          ls_test_list[key] = {};
+        }
+        const parsedValue = JSON.parse(storage);
+        if (typeof parsedValue === "object" && parsedValue !== null) {
+          for (const key2 in parsedValue) {
+            if (Object.hasOwnProperty.call(parsedValue, key2)) {
+              const value = parsedValue[key2];
+              if (typeof value === "string") {
+                try {
+                  const parsedObject = JSON.parse(value);
+                  parsedValue[key2] = parsedObject;
+                } catch (error) {
+                }
+              }
+            }
+          }
+          ls_test_list[key].string = storage;
+          ls_test_list[key].object = parsedValue;
+          ls_test_list[key].timestamp = (/* @__PURE__ */ new Date()).getTime();
+          return parsedValue;
+        } else {
+          console.error("localStorage 中的值不是一个对象");
+        }
+      } catch (error) {
+        console.error("无法解析 localStorage 中的值为 JSON:", error);
+      }
+    } else {
+      console.error(`localStorage 中不存在 key 为 ${key} 的值, 可能是本站 api 改变了`);
+    }
+  }
+  window.parseLocalStorage = parseLocalStorage;
+  const persistName = "Kesa:Masonry";
   function persistStore(key, startValue) {
-    const savedValue = localStorage.getItem(key);
-    const initialValue = savedValue ? JSON.parse(savedValue) : startValue;
+    if (!localStorage.getItem(persistName))
+      localStorage.setItem(persistName, "{}");
+    const savedValue = JSON.parse(localStorage.getItem(persistName))[key];
+    const initialValue = savedValue ?? startValue;
     const store = writable(initialValue);
     store.subscribe((value) => {
-      localStorage.setItem(key, JSON.stringify(value));
+      const data = JSON.parse(localStorage.getItem(persistName)) ?? {};
+      data[key] = value;
+      localStorage.setItem(persistName, JSON.stringify(data));
     });
+    if (localStorage.getItem(key))
+      localStorage.removeItem(key);
     return store;
   }
   const _Global_Masonry = writable({});
-  const _list_viewMode = persistStore("_listViewMode", 1);
   const _iframe_switch = writable(0);
   const _iframe_url = writable("https://kamept.com/index.php");
   const _current_domain = persistStore("_domain", "");
   const _current_bgColor = persistStore("_bgColor", "");
+  const _list_viewMode = persistStore("_listViewMode", 1);
   const _show_configPanel = writable(false);
   const _panelPos = persistStore("_panelPos", { x: 0, y: 0 });
   const _turnPage = persistStore("_turnPage", false);
   const _show_debug_btn = persistStore("_show_debug_btn", 0);
   const _show_nexus_pic = persistStore("_show_nexus_pic", 1);
   const _delay_nexus_pic = persistStore("_delay_nexus_pic", 600);
-  const _card_width = persistStore("_card_width", 200);
+  const _animated = persistStore("_animated", true);
+  const _card_width = persistStore("_card_width", 300);
   const site_setting = {
     mt: {
       // 隐藏gay卡片: 默认为true
@@ -2656,24 +2839,19 @@
       sortMasonry();
     }
   });
-  function create_if_block_6$2(ctx) {
+  function create_if_block_6$3(ctx) {
     let svg;
     let path;
     let circle;
-    let t0;
+    let t;
     let div;
-    let t1;
     return {
       c() {
         svg = svg_element("svg");
         path = svg_element("path");
         circle = svg_element("circle");
-        t0 = space();
+        t = space();
         div = element("div");
-        t1 = text(
-          /*label*/
-          ctx[5]
-        );
         attr(path, "d", "M102.6476822,65.245285l-40.2463036,40.1161652c-3.1256676,3.1155624-8.1839256,3.1114655-11.3045425-0.0091476  l-26.7890854-26.789093c-3.1289177-3.1289139-3.1234951-8.2035599,0.0121021-11.3257828l40.077301-39.9063568  C65.8964539,25.8381672,67.9261017,25,70.0419083,25H97c4.4182816,0,8,3.5817223,8,8v26.5792809  C105,61.7055016,104.1535873,63.7442589,102.6476822,65.245285z");
         attr(path, "fill", "yellow");
         attr(path, "stroke", "#000000");
@@ -2681,6 +2859,7 @@
         attr(path, "stroke-linejoin", "round");
         attr(path, "stroke-miterlimit", "10");
         attr(path, "stroke-width", "4");
+        attr(path, "class", "svelte-zt6zlx");
         attr(circle, "cx", "85");
         attr(circle, "cy", "45");
         attr(circle, "fill", "red");
@@ -2690,6 +2869,7 @@
         attr(circle, "stroke-linejoin", "round");
         attr(circle, "stroke-miterlimit", "10");
         attr(circle, "stroke-width", "4");
+        attr(circle, "class", "svelte-zt6zlx");
         attr(svg, "enable-background", "new 0 0 128 128");
         attr(svg, "id", "Layer_1");
         attr(svg, "version", "1.1");
@@ -2697,37 +2877,35 @@
         attr(svg, "xml:space", "preserve");
         attr(svg, "width", "28");
         attr(svg, "height", "28");
-        attr(svg, "class", "hint");
-        attr(div, "class", "_hint svelte-2vaqag");
+        attr(svg, "class", "hint svelte-zt6zlx");
+        attr(div, "class", "_hint svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, svg, anchor);
         append(svg, path);
         append(svg, circle);
-        insert(target, t0, anchor);
+        insert(target, t, anchor);
         insert(target, div, anchor);
-        append(div, t1);
+        div.innerHTML = /*label*/
+        ctx[5];
       },
       p(ctx2, dirty) {
         if (dirty & /*label*/
         32)
-          set_data(
-            t1,
-            /*label*/
-            ctx2[5]
-          );
+          div.innerHTML = /*label*/
+          ctx2[5];
       },
       d(detaching) {
         if (detaching)
           detach(svg);
         if (detaching)
-          detach(t0);
+          detach(t);
         if (detaching)
           detach(div);
       }
     };
   }
-  function create_if_block_2$3(ctx) {
+  function create_if_block_2$5(ctx) {
     let t;
     let if_block_anchor;
     function select_block_type(ctx2, dirty) {
@@ -2735,13 +2913,13 @@
         /*green_state*/
         ctx2[7]
       )
-        return create_if_block_3$3;
+        return create_if_block_3$5;
       if (
         /*checked*/
         ctx2[0]
       )
-        return create_if_block_5$2;
-      return create_else_block_1$1;
+        return create_if_block_5$4;
+      return create_else_block_1$2;
     }
     let current_block_type = select_block_type(ctx);
     let if_block = current_block_type(ctx);
@@ -2777,7 +2955,7 @@
       }
     };
   }
-  function create_else_block_1$1(ctx) {
+  function create_else_block_1$2(ctx) {
     let span;
     let t;
     return {
@@ -2787,7 +2965,7 @@
           /*title_green*/
           ctx[3]
         );
-        attr(span, "class", "title_green svelte-2vaqag");
+        attr(span, "class", "title_green svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -2808,7 +2986,7 @@
       }
     };
   }
-  function create_if_block_5$2(ctx) {
+  function create_if_block_5$4(ctx) {
     let span;
     let t;
     return {
@@ -2818,7 +2996,7 @@
           /*title_red*/
           ctx[4]
         );
-        attr(span, "class", "title_red svelte-2vaqag");
+        attr(span, "class", "title_red svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -2839,15 +3017,15 @@
       }
     };
   }
-  function create_if_block_3$3(ctx) {
+  function create_if_block_3$5(ctx) {
     let if_block_anchor;
     function select_block_type_1(ctx2, dirty) {
       if (
         /*checked*/
         ctx2[0]
       )
-        return create_if_block_4$2;
-      return create_else_block$2;
+        return create_if_block_4$4;
+      return create_else_block$6;
     }
     let current_block_type = select_block_type_1(ctx);
     let if_block = current_block_type(ctx);
@@ -2879,7 +3057,7 @@
       }
     };
   }
-  function create_else_block$2(ctx) {
+  function create_else_block$6(ctx) {
     let span;
     let t;
     return {
@@ -2889,7 +3067,7 @@
           /*title_red*/
           ctx[4]
         );
-        attr(span, "class", "title_red svelte-2vaqag");
+        attr(span, "class", "title_red svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -2910,7 +3088,7 @@
       }
     };
   }
-  function create_if_block_4$2(ctx) {
+  function create_if_block_4$4(ctx) {
     let span;
     let t;
     return {
@@ -2920,7 +3098,7 @@
           /*title_green*/
           ctx[3]
         );
-        attr(span, "class", "title_green svelte-2vaqag");
+        attr(span, "class", "title_green svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, span, anchor);
@@ -2941,7 +3119,7 @@
       }
     };
   }
-  function create_if_block_1$4(ctx) {
+  function create_if_block_1$6(ctx) {
     let div;
     let input;
     let t;
@@ -2957,11 +3135,11 @@
         attr(input, "type", "checkbox");
         attr(input, "id", "_t" + /*id*/
         ctx[8]);
-        attr(input, "class", "svelte-2vaqag");
+        attr(input, "class", "svelte-zt6zlx");
         attr(label_1, "for", "_t" + /*id*/
         ctx[8]);
-        attr(label_1, "class", "svelte-2vaqag");
-        attr(div, "class", "s_switch");
+        attr(label_1, "class", "svelte-zt6zlx");
+        attr(div, "class", "s_switch svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -3003,7 +3181,7 @@
       }
     };
   }
-  function create_if_block$6(ctx) {
+  function create_if_block$9(ctx) {
     let current;
     const default_slot_template = (
       /*#slots*/
@@ -3068,7 +3246,7 @@
       }
     };
   }
-  function create_fragment$7(ctx) {
+  function create_fragment$9(ctx) {
     let div1;
     let div0;
     let t0;
@@ -3079,20 +3257,20 @@
     let current;
     let if_block0 = (
       /*label*/
-      ctx[5] && create_if_block_6$2(ctx)
+      ctx[5] && create_if_block_6$3(ctx)
     );
     let if_block1 = (
       /*title_green*/
       (ctx[3] || /*title_red*/
-      ctx[4]) && create_if_block_2$3(ctx)
+      ctx[4]) && create_if_block_2$5(ctx)
     );
     let if_block2 = (
       /*type*/
-      ctx[1] == "switch" && create_if_block_1$4(ctx)
+      ctx[1] == "switch" && create_if_block_1$6(ctx)
     );
     let if_block3 = (
       /*type*/
-      ctx[1] == "range" && create_if_block$6(ctx)
+      ctx[1] == "range" && create_if_block$9(ctx)
     );
     return {
       c() {
@@ -3114,14 +3292,14 @@
         t4 = space();
         if (if_block3)
           if_block3.c();
-        attr(div0, "class", "s_title svelte-2vaqag");
+        attr(div0, "class", "s_title svelte-zt6zlx");
         attr(
           div0,
           "title",
           /*label*/
           ctx[5]
         );
-        attr(div1, "class", "switch svelte-2vaqag");
+        attr(div1, "class", "switch svelte-zt6zlx");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -3149,7 +3327,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_6$2(ctx2);
+            if_block0 = create_if_block_6$3(ctx2);
             if_block0.c();
             if_block0.m(div0, t0);
           }
@@ -3172,7 +3350,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_2$3(ctx2);
+            if_block1 = create_if_block_2$5(ctx2);
             if_block1.c();
             if_block1.m(div0, null);
           }
@@ -3196,7 +3374,7 @@
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_1$4(ctx2);
+            if_block2 = create_if_block_1$6(ctx2);
             if_block2.c();
             if_block2.m(div1, t4);
           }
@@ -3215,7 +3393,7 @@
               transition_in(if_block3, 1);
             }
           } else {
-            if_block3 = create_if_block$6(ctx2);
+            if_block3 = create_if_block$9(ctx2);
             if_block3.c();
             transition_in(if_block3, 1);
             if_block3.m(div1, null);
@@ -3252,7 +3430,7 @@
       }
     };
   }
-  function instance$7($$self, $$props, $$invalidate) {
+  function instance$9($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { type = "switch" } = $$props;
     let { title_fixed = "" } = $$props;
@@ -3311,7 +3489,7 @@
   class Switch extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$7, create_fragment$7, safe_not_equal, {
+      init(this, options, instance$9, create_fragment$9, safe_not_equal, {
         type: 1,
         title_fixed: 2,
         title_green: 3,
@@ -3323,7 +3501,7 @@
       });
     }
   }
-  function create_else_block_4(ctx) {
+  function create_else_block$5(ctx) {
     let div0;
     let t1;
     let div1;
@@ -3357,7 +3535,7 @@
       }
     };
   }
-  function create_if_block_10$2(ctx) {
+  function create_if_block_5$3(ctx) {
     let div0;
     let t0;
     let div1;
@@ -3384,7 +3562,7 @@
       }
     };
   }
-  function create_if_block_9$2(ctx) {
+  function create_if_block_4$3(ctx) {
     let button0;
     let t1;
     let button1;
@@ -3413,10 +3591,10 @@
         t6 = space();
         button3 = element("button");
         button3.textContent = "[d]iframe";
-        attr(button0, "class", "sideP__btn svelte-mdsgbd");
-        attr(button1, "class", "sideP__btn svelte-mdsgbd");
-        attr(button2, "class", "sideP__btn svelte-mdsgbd");
-        attr(button3, "class", "sideP__btn svelte-mdsgbd");
+        attr(button0, "class", "sideP__btn svelte-kk96f3");
+        attr(button1, "class", "sideP__btn svelte-kk96f3");
+        attr(button2, "class", "sideP__btn svelte-kk96f3");
+        attr(button3, "class", "sideP__btn svelte-kk96f3");
       },
       m(target, anchor) {
         insert(target, button0, anchor);
@@ -3434,25 +3612,25 @@
               button0,
               "click",
               /*config_changeWidth*/
-              ctx[16]
+              ctx[18]
             ),
             listen(
               button1,
               "click",
               /*config_showAllDetails*/
-              ctx[17]
+              ctx[19]
             ),
             listen(
               button2,
               "click",
               /*config_switchMode*/
-              ctx[18]
+              ctx[20]
             ),
             listen(
               button3,
               "click",
               /*config_changeLoadMode*/
-              ctx[19]
+              ctx[21]
             )
           ];
           mounted = true;
@@ -3487,7 +3665,7 @@
       }
     };
   }
-  function create_if_block$5(ctx) {
+  function create_if_block$8(ctx) {
     let div8;
     let div7;
     let div0;
@@ -3503,83 +3681,102 @@
     let switch0;
     let updating_checked;
     let t6;
+    let br0;
+    let t7;
     let switch1;
     let updating_checked_1;
-    let t7;
+    let t8;
+    let br1;
+    let t9;
     let switch2;
     let updating_checked_2;
-    let t8;
+    let t10;
+    let br2;
+    let t11;
     let switch3;
     let updating_checked_3;
-    let t9;
-    let t10;
-    let button1;
     let t12;
-    let t13;
-    let div6;
-    let h11;
-    let t15;
-    let div3;
     let switch4;
     let updating_checked_4;
-    let t16;
-    let div5;
-    let h3;
-    let t18;
-    let div4;
+    let t13;
+    let t14;
+    let br3;
+    let t15;
     let switch5;
     let updating_checked_5;
+    let t16;
+    let button1;
+    let t17;
+    let t18;
     let t19;
+    let div6;
+    let h11;
+    let t21;
+    let div3;
     let switch6;
     let updating_checked_6;
-    let t20;
+    let t22;
+    let div5;
+    let h3;
+    let t24;
+    let div4;
     let switch7;
     let updating_checked_7;
-    let t21;
+    let t25;
     let switch8;
     let updating_checked_8;
-    let t22;
+    let t26;
     let switch9;
     let updating_checked_9;
-    let t23;
+    let t27;
     let switch10;
     let updating_checked_10;
-    let t24;
+    let t28;
     let switch11;
     let updating_checked_11;
-    let t25;
+    let t29;
+    let switch12;
+    let updating_checked_12;
+    let t30;
+    let switch13;
+    let updating_checked_13;
+    let t31;
     let div8_transition;
     let current;
     let mounted;
     let dispose;
     let if_block0 = (
       /*$_current_domain*/
-      ctx[9] == "kp.m-team.cc" && create_if_block_8$2(ctx)
+      (ctx[10] == "kp.m-team.cc" || /*$_current_domain*/
+      ctx[10] == "test2.m-team.cc") && create_if_block_3$4(ctx)
     );
     function switch0_checked_binding(value) {
-      ctx[26](value);
+      ctx[28](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
       title_green: "瀑布流",
       title_red: "原始表格",
-      label: "原始表格模式仅支持点击图片显示iframe和加载下一页",
+      label: (
+        /*$_current_domain*/
+        ctx[10] == "test2.m-team.cc" ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
+      ),
       func: (
         /*func*/
-        ctx[25]
+        ctx[27]
       )
     };
     if (
       /*$_list_viewMode*/
-      ctx[4] !== void 0
+      ctx[5] !== void 0
     ) {
       switch0_props.checked = /*$_list_viewMode*/
-      ctx[4];
+      ctx[5];
     }
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[27](value);
+      ctx[29](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3598,25 +3795,26 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[28](value);
+      ctx[30](value);
     }
     let switch2_props = {
-      title_fixed: "侧边栏debug按钮",
-      title_green: "隐藏(默认)",
-      title_red: "显示(开发用)",
-      green_state: false
+      title_fixed: "卡片移动动画",
+      title_green: "开启",
+      title_red: "关闭",
+      label: "开启关闭瀑布流卡片高度变化时的缓动动画",
+      green_state: true
     };
     if (
-      /*$_show_debug_btn*/
-      ctx[8] !== void 0
+      /*$_animated*/
+      ctx[12] !== void 0
     ) {
-      switch2_props.checked = /*$_show_debug_btn*/
-      ctx[8];
+      switch2_props.checked = /*$_animated*/
+      ctx[12];
     }
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[29](value);
+      ctx[31](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3625,21 +3823,57 @@
     };
     if (
       /*$_show_nexus_pic*/
-      ctx[11] !== void 0
+      ctx[13] !== void 0
     ) {
       switch3_props.checked = /*$_show_nexus_pic*/
-      ctx[11];
+      ctx[13];
     }
     switch3 = new Switch({ props: switch3_props });
     binding_callbacks.push(() => bind(switch3, "checked", switch3_checked_binding));
-    let if_block1 = (
-      /*$_show_nexus_pic*/
-      ctx[11] && create_if_block_7$2(ctx)
-    );
     function switch4_checked_binding(value) {
-      ctx[34](value);
+      ctx[32](value);
     }
     let switch4_props = {
+      title_fixed: "预览大图方式",
+      title_green: "指定预览区域",
+      title_red: "直接延迟预览",
+      label: "阿斯蒂芬 <br> asdf"
+    };
+    if (
+      /*$_show_nexus_pic*/
+      ctx[13] !== void 0
+    ) {
+      switch4_props.checked = /*$_show_nexus_pic*/
+      ctx[13];
+    }
+    switch4 = new Switch({ props: switch4_props });
+    binding_callbacks.push(() => bind(switch4, "checked", switch4_checked_binding));
+    let if_block1 = (
+      /*$_show_nexus_pic*/
+      ctx[13] && create_if_block_2$4(ctx)
+    );
+    function switch5_checked_binding(value) {
+      ctx[34](value);
+    }
+    let switch5_props = {
+      title_fixed: "侧边栏debug按钮",
+      title_green: "隐藏(默认)",
+      title_red: "显示(开发用)",
+      green_state: false
+    };
+    if (
+      /*$_show_debug_btn*/
+      ctx[9] !== void 0
+    ) {
+      switch5_props.checked = /*$_show_debug_btn*/
+      ctx[9];
+    }
+    switch5 = new Switch({ props: switch5_props });
+    binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
+    function switch6_checked_binding(value) {
+      ctx[35](value);
+    }
+    let switch6_props = {
       title_fixed: "卡片信息",
       title_green: "显示下方所选信息(精简)",
       title_red: "显示所有信息(较乱)",
@@ -3649,107 +3883,107 @@
       /*$_CARD_SHOW*/
       ctx[3].all !== void 0
     ) {
-      switch4_props.checked = /*$_CARD_SHOW*/
+      switch6_props.checked = /*$_CARD_SHOW*/
       ctx[3].all;
     }
-    switch4 = new Switch({ props: switch4_props });
-    binding_callbacks.push(() => bind(switch4, "checked", switch4_checked_binding));
-    switch4.$on(
+    switch6 = new Switch({ props: switch6_props });
+    binding_callbacks.push(() => bind(switch6, "checked", switch6_checked_binding));
+    switch6.$on(
       "click",
       /*sortMasonryBundle*/
-      ctx[20]
+      ctx[22]
     );
-    function switch5_checked_binding(value) {
-      ctx[35](value);
+    function switch7_checked_binding(value) {
+      ctx[36](value);
     }
-    let switch5_props = { title_fixed: "显示种子名称" };
+    let switch7_props = { title_fixed: "显示种子名称" };
     if (
       /*$_CARD_SHOW*/
       ctx[3].title !== void 0
     ) {
-      switch5_props.checked = /*$_CARD_SHOW*/
-      ctx[3].title;
-    }
-    switch5 = new Switch({ props: switch5_props });
-    binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
-    function switch6_checked_binding(value) {
-      ctx[36](value);
-    }
-    let switch6_props = { title_fixed: "显示置顶和免费" };
-    if (
-      /*$_CARD_SHOW*/
-      ctx[3].free !== void 0
-    ) {
-      switch6_props.checked = /*$_CARD_SHOW*/
-      ctx[3].free;
-    }
-    switch6 = new Switch({ props: switch6_props });
-    binding_callbacks.push(() => bind(switch6, "checked", switch6_checked_binding));
-    function switch7_checked_binding(value) {
-      ctx[37](value);
-    }
-    let switch7_props = { title_fixed: "显示副标题" };
-    if (
-      /*$_CARD_SHOW*/
-      ctx[3].sub_title !== void 0
-    ) {
       switch7_props.checked = /*$_CARD_SHOW*/
-      ctx[3].sub_title;
+      ctx[3].title;
     }
     switch7 = new Switch({ props: switch7_props });
     binding_callbacks.push(() => bind(switch7, "checked", switch7_checked_binding));
     function switch8_checked_binding(value) {
-      ctx[38](value);
+      ctx[37](value);
     }
-    let switch8_props = { title_fixed: "显示标签" };
+    let switch8_props = { title_fixed: "显示置顶和免费" };
     if (
       /*$_CARD_SHOW*/
-      ctx[3].tags !== void 0
+      ctx[3].free !== void 0
     ) {
       switch8_props.checked = /*$_CARD_SHOW*/
-      ctx[3].tags;
+      ctx[3].free;
     }
     switch8 = new Switch({ props: switch8_props });
     binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
     function switch9_checked_binding(value) {
-      ctx[39](value);
+      ctx[38](value);
     }
-    let switch9_props = { title_fixed: "显示 [大小/下载/收藏]" };
+    let switch9_props = { title_fixed: "显示副标题" };
     if (
       /*$_CARD_SHOW*/
-      ctx[3].size_download_collect !== void 0
+      ctx[3].sub_title !== void 0
     ) {
       switch9_props.checked = /*$_CARD_SHOW*/
-      ctx[3].size_download_collect;
+      ctx[3].sub_title;
     }
     switch9 = new Switch({ props: switch9_props });
     binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
     function switch10_checked_binding(value) {
-      ctx[40](value);
+      ctx[39](value);
     }
-    let switch10_props = { title_fixed: "显示上传时间" };
+    let switch10_props = { title_fixed: "显示标签" };
     if (
       /*$_CARD_SHOW*/
-      ctx[3].upload_time !== void 0
+      ctx[3].tags !== void 0
     ) {
       switch10_props.checked = /*$_CARD_SHOW*/
-      ctx[3].upload_time;
+      ctx[3].tags;
     }
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
+      ctx[40](value);
+    }
+    let switch11_props = { title_fixed: "显示 [大小/下载/收藏]" };
+    if (
+      /*$_CARD_SHOW*/
+      ctx[3].size_download_collect !== void 0
+    ) {
+      switch11_props.checked = /*$_CARD_SHOW*/
+      ctx[3].size_download_collect;
+    }
+    switch11 = new Switch({ props: switch11_props });
+    binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
+    function switch12_checked_binding(value) {
       ctx[41](value);
     }
-    let switch11_props = { title_fixed: "显示 [评论/上传/下载/完成]" };
+    let switch12_props = { title_fixed: "显示上传时间" };
+    if (
+      /*$_CARD_SHOW*/
+      ctx[3].upload_time !== void 0
+    ) {
+      switch12_props.checked = /*$_CARD_SHOW*/
+      ctx[3].upload_time;
+    }
+    switch12 = new Switch({ props: switch12_props });
+    binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
+    function switch13_checked_binding(value) {
+      ctx[42](value);
+    }
+    let switch13_props = { title_fixed: "显示 [评论/上传/下载/完成]" };
     if (
       /*$_CARD_SHOW*/
       ctx[3].statistics !== void 0
     ) {
-      switch11_props.checked = /*$_CARD_SHOW*/
+      switch13_props.checked = /*$_CARD_SHOW*/
       ctx[3].statistics;
     }
-    switch11 = new Switch({ props: switch11_props });
-    binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
+    switch13 = new Switch({ props: switch13_props });
+    binding_callbacks.push(() => bind(switch13, "checked", switch13_checked_binding));
     return {
       c() {
         div8 = element("div");
@@ -3759,7 +3993,7 @@
         p.textContent = "详细配置面板";
         t1 = space();
         button0 = element("button");
-        button0.innerHTML = `<svg class="feather feather-x" fill="none" height="28" width="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="20" x2="6" y1="6" y2="20"></line><line x1="6" x2="20" y1="6" y2="20"></line></svg>`;
+        button0.innerHTML = `<svg class="feather feather-x" fill="none" height="28" width="28" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="20" x2="6" y1="6" y2="20"></line><line x1="6" x2="20" y1="6" y2="20"></line></svg>`;
         t2 = space();
         if (if_block0)
           if_block0.c();
@@ -3771,58 +4005,74 @@
         div1 = element("div");
         create_component(switch0.$$.fragment);
         t6 = space();
-        create_component(switch1.$$.fragment);
+        br0 = element("br");
         t7 = space();
-        create_component(switch2.$$.fragment);
+        create_component(switch1.$$.fragment);
         t8 = space();
-        create_component(switch3.$$.fragment);
+        br1 = element("br");
         t9 = space();
+        create_component(switch2.$$.fragment);
+        t10 = space();
+        br2 = element("br");
+        t11 = space();
+        create_component(switch3.$$.fragment);
+        t12 = space();
+        create_component(switch4.$$.fragment);
+        t13 = space();
         if (if_block1)
           if_block1.c();
-        t10 = space();
+        t14 = space();
+        br3 = element("br");
+        t15 = space();
+        create_component(switch5.$$.fragment);
+        t16 = space();
         button1 = element("button");
-        button1.textContent = "切换宽度(开发中)";
-        t12 = space();
-        t13 = space();
+        t17 = text("切换宽度(开发中): ");
+        t18 = text(
+          /*$_card_width*/
+          ctx[4]
+        );
+        t19 = space();
         div6 = element("div");
         h11 = element("h1");
         h11.textContent = "卡片信息";
-        t15 = space();
+        t21 = space();
         div3 = element("div");
-        create_component(switch4.$$.fragment);
-        t16 = space();
+        create_component(switch6.$$.fragment);
+        t22 = space();
         div5 = element("div");
         h3 = element("h3");
         h3.textContent = "配置常驻卡片信息";
-        t18 = space();
-        div4 = element("div");
-        create_component(switch5.$$.fragment);
-        t19 = space();
-        create_component(switch6.$$.fragment);
-        t20 = space();
-        create_component(switch7.$$.fragment);
-        t21 = space();
-        create_component(switch8.$$.fragment);
-        t22 = space();
-        create_component(switch9.$$.fragment);
-        t23 = space();
-        create_component(switch10.$$.fragment);
         t24 = space();
-        create_component(switch11.$$.fragment);
+        div4 = element("div");
+        create_component(switch7.$$.fragment);
         t25 = space();
-        attr(div0, "class", "configP_title svelte-mdsgbd");
+        create_component(switch8.$$.fragment);
+        t26 = space();
+        create_component(switch9.$$.fragment);
+        t27 = space();
+        create_component(switch10.$$.fragment);
+        t28 = space();
+        create_component(switch11.$$.fragment);
+        t29 = space();
+        create_component(switch12.$$.fragment);
+        t30 = space();
+        create_component(switch13.$$.fragment);
+        t31 = space();
+        set_style(p, "margin", "auto 0");
+        attr(div0, "class", "configP_title svelte-kk96f3");
         attr(h10, "class", "s_title");
-        attr(button1, "class", "sideP__btn svelte-mdsgbd");
+        attr(button1, "class", "sideP__btn svelte-kk96f3");
         attr(div1, "class", "s_panel");
-        attr(div2, "class", "section svelte-mdsgbd");
+        attr(div2, "class", "section svelte-kk96f3");
         attr(h11, "class", "s_title");
         attr(div3, "class", "s_panel");
         attr(h3, "class", "s_title");
         attr(div4, "class", "s_panel");
-        attr(div5, "class", "section svelte-mdsgbd");
-        attr(div6, "class", "section svelte-mdsgbd");
-        attr(div7, "class", "configP_holder svelte-mdsgbd");
-        attr(div8, "class", "configP svelte-mdsgbd");
+        attr(div5, "class", "section svelte-kk96f3");
+        attr(div6, "class", "section svelte-kk96f3");
+        attr(div7, "class", "configP_holder svelte-kk96f3");
+        attr(div8, "class", "configP svelte-kk96f3");
       },
       m(target, anchor) {
         insert(target, div8, anchor);
@@ -3841,42 +4091,55 @@
         append(div2, div1);
         mount_component(switch0, div1, null);
         append(div1, t6);
-        mount_component(switch1, div1, null);
+        append(div1, br0);
         append(div1, t7);
-        mount_component(switch2, div1, null);
+        mount_component(switch1, div1, null);
         append(div1, t8);
-        mount_component(switch3, div1, null);
+        append(div1, br1);
         append(div1, t9);
+        mount_component(switch2, div1, null);
+        append(div1, t10);
+        append(div1, br2);
+        append(div1, t11);
+        mount_component(switch3, div1, null);
+        append(div1, t12);
+        mount_component(switch4, div1, null);
+        append(div1, t13);
         if (if_block1)
           if_block1.m(div1, null);
-        append(div1, t10);
+        append(div1, t14);
+        append(div1, br3);
+        append(div1, t15);
+        mount_component(switch5, div1, null);
+        append(div1, t16);
         append(div1, button1);
-        append(div1, t12);
-        append(div7, t13);
+        append(button1, t17);
+        append(button1, t18);
+        append(div7, t19);
         append(div7, div6);
         append(div6, h11);
-        append(div6, t15);
+        append(div6, t21);
         append(div6, div3);
-        mount_component(switch4, div3, null);
-        append(div6, t16);
+        mount_component(switch6, div3, null);
+        append(div6, t22);
         append(div6, div5);
         append(div5, h3);
-        append(div5, t18);
+        append(div5, t24);
         append(div5, div4);
-        mount_component(switch5, div4, null);
-        append(div4, t19);
-        mount_component(switch6, div4, null);
-        append(div4, t20);
         mount_component(switch7, div4, null);
-        append(div4, t21);
-        mount_component(switch8, div4, null);
-        append(div4, t22);
-        mount_component(switch9, div4, null);
-        append(div4, t23);
-        mount_component(switch10, div4, null);
-        append(div4, t24);
-        mount_component(switch11, div4, null);
         append(div4, t25);
+        mount_component(switch8, div4, null);
+        append(div4, t26);
+        mount_component(switch9, div4, null);
+        append(div4, t27);
+        mount_component(switch10, div4, null);
+        append(div4, t28);
+        mount_component(switch11, div4, null);
+        append(div4, t29);
+        mount_component(switch12, div4, null);
+        append(div4, t30);
+        mount_component(switch13, div4, null);
+        append(div4, t31);
         current = true;
         if (!mounted) {
           dispose = [
@@ -3884,17 +4147,17 @@
               button0,
               "click",
               /*click_handler_1*/
-              ctx[23]
+              ctx[25]
             ),
             listen(
               button1,
               "click",
               /*config_changeWidth*/
-              ctx[16]
+              ctx[18]
             ),
             listen(div8, "click", self(
-              /*click_handler_5*/
-              ctx[56]
+              /*click_handler_2*/
+              ctx[57]
             ))
           ];
           mounted = true;
@@ -3903,16 +4166,17 @@
       p(ctx2, dirty) {
         if (
           /*$_current_domain*/
-          ctx2[9] == "kp.m-team.cc"
+          ctx2[10] == "kp.m-team.cc" || /*$_current_domain*/
+          ctx2[10] == "test2.m-team.cc"
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
             if (dirty[0] & /*$_current_domain*/
-            512) {
+            1024) {
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_8$2(ctx2);
+            if_block0 = create_if_block_3$4(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div7, t3);
@@ -3925,11 +4189,15 @@
           check_outros();
         }
         const switch0_changes = {};
+        if (dirty[0] & /*$_current_domain*/
+        1024)
+          switch0_changes.label = /*$_current_domain*/
+          ctx2[10] == "test2.m-team.cc" ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
         if (!updating_checked && dirty[0] & /*$_list_viewMode*/
-        16) {
+        32) {
           updating_checked = true;
           switch0_changes.checked = /*$_list_viewMode*/
-          ctx2[4];
+          ctx2[5];
           add_flush_callback(() => updating_checked = false);
         }
         switch0.$set(switch0_changes);
@@ -3943,38 +4211,47 @@
         }
         switch1.$set(switch1_changes);
         const switch2_changes = {};
-        if (!updating_checked_2 && dirty[0] & /*$_show_debug_btn*/
-        256) {
+        if (!updating_checked_2 && dirty[0] & /*$_animated*/
+        4096) {
           updating_checked_2 = true;
-          switch2_changes.checked = /*$_show_debug_btn*/
-          ctx2[8];
+          switch2_changes.checked = /*$_animated*/
+          ctx2[12];
           add_flush_callback(() => updating_checked_2 = false);
         }
         switch2.$set(switch2_changes);
         const switch3_changes = {};
         if (!updating_checked_3 && dirty[0] & /*$_show_nexus_pic*/
-        2048) {
+        8192) {
           updating_checked_3 = true;
           switch3_changes.checked = /*$_show_nexus_pic*/
-          ctx2[11];
+          ctx2[13];
           add_flush_callback(() => updating_checked_3 = false);
         }
         switch3.$set(switch3_changes);
+        const switch4_changes = {};
+        if (!updating_checked_4 && dirty[0] & /*$_show_nexus_pic*/
+        8192) {
+          updating_checked_4 = true;
+          switch4_changes.checked = /*$_show_nexus_pic*/
+          ctx2[13];
+          add_flush_callback(() => updating_checked_4 = false);
+        }
+        switch4.$set(switch4_changes);
         if (
           /*$_show_nexus_pic*/
-          ctx2[11]
+          ctx2[13]
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
             if (dirty[0] & /*$_show_nexus_pic*/
-            2048) {
+            8192) {
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_7$2(ctx2);
+            if_block1 = create_if_block_2$4(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
-            if_block1.m(div1, t10);
+            if_block1.m(div1, t14);
           }
         } else if (if_block1) {
           group_outros();
@@ -3983,30 +4260,28 @@
           });
           check_outros();
         }
-        const switch4_changes = {};
-        if (!updating_checked_4 && dirty[0] & /*$_CARD_SHOW*/
-        8) {
-          updating_checked_4 = true;
-          switch4_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].all;
-          add_flush_callback(() => updating_checked_4 = false);
-        }
-        switch4.$set(switch4_changes);
         const switch5_changes = {};
-        if (!updating_checked_5 && dirty[0] & /*$_CARD_SHOW*/
-        8) {
+        if (!updating_checked_5 && dirty[0] & /*$_show_debug_btn*/
+        512) {
           updating_checked_5 = true;
-          switch5_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].title;
+          switch5_changes.checked = /*$_show_debug_btn*/
+          ctx2[9];
           add_flush_callback(() => updating_checked_5 = false);
         }
         switch5.$set(switch5_changes);
+        if (!current || dirty[0] & /*$_card_width*/
+        16)
+          set_data(
+            t18,
+            /*$_card_width*/
+            ctx2[4]
+          );
         const switch6_changes = {};
         if (!updating_checked_6 && dirty[0] & /*$_CARD_SHOW*/
         8) {
           updating_checked_6 = true;
           switch6_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].free;
+          ctx2[3].all;
           add_flush_callback(() => updating_checked_6 = false);
         }
         switch6.$set(switch6_changes);
@@ -4015,7 +4290,7 @@
         8) {
           updating_checked_7 = true;
           switch7_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].sub_title;
+          ctx2[3].title;
           add_flush_callback(() => updating_checked_7 = false);
         }
         switch7.$set(switch7_changes);
@@ -4024,7 +4299,7 @@
         8) {
           updating_checked_8 = true;
           switch8_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].tags;
+          ctx2[3].free;
           add_flush_callback(() => updating_checked_8 = false);
         }
         switch8.$set(switch8_changes);
@@ -4033,7 +4308,7 @@
         8) {
           updating_checked_9 = true;
           switch9_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].size_download_collect;
+          ctx2[3].sub_title;
           add_flush_callback(() => updating_checked_9 = false);
         }
         switch9.$set(switch9_changes);
@@ -4042,7 +4317,7 @@
         8) {
           updating_checked_10 = true;
           switch10_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].upload_time;
+          ctx2[3].tags;
           add_flush_callback(() => updating_checked_10 = false);
         }
         switch10.$set(switch10_changes);
@@ -4051,10 +4326,28 @@
         8) {
           updating_checked_11 = true;
           switch11_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].statistics;
+          ctx2[3].size_download_collect;
           add_flush_callback(() => updating_checked_11 = false);
         }
         switch11.$set(switch11_changes);
+        const switch12_changes = {};
+        if (!updating_checked_12 && dirty[0] & /*$_CARD_SHOW*/
+        8) {
+          updating_checked_12 = true;
+          switch12_changes.checked = /*$_CARD_SHOW*/
+          ctx2[3].upload_time;
+          add_flush_callback(() => updating_checked_12 = false);
+        }
+        switch12.$set(switch12_changes);
+        const switch13_changes = {};
+        if (!updating_checked_13 && dirty[0] & /*$_CARD_SHOW*/
+        8) {
+          updating_checked_13 = true;
+          switch13_changes.checked = /*$_CARD_SHOW*/
+          ctx2[3].statistics;
+          add_flush_callback(() => updating_checked_13 = false);
+        }
+        switch13.$set(switch13_changes);
       },
       i(local) {
         if (current)
@@ -4064,8 +4357,8 @@
         transition_in(switch1.$$.fragment, local);
         transition_in(switch2.$$.fragment, local);
         transition_in(switch3.$$.fragment, local);
-        transition_in(if_block1);
         transition_in(switch4.$$.fragment, local);
+        transition_in(if_block1);
         transition_in(switch5.$$.fragment, local);
         transition_in(switch6.$$.fragment, local);
         transition_in(switch7.$$.fragment, local);
@@ -4073,6 +4366,8 @@
         transition_in(switch9.$$.fragment, local);
         transition_in(switch10.$$.fragment, local);
         transition_in(switch11.$$.fragment, local);
+        transition_in(switch12.$$.fragment, local);
+        transition_in(switch13.$$.fragment, local);
         add_render_callback(() => {
           if (!current)
             return;
@@ -4088,8 +4383,8 @@
         transition_out(switch1.$$.fragment, local);
         transition_out(switch2.$$.fragment, local);
         transition_out(switch3.$$.fragment, local);
-        transition_out(if_block1);
         transition_out(switch4.$$.fragment, local);
+        transition_out(if_block1);
         transition_out(switch5.$$.fragment, local);
         transition_out(switch6.$$.fragment, local);
         transition_out(switch7.$$.fragment, local);
@@ -4097,6 +4392,8 @@
         transition_out(switch9.$$.fragment, local);
         transition_out(switch10.$$.fragment, local);
         transition_out(switch11.$$.fragment, local);
+        transition_out(switch12.$$.fragment, local);
+        transition_out(switch13.$$.fragment, local);
         if (!div8_transition)
           div8_transition = create_bidirectional_transition(div8, fade, { duration: 100 }, false);
         div8_transition.run(0);
@@ -4111,9 +4408,9 @@
         destroy_component(switch1);
         destroy_component(switch2);
         destroy_component(switch3);
+        destroy_component(switch4);
         if (if_block1)
           if_block1.d();
-        destroy_component(switch4);
         destroy_component(switch5);
         destroy_component(switch6);
         destroy_component(switch7);
@@ -4121,6 +4418,8 @@
         destroy_component(switch9);
         destroy_component(switch10);
         destroy_component(switch11);
+        destroy_component(switch12);
+        destroy_component(switch13);
         if (detaching && div8_transition)
           div8_transition.end();
         mounted = false;
@@ -4128,7 +4427,7 @@
       }
     };
   }
-  function create_if_block_8$2(ctx) {
+  function create_if_block_3$4(ctx) {
     let div1;
     let h1;
     let t1;
@@ -4137,7 +4436,7 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[24](value);
+      ctx[26](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
@@ -4146,10 +4445,10 @@
     };
     if (
       /*$_SITE_SETTING*/
-      ctx[10].mt.hide_gay !== void 0
+      ctx[11].mt.hide_gay !== void 0
     ) {
       switch_1_props.checked = /*$_SITE_SETTING*/
-      ctx[10].mt.hide_gay;
+      ctx[11].mt.hide_gay;
     }
     switch_1 = new Switch({ props: switch_1_props });
     binding_callbacks.push(() => bind(switch_1, "checked", switch_1_checked_binding));
@@ -4163,7 +4462,7 @@
         create_component(switch_1.$$.fragment);
         attr(h1, "class", "s_title");
         attr(div0, "class", "s_panel");
-        attr(div1, "class", "section svelte-mdsgbd");
+        attr(div1, "class", "section svelte-kk96f3");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -4176,10 +4475,10 @@
       p(ctx2, dirty) {
         const switch_1_changes = {};
         if (!updating_checked && dirty[0] & /*$_SITE_SETTING*/
-        1024) {
+        2048) {
           updating_checked = true;
           switch_1_changes.checked = /*$_SITE_SETTING*/
-          ctx2[10].mt.hide_gay;
+          ctx2[11].mt.hide_gay;
           add_flush_callback(() => updating_checked = false);
         }
         switch_1.$set(switch_1_changes);
@@ -4201,16 +4500,16 @@
       }
     };
   }
-  function create_if_block_7$2(ctx) {
+  function create_if_block_2$4(ctx) {
     let switch_1;
     let current;
     switch_1 = new Switch({
       props: {
         title_fixed: `悬浮预览延迟${/*$_delay_nexus_pic*/
-      ctx[12] ? ":" + /*$_delay_nexus_pic*/
-      ctx[12] + "ms" : ""}`,
+      ctx[14] ? ":" + /*$_delay_nexus_pic*/
+      ctx[14] + "ms" : ""}`,
         title_red: `${/*$_delay_nexus_pic*/
-      ctx[12] ? "" : "无延迟"}`,
+      ctx[14] ? "" : "无延迟"}`,
         label: "防止无意滑动时大图打开妨碍预览",
         type: "range",
         $$slots: { default: [create_default_slot] },
@@ -4228,16 +4527,16 @@
       p(ctx2, dirty) {
         const switch_1_changes = {};
         if (dirty[0] & /*$_delay_nexus_pic*/
-        4096)
+        16384)
           switch_1_changes.title_fixed = `悬浮预览延迟${/*$_delay_nexus_pic*/
-        ctx2[12] ? ":" + /*$_delay_nexus_pic*/
-        ctx2[12] + "ms" : ""}`;
+        ctx2[14] ? ":" + /*$_delay_nexus_pic*/
+        ctx2[14] + "ms" : ""}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        4096)
+        16384)
           switch_1_changes.title_red = `${/*$_delay_nexus_pic*/
-        ctx2[12] ? "" : "无延迟"}`;
+        ctx2[14] ? "" : "无延迟"}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        4096 | dirty[2] & /*$$scope*/
+        16384 | dirty[2] & /*$$scope*/
         16) {
           switch_1_changes.$$scope = { dirty, ctx: ctx2 };
         }
@@ -4276,7 +4575,7 @@
         set_input_value(
           input,
           /*$_delay_nexus_pic*/
-          ctx[12]
+          ctx[14]
         );
         if (!mounted) {
           dispose = [
@@ -4284,13 +4583,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[30]
+              ctx[33]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[30]
+              ctx[33]
             )
           ];
           mounted = true;
@@ -4298,11 +4597,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*$_delay_nexus_pic*/
-        4096) {
+        16384) {
           set_input_value(
             input,
             /*$_delay_nexus_pic*/
-            ctx2[12]
+            ctx2[14]
           );
         }
       },
@@ -4314,7 +4613,7 @@
       }
     };
   }
-  function create_fragment$6(ctx) {
+  function create_fragment$8(ctx) {
     let div4;
     let div0;
     let t0;
@@ -4332,20 +4631,20 @@
     function select_block_type(ctx2, dirty) {
       if (
         /*$_list_viewMode*/
-        ctx2[4]
+        ctx2[5]
       )
-        return create_if_block_10$2;
-      return create_else_block_4;
+        return create_if_block_5$3;
+      return create_else_block$5;
     }
     let current_block_type = select_block_type(ctx);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*$_show_debug_btn*/
-      ctx[8] && create_if_block_9$2(ctx)
+      ctx[9] && create_if_block_4$3(ctx)
     );
     let if_block2 = (
       /*$_show_configPanel*/
-      ctx[7] && create_if_block$5(ctx)
+      ctx[8] && create_if_block$8(ctx)
     );
     return {
       c() {
@@ -4375,31 +4674,31 @@
         t7 = space();
         div5 = element("div");
         div5.textContent = "重置瀑布流配置边栏位置";
-        attr(div0, "class", "sideP__title svelte-mdsgbd");
-        attr(button0, "class", "sideP__btn svelte-mdsgbd");
-        attr(button1, "class", "sideP__btn svelte-mdsgbd");
-        attr(div3, "class", "sideP__out svelte-mdsgbd");
-        attr(div4, "class", "sideP svelte-mdsgbd");
+        attr(div0, "class", "sideP__title svelte-kk96f3");
+        attr(button0, "class", "sideP__btn svelte-kk96f3");
+        attr(button1, "class", "sideP__btn svelte-kk96f3");
+        attr(div3, "class", "sideP__out svelte-kk96f3");
+        attr(div4, "class", "sideP svelte-kk96f3");
         set_style(
           div4,
           "top",
           /*$_panelPos*/
-          ctx[5].y + "px"
+          ctx[6].y + "px"
         );
         set_style(
           div4,
           "left",
           /*$_panelPos*/
-          ctx[5].x + "px"
+          ctx[6].x + "px"
         );
         set_style(
           div4,
           "background-color",
           /*$_current_bgColor*/
-          ctx[6]
+          ctx[7]
         );
         attr(div5, "id", "reset_panel_pos");
-        attr(div5, "class", "svelte-mdsgbd");
+        attr(div5, "class", "svelte-kk96f3");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -4413,7 +4712,7 @@
         append(div3, t5);
         if (if_block1)
           if_block1.m(div3, null);
-        ctx[22](div4);
+        ctx[24](div4);
         insert(target, t6, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
@@ -4426,25 +4725,25 @@
               div0,
               "mousedown",
               /*onMouseDown*/
-              ctx[13]
+              ctx[15]
             ),
             listen(
               button0,
               "click",
               /*__show_originTable*/
-              ctx[15]
+              ctx[17]
             ),
             listen(
               button1,
               "click",
               /*click_handler*/
-              ctx[21]
+              ctx[23]
             ),
             listen(
               div5,
               "click",
               /*resetPanelPos*/
-              ctx[14]
+              ctx[16]
             )
           ];
           mounted = true;
@@ -4461,12 +4760,12 @@
         }
         if (
           /*$_show_debug_btn*/
-          ctx2[8]
+          ctx2[9]
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_9$2(ctx2);
+            if_block1 = create_if_block_4$3(ctx2);
             if_block1.c();
             if_block1.m(div3, null);
           }
@@ -4475,44 +4774,44 @@
           if_block1 = null;
         }
         if (!current || dirty[0] & /*$_panelPos*/
-        32) {
+        64) {
           set_style(
             div4,
             "top",
             /*$_panelPos*/
-            ctx2[5].y + "px"
+            ctx2[6].y + "px"
           );
         }
         if (!current || dirty[0] & /*$_panelPos*/
-        32) {
+        64) {
           set_style(
             div4,
             "left",
             /*$_panelPos*/
-            ctx2[5].x + "px"
+            ctx2[6].x + "px"
           );
         }
         if (!current || dirty[0] & /*$_current_bgColor*/
-        64) {
+        128) {
           set_style(
             div4,
             "background-color",
             /*$_current_bgColor*/
-            ctx2[6]
+            ctx2[7]
           );
         }
         if (
           /*$_show_configPanel*/
-          ctx2[7]
+          ctx2[8]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
             if (dirty[0] & /*$_show_configPanel*/
-            128) {
+            256) {
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block$5(ctx2);
+            if_block2 = create_if_block$8(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(t7.parentNode, t7);
@@ -4541,7 +4840,7 @@
         if_block0.d();
         if (if_block1)
           if_block1.d();
-        ctx[22](null);
+        ctx[24](null);
         if (detaching)
           detach(t6);
         if (if_block2)
@@ -4562,7 +4861,7 @@
       target = max;
     return target;
   }
-  function instance$6($$self, $$props, $$invalidate) {
+  function instance$8($$self, $$props, $$invalidate) {
     let $_iframe_switch;
     let $_turnPage;
     let $_CARD_SHOW;
@@ -4574,22 +4873,24 @@
     let $_show_debug_btn;
     let $_current_domain;
     let $_SITE_SETTING;
+    let $_animated;
     let $_show_nexus_pic;
     let $_delay_nexus_pic;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(60, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(61, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(61, $_card_width = $$value));
+    component_subscribe($$self, _card_width, ($$value) => $$invalidate(4, $_card_width = $$value));
     component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(62, $$value));
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(4, $_list_viewMode = $$value));
-    component_subscribe($$self, _panelPos, ($$value) => $$invalidate(5, $_panelPos = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
-    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(7, $_show_configPanel = $$value));
-    component_subscribe($$self, _show_debug_btn, ($$value) => $$invalidate(8, $_show_debug_btn = $$value));
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(9, $_current_domain = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(10, $_SITE_SETTING = $$value));
-    component_subscribe($$self, _show_nexus_pic, ($$value) => $$invalidate(11, $_show_nexus_pic = $$value));
-    component_subscribe($$self, _delay_nexus_pic, ($$value) => $$invalidate(12, $_delay_nexus_pic = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
+    component_subscribe($$self, _panelPos, ($$value) => $$invalidate(6, $_panelPos = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(7, $_current_bgColor = $$value));
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(8, $_show_configPanel = $$value));
+    component_subscribe($$self, _show_debug_btn, ($$value) => $$invalidate(9, $_show_debug_btn = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(10, $_current_domain = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(11, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(12, $_animated = $$value));
+    component_subscribe($$self, _show_nexus_pic, ($$value) => $$invalidate(13, $_show_nexus_pic = $$value));
+    component_subscribe($$self, _delay_nexus_pic, ($$value) => $$invalidate(14, $_delay_nexus_pic = $$value));
     let sideDom;
     let isMouseDown = false;
     let offsetX = 0;
@@ -4679,10 +4980,14 @@
       _turnPage.set($_turnPage);
     }
     function switch2_checked_binding(value) {
-      $_show_debug_btn = value;
-      _show_debug_btn.set($_show_debug_btn);
+      $_animated = value;
+      _animated.set($_animated);
     }
     function switch3_checked_binding(value) {
+      $_show_nexus_pic = value;
+      _show_nexus_pic.set($_show_nexus_pic);
+    }
+    function switch4_checked_binding(value) {
       $_show_nexus_pic = value;
       _show_nexus_pic.set($_show_nexus_pic);
     }
@@ -4690,58 +4995,53 @@
       $_delay_nexus_pic = to_number(this.value);
       _delay_nexus_pic.set($_delay_nexus_pic);
     }
-    const click_handler_2 = () => {
-      set_store_value(_show_debug_btn, $_show_debug_btn = !$_show_debug_btn, $_show_debug_btn);
-    };
-    const click_handler_3 = () => {
-      set_store_value(_show_nexus_pic, $_show_nexus_pic = !$_show_nexus_pic, $_show_nexus_pic);
-    };
-    const click_handler_4 = () => {
-      set_store_value(_delay_nexus_pic, $_delay_nexus_pic = $_delay_nexus_pic == 0 ? 600 : 0, $_delay_nexus_pic);
-    };
-    function switch4_checked_binding(value) {
+    function switch5_checked_binding(value) {
+      $_show_debug_btn = value;
+      _show_debug_btn.set($_show_debug_btn);
+    }
+    function switch6_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.all, value)) {
         $_CARD_SHOW.all = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch5_checked_binding(value) {
+    function switch7_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.title, value)) {
         $_CARD_SHOW.title = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch6_checked_binding(value) {
+    function switch8_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.free, value)) {
         $_CARD_SHOW.free = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch7_checked_binding(value) {
+    function switch9_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.sub_title, value)) {
         $_CARD_SHOW.sub_title = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch8_checked_binding(value) {
+    function switch10_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.tags, value)) {
         $_CARD_SHOW.tags = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch9_checked_binding(value) {
+    function switch11_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.size_download_collect, value)) {
         $_CARD_SHOW.size_download_collect = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch10_checked_binding(value) {
+    function switch12_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.upload_time, value)) {
         $_CARD_SHOW.upload_time = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch11_checked_binding(value) {
+    function switch13_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.statistics, value)) {
         $_CARD_SHOW.statistics = value;
         _CARD_SHOW.set($_CARD_SHOW);
@@ -4796,12 +5096,13 @@
     const change_handler_6 = () => {
       sortMasonry();
     };
-    const click_handler_5 = () => set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
+    const click_handler_2 = () => set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
     return [
       sideDom,
       label_switchMode,
       $_turnPage,
       $_CARD_SHOW,
+      $_card_width,
       $_list_viewMode,
       $_panelPos,
       $_current_bgColor,
@@ -4809,6 +5110,7 @@
       $_show_debug_btn,
       $_current_domain,
       $_SITE_SETTING,
+      $_animated,
       $_show_nexus_pic,
       $_delay_nexus_pic,
       onMouseDown,
@@ -4828,11 +5130,8 @@
       switch1_checked_binding,
       switch2_checked_binding,
       switch3_checked_binding,
-      input_change_input_handler,
-      click_handler_2,
-      click_handler_3,
-      click_handler_4,
       switch4_checked_binding,
+      input_change_input_handler,
       switch5_checked_binding,
       switch6_checked_binding,
       switch7_checked_binding,
@@ -4840,6 +5139,8 @@
       switch9_checked_binding,
       switch10_checked_binding,
       switch11_checked_binding,
+      switch12_checked_binding,
+      switch13_checked_binding,
       input0_change_handler,
       change_handler,
       input1_change_handler,
@@ -4854,20 +5155,20 @@
       change_handler_5,
       input6_change_handler,
       change_handler_6,
-      click_handler_5
+      click_handler_2
     ];
   }
   class Sidepanel extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$6, create_fragment$6, safe_not_equal, {}, null, [-1, -1, -1]);
+      init(this, options, instance$8, create_fragment$8, safe_not_equal, {}, null, [-1, -1, -1]);
     }
   }
   const CONFIG$2 = {
     /** 默认的种子表格 dom selector */
     torrentListTable: "table.torrents",
     /** 将 种子列表dom 的信息变为 json对象列表 */
-    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$2,
+    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$1,
     /** 加载图片等待时的默认图片 */
     LOADING_PIC: "pic/logo2_100.png",
     /** 如果站点有自定义的icon, 可以用自定义的 */
@@ -4901,6 +5202,11 @@
     INDEX: 0,
     /** iframe 宽度 */
     Iframe_Width: 1260,
+    /**获取背景颜色*/
+    get_bg_color: function() {
+      const mainOuterDOM = document.querySelector("table.mainouter");
+      return window.getComputedStyle(mainOuterDOM)["background-color"];
+    },
     /** NOTE: 站点特殊操作 */
     special: function() {
       $("ksearchboxmain") ? $("ksearchboxmain").style.display = "none" : null;
@@ -4909,17 +5215,17 @@
       let np = document.querySelector("img#nexus-preview");
       if (np)
         np.style.zIndex = 12e3;
-      table_Iframe_Set$2();
+      table_Iframe_Set$1();
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
       var script = document.createElement("script");
       script.src = "https://kamept.com/js/nexus.js";
       document.head.appendChild(script);
-      table_Iframe_Set$2();
+      table_Iframe_Set$1();
     }
   };
-  function table_Iframe_Set$2() {
+  function table_Iframe_Set$1() {
     const lists = Array.from(document.querySelectorAll(".torrentname"));
     lists.forEach((el) => el.addEventListener("click", function(event) {
       event.preventDefault();
@@ -4927,7 +5233,7 @@
       _iframe_url.set(el.children[0].children[0].children[1].querySelector("a").href + "#kdescr");
     }));
   }
-  function TORRENT_LIST_TO_JSON$2(torrent_list_Dom) {
+  function TORRENT_LIST_TO_JSON$1(torrent_list_Dom) {
     const rows = torrent_list_Dom.querySelectorAll("tbody tr");
     const data = [];
     rows.forEach((row) => {
@@ -5021,7 +5327,7 @@
     /** 默认的种子表格 dom selector */
     torrentListTable: "table.torrents",
     /** 将 种子列表dom 的信息变为 json对象列表 */
-    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$1,
+    TORRENT_LIST_TO_JSON,
     /** 加载图片等待时的默认图片 */
     LOADING_PIC: "logo.png",
     /**如果站点有自定义的icon, 可以用自定义的 */
@@ -5104,16 +5410,21 @@
     INDEX: 0,
     /** iframe 宽度 */
     Iframe_Width: 1260,
+    /**获取背景颜色*/
+    get_bg_color: function() {
+      const mainOuterDOM = document.querySelector("table.mainouter");
+      return window.getComputedStyle(mainOuterDOM)["background-color"];
+    },
     /** NOTE: 站点特殊操作 */
     special: function() {
-      table_Iframe_Set$1();
+      table_Iframe_Set();
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
-      table_Iframe_Set$1();
+      table_Iframe_Set();
     }
   };
-  function table_Iframe_Set$1() {
+  function table_Iframe_Set() {
     const lists = Array.from(document.querySelectorAll("td.torrentimg a"));
     lists.forEach((el) => el.addEventListener("click", function(event) {
       event.preventDefault();
@@ -5121,7 +5432,7 @@
       _iframe_url.set(el.href + "#kdescr");
     }));
   }
-  function TORRENT_LIST_TO_JSON$1(torrent_list_Dom) {
+  function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
     const rows = torrent_list_Dom.querySelectorAll("tbody tr");
     const data = [];
     rows.forEach((row) => {
@@ -5212,21 +5523,70 @@
     });
     return data;
   }
+  const SVG_Size = "data:image/svg+xml;base64,PHN2ZyAKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBmaWxsPSJjdXJyZW50Q29sb3IiCiAgc3Ryb2tlLXdpZHRoPSIwIgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBoZWlnaHQ9IjI1IgogIHdpZHRoPSIyNSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgc3R5bGU9IgogICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTsgCiAgICAtLWRhcmtyZWFkZXItaW5saW5lLWZpbGw6IGN1cnJlbnRDb2xvcjsgCiAgICAtLWRhcmtyZWFkZXItaW5saW5lLXN0cm9rZTogY3VycmVudENvbG9yOyIKPgogIDxwYXRoIAogICAgZD0iTTEyIDVjLTMuODU5IDAtNyAzLjE0MS03IDdzMy4xNDEgNyA3IDcgNy0zLjE0MSA3LTctMy4xNDEtNy03LTd6bTAgMTJjLTIuNzU3IDAtNS0yLjI0My01LTVzMi4yNDMtNSA1LTUgNSAyLjI0MyA1IDUtMi4yNDMgNS01IDV6Ij4KICA8L3BhdGg+CiAgPHBhdGggCiAgICBkPSJNMTIgOWMtMS42MjcgMC0zIDEuMzczLTMgM3MxLjM3MyAzIDMgMyAzLTEuMzczIDMtMy0xLjM3My0zLTMtM3oiPgogIDwvcGF0aD4KPC9zdmc+";
+  const SVG_Comment = "data:image/svg+xml;base64,PHN2ZyAKICBzdHJva2U9ImN1cnJlbnRDb2xvciIgCiAgZmlsbD0iY3VycmVudENvbG9yIiAKICBzdHJva2Utd2lkdGg9IjAiIAogIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgaGVpZ2h0PSIxOCIgCiAgd2lkdGg9IjE4IiAKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogIHN0eWxlPSJ2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOyIKPgogIDxwYXRoIAogICAgZD0iTTcgN2gxMHYySDd6bTAgNGg3djJIN3oiPgogIDwvcGF0aD4KICA8cGF0aCAKICAgIGQ9Ik0yMCAySDRjLTEuMTAzIDAtMiAuODk3LTIgMnYxOGw1LjMzMy00SDIwYzEuMTAzIDAgMi0uODk3IDItMlY0YzAtMS4xMDMtLjg5Ny0yLTItMnptMCAxNEg2LjY2N0w0IDE4VjRoMTZ2MTJ6Ij4KICA8L3BhdGg+Cjwvc3ZnPg==";
+  const SVG_Seeders = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249ImFycm93LXVwIiAKICB3aWR0aD0iMWVtIiAKICBoZWlnaHQ9IjFlbSIgCiAgZmlsbD0iZ3JlZW4iIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPgogIDxwYXRoIGQ9Ik04NjggNTQ1LjVMNTM2LjEgMTYzYTMxLjk2IDMxLjk2IDAgMDAtNDguMyAwTDE1NiA1NDUuNWE3Ljk3IDcuOTcgMCAwMDYgMTMuMmg4MWM0LjYgMCA5LTIgMTIuMS01LjVMNDc0IDMwMC45Vjg2NGMwIDQuNCAzLjYgOCA4IDhoNjBjNC40IDAgOC0zLjYgOC04VjMwMC45bDIxOC45IDI1Mi4zYzMgMy41IDcuNCA1LjUgMTIuMSA1LjVoODFjNi44IDAgMTAuNS04IDYtMTMuMnoiPgogIDwvcGF0aD4KPC9zdmc+";
+  const SVG_Leechers = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249ImFycm93LWRvd24iIAogIHdpZHRoPSIxZW0iIAogIGhlaWdodD0iMWVtIiAKICBmaWxsPSJyZWQiIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPgogIDxwYXRoIGQ9Ik04NjIgNDY1LjNoLTgxYy00LjYgMC05IDItMTIuMSA1LjVMNTUwIDcyMy4xVjE2MGMwLTQuNC0zLjYtOC04LThoLTYwYy00LjQgMC04IDMuNi04IDh2NTYzLjFMMjU1LjEgNDcwLjhjLTMtMy41LTcuNC01LjUtMTIuMS01LjVoLTgxYy02LjggMC0xMC41IDguMS02IDEzLjJMNDg3LjkgODYxYTMxLjk2IDMxLjk2IDAgMDA0OC4zIDBMODY4IDQ3OC41YzQuNS01LjIuOC0xMy4yLTYtMTMuMnoiPgogIDwvcGF0aD4KPC9zdmc+";
+  const SVG_Download = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IgogIGZvY3VzYWJsZT0iZmFsc2UiCiAgZGF0YS1pY29uPSJkb3dubG9hZCIKICB3aWR0aD0iMWVtIgogIGhlaWdodD0iMWVtIgogIGZpbGw9ImN1cnJlbnRDb2xvciIKICBhcmlhLWhpZGRlbj0idHJ1ZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogID4KICA8cGF0aCAKICAgIGQ9Ik01MDUuNyA2NjFhOCA4IDAgMDAxMi42IDBsMTEyLTE0MS43YzQuMS01LjIuNC0xMi45LTYuMy0xMi45aC03NC4xVjE2OGMwLTQuNC0zLjYtOC04LThoLTYwYy00LjQgMC04IDMuNi04IDh2MzM4LjNINDAwYy02LjcgMC0xMC40IDcuNy02LjMgMTIuOWwxMTIgMTQxLjh6TTg3OCA2MjZoLTYwYy00LjQgMC04IDMuNi04IDh2MTU0SDIxNFY2MzRjMC00LjQtMy42LTgtOC04aC02MGMtNC40IDAtOCAzLjYtOCA4djE5OGMwIDE3LjcgMTQuMyAzMiAzMiAzMmg2ODRjMTcuNyAwIDMyLTE0LjMgMzItMzJWNjM0YzAtNC40LTMuNi04LTgtOHoiPgogIDwvcGF0aD4KPC9zdmc+";
+  const SVG_Collection = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249InN0YXIiIAogIHdpZHRoPSIxZW0iIAogIGhlaWdodD0iMWVtIiAKICBmaWxsPSJjdXJyZW50Q29sb3IiIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgCj4KICA8cGF0aCAKICAgIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjNhMzIuMDUgMzIuMDUgMCAwMC42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWEzMS45NSAzMS45NSAwIDAwNDYuNCAzMy43TDUxMiA3NTRsMjI3LjEgMTE5LjRjNi4yIDMuMyAxMy40IDQuNCAyMC4zIDMuMiAxNy40LTMgMjkuMS0xOS41IDI2LjEtMzYuOWwtNDMuNC0yNTIuOSAxODMuNy0xNzkuMWM1LTQuOSA4LjMtMTEuMyA5LjMtMTguMyAyLjctMTcuNS05LjUtMzMuNy0yNy0zNi4zeiI+CiAgPC9wYXRoPgo8L3N2Zz4=";
+  const SVG_Time = "data:image/svg+xml;base64,PHN2ZyBzdHJva2U9ImN1cnJlbnRDb2xvciIgCiAgZmlsbD0iY3VycmVudENvbG9yIiAKICBzdHJva2Utd2lkdGg9IjAiIAogIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgY2xhc3M9Ii10cmFuc2xhdGUteS1bMnB4XSIgCiAgaGVpZ2h0PSIxOCIgCiAgd2lkdGg9IjE4IiAKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogIHN0eWxlPSJ2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOyI+CiAgPHBhdGggZD0iTTEyIDJDNi40ODYgMiAyIDYuNDg2IDIgMTJzNC40ODYgMTAgMTAgMTAgMTAtNC40ODYgMTAtMTBTMTcuNTE0IDIgMTIgMnptMCAxOGMtNC40MTEgMC04LTMuNTg5LTgtOHMzLjU4OS04IDgtOCA4IDMuNTg5IDggOC0zLjU4OSA4LTggOHoiPgogIDwvcGF0aD4KICA8cGF0aCBkPSJNMTMgN2gtMnY2aDZ2LTJoLTR6Ij4KICA8L3BhdGg+Cjwvc3ZnPg==";
   const CONFIG = {
     /** 是否非 NexusPHP 架构 */
     noneNexusPHP: true,
     /** 架构 */
     architecture: "NEW_MT",
     /** 默认的种子表格 dom selector */
-    torrentListTable: "div.ant-table-content",
-    /** 将 种子列表dom 的信息变为 json对象列表 */
-    TORRENT_LIST_TO_JSON,
+    torrentListTable: "div.ant-table-wrapper",
     /** 加载图片等待时的默认图片 */
-    LOADING_PIC: "logo.png",
+    LOADING_PIC: "https://test2.m-team.cc/static/media/logo.80b63235eaf702e44a8d.png",
+    /** 网站 host*/
+    HOST: "https://test2.m-team.cc",
+    /** 网站 api */
+    API: {
+      /** 查询 */
+      search: {
+        url: "/api/torrent/search",
+        method: "POST"
+        // payload 示例
+        // payload: {
+        //   categories: [],
+        //   pageNumber: 7,
+        //   pageSize: 100,
+        //   sortDirection: "DESC",
+        //   sortField: "CREATED_DATE",
+        //   visible: 1,
+        // }
+      },
+      genDlToken: {
+        url: "/api/torrent/genDlToken",
+        method: "POST"
+      },
+      collection: {
+        url: "/api/torrent/collection",
+        method: "POST"
+      }
+    },
     /**如果站点有自定义的icon, 可以用自定义的 */
-    ICON: {},
+    ICON: {
+      /** 大小图标 */
+      SIZE: SVG_Size,
+      /** 评论图标 */
+      COMMENT: SVG_Comment,
+      /** 上传人数图标 */
+      SEEDERS: SVG_Seeders,
+      /** 下载人数图标 */
+      LEECHERS: SVG_Leechers,
+      /** 下载图标 */
+      DOWNLOAD: SVG_Download,
+      /** 收藏图标 */
+      COLLECTION: SVG_Collection,
+      /** 置顶图标 (没用, 看的是 css URL) */
+      PIN: "/static/trans.gif",
+      /** 时间图标 */
+      TIME: SVG_Time
+    },
     /**如果站点有必要设置分类颜色, 可以用自定义的 */
-    CATEGORY: {
+    CATEGORY_COLOR: {
       // 成人分类
       410: "#f52bcb",
       // 有码 HD
@@ -5299,118 +5659,62 @@
       434: "#8a57a1"
       // Music 无损
     },
+    CATEGORY_NAME: {
+      // 成人分类
+      410: " 有码 HD",
+      429: " 无码 HD",
+      424: " 有码 Xvid",
+      430: " 无码 Xvid",
+      437: " 有码 DVD",
+      426: " 无码 DVD",
+      431: " 有码 BluRay",
+      432: " 无码 BluRay",
+      440: " GAY",
+      436: " 0 day",
+      425: " 写真 video",
+      433: " 写真 pic",
+      411: " H-Game",
+      412: " H-Anime",
+      413: " H-Comic",
+      // 综合分类
+      401: "Movie SD",
+      419: "Movie HD",
+      420: "Movie DVD    ",
+      421: "Movie BluRay",
+      439: "Movie Remux",
+      403: "TV SD",
+      402: "TV HD",
+      435: " TV DVD",
+      438: "TV BluRay",
+      404: "纪录教育",
+      405: "Anime",
+      407: "Sport",
+      422: "Software",
+      423: "Game",
+      427: "EBook",
+      409: "Other",
+      // 音乐分类
+      406: "MV",
+      408: "Music AAC/ALAC",
+      434: "Music 无损"
+    },
     /** 索引 */
     INDEX: 0,
     /** iframe 宽度 */
     Iframe_Width: 1260,
+    /**获取背景颜色*/
+    get_bg_color: function() {
+      return getComputedStyle(document.documentElement).getPropertyValue(
+        "--bg-3"
+      );
+    },
     /** NOTE: 站点特殊操作 */
     special: function() {
-      table_Iframe_Set();
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
-      table_Iframe_Set();
     }
   };
-  function table_Iframe_Set() {
-    const lists = Array.from(document.querySelectorAll("td.torrentimg a"));
-    lists.forEach((el) => el.addEventListener("click", function(event) {
-      event.preventDefault();
-      _iframe_switch.set(1);
-      _iframe_url.set(el.href + "#kdescr");
-    }));
-  }
-  function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
-    const rows = torrent_list_Dom.querySelectorAll("tbody tr");
-    const data = [];
-    rows.forEach((row) => {
-      const categoryImg = row.querySelector("td:nth-child(1) > a > img");
-      const category = categoryImg ? categoryImg.title : "";
-      if (!category)
-        return;
-      const categoryLinkDOM = categoryImg.parentNode;
-      const categoryLink = categoryLinkDOM.href;
-      const categoryNumber = categoryLink.slice(-3);
-      const str = categoryImg.style.backgroundImage;
-      const regex = /url\("(.*)"\)/;
-      const result = str.match(regex);
-      const _categoryImg = result && result.length > 1 ? result[1] : null;
-      const torrentIndex = CONFIG.INDEX++;
-      const torrentNameLink = row.querySelector(".torrentname a");
-      const torrentName = torrentNameLink ? torrentNameLink.title.trim() : "";
-      const torrentLink = torrentNameLink.href;
-      const pattern = /id=(\d+)&hit/;
-      const match = torrentLink.match(pattern);
-      const torrentId = match ? parseInt(match[1]) : null;
-      const imgDom = row.querySelector(".torrentname img");
-      const _mouseOver = imgDom.getAttribute("onmouseover");
-      const raw1 = _mouseOver ? _mouseOver.split(",")[2].toString() : "";
-      const picLink = raw1 ? raw1.slice(raw1.indexOf("'") + 1, raw1.lastIndexOf("'")) : "/pic/nopic.jpg";
-      const desCell = row.querySelector(".torrentname td:nth-child(2)");
-      const length = desCell.childNodes.length - 1;
-      const desDom = desCell.childNodes[length];
-      const description = desDom.nodeName == "#text" ? desDom.textContent.trim() : "";
-      const place_at_the_top = row.querySelectorAll(".torrentname img.sticky");
-      const pattMsg = place_at_the_top[0] ? place_at_the_top[0].title : "";
-      const tempTagDom = row.querySelectorAll(".torrentname font");
-      const freeTypeImg = row.querySelector('img[class^="pro_"]');
-      const freeType = freeTypeImg ? "_" + freeTypeImg.alt.replace(/\s+/g, "") : "";
-      const freeRemainingTimeSpan = row.querySelector(".torrentname td:nth-child(2) span");
-      const freeRemainingTime = freeRemainingTimeSpan ? freeRemainingTimeSpan.innerText : "";
-      const tagSpans = row.querySelectorAll(".torrentname img[class^='label_']");
-      const tagsDOM = Array.from(tagSpans);
-      let tags = tagSpans ? tagsDOM.map((el) => el.title.trim()) : [];
-      const raw_tags = tagsDOM.map((el) => el.outerHTML).join("&nbsp;");
-      const downloadLink = `download.php?id=${torrentId}`;
-      const collectLink = `javascript: bookmark(${torrentId},${torrentIndex});`;
-      const collectDOM = row.querySelector(".torrentname a[id^='bookmark']");
-      const collectState = collectDOM.children[0].alt;
-      const commentsLink = row.querySelector("td.rowfollow:nth-child(3) a");
-      const comments = commentsLink ? parseInt(commentsLink.textContent) : 0;
-      const uploadDateSpan = row.querySelector("td:nth-child(4) span");
-      const uploadDate = uploadDateSpan ? uploadDateSpan.title : "";
-      const sizeCell = row.querySelector("td:nth-child(5)");
-      const size = sizeCell ? sizeCell.textContent.trim() : "";
-      const seedersLink = row.querySelector("td:nth-child(6) a");
-      const seeders = seedersLink ? parseInt(seedersLink.textContent) : 0;
-      const leechersCell = row.querySelector("td:nth-child(7)");
-      const leechers = leechersCell ? parseInt(leechersCell.textContent) : 0;
-      const snatchedLink = row.querySelector("td:nth-child(8) a");
-      const snatched = snatchedLink ? parseInt(snatchedLink.textContent) : 0;
-      const rowData = {
-        torrentIndex,
-        _categoryImg,
-        category,
-        categoryLink,
-        categoryNumber,
-        torrent_name: torrentName,
-        torrentLink,
-        torrentId,
-        picLink,
-        place_at_the_top,
-        pattMsg,
-        downloadLink,
-        collectLink,
-        collectState,
-        tempTagDom,
-        freeTypeImg,
-        free_type: freeType,
-        free_remaining_time: freeRemainingTime,
-        raw_tags,
-        tagsDOM,
-        tags,
-        description,
-        comments,
-        upload_date: uploadDate,
-        size,
-        seeders,
-        leechers,
-        snatched
-      };
-      data.push(rowData);
-    });
-    return data;
-  }
   const SITE = {
     "kamept.com": CONFIG$2,
     "kp.m-team.cc": CONFIG$1,
@@ -5420,20 +5724,29 @@
     const domain = window.location.hostname;
     return domain;
   }
+  let cache_selector;
   function GET_TORRENT_LIST_SELECTOR() {
     var _a;
+    if (cache_selector)
+      return cache_selector;
     const domain = GET_CURRENT_PT_DOMAIN();
     console.log("|-> 当前站点: ", domain);
     console.log("|-> 当前页面: ", window.location.pathname);
     const res = ((_a = SITE[domain]) == null ? void 0 : _a.torrentListTable) ?? null;
     console.log("|-> 站点selector:", res);
+    cache_selector = res;
     return res;
   }
   function GET_SITE_ARCHITECTURE() {
     var _a, _b;
     const domain = GET_CURRENT_PT_DOMAIN();
-    console.log((_a = SITE[domain]) == null ? void 0 : _a.architecture);
+    console.log("PT架构:	", (_a = SITE[domain]) == null ? void 0 : _a.architecture);
     return (_b = SITE[domain]) == null ? void 0 : _b.architecture;
+  }
+  function GET_SITE_BACKGROUND_COLOR() {
+    var _a;
+    const domain = GET_CURRENT_PT_DOMAIN();
+    return (_a = SITE[domain]) == null ? void 0 : _a.get_bg_color();
   }
   const CARD = {
     /** 瀑布流卡片宽度 */
@@ -5453,6 +5766,8 @@
     GAP: 3e3,
     /** 翻页: 底部检测视点与底部距离 */
     DISTANCE: 300,
+    /** newMT 翻页: 底部检测视点与底部距离 */
+    DISTANCE_newMT: 900,
     /** 翻页: 是否为初始跳转页面 */
     IS_ORIGIN: true,
     /** 翻页: 初始页面 */
@@ -5464,7 +5779,25 @@
     /** 翻页: 下一页的链接 */
     NEXT_URL: "",
     /** 翻页: 下一页的加载方式: Button | Slip */
-    SWITCH_MODE: "Button"
+    SWITCH_MODE: "Button",
+    /**获取当前页*/
+    $getCurrentPage: () => {
+      PAGE.PAGE_CURRENT = PAGE.PAGE_CURRENT ?? 0;
+      PAGE.PAGE_NEXT = PAGE.PAGE_CURRENT + 1;
+      return PAGE.PAGE_CURRENT;
+    },
+    /**获取下一页*/
+    $getNextPage: () => PAGE.PAGE_NEXT,
+    /**翻页*/
+    $turnPage: () => {
+      PAGE.PAGE_CURRENT = PAGE.PAGE_NEXT;
+      PAGE.PAGE_NEXT = PAGE.PAGE_CURRENT + 1;
+    },
+    /**设定页*/
+    $setPage: (index) => {
+      PAGE.PAGE_CURRENT = index;
+      PAGE.PAGE_NEXT = PAGE.PAGE_CURRENT + 1;
+    }
   };
   const ICON = {
     /** 大小图标 */
@@ -5484,7 +5817,8 @@
     /** 已收藏图标 */
     COLLETED: '<img class="bookmark" src="pic/trans.gif" alt="Bookmarked">'
   };
-  function create_if_block_16$1(ctx) {
+  const _PicErrorLOGO = "data:image/svg+xml;base64,PHN2ZwogIHdpZHRoPSIyNTZweCIKICBoZWlnaHQ9IjI1NnB4IgogIHZpZXdCb3g9IjAgMCAyNC4wMCAyNC4wMCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAwLCAwKSIKPgogIDxnCiAgICBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiCiAgICBzdHJva2Utd2lkdGg9IjAiCiAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApLCBzY2FsZSgxKSIKICAvPgogIDxnCiAgICBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIgogICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIHN0cm9rZT0iI0NDQ0NDQyIKICAgIHN0cm9rZS13aWR0aD0iMC4wNDgiCiAgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTMgM0wxMy43MDcxIDIuMjkyODlDMTMuNTE5NiAyLjEwNTM2IDEzLjI2NTIgMiAxMyAyVjNaTTE0IDIyQzE0LjU1MjMgMjIgMTUgMjEuNTUyMyAxNSAyMUMxNSAyMC40NDc3IDE0LjU1MjMgMjAgMTQgMjBWMjJaTTE5IDlIMjBDMjAgOC43MzQ3OCAxOS44OTQ2IDguNDgwNDMgMTkuNzA3MSA4LjI5Mjg5TDE5IDlaTTE4IDEwQzE4IDEwLjU1MjMgMTguNDQ3NyAxMSAxOSAxMUMxOS41NTIzIDExIDIwIDEwLjU1MjMgMjAgMTBIMThaTTUuMjE3OTkgMTkuOTA4TDQuMzI2OTggMjAuMzYySDQuMzI2OThMNS4yMTc5OSAxOS45MDhaTTYuMDkyMDIgMjAuNzgyTDYuNTQ2MDEgMTkuODkxTDYuNTQ2MDEgMTkuODkxTDYuMDkyMDIgMjAuNzgyWk02LjA5MjAyIDMuMjE3OTlMNS42MzgwMyAyLjMyNjk4TDUuNjM4MDMgMi4zMjY5OEw2LjA5MjAyIDMuMjE3OTlaTTUuMjE3OTkgNC4wOTIwMkw0LjMyNjk4IDMuNjM4MDNMNC4zMjY5OCAzLjYzODAzTDUuMjE3OTkgNC4wOTIwMlpNMTMuMTA5IDguNDUzOTlMMTQgOFY4TDEzLjEwOSA4LjQ1Mzk5Wk0xMy41NDYgOC44OTEwMUwxNCA4TDEzLjU0NiA4Ljg5MTAxWk0xNy4yMjk5IDE3Ljc5MjlDMTYuODM5NCAxOC4xODM0IDE2LjgzOTQgMTguODE2NiAxNy4yMjk5IDE5LjIwNzFDMTcuNjIwNCAxOS41OTc2IDE4LjI1MzYgMTkuNTk3NiAxOC42NDQxIDE5LjIwNzFMMTcuMjI5OSAxNy43OTI5Wk0xNS4wMzE2IDE1LjI1MDdDMTQuODkzOSAxNS43ODU2IDE1LjIxNTkgMTYuMzMwOCAxNS43NTA3IDE2LjQ2ODRDMTYuMjg1NiAxNi42MDYxIDE2LjgzMDggMTYuMjg0MSAxNi45Njg0IDE1Ljc0OTNMMTUuMDMxNiAxNS4yNTA3Wk0xNy45Mzc1IDIwQzE3LjM4NTIgMjAgMTYuOTM3NSAyMC40NDc3IDE2LjkzNzUgMjFDMTYuOTM3NSAyMS41NTIzIDE3LjM4NTIgMjIgMTcuOTM3NSAyMlYyMFpNMTcuOTQ3NSAyMkMxOC40OTk4IDIyIDE4Ljk0NzUgMjEuNTUyMyAxOC45NDc1IDIxQzE4Ljk0NzUgMjAuNDQ3NyAxOC40OTk4IDIwIDE3Ljk0NzUgMjBWMjJaTTEzIDJIOC4yVjRIMTNWMlpNNCA2LjJWMTcuOEg2VjYuMkg0Wk04LjIgMjJIMTRWMjBIOC4yVjIyWk0xOS43MDcxIDguMjkyODlMMTMuNzA3MSAyLjI5Mjg5TDEyLjI5MjkgMy43MDcxMUwxOC4yOTI5IDkuNzA3MTFMMTkuNzA3MSA4LjI5Mjg5Wk0yMCAxMFY5SDE4VjEwSDIwWk00IDE3LjhDNCAxOC4zNDM2IDMuOTk5MjIgMTguODExNCA0LjAzMDU3IDE5LjE5NUM0LjA2Mjg3IDE5LjU5MDQgNC4xMzQxOSAxOS45ODM2IDQuMzI2OTggMjAuMzYyTDYuMTA4OTkgMTkuNDU0QzYuMDgzOCAxOS40MDQ1IDYuMDQ2MTIgMTkuMzAzOCA2LjAyMzkzIDE5LjAzMjJDNi4wMDA3OCAxOC43NDg4IDYgMTguMzc2NiA2IDE3LjhINFpNOC4yIDIwQzcuNjIzNDUgMjAgNy4yNTExNyAxOS45OTkyIDYuOTY3ODQgMTkuOTc2MUM2LjY5NjE3IDE5Ljk1MzkgNi41OTU0NSAxOS45MTYyIDYuNTQ2MDEgMTkuODkxTDUuNjM4MDMgMjEuNjczQzYuMDE2NDEgMjEuODY1OCA2LjQwOTYzIDIxLjkzNzEgNi44MDQ5NyAyMS45Njk0QzcuMTg4NjQgMjIuMDAwOCA3LjY1NjQ1IDIyIDguMiAyMlYyMFpNNC4zMjY5OCAyMC4zNjJDNC42MTQ2IDIwLjkyNjUgNS4wNzM1NCAyMS4zODU0IDUuNjM4MDMgMjEuNjczTDYuNTQ2MDEgMTkuODkxQzYuMzU3ODUgMTkuNzk1MSA2LjIwNDg3IDE5LjY0MjIgNi4xMDg5OSAxOS40NTRMNC4zMjY5OCAyMC4zNjJaTTguMiAyQzcuNjU2NDUgMiA3LjE4ODY0IDEuOTk5MjIgNi44MDQ5NyAyLjAzMDU3QzYuNDA5NjMgMi4wNjI4NyA2LjAxNjQxIDIuMTM0MTkgNS42MzgwMyAyLjMyNjk4TDYuNTQ2MDEgNC4xMDg5OUM2LjU5NTQ1IDQuMDgzOCA2LjY5NjE3IDQuMDQ2MTIgNi45Njc4NCA0LjAyMzkzQzcuMjUxMTcgNC4wMDA3OCA3LjYyMzQ1IDQgOC4yIDRWMlpNNiA2LjJDNiA1LjYyMzQ1IDYuMDAwNzggNS4yNTExNyA2LjAyMzkzIDQuOTY3ODRDNi4wNDYxMiA0LjY5NjE3IDYuMDgzOCA0LjU5NTQ1IDYuMTA4OTkgNC41NDYwMUw0LjMyNjk4IDMuNjM4MDNDNC4xMzQxOSA0LjAxNjQxIDQuMDYyODcgNC40MDk2MyA0LjAzMDU3IDQuODA0OTdDMy45OTkyMiA1LjE4ODY0IDQgNS42NTY0NSA0IDYuMkg2Wk01LjYzODAzIDIuMzI2OThDNS4wNzM1NCAyLjYxNDYgNC42MTQ2IDMuMDczNTQgNC4zMjY5OCAzLjYzODAzTDYuMTA4OTkgNC41NDYwMUM2LjIwNDg3IDQuMzU3ODUgNi4zNTc4NSA0LjIwNDg3IDYuNTQ2MDEgNC4xMDg5OUw1LjYzODAzIDIuMzI2OThaTTEyIDNWNy40SDE0VjNIMTJaTTE0LjYgMTBIMTlWOEgxNC42VjEwWk0xMiA3LjRDMTIgNy42NjM1MyAxMS45OTkyIDcuOTIxMzEgMTIuMDE2OSA4LjEzODIzQzEyLjAzNTYgOC4zNjY4MiAxMi4wNzk3IDguNjM2NTYgMTIuMjE4IDguOTA3OThMMTQgOEMxNC4wMjkzIDguMDU3NTEgMTQuMDE4OSA4LjA4MDI4IDE0LjAxMDMgNy45NzUzN0MxNC4wMDA4IDcuODU4NzggMTQgNy42OTY1MyAxNCA3LjRIMTJaTTE0LjYgOEMxNC4zMDM1IDggMTQuMTQxMiA3Ljk5OTIyIDE0LjAyNDYgNy45ODk3QzEzLjkxOTcgNy45ODExMyAxMy45NDI1IDcuOTcwNyAxNCA4TDEzLjA5MiA5Ljc4MjAxQzEzLjM2MzQgOS45MjAzMSAxMy42MzMyIDkuOTY0MzggMTMuODYxOCA5Ljk4MzA1QzE0LjA3ODcgMTAuMDAwOCAxNC4zMzY1IDEwIDE0LjYgMTBWOFpNMTIuMjE4IDguOTA3OThDMTIuNDA5NyA5LjI4NDMgMTIuNzE1NyA5LjU5MDI3IDEzLjA5MiA5Ljc4MjAxTDE0IDhWOEwxMi4yMTggOC45MDc5OFpNMTguOTM3IDE2QzE4LjkzNyAxNi4xNzMyIDE4Ljg5MTUgMTYuMzA1MyAxOC42MTc1IDE2LjU2OTdDMTguNDYzOCAxNi43MTggMTguMjgyOCAxNi44NjUzIDE4LjAzMTkgMTcuMDc0QzE3Ljc5MzYgMTcuMjcyMyAxNy41MTQxIDE3LjUwODcgMTcuMjI5OSAxNy43OTI5TDE4LjY0NDEgMTkuMjA3MUMxOC44NiAxOC45OTEzIDE5LjA4MDUgMTguODAzMyAxOS4zMTA5IDE4LjYxMTZDMTkuNTI4NyAxOC40MzA1IDE5Ljc4NTIgMTguMjIyMyAyMC4wMDY1IDE4LjAwODdDMjAuNDgyNSAxNy41NDkzIDIwLjkzNyAxNi45MzE0IDIwLjkzNyAxNkgxOC45MzdaTTE3LjkzNyAxNUMxOC40ODkzIDE1IDE4LjkzNyAxNS40NDc3IDE4LjkzNyAxNkgyMC45MzdDMjAuOTM3IDE0LjM0MzEgMTkuNTkzOCAxMyAxNy45MzcgMTNWMTVaTTE2Ljk2ODQgMTUuNzQ5M0MxNy4wNzk1IDE1LjMxNzcgMTcuNDcyNCAxNSAxNy45MzcgMTVWMTNDMTYuNTM3NyAxMyAxNS4zNjQ1IDEzLjk1NyAxNS4wMzE2IDE1LjI1MDdMMTYuOTY4NCAxNS43NDkzWk0xNy45Mzc1IDIySDE3Ljk0NzVWMjBIMTcuOTM3NVYyMloiCiAgICAgIGZpbGw9IiNjMDAwMDAiCiAgICAvPgogIDwvZz4KPC9zdmc+";
+  function create_if_block_17$2(ctx) {
     let div;
     let a;
     let html_tag;
@@ -5550,6 +5884,2152 @@
       }
     };
   }
+  function create_else_block$4(ctx) {
+    let div2;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let div1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div2 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        div1 = element("div");
+        div1.textContent = "图片加载失败";
+        set_style(img, "height", "100%");
+        set_style(img, "width", "100px");
+        if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "pic error");
+        attr(img, "class", "svelte-vdh3h6");
+        attr(div2, "class", "pic_error");
+        attr(div2, "style", "");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, img);
+        append(div2, t0);
+        append(div2, div1);
+        if (!mounted) {
+          dispose = listen(
+            img,
+            "load",
+            /*sort_masonry*/
+            ctx[7]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_16$2(ctx) {
+    let img;
+    let img_src_value;
+    let img_data_src_value;
+    let img_alt_value;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        img = element("img");
+        attr(img, "class", "nexus-lazy-load_Kesa svelte-vdh3h6");
+        if (!src_url_equal(img.src, img_src_value = CONFIG$2.LOADING_PIC))
+          attr(img, "src", img_src_value);
+        attr(img, "data-src", img_data_src_value = /*torrentInfo*/
+        ctx[0].picLink);
+        attr(img, "alt", img_alt_value = /*torrentInfo*/
+        ctx[0].torrentName);
+      },
+      m(target, anchor) {
+        insert(target, img, anchor);
+        if (!mounted) {
+          dispose = [
+            listen(
+              img,
+              "load",
+              /*sort_masonry*/
+              ctx[7]
+            ),
+            listen(
+              img,
+              "error",
+              /*error_handler*/
+              ctx[11]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && img_data_src_value !== (img_data_src_value = /*torrentInfo*/
+        ctx2[0].picLink)) {
+          attr(img, "data-src", img_data_src_value);
+        }
+        if (dirty & /*torrentInfo*/
+        1 && img_alt_value !== (img_alt_value = /*torrentInfo*/
+        ctx2[0].torrentName)) {
+          attr(img, "alt", img_alt_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(img);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_10$2(ctx) {
+    let t0;
+    let t1;
+    let div0;
+    let raw0_value = (
+      /*torrentInfo*/
+      ctx[0].tagsDOM.map(
+        /*func_2*/
+        ctx[12]
+      ).join("") + ""
+    );
+    let t2;
+    let div8;
+    let div5;
+    let div1;
+    let html_tag;
+    let raw1_value = (
+      /*ICON*/
+      ctx[2].SIZE + ""
+    );
+    let t3;
+    let t4_value = (
+      /*torrentInfo*/
+      ctx[0].size + ""
+    );
+    let t4;
+    let t5;
+    let div2;
+    let html_tag_1;
+    let raw2_value = (
+      /*ICON*/
+      ctx[2].DOWNLOAD + ""
+    );
+    let t6;
+    let b0;
+    let a;
+    let t7;
+    let a_href_value;
+    let t8;
+    let div4;
+    let div3;
+    let html_tag_2;
+    let raw3_value = (
+      /*torrentInfo*/
+      (ctx[0].collectState == "Unbookmarked" ? (
+        /*ICON*/
+        ctx[2].COLLET
+      ) : (
+        /*ICON*/
+        ctx[2].COLLETED
+      )) + ""
+    );
+    let t9;
+    let b1;
+    let div3_id_value;
+    let t11;
+    let div6;
+    let b2;
+    let t13;
+    let t14_value = (
+      /*torrentInfo*/
+      ctx[0].upload_date + ""
+    );
+    let t14;
+    let t15;
+    let div7;
+    let html_tag_3;
+    let raw4_value = (
+      /*ICON*/
+      ctx[2].COMMENT + ""
+    );
+    let t16;
+    let b3;
+    let t17_value = (
+      /*torrentInfo*/
+      ctx[0].comments + ""
+    );
+    let t17;
+    let t18;
+    let html_tag_4;
+    let raw5_value = (
+      /*ICON*/
+      ctx[2].SEEDERS + ""
+    );
+    let t19;
+    let b4;
+    let t20_value = (
+      /*torrentInfo*/
+      ctx[0].seeders + ""
+    );
+    let t20;
+    let t21;
+    let html_tag_5;
+    let raw6_value = (
+      /*ICON*/
+      ctx[2].LEECHERS + ""
+    );
+    let t22;
+    let b5;
+    let t23_value = (
+      /*torrentInfo*/
+      ctx[0].leechers + ""
+    );
+    let t23;
+    let t24;
+    let html_tag_6;
+    let raw7_value = (
+      /*ICON*/
+      ctx[2].SNATCHED + ""
+    );
+    let t25;
+    let b6;
+    let t26_value = (
+      /*torrentInfo*/
+      ctx[0].snatched + ""
+    );
+    let t26;
+    let mounted;
+    let dispose;
+    let if_block0 = (
+      /*torrentInfo*/
+      (ctx[0].free_type || /*torrentInfo*/
+      ctx[0].pattMsg) && create_if_block_12$2(ctx)
+    );
+    let if_block1 = (
+      /*torrentInfo*/
+      ctx[0].description && create_if_block_11$2(ctx)
+    );
+    return {
+      c() {
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        div0 = element("div");
+        t2 = space();
+        div8 = element("div");
+        div5 = element("div");
+        div1 = element("div");
+        html_tag = new HtmlTag(false);
+        t3 = text(" ");
+        t4 = text(t4_value);
+        t5 = text("\n\n          \n            \n          ");
+        div2 = element("div");
+        html_tag_1 = new HtmlTag(false);
+        t6 = text(" \n            ");
+        b0 = element("b");
+        a = element("a");
+        t7 = text("下载");
+        t8 = text("\n\n          \n            \n          ");
+        div4 = element("div");
+        div3 = element("div");
+        html_tag_2 = new HtmlTag(false);
+        t9 = text("\n               ");
+        b1 = element("b");
+        b1.textContent = "收藏";
+        t11 = space();
+        div6 = element("div");
+        b2 = element("b");
+        b2.textContent = "上传时间:";
+        t13 = space();
+        t14 = text(t14_value);
+        t15 = space();
+        div7 = element("div");
+        html_tag_3 = new HtmlTag(false);
+        t16 = text(" ");
+        b3 = element("b");
+        t17 = text(t17_value);
+        t18 = text("  \n          ");
+        html_tag_4 = new HtmlTag(false);
+        t19 = text(" ");
+        b4 = element("b");
+        t20 = text(t20_value);
+        t21 = text("  \n          ");
+        html_tag_5 = new HtmlTag(false);
+        t22 = text(" ");
+        b5 = element("b");
+        t23 = text(t23_value);
+        t24 = text("  \n          ");
+        html_tag_6 = new HtmlTag(false);
+        t25 = text(" ");
+        b6 = element("b");
+        t26 = text(t26_value);
+        attr(div0, "class", "cl-tags svelte-vdh3h6");
+        html_tag.a = t3;
+        attr(div1, "class", "cl-center svelte-vdh3h6");
+        html_tag_1.a = t6;
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[0].downloadLink);
+        attr(div2, "class", "cl-center svelte-vdh3h6");
+        html_tag_2.a = t9;
+        attr(div3, "class", "btnCollet cl-center svelte-vdh3h6");
+        attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
+        ctx[0].torrentIndex);
+        attr(div4, "class", "cl-center svelte-vdh3h6");
+        attr(div5, "class", "card-line svelte-vdh3h6");
+        attr(div6, "class", "card-line svelte-vdh3h6");
+        html_tag_3.a = t16;
+        html_tag_4.a = t19;
+        html_tag_5.a = t22;
+        html_tag_6.a = t25;
+        attr(div7, "class", "card-line svelte-vdh3h6");
+        attr(div8, "class", "card-details svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t1, anchor);
+        insert(target, div0, anchor);
+        div0.innerHTML = raw0_value;
+        insert(target, t2, anchor);
+        insert(target, div8, anchor);
+        append(div8, div5);
+        append(div5, div1);
+        html_tag.m(raw1_value, div1);
+        append(div1, t3);
+        append(div1, t4);
+        append(div5, t5);
+        append(div5, div2);
+        html_tag_1.m(raw2_value, div2);
+        append(div2, t6);
+        append(div2, b0);
+        append(b0, a);
+        append(a, t7);
+        append(div5, t8);
+        append(div5, div4);
+        append(div4, div3);
+        html_tag_2.m(raw3_value, div3);
+        append(div3, t9);
+        append(div3, b1);
+        append(div8, t11);
+        append(div8, div6);
+        append(div6, b2);
+        append(div6, t13);
+        append(div6, t14);
+        append(div8, t15);
+        append(div8, div7);
+        html_tag_3.m(raw4_value, div7);
+        append(div7, t16);
+        append(div7, b3);
+        append(b3, t17);
+        append(div7, t18);
+        html_tag_4.m(raw5_value, div7);
+        append(div7, t19);
+        append(div7, b4);
+        append(b4, t20);
+        append(div7, t21);
+        html_tag_5.m(raw6_value, div7);
+        append(div7, t22);
+        append(div7, b5);
+        append(b5, t23);
+        append(div7, t24);
+        html_tag_6.m(raw7_value, div7);
+        append(div7, t25);
+        append(div7, b6);
+        append(b6, t26);
+        if (!mounted) {
+          dispose = listen(div3, "click", function() {
+            if (is_function(COLLET_AND_ICON_CHANGE$1(
+              /*torrentInfo*/
+              ctx[0].collectLink,
+              "tI_" + /*torrentInfo*/
+              ctx[0].torrentIndex
+            )))
+              COLLET_AND_ICON_CHANGE$1(
+                /*torrentInfo*/
+                ctx[0].collectLink,
+                "tI_" + /*torrentInfo*/
+                ctx[0].torrentIndex
+              ).apply(this, arguments);
+          });
+          mounted = true;
+        }
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        if (
+          /*torrentInfo*/
+          ctx[0].free_type || /*torrentInfo*/
+          ctx[0].pattMsg
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx, dirty);
+          } else {
+            if_block0 = create_if_block_12$2(ctx);
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx[0].description
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx, dirty);
+          } else {
+            if_block1 = create_if_block_11$2(ctx);
+            if_block1.c();
+            if_block1.m(t1.parentNode, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (dirty & /*torrentInfo*/
+        1 && raw0_value !== (raw0_value = /*torrentInfo*/
+        ctx[0].tagsDOM.map(
+          /*func_2*/
+          ctx[12]
+        ).join("") + ""))
+          div0.innerHTML = raw0_value;
+        if (dirty & /*ICON*/
+        4 && raw1_value !== (raw1_value = /*ICON*/
+        ctx[2].SIZE + ""))
+          html_tag.p(raw1_value);
+        if (dirty & /*torrentInfo*/
+        1 && t4_value !== (t4_value = /*torrentInfo*/
+        ctx[0].size + ""))
+          set_data(t4, t4_value);
+        if (dirty & /*ICON*/
+        4 && raw2_value !== (raw2_value = /*ICON*/
+        ctx[2].DOWNLOAD + ""))
+          html_tag_1.p(raw2_value);
+        if (dirty & /*torrentInfo*/
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx[0].downloadLink)) {
+          attr(a, "href", a_href_value);
+        }
+        if (dirty & /*torrentInfo, ICON*/
+        5 && raw3_value !== (raw3_value = /*torrentInfo*/
+        (ctx[0].collectState == "Unbookmarked" ? (
+          /*ICON*/
+          ctx[2].COLLET
+        ) : (
+          /*ICON*/
+          ctx[2].COLLETED
+        )) + ""))
+          html_tag_2.p(raw3_value);
+        if (dirty & /*torrentInfo*/
+        1 && div3_id_value !== (div3_id_value = "tI_" + /*torrentInfo*/
+        ctx[0].torrentIndex)) {
+          attr(div3, "id", div3_id_value);
+        }
+        if (dirty & /*torrentInfo*/
+        1 && t14_value !== (t14_value = /*torrentInfo*/
+        ctx[0].upload_date + ""))
+          set_data(t14, t14_value);
+        if (dirty & /*ICON*/
+        4 && raw4_value !== (raw4_value = /*ICON*/
+        ctx[2].COMMENT + ""))
+          html_tag_3.p(raw4_value);
+        if (dirty & /*torrentInfo*/
+        1 && t17_value !== (t17_value = /*torrentInfo*/
+        ctx[0].comments + ""))
+          set_data(t17, t17_value);
+        if (dirty & /*ICON*/
+        4 && raw5_value !== (raw5_value = /*ICON*/
+        ctx[2].SEEDERS + ""))
+          html_tag_4.p(raw5_value);
+        if (dirty & /*torrentInfo*/
+        1 && t20_value !== (t20_value = /*torrentInfo*/
+        ctx[0].seeders + ""))
+          set_data(t20, t20_value);
+        if (dirty & /*ICON*/
+        4 && raw6_value !== (raw6_value = /*ICON*/
+        ctx[2].LEECHERS + ""))
+          html_tag_5.p(raw6_value);
+        if (dirty & /*torrentInfo*/
+        1 && t23_value !== (t23_value = /*torrentInfo*/
+        ctx[0].leechers + ""))
+          set_data(t23, t23_value);
+        if (dirty & /*ICON*/
+        4 && raw7_value !== (raw7_value = /*ICON*/
+        ctx[2].SNATCHED + ""))
+          html_tag_6.p(raw7_value);
+        if (dirty & /*torrentInfo*/
+        1 && t26_value !== (t26_value = /*torrentInfo*/
+        ctx[0].snatched + ""))
+          set_data(t26, t26_value);
+      },
+      d(detaching) {
+        if (if_block0)
+          if_block0.d(detaching);
+        if (detaching)
+          detach(t0);
+        if (if_block1)
+          if_block1.d(detaching);
+        if (detaching)
+          detach(t1);
+        if (detaching)
+          detach(div0);
+        if (detaching)
+          detach(t2);
+        if (detaching)
+          detach(div8);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_12$2(ctx) {
+    let div1;
+    let div0;
+    let t0;
+    let t1;
+    let div0_class_value;
+    let if_block0 = (
+      /*torrentInfo*/
+      ctx[0].place_at_the_top.length != 0 && create_if_block_15$2(ctx)
+    );
+    let if_block1 = (
+      /*torrentInfo*/
+      ctx[0].freeTypeImg && create_if_block_14$2(ctx)
+    );
+    let if_block2 = (
+      /*torrentInfo*/
+      ctx[0].free_remaining_time && create_if_block_13$2(ctx)
+    );
+    return {
+      c() {
+        div1 = element("div");
+        div0 = element("div");
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
+        ctx[0].free_type + " svelte-vdh3h6");
+        attr(div1, "class", "card-alter svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+        append(div1, div0);
+        if (if_block0)
+          if_block0.m(div0, null);
+        append(div0, t0);
+        if (if_block1)
+          if_block1.m(div0, null);
+        append(div0, t1);
+        if (if_block2)
+          if_block2.m(div0, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          ctx2[0].place_at_the_top.length != 0
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_15$2(ctx2);
+            if_block0.c();
+            if_block0.m(div0, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx2[0].freeTypeImg
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_14$2(ctx2);
+            if_block1.c();
+            if_block1.m(div0, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx2[0].free_remaining_time
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_13$2(ctx2);
+            if_block2.c();
+            if_block2.m(div0, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (dirty & /*torrentInfo*/
+        1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
+        ctx2[0].free_type + " svelte-vdh3h6")) {
+          attr(div0, "class", div0_class_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div1);
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+      }
+    };
+  }
+  function create_if_block_15$2(ctx) {
+    let html_tag;
+    let raw_value = Array.from(
+      /*torrentInfo*/
+      ctx[0].place_at_the_top
+    ).map(func_1$1) + "&nbsp;";
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && raw_value !== (raw_value = Array.from(
+          /*torrentInfo*/
+          ctx2[0].place_at_the_top
+        ).map(func_1$1) + "&nbsp;"))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(html_anchor);
+        if (detaching)
+          html_tag.d();
+      }
+    };
+  }
+  function create_if_block_14$2(ctx) {
+    let html_tag;
+    let raw_value = (
+      /*torrentInfo*/
+      ctx[0].freeTypeImg.outerHTML + ""
+    );
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && raw_value !== (raw_value = /*torrentInfo*/
+        ctx2[0].freeTypeImg.outerHTML + ""))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(html_anchor);
+        if (detaching)
+          html_tag.d();
+      }
+    };
+  }
+  function create_if_block_13$2(ctx) {
+    let t0;
+    let b;
+    let t1_value = (
+      /*torrentInfo*/
+      ctx[0].free_remaining_time + ""
+    );
+    let t1;
+    return {
+      c() {
+        t0 = text(" ");
+        b = element("b");
+        t1 = text(t1_value);
+      },
+      m(target, anchor) {
+        insert(target, t0, anchor);
+        insert(target, b, anchor);
+        append(b, t1);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx2[0].free_remaining_time + ""))
+          set_data(t1, t1_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(t0);
+        if (detaching)
+          detach(b);
+      }
+    };
+  }
+  function create_if_block_11$2(ctx) {
+    let a;
+    let t_value = (
+      /*torrentInfo*/
+      ctx[0].description + ""
+    );
+    let t;
+    let a_href_value;
+    return {
+      c() {
+        a = element("a");
+        t = text(t_value);
+        attr(a, "class", "card-description svelte-vdh3h6");
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[0].torrentLink);
+      },
+      m(target, anchor) {
+        insert(target, a, anchor);
+        append(a, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[0].description + ""))
+          set_data(t, t_value);
+        if (dirty & /*torrentInfo*/
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[0].torrentLink)) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(a);
+      }
+    };
+  }
+  function create_if_block$7(ctx) {
+    let t0;
+    let t1;
+    let t2;
+    let div;
+    let t3;
+    let t4;
+    let if_block0 = (
+      /*$_CARD_SHOW*/
+      ctx[6].free && /*torrentInfo*/
+      (ctx[0].free_type || /*torrentInfo*/
+      ctx[0].pattMsg) && create_if_block_6$2(ctx)
+    );
+    let if_block1 = (
+      /*$_CARD_SHOW*/
+      ctx[6].sub_title && /*torrentInfo*/
+      ctx[0].description && create_if_block_5$2(ctx)
+    );
+    let if_block2 = (
+      /*$_CARD_SHOW*/
+      ctx[6].tags && create_if_block_4$2(ctx)
+    );
+    let if_block3 = (
+      /*$_CARD_SHOW*/
+      ctx[6].size_download_collect && create_if_block_3$3(ctx)
+    );
+    let if_block4 = (
+      /*$_CARD_SHOW*/
+      ctx[6].upload_time && create_if_block_2$3(ctx)
+    );
+    let if_block5 = (
+      /*$_CARD_SHOW*/
+      ctx[6].statistics && create_if_block_1$5(ctx)
+    );
+    return {
+      c() {
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        t2 = space();
+        div = element("div");
+        if (if_block3)
+          if_block3.c();
+        t3 = space();
+        if (if_block4)
+          if_block4.c();
+        t4 = space();
+        if (if_block5)
+          if_block5.c();
+        attr(div, "class", "card-details svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t1, anchor);
+        if (if_block2)
+          if_block2.m(target, anchor);
+        insert(target, t2, anchor);
+        insert(target, div, anchor);
+        if (if_block3)
+          if_block3.m(div, null);
+        append(div, t3);
+        if (if_block4)
+          if_block4.m(div, null);
+        append(div, t4);
+        if (if_block5)
+          if_block5.m(div, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].free && /*torrentInfo*/
+          (ctx2[0].free_type || /*torrentInfo*/
+          ctx2[0].pattMsg)
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_6$2(ctx2);
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].sub_title && /*torrentInfo*/
+          ctx2[0].description
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_5$2(ctx2);
+            if_block1.c();
+            if_block1.m(t1.parentNode, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].tags
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_4$2(ctx2);
+            if_block2.c();
+            if_block2.m(t2.parentNode, t2);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].size_download_collect
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_3$3(ctx2);
+            if_block3.c();
+            if_block3.m(div, t3);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].upload_time
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block_2$3(ctx2);
+            if_block4.c();
+            if_block4.m(div, t4);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].statistics
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+          } else {
+            if_block5 = create_if_block_1$5(ctx2);
+            if_block5.c();
+            if_block5.m(div, null);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
+      },
+      d(detaching) {
+        if (if_block0)
+          if_block0.d(detaching);
+        if (detaching)
+          detach(t0);
+        if (if_block1)
+          if_block1.d(detaching);
+        if (detaching)
+          detach(t1);
+        if (if_block2)
+          if_block2.d(detaching);
+        if (detaching)
+          detach(t2);
+        if (detaching)
+          detach(div);
+        if (if_block3)
+          if_block3.d();
+        if (if_block4)
+          if_block4.d();
+        if (if_block5)
+          if_block5.d();
+      }
+    };
+  }
+  function create_if_block_6$2(ctx) {
+    let div1;
+    let div0;
+    let t0;
+    let t1;
+    let div0_class_value;
+    let if_block0 = (
+      /*torrentInfo*/
+      ctx[0].place_at_the_top.length != 0 && create_if_block_9$2(ctx)
+    );
+    let if_block1 = (
+      /*torrentInfo*/
+      ctx[0].freeTypeImg && create_if_block_8$2(ctx)
+    );
+    let if_block2 = (
+      /*torrentInfo*/
+      ctx[0].free_remaining_time && create_if_block_7$2(ctx)
+    );
+    return {
+      c() {
+        div1 = element("div");
+        div0 = element("div");
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
+        ctx[0].free_type + " svelte-vdh3h6");
+        attr(div1, "class", "card-alter svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        insert(target, div1, anchor);
+        append(div1, div0);
+        if (if_block0)
+          if_block0.m(div0, null);
+        append(div0, t0);
+        if (if_block1)
+          if_block1.m(div0, null);
+        append(div0, t1);
+        if (if_block2)
+          if_block2.m(div0, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          ctx2[0].place_at_the_top.length != 0
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_9$2(ctx2);
+            if_block0.c();
+            if_block0.m(div0, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx2[0].freeTypeImg
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_8$2(ctx2);
+            if_block1.c();
+            if_block1.m(div0, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx2[0].free_remaining_time
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_7$2(ctx2);
+            if_block2.c();
+            if_block2.m(div0, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (dirty & /*torrentInfo*/
+        1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
+        ctx2[0].free_type + " svelte-vdh3h6")) {
+          attr(div0, "class", div0_class_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div1);
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+      }
+    };
+  }
+  function create_if_block_9$2(ctx) {
+    let html_tag;
+    let raw_value = Array.from(
+      /*torrentInfo*/
+      ctx[0].place_at_the_top
+    ).map(func_3$1) + "&nbsp;";
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && raw_value !== (raw_value = Array.from(
+          /*torrentInfo*/
+          ctx2[0].place_at_the_top
+        ).map(func_3$1) + "&nbsp;"))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(html_anchor);
+        if (detaching)
+          html_tag.d();
+      }
+    };
+  }
+  function create_if_block_8$2(ctx) {
+    let html_tag;
+    let raw_value = (
+      /*torrentInfo*/
+      ctx[0].freeTypeImg.outerHTML + ""
+    );
+    let html_anchor;
+    return {
+      c() {
+        html_tag = new HtmlTag(false);
+        html_anchor = empty();
+        html_tag.a = html_anchor;
+      },
+      m(target, anchor) {
+        html_tag.m(raw_value, target, anchor);
+        insert(target, html_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && raw_value !== (raw_value = /*torrentInfo*/
+        ctx2[0].freeTypeImg.outerHTML + ""))
+          html_tag.p(raw_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(html_anchor);
+        if (detaching)
+          html_tag.d();
+      }
+    };
+  }
+  function create_if_block_7$2(ctx) {
+    let t0;
+    let b;
+    let t1_value = (
+      /*torrentInfo*/
+      ctx[0].free_remaining_time + ""
+    );
+    let t1;
+    return {
+      c() {
+        t0 = text(" ");
+        b = element("b");
+        t1 = text(t1_value);
+      },
+      m(target, anchor) {
+        insert(target, t0, anchor);
+        insert(target, b, anchor);
+        append(b, t1);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx2[0].free_remaining_time + ""))
+          set_data(t1, t1_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(t0);
+        if (detaching)
+          detach(b);
+      }
+    };
+  }
+  function create_if_block_5$2(ctx) {
+    let a;
+    let t_value = (
+      /*torrentInfo*/
+      ctx[0].description + ""
+    );
+    let t;
+    let a_href_value;
+    return {
+      c() {
+        a = element("a");
+        t = text(t_value);
+        attr(a, "class", "card-description svelte-vdh3h6");
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[0].torrentLink);
+      },
+      m(target, anchor) {
+        insert(target, a, anchor);
+        append(a, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[0].description + ""))
+          set_data(t, t_value);
+        if (dirty & /*torrentInfo*/
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[0].torrentLink)) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(a);
+      }
+    };
+  }
+  function create_if_block_4$2(ctx) {
+    let div;
+    let raw_value = (
+      /*torrentInfo*/
+      ctx[0].tagsDOM.map(
+        /*func_4*/
+        ctx[13]
+      ).join("") + ""
+    );
+    return {
+      c() {
+        div = element("div");
+        attr(div, "class", "cl-tags svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        div.innerHTML = raw_value;
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && raw_value !== (raw_value = /*torrentInfo*/
+        ctx2[0].tagsDOM.map(
+          /*func_4*/
+          ctx2[13]
+        ).join("") + ""))
+          div.innerHTML = raw_value;
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_3$3(ctx) {
+    let div4;
+    let div0;
+    let html_tag;
+    let raw0_value = (
+      /*ICON*/
+      ctx[2].SIZE + ""
+    );
+    let t0;
+    let t1_value = (
+      /*torrentInfo*/
+      ctx[0].size + ""
+    );
+    let t1;
+    let t2;
+    let div1;
+    let html_tag_1;
+    let raw1_value = (
+      /*ICON*/
+      ctx[2].DOWNLOAD + ""
+    );
+    let t3;
+    let b0;
+    let a;
+    let t4;
+    let a_href_value;
+    let t5;
+    let div3;
+    let div2;
+    let html_tag_2;
+    let raw2_value = (
+      /*torrentInfo*/
+      (ctx[0].collectState == "Unbookmarked" ? (
+        /*ICON*/
+        ctx[2].COLLET
+      ) : (
+        /*ICON*/
+        ctx[2].COLLETED
+      )) + ""
+    );
+    let t6;
+    let b1;
+    let div2_id_value;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div4 = element("div");
+        div0 = element("div");
+        html_tag = new HtmlTag(false);
+        t0 = text(" ");
+        t1 = text(t1_value);
+        t2 = text("\n\n            \n              \n            ");
+        div1 = element("div");
+        html_tag_1 = new HtmlTag(false);
+        t3 = text(" \n              ");
+        b0 = element("b");
+        a = element("a");
+        t4 = text("下载");
+        t5 = text("\n\n            \n              \n            ");
+        div3 = element("div");
+        div2 = element("div");
+        html_tag_2 = new HtmlTag(false);
+        t6 = text("\n                 ");
+        b1 = element("b");
+        b1.textContent = "收藏";
+        html_tag.a = t0;
+        attr(div0, "class", "cl-center svelte-vdh3h6");
+        html_tag_1.a = t3;
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[0].downloadLink);
+        attr(div1, "class", "cl-center svelte-vdh3h6");
+        html_tag_2.a = t6;
+        attr(div2, "class", "btnCollet cl-center svelte-vdh3h6");
+        attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
+        ctx[0].torrentIndex);
+        attr(div3, "class", "cl-center svelte-vdh3h6");
+        attr(div4, "class", "card-line svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        insert(target, div4, anchor);
+        append(div4, div0);
+        html_tag.m(raw0_value, div0);
+        append(div0, t0);
+        append(div0, t1);
+        append(div4, t2);
+        append(div4, div1);
+        html_tag_1.m(raw1_value, div1);
+        append(div1, t3);
+        append(div1, b0);
+        append(b0, a);
+        append(a, t4);
+        append(div4, t5);
+        append(div4, div3);
+        append(div3, div2);
+        html_tag_2.m(raw2_value, div2);
+        append(div2, t6);
+        append(div2, b1);
+        if (!mounted) {
+          dispose = listen(div2, "click", function() {
+            if (is_function(COLLET_AND_ICON_CHANGE$1(
+              /*torrentInfo*/
+              ctx[0].collectLink,
+              "tI_" + /*torrentInfo*/
+              ctx[0].torrentIndex
+            )))
+              COLLET_AND_ICON_CHANGE$1(
+                /*torrentInfo*/
+                ctx[0].collectLink,
+                "tI_" + /*torrentInfo*/
+                ctx[0].torrentIndex
+              ).apply(this, arguments);
+          });
+          mounted = true;
+        }
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        if (dirty & /*ICON*/
+        4 && raw0_value !== (raw0_value = /*ICON*/
+        ctx[2].SIZE + ""))
+          html_tag.p(raw0_value);
+        if (dirty & /*torrentInfo*/
+        1 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx[0].size + ""))
+          set_data(t1, t1_value);
+        if (dirty & /*ICON*/
+        4 && raw1_value !== (raw1_value = /*ICON*/
+        ctx[2].DOWNLOAD + ""))
+          html_tag_1.p(raw1_value);
+        if (dirty & /*torrentInfo*/
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx[0].downloadLink)) {
+          attr(a, "href", a_href_value);
+        }
+        if (dirty & /*torrentInfo, ICON*/
+        5 && raw2_value !== (raw2_value = /*torrentInfo*/
+        (ctx[0].collectState == "Unbookmarked" ? (
+          /*ICON*/
+          ctx[2].COLLET
+        ) : (
+          /*ICON*/
+          ctx[2].COLLETED
+        )) + ""))
+          html_tag_2.p(raw2_value);
+        if (dirty & /*torrentInfo*/
+        1 && div2_id_value !== (div2_id_value = "tI_" + /*torrentInfo*/
+        ctx[0].torrentIndex)) {
+          attr(div2, "id", div2_id_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div4);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_2$3(ctx) {
+    let div;
+    let b;
+    let t1;
+    let t2_value = (
+      /*torrentInfo*/
+      ctx[0].upload_date + ""
+    );
+    let t2;
+    return {
+      c() {
+        div = element("div");
+        b = element("b");
+        b.textContent = "上传时间:";
+        t1 = space();
+        t2 = text(t2_value);
+        attr(div, "class", "card-line svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, b);
+        append(div, t1);
+        append(div, t2);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && t2_value !== (t2_value = /*torrentInfo*/
+        ctx2[0].upload_date + ""))
+          set_data(t2, t2_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_1$5(ctx) {
+    let div;
+    let html_tag;
+    let raw0_value = (
+      /*ICON*/
+      ctx[2].COMMENT + ""
+    );
+    let t0;
+    let b0;
+    let t1_value = (
+      /*torrentInfo*/
+      ctx[0].comments + ""
+    );
+    let t1;
+    let t2;
+    let html_tag_1;
+    let raw1_value = (
+      /*ICON*/
+      ctx[2].SEEDERS + ""
+    );
+    let t3;
+    let b1;
+    let t4_value = (
+      /*torrentInfo*/
+      ctx[0].seeders + ""
+    );
+    let t4;
+    let t5;
+    let html_tag_2;
+    let raw2_value = (
+      /*ICON*/
+      ctx[2].LEECHERS + ""
+    );
+    let t6;
+    let b2;
+    let t7_value = (
+      /*torrentInfo*/
+      ctx[0].leechers + ""
+    );
+    let t7;
+    let t8;
+    let html_tag_3;
+    let raw3_value = (
+      /*ICON*/
+      ctx[2].SNATCHED + ""
+    );
+    let t9;
+    let b3;
+    let t10_value = (
+      /*torrentInfo*/
+      ctx[0].snatched + ""
+    );
+    let t10;
+    return {
+      c() {
+        div = element("div");
+        html_tag = new HtmlTag(false);
+        t0 = text(" ");
+        b0 = element("b");
+        t1 = text(t1_value);
+        t2 = text("  \n            ");
+        html_tag_1 = new HtmlTag(false);
+        t3 = text(" ");
+        b1 = element("b");
+        t4 = text(t4_value);
+        t5 = text("  \n            ");
+        html_tag_2 = new HtmlTag(false);
+        t6 = text(" ");
+        b2 = element("b");
+        t7 = text(t7_value);
+        t8 = text("  \n            ");
+        html_tag_3 = new HtmlTag(false);
+        t9 = text(" ");
+        b3 = element("b");
+        t10 = text(t10_value);
+        html_tag.a = t0;
+        html_tag_1.a = t3;
+        html_tag_2.a = t6;
+        html_tag_3.a = t9;
+        attr(div, "class", "card-line svelte-vdh3h6");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        html_tag.m(raw0_value, div);
+        append(div, t0);
+        append(div, b0);
+        append(b0, t1);
+        append(div, t2);
+        html_tag_1.m(raw1_value, div);
+        append(div, t3);
+        append(div, b1);
+        append(b1, t4);
+        append(div, t5);
+        html_tag_2.m(raw2_value, div);
+        append(div, t6);
+        append(div, b2);
+        append(b2, t7);
+        append(div, t8);
+        html_tag_3.m(raw3_value, div);
+        append(div, t9);
+        append(div, b3);
+        append(b3, t10);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*ICON*/
+        4 && raw0_value !== (raw0_value = /*ICON*/
+        ctx2[2].COMMENT + ""))
+          html_tag.p(raw0_value);
+        if (dirty & /*torrentInfo*/
+        1 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx2[0].comments + ""))
+          set_data(t1, t1_value);
+        if (dirty & /*ICON*/
+        4 && raw1_value !== (raw1_value = /*ICON*/
+        ctx2[2].SEEDERS + ""))
+          html_tag_1.p(raw1_value);
+        if (dirty & /*torrentInfo*/
+        1 && t4_value !== (t4_value = /*torrentInfo*/
+        ctx2[0].seeders + ""))
+          set_data(t4, t4_value);
+        if (dirty & /*ICON*/
+        4 && raw2_value !== (raw2_value = /*ICON*/
+        ctx2[2].LEECHERS + ""))
+          html_tag_2.p(raw2_value);
+        if (dirty & /*torrentInfo*/
+        1 && t7_value !== (t7_value = /*torrentInfo*/
+        ctx2[0].leechers + ""))
+          set_data(t7, t7_value);
+        if (dirty & /*ICON*/
+        4 && raw3_value !== (raw3_value = /*ICON*/
+        ctx2[2].SNATCHED + ""))
+          html_tag_3.p(raw3_value);
+        if (dirty & /*torrentInfo*/
+        1 && t10_value !== (t10_value = /*torrentInfo*/
+        ctx2[0].snatched + ""))
+          set_data(t10, t10_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_fragment$7(ctx) {
+    let div4;
+    let div3;
+    let div0;
+    let t0_value = (
+      /*torrentInfo*/
+      ctx[0].category + ""
+    );
+    let t0;
+    let div0_data_href_value;
+    let t1;
+    let t2;
+    let div2;
+    let t3;
+    let div1;
+    let t4_value = (
+      /*torrentInfo*/
+      ctx[0].torrentIndex + 1 + ""
+    );
+    let t4;
+    let t5;
+    let t6;
+    let mounted;
+    let dispose;
+    let if_block0 = (
+      /*$_CARD_SHOW*/
+      (ctx[6].title || /*_hover*/
+      ctx[3]) && create_if_block_17$2(ctx)
+    );
+    function select_block_type(ctx2, dirty) {
+      if (!/*_picError*/
+      ctx2[4])
+        return create_if_block_16$2;
+      return create_else_block$4;
+    }
+    let current_block_type = select_block_type(ctx);
+    let if_block1 = current_block_type(ctx);
+    let if_block2 = (
+      /*$_CARD_SHOW*/
+      (ctx[6].all || /*_hover*/
+      ctx[3]) && create_if_block_10$2(ctx)
+    );
+    let if_block3 = !/*$_CARD_SHOW*/
+    (ctx[6].all || /*_hover*/
+    ctx[3]) && create_if_block$7(ctx);
+    return {
+      c() {
+        div4 = element("div");
+        div3 = element("div");
+        div0 = element("div");
+        t0 = text(t0_value);
+        t1 = space();
+        if (if_block0)
+          if_block0.c();
+        t2 = space();
+        div2 = element("div");
+        if_block1.c();
+        t3 = space();
+        div1 = element("div");
+        t4 = text(t4_value);
+        t5 = space();
+        if (if_block2)
+          if_block2.c();
+        t6 = space();
+        if (if_block3)
+          if_block3.c();
+        attr(div0, "class", "card-category svelte-vdh3h6");
+        attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
+        ctx[0].categoryLink);
+        set_style(div0, "background-color", CONFIG$2.CATEGORY[
+          /*torrentInfo*/
+          ctx[0].categoryNumber
+        ] ?? "transparent");
+        set_style(div0, "color", CONFIG$2.CATEGORY[
+          /*torrentInfo*/
+          ctx[0].categoryNumber
+        ] ? getTextColor$2(CONFIG$2.CATEGORY[
+          /*torrentInfo*/
+          ctx[0].categoryNumber
+        ]) : "black");
+        attr(div1, "class", "card-index svelte-vdh3h6");
+        attr(div2, "class", "card-image svelte-vdh3h6");
+        attr(div3, "class", "card-holder svelte-vdh3h6");
+        attr(div4, "class", "card svelte-vdh3h6");
+        set_style(
+          div4,
+          "width",
+          /*cardWidth*/
+          ctx[1] + "px"
+        );
+        set_style(div4, "z-index", 1e4 - /*torrentInfo*/
+        ctx[0].torrentIndex);
+        set_style(
+          div4,
+          "background-color",
+          /*$_current_bgColor*/
+          ctx[5]
+        );
+      },
+      m(target, anchor) {
+        insert(target, div4, anchor);
+        append(div4, div3);
+        append(div3, div0);
+        append(div0, t0);
+        append(div3, t1);
+        if (if_block0)
+          if_block0.m(div3, null);
+        append(div3, t2);
+        append(div3, div2);
+        if_block1.m(div2, null);
+        append(div2, t3);
+        append(div2, div1);
+        append(div1, t4);
+        append(div3, t5);
+        if (if_block2)
+          if_block2.m(div3, null);
+        append(div3, t6);
+        if (if_block3)
+          if_block3.m(div3, null);
+        if (!mounted) {
+          dispose = [
+            listen(
+              div2,
+              "click",
+              /*showDetailIframe*/
+              ctx[8]
+            ),
+            listen(
+              div3,
+              "mouseenter",
+              /*card_show_detail*/
+              ctx[9]
+            ),
+            listen(
+              div3,
+              "mouseleave",
+              /*card_hide_detail*/
+              ctx[10]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (dirty & /*torrentInfo*/
+        1 && t0_value !== (t0_value = /*torrentInfo*/
+        ctx2[0].category + ""))
+          set_data(t0, t0_value);
+        if (dirty & /*torrentInfo*/
+        1 && div0_data_href_value !== (div0_data_href_value = /*torrentInfo*/
+        ctx2[0].categoryLink)) {
+          attr(div0, "data-href", div0_data_href_value);
+        }
+        if (dirty & /*torrentInfo*/
+        1) {
+          set_style(div0, "background-color", CONFIG$2.CATEGORY[
+            /*torrentInfo*/
+            ctx2[0].categoryNumber
+          ] ?? "transparent");
+        }
+        if (dirty & /*torrentInfo*/
+        1) {
+          set_style(div0, "color", CONFIG$2.CATEGORY[
+            /*torrentInfo*/
+            ctx2[0].categoryNumber
+          ] ? getTextColor$2(CONFIG$2.CATEGORY[
+            /*torrentInfo*/
+            ctx2[0].categoryNumber
+          ]) : "black");
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].title || /*_hover*/
+          ctx2[3]
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_17$2(ctx2);
+            if_block0.c();
+            if_block0.m(div3, t2);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (current_block_type === (current_block_type = select_block_type(ctx2)) && if_block1) {
+          if_block1.p(ctx2, dirty);
+        } else {
+          if_block1.d(1);
+          if_block1 = current_block_type(ctx2);
+          if (if_block1) {
+            if_block1.c();
+            if_block1.m(div2, t3);
+          }
+        }
+        if (dirty & /*torrentInfo*/
+        1 && t4_value !== (t4_value = /*torrentInfo*/
+        ctx2[0].torrentIndex + 1 + ""))
+          set_data(t4, t4_value);
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].all || /*_hover*/
+          ctx2[3]
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_10$2(ctx2);
+            if_block2.c();
+            if_block2.m(div3, t6);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (!/*$_CARD_SHOW*/
+        (ctx2[6].all || /*_hover*/
+        ctx2[3])) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block$7(ctx2);
+            if_block3.c();
+            if_block3.m(div3, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (dirty & /*cardWidth*/
+        2) {
+          set_style(
+            div4,
+            "width",
+            /*cardWidth*/
+            ctx2[1] + "px"
+          );
+        }
+        if (dirty & /*torrentInfo*/
+        1) {
+          set_style(div4, "z-index", 1e4 - /*torrentInfo*/
+          ctx2[0].torrentIndex);
+        }
+        if (dirty & /*$_current_bgColor*/
+        32) {
+          set_style(
+            div4,
+            "background-color",
+            /*$_current_bgColor*/
+            ctx2[5]
+          );
+        }
+      },
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div4);
+        if (if_block0)
+          if_block0.d();
+        if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d();
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function COLLET_AND_ICON_CHANGE$1(jsCodeLink, card_id) {
+    try {
+      window.location.href = jsCodeLink;
+      const btn = document.querySelector(`div#${card_id}`);
+      const img = btn.children[0];
+      img.className = img.className == "delbookmark" ? "bookmark" : "delbookmark";
+      console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  function getTextColor$2(background) {
+    const color = background.replace("#", "");
+    const red = parseInt(color.substr(0, 2), 16);
+    const green = parseInt(color.substr(2, 2), 16);
+    const blue = parseInt(color.substr(4, 2), 16);
+    const brightness = (red * 299 + green * 587 + blue * 114) / 1e3;
+    return brightness < 128 ? "white" : "black";
+  }
+  const func$1 = (e) => e.outerHTML;
+  const func_1$1 = (e) => e.outerHTML;
+  const func_3$1 = (e) => e.outerHTML;
+  function instance$7($$self, $$props, $$invalidate) {
+    let $_iframe_url;
+    let $_iframe_switch;
+    let $_current_bgColor;
+    let $_CARD_SHOW;
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(14, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(15, $_iframe_switch = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(5, $_current_bgColor = $$value));
+    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(6, $_CARD_SHOW = $$value));
+    function sort_masonry() {
+      sortMasonry();
+    }
+    function showDetailIframe() {
+      set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
+      set_store_value(_iframe_url, $_iframe_url = torrentInfo.torrentLink + "#kdescr", $_iframe_url);
+    }
+    let { torrentInfo } = $$props;
+    let { cardWidth } = $$props;
+    let { ICON: ICON2 } = $$props;
+    let _hover = false;
+    function card_show_detail() {
+      $$invalidate(3, _hover = true);
+    }
+    function card_hide_detail() {
+      $$invalidate(3, _hover = false);
+    }
+    let _picError = false;
+    const error_handler = () => {
+      $$invalidate(4, _picError = true);
+    };
+    const func_2 = (el) => {
+      const _tag = document.createElement("div");
+      _tag.innerHTML = el.outerHTML;
+      return _tag.outerHTML;
+    };
+    const func_4 = (el) => {
+      const _tag = document.createElement("div");
+      _tag.innerHTML = el.outerHTML;
+      return _tag.outerHTML;
+    };
+    $$self.$$set = ($$props2) => {
+      if ("torrentInfo" in $$props2)
+        $$invalidate(0, torrentInfo = $$props2.torrentInfo);
+      if ("cardWidth" in $$props2)
+        $$invalidate(1, cardWidth = $$props2.cardWidth);
+      if ("ICON" in $$props2)
+        $$invalidate(2, ICON2 = $$props2.ICON);
+    };
+    return [
+      torrentInfo,
+      cardWidth,
+      ICON2,
+      _hover,
+      _picError,
+      $_current_bgColor,
+      $_CARD_SHOW,
+      sort_masonry,
+      showDetailIframe,
+      card_show_detail,
+      card_hide_detail,
+      error_handler,
+      func_2,
+      func_4
+    ];
+  }
+  class Kamept extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance$7, create_fragment$7, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
+    }
+  }
+  function create_if_block_17$1(ctx) {
+    let div;
+    let a;
+    let t0;
+    let b;
+    let t1_value = (
+      /*torrentInfo*/
+      ctx[0].torrent_name + ""
+    );
+    let t1;
+    let a_href_value;
+    let if_block = (
+      /*torrentInfo*/
+      ctx[0].tempTagDom.length != 0 && create_if_block_18$1(ctx)
+    );
+    return {
+      c() {
+        div = element("div");
+        a = element("a");
+        if (if_block)
+          if_block.c();
+        t0 = space();
+        b = element("b");
+        t1 = text(t1_value);
+        attr(a, "class", "two-lines svelte-1fw75v2");
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[0].torrentLink);
+        attr(a, "target", "_blank");
+        attr(div, "class", "card-title svelte-1fw75v2");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, a);
+        if (if_block)
+          if_block.m(a, null);
+        append(a, t0);
+        append(a, b);
+        append(b, t1);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          ctx2[0].tempTagDom.length != 0
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+          } else {
+            if_block = create_if_block_18$1(ctx2);
+            if_block.c();
+            if_block.m(a, t0);
+          }
+        } else if (if_block) {
+          if_block.d(1);
+          if_block = null;
+        }
+        if (dirty & /*torrentInfo*/
+        1 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx2[0].torrent_name + ""))
+          set_data(t1, t1_value);
+        if (dirty & /*torrentInfo*/
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[0].torrentLink)) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+        if (if_block)
+          if_block.d();
+      }
+    };
+  }
+  function create_if_block_18$1(ctx) {
+    let span;
+    let raw_value = Array.from(
+      /*torrentInfo*/
+      ctx[0].tempTagDom
+    ).map(func) + "";
+    return {
+      c() {
+        span = element("span");
+        attr(span, "class", "tempTags svelte-1fw75v2");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+        span.innerHTML = raw_value;
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && raw_value !== (raw_value = Array.from(
+          /*torrentInfo*/
+          ctx2[0].tempTagDom
+        ).map(func) + ""))
+          span.innerHTML = raw_value;
+      },
+      d(detaching) {
+        if (detaching)
+          detach(span);
+      }
+    };
+  }
+  function create_else_block$3(ctx) {
+    let div2;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let div1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div2 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        div1 = element("div");
+        div1.textContent = "图片加载失败";
+        set_style(img, "height", "100%");
+        set_style(img, "width", "100px");
+        if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "pic error");
+        attr(img, "class", "svelte-1fw75v2");
+        attr(div2, "class", "pic_error");
+        attr(div2, "style", "");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, img);
+        append(div2, t0);
+        append(div2, div1);
+        if (!mounted) {
+          dispose = listen(
+            img,
+            "load",
+            /*sort_masonry*/
+            ctx[8]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_16$1(ctx) {
+    let img;
+    let img_src_value;
+    let img_data_src_value;
+    let img_alt_value;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        img = element("img");
+        attr(img, "class", "card-image--img nexus-lazy-load_Kesa svelte-1fw75v2");
+        if (!src_url_equal(img.src, img_src_value = CONFIG$1.LOADING_PIC))
+          attr(img, "src", img_src_value);
+        attr(img, "data-src", img_data_src_value = /*torrentInfo*/
+        ctx[0].picLink);
+        attr(img, "alt", img_alt_value = /*torrentInfo*/
+        ctx[0].torrentName);
+      },
+      m(target, anchor) {
+        insert(target, img, anchor);
+        if (!mounted) {
+          dispose = [
+            listen(
+              img,
+              "load",
+              /*sort_masonry*/
+              ctx[8]
+            ),
+            listen(
+              img,
+              "error",
+              /*error_handler*/
+              ctx[12]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*torrentInfo*/
+        1 && img_data_src_value !== (img_data_src_value = /*torrentInfo*/
+        ctx2[0].picLink)) {
+          attr(img, "data-src", img_data_src_value);
+        }
+        if (dirty & /*torrentInfo*/
+        1 && img_alt_value !== (img_alt_value = /*torrentInfo*/
+        ctx2[0].torrentName)) {
+          attr(img, "alt", img_alt_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(img);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
   function create_if_block_10$1(ctx) {
     let t0;
     let t1;
@@ -5558,7 +8038,7 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_2*/
-        ctx[10]
+        ctx[13]
       ).join("") + ""
     );
     let t2;
@@ -5735,26 +8215,26 @@
         t25 = text(" ");
         b6 = element("b");
         t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-vdh3h6");
+        attr(div0, "class", "cl-tags svelte-1fw75v2");
         html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-vdh3h6");
+        attr(div1, "class", "cl-center svelte-1fw75v2");
         html_tag_1.a = t6;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-vdh3h6");
+        attr(div2, "class", "cl-center svelte-1fw75v2");
         html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-vdh3h6");
+        attr(div3, "class", "btnCollet cl-center svelte-1fw75v2");
         attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-vdh3h6");
-        attr(div5, "class", "card-line svelte-vdh3h6");
-        attr(div6, "class", "card-line svelte-vdh3h6");
+        attr(div4, "class", "cl-center svelte-1fw75v2");
+        attr(div5, "class", "card-line svelte-1fw75v2");
+        attr(div6, "class", "card-line svelte-1fw75v2");
         html_tag_3.a = t16;
         html_tag_4.a = t19;
         html_tag_5.a = t22;
         html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-vdh3h6");
-        attr(div8, "class", "card-details svelte-vdh3h6");
+        attr(div7, "class", "card-line svelte-1fw75v2");
+        attr(div8, "class", "card-details svelte-1fw75v2");
       },
       m(target, anchor) {
         if (if_block0)
@@ -5813,13 +8293,13 @@
         append(b6, t26);
         if (!mounted) {
           dispose = listen(div3, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE$1(
+            if (is_function(COLLET_AND_ICON_CHANGE(
               /*torrentInfo*/
               ctx[0].collectLink,
               "tI_" + /*torrentInfo*/
               ctx[0].torrentIndex
             )))
-              COLLET_AND_ICON_CHANGE$1(
+              COLLET_AND_ICON_CHANGE(
                 /*torrentInfo*/
                 ctx[0].collectLink,
                 "tI_" + /*torrentInfo*/
@@ -5866,7 +8346,7 @@
         1 && raw0_value !== (raw0_value = /*torrentInfo*/
         ctx[0].tagsDOM.map(
           /*func_2*/
-          ctx[10]
+          ctx[13]
         ).join("") + ""))
           div0.innerHTML = raw0_value;
         if (dirty & /*ICON*/
@@ -5989,8 +8469,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-vdh3h6");
-        attr(div1, "class", "card-alter svelte-vdh3h6");
+        ctx[0].free_type + " svelte-1fw75v2");
+        attr(div1, "class", "card-alter svelte-1fw75v2");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6052,7 +8532,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-vdh3h6")) {
+        ctx2[0].free_type + " svelte-1fw75v2")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -6073,7 +8553,7 @@
     let raw_value = Array.from(
       /*torrentInfo*/
       ctx[0].place_at_the_top
-    ).map(func_1$1) + "&nbsp;";
+    ).map(func_1) + "&nbsp;";
     let html_anchor;
     return {
       c() {
@@ -6090,7 +8570,7 @@
         1 && raw_value !== (raw_value = Array.from(
           /*torrentInfo*/
           ctx2[0].place_at_the_top
-        ).map(func_1$1) + "&nbsp;"))
+        ).map(func_1) + "&nbsp;"))
           html_tag.p(raw_value);
       },
       d(detaching) {
@@ -6177,7 +8657,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-vdh3h6");
+        attr(a, "class", "card-description svelte-1fw75v2");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -6202,7 +8682,7 @@
       }
     };
   }
-  function create_if_block$4(ctx) {
+  function create_if_block$6(ctx) {
     let t0;
     let t1;
     let t2;
@@ -6211,30 +8691,31 @@
     let t4;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      ctx[5].free && /*torrentInfo*/
+      ctx[7].free && /*torrentInfo*/
       (ctx[0].free_type || /*torrentInfo*/
       ctx[0].pattMsg) && create_if_block_6$1(ctx)
     );
     let if_block1 = (
       /*$_CARD_SHOW*/
-      ctx[5].sub_title && /*torrentInfo*/
+      ctx[7].sub_title && /*torrentInfo*/
       ctx[0].description && create_if_block_5$1(ctx)
     );
     let if_block2 = (
       /*$_CARD_SHOW*/
-      ctx[5].tags && create_if_block_4$1(ctx)
+      ctx[7].tags && /*torrentInfo*/
+      ctx[0].tagsDOM.length != 0 && create_if_block_4$1(ctx)
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
-      ctx[5].size_download_collect && create_if_block_3$2(ctx)
+      ctx[7].size_download_collect && create_if_block_3$2(ctx)
     );
     let if_block4 = (
       /*$_CARD_SHOW*/
-      ctx[5].upload_time && create_if_block_2$2(ctx)
+      ctx[7].upload_time && create_if_block_2$2(ctx)
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[5].statistics && create_if_block_1$3(ctx)
+      ctx[7].statistics && create_if_block_1$4(ctx)
     );
     return {
       c() {
@@ -6256,7 +8737,7 @@
         t4 = space();
         if (if_block5)
           if_block5.c();
-        attr(div, "class", "card-details svelte-vdh3h6");
+        attr(div, "class", "card-details svelte-1fw75v2");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6281,7 +8762,7 @@
       p(ctx2, dirty) {
         if (
           /*$_CARD_SHOW*/
-          ctx2[5].free && /*torrentInfo*/
+          ctx2[7].free && /*torrentInfo*/
           (ctx2[0].free_type || /*torrentInfo*/
           ctx2[0].pattMsg)
         ) {
@@ -6298,7 +8779,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[5].sub_title && /*torrentInfo*/
+          ctx2[7].sub_title && /*torrentInfo*/
           ctx2[0].description
         ) {
           if (if_block1) {
@@ -6314,7 +8795,8 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[5].tags
+          ctx2[7].tags && /*torrentInfo*/
+          ctx2[0].tagsDOM.length != 0
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
@@ -6329,7 +8811,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[5].size_download_collect
+          ctx2[7].size_download_collect
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
@@ -6344,7 +8826,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[5].upload_time
+          ctx2[7].upload_time
         ) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
@@ -6359,12 +8841,12 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[5].statistics
+          ctx2[7].statistics
         ) {
           if (if_block5) {
             if_block5.p(ctx2, dirty);
           } else {
-            if_block5 = create_if_block_1$3(ctx2);
+            if_block5 = create_if_block_1$4(ctx2);
             if_block5.c();
             if_block5.m(div, null);
           }
@@ -6428,8 +8910,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-vdh3h6");
-        attr(div1, "class", "card-alter svelte-vdh3h6");
+        ctx[0].free_type + " svelte-1fw75v2");
+        attr(div1, "class", "card-alter svelte-1fw75v2");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6491,7 +8973,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-vdh3h6")) {
+        ctx2[0].free_type + " svelte-1fw75v2")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -6512,7 +8994,7 @@
     let raw_value = Array.from(
       /*torrentInfo*/
       ctx[0].place_at_the_top
-    ).map(func_3$1) + "&nbsp;";
+    ).map(func_3) + "&nbsp;";
     let html_anchor;
     return {
       c() {
@@ -6529,7 +9011,7 @@
         1 && raw_value !== (raw_value = Array.from(
           /*torrentInfo*/
           ctx2[0].place_at_the_top
-        ).map(func_3$1) + "&nbsp;"))
+        ).map(func_3) + "&nbsp;"))
           html_tag.p(raw_value);
       },
       d(detaching) {
@@ -6616,7 +9098,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-vdh3h6");
+        attr(a, "class", "card-description svelte-1fw75v2");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -6647,1939 +9129,7 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_4*/
-        ctx[11]
-      ).join("") + ""
-    );
-    return {
-      c() {
-        div = element("div");
-        attr(div, "class", "cl-tags svelte-vdh3h6");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        div.innerHTML = raw_value;
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = /*torrentInfo*/
-        ctx2[0].tagsDOM.map(
-          /*func_4*/
-          ctx2[11]
-        ).join("") + ""))
-          div.innerHTML = raw_value;
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function create_if_block_3$2(ctx) {
-    let div4;
-    let div0;
-    let html_tag;
-    let raw0_value = (
-      /*ICON*/
-      ctx[2].SIZE + ""
-    );
-    let t0;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].size + ""
-    );
-    let t1;
-    let t2;
-    let div1;
-    let html_tag_1;
-    let raw1_value = (
-      /*ICON*/
-      ctx[2].DOWNLOAD + ""
-    );
-    let t3;
-    let b0;
-    let a;
-    let t4;
-    let a_href_value;
-    let t5;
-    let div3;
-    let div2;
-    let html_tag_2;
-    let raw2_value = (
-      /*torrentInfo*/
-      (ctx[0].collectState == "Unbookmarked" ? (
-        /*ICON*/
-        ctx[2].COLLET
-      ) : (
-        /*ICON*/
-        ctx[2].COLLETED
-      )) + ""
-    );
-    let t6;
-    let b1;
-    let div2_id_value;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div4 = element("div");
-        div0 = element("div");
-        html_tag = new HtmlTag(false);
-        t0 = text(" ");
-        t1 = text(t1_value);
-        t2 = text("\n\n            \n              \n            ");
-        div1 = element("div");
-        html_tag_1 = new HtmlTag(false);
-        t3 = text(" \n              ");
-        b0 = element("b");
-        a = element("a");
-        t4 = text("下载");
-        t5 = text("\n\n            \n              \n            ");
-        div3 = element("div");
-        div2 = element("div");
-        html_tag_2 = new HtmlTag(false);
-        t6 = text("\n                 ");
-        b1 = element("b");
-        b1.textContent = "收藏";
-        html_tag.a = t0;
-        attr(div0, "class", "cl-center svelte-vdh3h6");
-        html_tag_1.a = t3;
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink);
-        attr(div1, "class", "cl-center svelte-vdh3h6");
-        html_tag_2.a = t6;
-        attr(div2, "class", "btnCollet cl-center svelte-vdh3h6");
-        attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex);
-        attr(div3, "class", "cl-center svelte-vdh3h6");
-        attr(div4, "class", "card-line svelte-vdh3h6");
-      },
-      m(target, anchor) {
-        insert(target, div4, anchor);
-        append(div4, div0);
-        html_tag.m(raw0_value, div0);
-        append(div0, t0);
-        append(div0, t1);
-        append(div4, t2);
-        append(div4, div1);
-        html_tag_1.m(raw1_value, div1);
-        append(div1, t3);
-        append(div1, b0);
-        append(b0, a);
-        append(a, t4);
-        append(div4, t5);
-        append(div4, div3);
-        append(div3, div2);
-        html_tag_2.m(raw2_value, div2);
-        append(div2, t6);
-        append(div2, b1);
-        if (!mounted) {
-          dispose = listen(div2, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE$1(
-              /*torrentInfo*/
-              ctx[0].collectLink,
-              "tI_" + /*torrentInfo*/
-              ctx[0].torrentIndex
-            )))
-              COLLET_AND_ICON_CHANGE$1(
-                /*torrentInfo*/
-                ctx[0].collectLink,
-                "tI_" + /*torrentInfo*/
-                ctx[0].torrentIndex
-              ).apply(this, arguments);
-          });
-          mounted = true;
-        }
-      },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
-        if (dirty & /*ICON*/
-        4 && raw0_value !== (raw0_value = /*ICON*/
-        ctx[2].SIZE + ""))
-          html_tag.p(raw0_value);
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx[0].size + ""))
-          set_data(t1, t1_value);
-        if (dirty & /*ICON*/
-        4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx[2].DOWNLOAD + ""))
-          html_tag_1.p(raw1_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink)) {
-          attr(a, "href", a_href_value);
-        }
-        if (dirty & /*torrentInfo, ICON*/
-        5 && raw2_value !== (raw2_value = /*torrentInfo*/
-        (ctx[0].collectState == "Unbookmarked" ? (
-          /*ICON*/
-          ctx[2].COLLET
-        ) : (
-          /*ICON*/
-          ctx[2].COLLETED
-        )) + ""))
-          html_tag_2.p(raw2_value);
-        if (dirty & /*torrentInfo*/
-        1 && div2_id_value !== (div2_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex)) {
-          attr(div2, "id", div2_id_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div4);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_2$2(ctx) {
-    let div;
-    let b;
-    let t1;
-    let t2_value = (
-      /*torrentInfo*/
-      ctx[0].upload_date + ""
-    );
-    let t2;
-    return {
-      c() {
-        div = element("div");
-        b = element("b");
-        b.textContent = "上传时间:";
-        t1 = space();
-        t2 = text(t2_value);
-        attr(div, "class", "card-line svelte-vdh3h6");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, b);
-        append(div, t1);
-        append(div, t2);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t2_value !== (t2_value = /*torrentInfo*/
-        ctx2[0].upload_date + ""))
-          set_data(t2, t2_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function create_if_block_1$3(ctx) {
-    let div;
-    let html_tag;
-    let raw0_value = (
-      /*ICON*/
-      ctx[2].COMMENT + ""
-    );
-    let t0;
-    let b0;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].comments + ""
-    );
-    let t1;
-    let t2;
-    let html_tag_1;
-    let raw1_value = (
-      /*ICON*/
-      ctx[2].SEEDERS + ""
-    );
-    let t3;
-    let b1;
-    let t4_value = (
-      /*torrentInfo*/
-      ctx[0].seeders + ""
-    );
-    let t4;
-    let t5;
-    let html_tag_2;
-    let raw2_value = (
-      /*ICON*/
-      ctx[2].LEECHERS + ""
-    );
-    let t6;
-    let b2;
-    let t7_value = (
-      /*torrentInfo*/
-      ctx[0].leechers + ""
-    );
-    let t7;
-    let t8;
-    let html_tag_3;
-    let raw3_value = (
-      /*ICON*/
-      ctx[2].SNATCHED + ""
-    );
-    let t9;
-    let b3;
-    let t10_value = (
-      /*torrentInfo*/
-      ctx[0].snatched + ""
-    );
-    let t10;
-    return {
-      c() {
-        div = element("div");
-        html_tag = new HtmlTag(false);
-        t0 = text(" ");
-        b0 = element("b");
-        t1 = text(t1_value);
-        t2 = text("  \n            ");
-        html_tag_1 = new HtmlTag(false);
-        t3 = text(" ");
-        b1 = element("b");
-        t4 = text(t4_value);
-        t5 = text("  \n            ");
-        html_tag_2 = new HtmlTag(false);
-        t6 = text(" ");
-        b2 = element("b");
-        t7 = text(t7_value);
-        t8 = text("  \n            ");
-        html_tag_3 = new HtmlTag(false);
-        t9 = text(" ");
-        b3 = element("b");
-        t10 = text(t10_value);
-        html_tag.a = t0;
-        html_tag_1.a = t3;
-        html_tag_2.a = t6;
-        html_tag_3.a = t9;
-        attr(div, "class", "card-line svelte-vdh3h6");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        html_tag.m(raw0_value, div);
-        append(div, t0);
-        append(div, b0);
-        append(b0, t1);
-        append(div, t2);
-        html_tag_1.m(raw1_value, div);
-        append(div, t3);
-        append(div, b1);
-        append(b1, t4);
-        append(div, t5);
-        html_tag_2.m(raw2_value, div);
-        append(div, t6);
-        append(div, b2);
-        append(b2, t7);
-        append(div, t8);
-        html_tag_3.m(raw3_value, div);
-        append(div, t9);
-        append(div, b3);
-        append(b3, t10);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*ICON*/
-        4 && raw0_value !== (raw0_value = /*ICON*/
-        ctx2[2].COMMENT + ""))
-          html_tag.p(raw0_value);
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].comments + ""))
-          set_data(t1, t1_value);
-        if (dirty & /*ICON*/
-        4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx2[2].SEEDERS + ""))
-          html_tag_1.p(raw1_value);
-        if (dirty & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx2[0].seeders + ""))
-          set_data(t4, t4_value);
-        if (dirty & /*ICON*/
-        4 && raw2_value !== (raw2_value = /*ICON*/
-        ctx2[2].LEECHERS + ""))
-          html_tag_2.p(raw2_value);
-        if (dirty & /*torrentInfo*/
-        1 && t7_value !== (t7_value = /*torrentInfo*/
-        ctx2[0].leechers + ""))
-          set_data(t7, t7_value);
-        if (dirty & /*ICON*/
-        4 && raw3_value !== (raw3_value = /*ICON*/
-        ctx2[2].SNATCHED + ""))
-          html_tag_3.p(raw3_value);
-        if (dirty & /*torrentInfo*/
-        1 && t10_value !== (t10_value = /*torrentInfo*/
-        ctx2[0].snatched + ""))
-          set_data(t10, t10_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function create_fragment$5(ctx) {
-    let div4;
-    let div3;
-    let div0;
-    let t0_value = (
-      /*torrentInfo*/
-      ctx[0].category + ""
-    );
-    let t0;
-    let div0_data_href_value;
-    let t1;
-    let t2;
-    let div2;
-    let img;
-    let img_src_value;
-    let img_data_src_value;
-    let img_alt_value;
-    let t3;
-    let div1;
-    let t4_value = (
-      /*torrentInfo*/
-      ctx[0].torrentIndex + 1 + ""
-    );
-    let t4;
-    let t5;
-    let t6;
-    let mounted;
-    let dispose;
-    let if_block0 = (
-      /*$_CARD_SHOW*/
-      (ctx[5].title || /*_hover*/
-      ctx[3]) && create_if_block_16$1(ctx)
-    );
-    let if_block1 = (
-      /*$_CARD_SHOW*/
-      (ctx[5].all || /*_hover*/
-      ctx[3]) && create_if_block_10$1(ctx)
-    );
-    let if_block2 = !/*$_CARD_SHOW*/
-    (ctx[5].all || /*_hover*/
-    ctx[3]) && create_if_block$4(ctx);
-    return {
-      c() {
-        div4 = element("div");
-        div3 = element("div");
-        div0 = element("div");
-        t0 = text(t0_value);
-        t1 = space();
-        if (if_block0)
-          if_block0.c();
-        t2 = space();
-        div2 = element("div");
-        img = element("img");
-        t3 = space();
-        div1 = element("div");
-        t4 = text(t4_value);
-        t5 = space();
-        if (if_block1)
-          if_block1.c();
-        t6 = space();
-        if (if_block2)
-          if_block2.c();
-        attr(div0, "class", "card-category svelte-vdh3h6");
-        attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
-        ctx[0].categoryLink);
-        set_style(div0, "background-color", CONFIG$2.CATEGORY[
-          /*torrentInfo*/
-          ctx[0].categoryNumber
-        ] ?? "transparent");
-        set_style(div0, "color", CONFIG$2.CATEGORY[
-          /*torrentInfo*/
-          ctx[0].categoryNumber
-        ] ? getTextColor$1(CONFIG$2.CATEGORY[
-          /*torrentInfo*/
-          ctx[0].categoryNumber
-        ]) : "black");
-        attr(img, "class", "card-image--img nexus-lazy-load_Kesa svelte-vdh3h6");
-        if (!src_url_equal(img.src, img_src_value = CONFIG$2.LOADING_PIC))
-          attr(img, "src", img_src_value);
-        attr(img, "data-src", img_data_src_value = /*torrentInfo*/
-        ctx[0].picLink);
-        attr(img, "alt", img_alt_value = /*torrentInfo*/
-        ctx[0].torrentName);
-        attr(div1, "class", "card-index svelte-vdh3h6");
-        attr(div2, "class", "card-image svelte-vdh3h6");
-        attr(div3, "class", "card-holder svelte-vdh3h6");
-        attr(div4, "class", "card svelte-vdh3h6");
-        set_style(
-          div4,
-          "width",
-          /*cardWidth*/
-          ctx[1] + "px"
-        );
-        set_style(div4, "z-index", 1e4 - /*torrentInfo*/
-        ctx[0].torrentIndex);
-        set_style(
-          div4,
-          "background-color",
-          /*$_current_bgColor*/
-          ctx[4]
-        );
-      },
-      m(target, anchor) {
-        insert(target, div4, anchor);
-        append(div4, div3);
-        append(div3, div0);
-        append(div0, t0);
-        append(div3, t1);
-        if (if_block0)
-          if_block0.m(div3, null);
-        append(div3, t2);
-        append(div3, div2);
-        append(div2, img);
-        append(div2, t3);
-        append(div2, div1);
-        append(div1, t4);
-        append(div3, t5);
-        if (if_block1)
-          if_block1.m(div3, null);
-        append(div3, t6);
-        if (if_block2)
-          if_block2.m(div3, null);
-        if (!mounted) {
-          dispose = [
-            listen(
-              img,
-              "load",
-              /*sort_masonry*/
-              ctx[6]
-            ),
-            listen(
-              img,
-              "click",
-              /*showDetailIframe*/
-              ctx[7]
-            ),
-            listen(
-              div3,
-              "mouseenter",
-              /*card_show_detail*/
-              ctx[8]
-            ),
-            listen(
-              div3,
-              "mouseleave",
-              /*card_hide_detail*/
-              ctx[9]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, [dirty]) {
-        if (dirty & /*torrentInfo*/
-        1 && t0_value !== (t0_value = /*torrentInfo*/
-        ctx2[0].category + ""))
-          set_data(t0, t0_value);
-        if (dirty & /*torrentInfo*/
-        1 && div0_data_href_value !== (div0_data_href_value = /*torrentInfo*/
-        ctx2[0].categoryLink)) {
-          attr(div0, "data-href", div0_data_href_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1) {
-          set_style(div0, "background-color", CONFIG$2.CATEGORY[
-            /*torrentInfo*/
-            ctx2[0].categoryNumber
-          ] ?? "transparent");
-        }
-        if (dirty & /*torrentInfo*/
-        1) {
-          set_style(div0, "color", CONFIG$2.CATEGORY[
-            /*torrentInfo*/
-            ctx2[0].categoryNumber
-          ] ? getTextColor$1(CONFIG$2.CATEGORY[
-            /*torrentInfo*/
-            ctx2[0].categoryNumber
-          ]) : "black");
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[5].title || /*_hover*/
-          ctx2[3]
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_16$1(ctx2);
-            if_block0.c();
-            if_block0.m(div3, t2);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && img_data_src_value !== (img_data_src_value = /*torrentInfo*/
-        ctx2[0].picLink)) {
-          attr(img, "data-src", img_data_src_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && img_alt_value !== (img_alt_value = /*torrentInfo*/
-        ctx2[0].torrentName)) {
-          attr(img, "alt", img_alt_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx2[0].torrentIndex + 1 + ""))
-          set_data(t4, t4_value);
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[5].all || /*_hover*/
-          ctx2[3]
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_10$1(ctx2);
-            if_block1.c();
-            if_block1.m(div3, t6);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (!/*$_CARD_SHOW*/
-        (ctx2[5].all || /*_hover*/
-        ctx2[3])) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block$4(ctx2);
-            if_block2.c();
-            if_block2.m(div3, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (dirty & /*cardWidth*/
-        2) {
-          set_style(
-            div4,
-            "width",
-            /*cardWidth*/
-            ctx2[1] + "px"
-          );
-        }
-        if (dirty & /*torrentInfo*/
-        1) {
-          set_style(div4, "z-index", 1e4 - /*torrentInfo*/
-          ctx2[0].torrentIndex);
-        }
-        if (dirty & /*$_current_bgColor*/
-        16) {
-          set_style(
-            div4,
-            "background-color",
-            /*$_current_bgColor*/
-            ctx2[4]
-          );
-        }
-      },
-      i: noop,
-      o: noop,
-      d(detaching) {
-        if (detaching)
-          detach(div4);
-        if (if_block0)
-          if_block0.d();
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function COLLET_AND_ICON_CHANGE$1(jsCodeLink, card_id) {
-    try {
-      window.location.href = jsCodeLink;
-      const btn = document.querySelector(`div#${card_id}`);
-      const img = btn.children[0];
-      img.className = img.className == "delbookmark" ? "bookmark" : "delbookmark";
-      console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  function getTextColor$1(background) {
-    const color = background.replace("#", "");
-    const red = parseInt(color.substr(0, 2), 16);
-    const green = parseInt(color.substr(2, 2), 16);
-    const blue = parseInt(color.substr(4, 2), 16);
-    const brightness = (red * 299 + green * 587 + blue * 114) / 1e3;
-    return brightness < 128 ? "white" : "black";
-  }
-  const func$1 = (e) => e.outerHTML;
-  const func_1$1 = (e) => e.outerHTML;
-  const func_3$1 = (e) => e.outerHTML;
-  function instance$5($$self, $$props, $$invalidate) {
-    let $_iframe_url;
-    let $_iframe_switch;
-    let $_current_bgColor;
-    let $_CARD_SHOW;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(12, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(13, $_iframe_switch = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(4, $_current_bgColor = $$value));
-    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(5, $_CARD_SHOW = $$value));
-    function sort_masonry() {
-      sortMasonry();
-    }
-    function showDetailIframe() {
-      set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
-      set_store_value(_iframe_url, $_iframe_url = torrentInfo.torrentLink + "#kdescr", $_iframe_url);
-    }
-    let { torrentInfo } = $$props;
-    let { cardWidth } = $$props;
-    let { ICON: ICON2 } = $$props;
-    let _hover = false;
-    function card_show_detail() {
-      $$invalidate(3, _hover = true);
-    }
-    function card_hide_detail() {
-      $$invalidate(3, _hover = false);
-    }
-    const func_2 = (el) => {
-      const _tag = document.createElement("div");
-      _tag.innerHTML = el.outerHTML;
-      return _tag.outerHTML;
-    };
-    const func_4 = (el) => {
-      const _tag = document.createElement("div");
-      _tag.innerHTML = el.outerHTML;
-      return _tag.outerHTML;
-    };
-    $$self.$$set = ($$props2) => {
-      if ("torrentInfo" in $$props2)
-        $$invalidate(0, torrentInfo = $$props2.torrentInfo);
-      if ("cardWidth" in $$props2)
-        $$invalidate(1, cardWidth = $$props2.cardWidth);
-      if ("ICON" in $$props2)
-        $$invalidate(2, ICON2 = $$props2.ICON);
-    };
-    return [
-      torrentInfo,
-      cardWidth,
-      ICON2,
-      _hover,
-      $_current_bgColor,
-      $_CARD_SHOW,
-      sort_masonry,
-      showDetailIframe,
-      card_show_detail,
-      card_hide_detail,
-      func_2,
-      func_4
-    ];
-  }
-  class Kamept extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance$5, create_fragment$5, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
-    }
-  }
-  function create_if_block_16(ctx) {
-    let div;
-    let a;
-    let t0;
-    let b;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].torrent_name + ""
-    );
-    let t1;
-    let a_href_value;
-    let if_block = (
-      /*torrentInfo*/
-      ctx[0].tempTagDom.length != 0 && create_if_block_17(ctx)
-    );
-    return {
-      c() {
-        div = element("div");
-        a = element("a");
-        if (if_block)
-          if_block.c();
-        t0 = space();
-        b = element("b");
-        t1 = text(t1_value);
-        attr(a, "class", "two-lines svelte-1fw75v2");
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].torrentLink);
-        attr(a, "target", "_blank");
-        attr(div, "class", "card-title svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, a);
-        if (if_block)
-          if_block.m(a, null);
-        append(a, t0);
-        append(a, b);
-        append(b, t1);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].tempTagDom.length != 0
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block_17(ctx2);
-            if_block.c();
-            if_block.m(a, t0);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].torrent_name + ""))
-          set_data(t1, t1_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].torrentLink)) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-        if (if_block)
-          if_block.d();
-      }
-    };
-  }
-  function create_if_block_17(ctx) {
-    let span;
-    let raw_value = Array.from(
-      /*torrentInfo*/
-      ctx[0].tempTagDom
-    ).map(func) + "";
-    return {
-      c() {
-        span = element("span");
-        attr(span, "class", "tempTags svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-        span.innerHTML = raw_value;
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = Array.from(
-          /*torrentInfo*/
-          ctx2[0].tempTagDom
-        ).map(func) + ""))
-          span.innerHTML = raw_value;
-      },
-      d(detaching) {
-        if (detaching)
-          detach(span);
-      }
-    };
-  }
-  function create_if_block_10(ctx) {
-    let t0;
-    let t1;
-    let div0;
-    let raw0_value = (
-      /*torrentInfo*/
-      ctx[0].tagsDOM.map(
-        /*func_2*/
-        ctx[11]
-      ).join("") + ""
-    );
-    let t2;
-    let div8;
-    let div5;
-    let div1;
-    let html_tag;
-    let raw1_value = (
-      /*ICON*/
-      ctx[2].SIZE + ""
-    );
-    let t3;
-    let t4_value = (
-      /*torrentInfo*/
-      ctx[0].size + ""
-    );
-    let t4;
-    let t5;
-    let div2;
-    let html_tag_1;
-    let raw2_value = (
-      /*ICON*/
-      ctx[2].DOWNLOAD + ""
-    );
-    let t6;
-    let b0;
-    let a;
-    let t7;
-    let a_href_value;
-    let t8;
-    let div4;
-    let div3;
-    let html_tag_2;
-    let raw3_value = (
-      /*torrentInfo*/
-      (ctx[0].collectState == "Unbookmarked" ? (
-        /*ICON*/
-        ctx[2].COLLET
-      ) : (
-        /*ICON*/
-        ctx[2].COLLETED
-      )) + ""
-    );
-    let t9;
-    let b1;
-    let div3_id_value;
-    let t11;
-    let div6;
-    let b2;
-    let t13;
-    let t14_value = (
-      /*torrentInfo*/
-      ctx[0].upload_date + ""
-    );
-    let t14;
-    let t15;
-    let div7;
-    let html_tag_3;
-    let raw4_value = (
-      /*ICON*/
-      ctx[2].COMMENT + ""
-    );
-    let t16;
-    let b3;
-    let t17_value = (
-      /*torrentInfo*/
-      ctx[0].comments + ""
-    );
-    let t17;
-    let t18;
-    let html_tag_4;
-    let raw5_value = (
-      /*ICON*/
-      ctx[2].SEEDERS + ""
-    );
-    let t19;
-    let b4;
-    let t20_value = (
-      /*torrentInfo*/
-      ctx[0].seeders + ""
-    );
-    let t20;
-    let t21;
-    let html_tag_5;
-    let raw6_value = (
-      /*ICON*/
-      ctx[2].LEECHERS + ""
-    );
-    let t22;
-    let b5;
-    let t23_value = (
-      /*torrentInfo*/
-      ctx[0].leechers + ""
-    );
-    let t23;
-    let t24;
-    let html_tag_6;
-    let raw7_value = (
-      /*ICON*/
-      ctx[2].SNATCHED + ""
-    );
-    let t25;
-    let b6;
-    let t26_value = (
-      /*torrentInfo*/
-      ctx[0].snatched + ""
-    );
-    let t26;
-    let mounted;
-    let dispose;
-    let if_block0 = (
-      /*torrentInfo*/
-      (ctx[0].free_type || /*torrentInfo*/
-      ctx[0].pattMsg) && create_if_block_12(ctx)
-    );
-    let if_block1 = (
-      /*torrentInfo*/
-      ctx[0].description && create_if_block_11(ctx)
-    );
-    return {
-      c() {
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        div0 = element("div");
-        t2 = space();
-        div8 = element("div");
-        div5 = element("div");
-        div1 = element("div");
-        html_tag = new HtmlTag(false);
-        t3 = text(" ");
-        t4 = text(t4_value);
-        t5 = text("\n\n          \n            \n          ");
-        div2 = element("div");
-        html_tag_1 = new HtmlTag(false);
-        t6 = text(" \n            ");
-        b0 = element("b");
-        a = element("a");
-        t7 = text("下载");
-        t8 = text("\n\n          \n            \n          ");
-        div4 = element("div");
-        div3 = element("div");
-        html_tag_2 = new HtmlTag(false);
-        t9 = text("\n               ");
-        b1 = element("b");
-        b1.textContent = "收藏";
-        t11 = space();
-        div6 = element("div");
-        b2 = element("b");
-        b2.textContent = "上传时间:";
-        t13 = space();
-        t14 = text(t14_value);
-        t15 = space();
-        div7 = element("div");
-        html_tag_3 = new HtmlTag(false);
-        t16 = text(" ");
-        b3 = element("b");
-        t17 = text(t17_value);
-        t18 = text("  \n          ");
-        html_tag_4 = new HtmlTag(false);
-        t19 = text(" ");
-        b4 = element("b");
-        t20 = text(t20_value);
-        t21 = text("  \n          ");
-        html_tag_5 = new HtmlTag(false);
-        t22 = text(" ");
-        b5 = element("b");
-        t23 = text(t23_value);
-        t24 = text("  \n          ");
-        html_tag_6 = new HtmlTag(false);
-        t25 = text(" ");
-        b6 = element("b");
-        t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-1fw75v2");
-        html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-1fw75v2");
-        html_tag_1.a = t6;
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-1fw75v2");
-        html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-1fw75v2");
-        attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-1fw75v2");
-        attr(div5, "class", "card-line svelte-1fw75v2");
-        attr(div6, "class", "card-line svelte-1fw75v2");
-        html_tag_3.a = t16;
-        html_tag_4.a = t19;
-        html_tag_5.a = t22;
-        html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-1fw75v2");
-        attr(div8, "class", "card-details svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t0, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t1, anchor);
-        insert(target, div0, anchor);
-        div0.innerHTML = raw0_value;
-        insert(target, t2, anchor);
-        insert(target, div8, anchor);
-        append(div8, div5);
-        append(div5, div1);
-        html_tag.m(raw1_value, div1);
-        append(div1, t3);
-        append(div1, t4);
-        append(div5, t5);
-        append(div5, div2);
-        html_tag_1.m(raw2_value, div2);
-        append(div2, t6);
-        append(div2, b0);
-        append(b0, a);
-        append(a, t7);
-        append(div5, t8);
-        append(div5, div4);
-        append(div4, div3);
-        html_tag_2.m(raw3_value, div3);
-        append(div3, t9);
-        append(div3, b1);
-        append(div8, t11);
-        append(div8, div6);
-        append(div6, b2);
-        append(div6, t13);
-        append(div6, t14);
-        append(div8, t15);
-        append(div8, div7);
-        html_tag_3.m(raw4_value, div7);
-        append(div7, t16);
-        append(div7, b3);
-        append(b3, t17);
-        append(div7, t18);
-        html_tag_4.m(raw5_value, div7);
-        append(div7, t19);
-        append(div7, b4);
-        append(b4, t20);
-        append(div7, t21);
-        html_tag_5.m(raw6_value, div7);
-        append(div7, t22);
-        append(div7, b5);
-        append(b5, t23);
-        append(div7, t24);
-        html_tag_6.m(raw7_value, div7);
-        append(div7, t25);
-        append(div7, b6);
-        append(b6, t26);
-        if (!mounted) {
-          dispose = listen(div3, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE(
-              /*torrentInfo*/
-              ctx[0].collectLink,
-              "tI_" + /*torrentInfo*/
-              ctx[0].torrentIndex
-            )))
-              COLLET_AND_ICON_CHANGE(
-                /*torrentInfo*/
-                ctx[0].collectLink,
-                "tI_" + /*torrentInfo*/
-                ctx[0].torrentIndex
-              ).apply(this, arguments);
-          });
-          mounted = true;
-        }
-      },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
-        if (
-          /*torrentInfo*/
-          ctx[0].free_type || /*torrentInfo*/
-          ctx[0].pattMsg
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx, dirty);
-          } else {
-            if_block0 = create_if_block_12(ctx);
-            if_block0.c();
-            if_block0.m(t0.parentNode, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx[0].description
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx, dirty);
-          } else {
-            if_block1 = create_if_block_11(ctx);
-            if_block1.c();
-            if_block1.m(t1.parentNode, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && raw0_value !== (raw0_value = /*torrentInfo*/
-        ctx[0].tagsDOM.map(
-          /*func_2*/
-          ctx[11]
-        ).join("") + ""))
-          div0.innerHTML = raw0_value;
-        if (dirty & /*ICON*/
-        4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx[2].SIZE + ""))
-          html_tag.p(raw1_value);
-        if (dirty & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx[0].size + ""))
-          set_data(t4, t4_value);
-        if (dirty & /*ICON*/
-        4 && raw2_value !== (raw2_value = /*ICON*/
-        ctx[2].DOWNLOAD + ""))
-          html_tag_1.p(raw2_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink)) {
-          attr(a, "href", a_href_value);
-        }
-        if (dirty & /*torrentInfo, ICON*/
-        5 && raw3_value !== (raw3_value = /*torrentInfo*/
-        (ctx[0].collectState == "Unbookmarked" ? (
-          /*ICON*/
-          ctx[2].COLLET
-        ) : (
-          /*ICON*/
-          ctx[2].COLLETED
-        )) + ""))
-          html_tag_2.p(raw3_value);
-        if (dirty & /*torrentInfo*/
-        1 && div3_id_value !== (div3_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex)) {
-          attr(div3, "id", div3_id_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t14_value !== (t14_value = /*torrentInfo*/
-        ctx[0].upload_date + ""))
-          set_data(t14, t14_value);
-        if (dirty & /*ICON*/
-        4 && raw4_value !== (raw4_value = /*ICON*/
-        ctx[2].COMMENT + ""))
-          html_tag_3.p(raw4_value);
-        if (dirty & /*torrentInfo*/
-        1 && t17_value !== (t17_value = /*torrentInfo*/
-        ctx[0].comments + ""))
-          set_data(t17, t17_value);
-        if (dirty & /*ICON*/
-        4 && raw5_value !== (raw5_value = /*ICON*/
-        ctx[2].SEEDERS + ""))
-          html_tag_4.p(raw5_value);
-        if (dirty & /*torrentInfo*/
-        1 && t20_value !== (t20_value = /*torrentInfo*/
-        ctx[0].seeders + ""))
-          set_data(t20, t20_value);
-        if (dirty & /*ICON*/
-        4 && raw6_value !== (raw6_value = /*ICON*/
-        ctx[2].LEECHERS + ""))
-          html_tag_5.p(raw6_value);
-        if (dirty & /*torrentInfo*/
-        1 && t23_value !== (t23_value = /*torrentInfo*/
-        ctx[0].leechers + ""))
-          set_data(t23, t23_value);
-        if (dirty & /*ICON*/
-        4 && raw7_value !== (raw7_value = /*ICON*/
-        ctx[2].SNATCHED + ""))
-          html_tag_6.p(raw7_value);
-        if (dirty & /*torrentInfo*/
-        1 && t26_value !== (t26_value = /*torrentInfo*/
-        ctx[0].snatched + ""))
-          set_data(t26, t26_value);
-      },
-      d(detaching) {
-        if (if_block0)
-          if_block0.d(detaching);
-        if (detaching)
-          detach(t0);
-        if (if_block1)
-          if_block1.d(detaching);
-        if (detaching)
-          detach(t1);
-        if (detaching)
-          detach(div0);
-        if (detaching)
-          detach(t2);
-        if (detaching)
-          detach(div8);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_12(ctx) {
-    let div1;
-    let div0;
-    let t0;
-    let t1;
-    let div0_class_value;
-    let if_block0 = (
-      /*torrentInfo*/
-      ctx[0].place_at_the_top.length != 0 && create_if_block_15(ctx)
-    );
-    let if_block1 = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg && create_if_block_14(ctx)
-    );
-    let if_block2 = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time && create_if_block_13(ctx)
-    );
-    return {
-      c() {
-        div1 = element("div");
-        div0 = element("div");
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        if (if_block2)
-          if_block2.c();
-        attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-1fw75v2");
-        attr(div1, "class", "card-alter svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        insert(target, div1, anchor);
-        append(div1, div0);
-        if (if_block0)
-          if_block0.m(div0, null);
-        append(div0, t0);
-        if (if_block1)
-          if_block1.m(div0, null);
-        append(div0, t1);
-        if (if_block2)
-          if_block2.m(div0, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top.length != 0
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_15(ctx2);
-            if_block0.c();
-            if_block0.m(div0, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].freeTypeImg
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_14(ctx2);
-            if_block1.c();
-            if_block1.m(div0, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].free_remaining_time
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_13(ctx2);
-            if_block2.c();
-            if_block2.m(div0, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-1fw75v2")) {
-          attr(div0, "class", div0_class_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div1);
-        if (if_block0)
-          if_block0.d();
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-      }
-    };
-  }
-  function create_if_block_15(ctx) {
-    let html_tag;
-    let raw_value = Array.from(
-      /*torrentInfo*/
-      ctx[0].place_at_the_top
-    ).map(func_1) + "&nbsp;";
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = Array.from(
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top
-        ).map(func_1) + "&nbsp;"))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_14(ctx) {
-    let html_tag;
-    let raw_value = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg.outerHTML + ""
-    );
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = /*torrentInfo*/
-        ctx2[0].freeTypeImg.outerHTML + ""))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_13(ctx) {
-    let t0;
-    let b;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time + ""
-    );
-    let t1;
-    return {
-      c() {
-        t0 = text(" ");
-        b = element("b");
-        t1 = text(t1_value);
-      },
-      m(target, anchor) {
-        insert(target, t0, anchor);
-        insert(target, b, anchor);
-        append(b, t1);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].free_remaining_time + ""))
-          set_data(t1, t1_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(t0);
-        if (detaching)
-          detach(b);
-      }
-    };
-  }
-  function create_if_block_11(ctx) {
-    let a;
-    let t_value = (
-      /*torrentInfo*/
-      ctx[0].description + ""
-    );
-    let t;
-    let a_href_value;
-    return {
-      c() {
-        a = element("a");
-        t = text(t_value);
-        attr(a, "class", "card-description svelte-1fw75v2");
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].torrentLink);
-      },
-      m(target, anchor) {
-        insert(target, a, anchor);
-        append(a, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[0].description + ""))
-          set_data(t, t_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].torrentLink)) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(a);
-      }
-    };
-  }
-  function create_if_block$3(ctx) {
-    let t0;
-    let t1;
-    let t2;
-    let div;
-    let t3;
-    let t4;
-    let if_block0 = (
-      /*$_CARD_SHOW*/
-      ctx[6].free && /*torrentInfo*/
-      (ctx[0].free_type || /*torrentInfo*/
-      ctx[0].pattMsg) && create_if_block_6(ctx)
-    );
-    let if_block1 = (
-      /*$_CARD_SHOW*/
-      ctx[6].sub_title && /*torrentInfo*/
-      ctx[0].description && create_if_block_5(ctx)
-    );
-    let if_block2 = (
-      /*$_CARD_SHOW*/
-      ctx[6].tags && /*torrentInfo*/
-      ctx[0].tagsDOM.length != 0 && create_if_block_4(ctx)
-    );
-    let if_block3 = (
-      /*$_CARD_SHOW*/
-      ctx[6].size_download_collect && create_if_block_3$1(ctx)
-    );
-    let if_block4 = (
-      /*$_CARD_SHOW*/
-      ctx[6].upload_time && create_if_block_2$1(ctx)
-    );
-    let if_block5 = (
-      /*$_CARD_SHOW*/
-      ctx[6].statistics && create_if_block_1$2(ctx)
-    );
-    return {
-      c() {
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        if (if_block2)
-          if_block2.c();
-        t2 = space();
-        div = element("div");
-        if (if_block3)
-          if_block3.c();
-        t3 = space();
-        if (if_block4)
-          if_block4.c();
-        t4 = space();
-        if (if_block5)
-          if_block5.c();
-        attr(div, "class", "card-details svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t0, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t1, anchor);
-        if (if_block2)
-          if_block2.m(target, anchor);
-        insert(target, t2, anchor);
-        insert(target, div, anchor);
-        if (if_block3)
-          if_block3.m(div, null);
-        append(div, t3);
-        if (if_block4)
-          if_block4.m(div, null);
-        append(div, t4);
-        if (if_block5)
-          if_block5.m(div, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].free && /*torrentInfo*/
-          (ctx2[0].free_type || /*torrentInfo*/
-          ctx2[0].pattMsg)
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_6(ctx2);
-            if_block0.c();
-            if_block0.m(t0.parentNode, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].sub_title && /*torrentInfo*/
-          ctx2[0].description
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_5(ctx2);
-            if_block1.c();
-            if_block1.m(t1.parentNode, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].tags && /*torrentInfo*/
-          ctx2[0].tagsDOM.length != 0
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_4(ctx2);
-            if_block2.c();
-            if_block2.m(t2.parentNode, t2);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].size_download_collect
-        ) {
-          if (if_block3) {
-            if_block3.p(ctx2, dirty);
-          } else {
-            if_block3 = create_if_block_3$1(ctx2);
-            if_block3.c();
-            if_block3.m(div, t3);
-          }
-        } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].upload_time
-        ) {
-          if (if_block4) {
-            if_block4.p(ctx2, dirty);
-          } else {
-            if_block4 = create_if_block_2$1(ctx2);
-            if_block4.c();
-            if_block4.m(div, t4);
-          }
-        } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].statistics
-        ) {
-          if (if_block5) {
-            if_block5.p(ctx2, dirty);
-          } else {
-            if_block5 = create_if_block_1$2(ctx2);
-            if_block5.c();
-            if_block5.m(div, null);
-          }
-        } else if (if_block5) {
-          if_block5.d(1);
-          if_block5 = null;
-        }
-      },
-      d(detaching) {
-        if (if_block0)
-          if_block0.d(detaching);
-        if (detaching)
-          detach(t0);
-        if (if_block1)
-          if_block1.d(detaching);
-        if (detaching)
-          detach(t1);
-        if (if_block2)
-          if_block2.d(detaching);
-        if (detaching)
-          detach(t2);
-        if (detaching)
-          detach(div);
-        if (if_block3)
-          if_block3.d();
-        if (if_block4)
-          if_block4.d();
-        if (if_block5)
-          if_block5.d();
-      }
-    };
-  }
-  function create_if_block_6(ctx) {
-    let div1;
-    let div0;
-    let t0;
-    let t1;
-    let div0_class_value;
-    let if_block0 = (
-      /*torrentInfo*/
-      ctx[0].place_at_the_top.length != 0 && create_if_block_9(ctx)
-    );
-    let if_block1 = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg && create_if_block_8(ctx)
-    );
-    let if_block2 = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time && create_if_block_7(ctx)
-    );
-    return {
-      c() {
-        div1 = element("div");
-        div0 = element("div");
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        if (if_block2)
-          if_block2.c();
-        attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-1fw75v2");
-        attr(div1, "class", "card-alter svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        insert(target, div1, anchor);
-        append(div1, div0);
-        if (if_block0)
-          if_block0.m(div0, null);
-        append(div0, t0);
-        if (if_block1)
-          if_block1.m(div0, null);
-        append(div0, t1);
-        if (if_block2)
-          if_block2.m(div0, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top.length != 0
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_9(ctx2);
-            if_block0.c();
-            if_block0.m(div0, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].freeTypeImg
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_8(ctx2);
-            if_block1.c();
-            if_block1.m(div0, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].free_remaining_time
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_7(ctx2);
-            if_block2.c();
-            if_block2.m(div0, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-1fw75v2")) {
-          attr(div0, "class", div0_class_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div1);
-        if (if_block0)
-          if_block0.d();
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-      }
-    };
-  }
-  function create_if_block_9(ctx) {
-    let html_tag;
-    let raw_value = Array.from(
-      /*torrentInfo*/
-      ctx[0].place_at_the_top
-    ).map(func_3) + "&nbsp;";
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = Array.from(
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top
-        ).map(func_3) + "&nbsp;"))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_8(ctx) {
-    let html_tag;
-    let raw_value = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg.outerHTML + ""
-    );
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = /*torrentInfo*/
-        ctx2[0].freeTypeImg.outerHTML + ""))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_7(ctx) {
-    let t0;
-    let b;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time + ""
-    );
-    let t1;
-    return {
-      c() {
-        t0 = text(" ");
-        b = element("b");
-        t1 = text(t1_value);
-      },
-      m(target, anchor) {
-        insert(target, t0, anchor);
-        insert(target, b, anchor);
-        append(b, t1);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].free_remaining_time + ""))
-          set_data(t1, t1_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(t0);
-        if (detaching)
-          detach(b);
-      }
-    };
-  }
-  function create_if_block_5(ctx) {
-    let a;
-    let t_value = (
-      /*torrentInfo*/
-      ctx[0].description + ""
-    );
-    let t;
-    let a_href_value;
-    return {
-      c() {
-        a = element("a");
-        t = text(t_value);
-        attr(a, "class", "card-description svelte-1fw75v2");
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].torrentLink);
-      },
-      m(target, anchor) {
-        insert(target, a, anchor);
-        append(a, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[0].description + ""))
-          set_data(t, t_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].torrentLink)) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(a);
-      }
-    };
-  }
-  function create_if_block_4(ctx) {
-    let div;
-    let raw_value = (
-      /*torrentInfo*/
-      ctx[0].tagsDOM.map(
-        /*func_4*/
-        ctx[12]
+        ctx[14]
       ).join("") + ""
     );
     return {
@@ -8596,7 +9146,7 @@
         1 && raw_value !== (raw_value = /*torrentInfo*/
         ctx2[0].tagsDOM.map(
           /*func_4*/
-          ctx2[12]
+          ctx2[14]
         ).join("") + ""))
           div.innerHTML = raw_value;
       },
@@ -8606,7 +9156,7 @@
       }
     };
   }
-  function create_if_block_3$1(ctx) {
+  function create_if_block_3$2(ctx) {
     let div4;
     let div0;
     let html_tag;
@@ -8765,7 +9315,7 @@
       }
     };
   }
-  function create_if_block_2$1(ctx) {
+  function create_if_block_2$2(ctx) {
     let div;
     let b;
     let t1;
@@ -8801,7 +9351,7 @@
       }
     };
   }
-  function create_if_block_1$2(ctx) {
+  function create_if_block_1$4(ctx) {
     let div;
     let html_tag;
     let raw0_value = (
@@ -8944,12 +9494,12 @@
       }
     };
   }
-  function create_fragment$4(ctx) {
+  function create_fragment$6(ctx) {
     let div4;
     let div3;
     let div0;
-    let img0;
-    let img0_src_value;
+    let img;
+    let img_src_value;
     let t0;
     let t1_value = (
       /*torrentInfo*/
@@ -8960,10 +9510,6 @@
     let t2;
     let t3;
     let div2;
-    let img1;
-    let img1_src_value;
-    let img1_data_src_value;
-    let img1_alt_value;
     let t4;
     let div1;
     let t5_value = (
@@ -8977,23 +9523,31 @@
     let dispose;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      (ctx[6].title || /*_hover*/
-      ctx[3]) && create_if_block_16(ctx)
+      (ctx[7].title || /*_hover*/
+      ctx[3]) && create_if_block_17$1(ctx)
     );
-    let if_block1 = (
+    function select_block_type(ctx2, dirty) {
+      if (!/*_picError*/
+      ctx2[4])
+        return create_if_block_16$1;
+      return create_else_block$3;
+    }
+    let current_block_type = select_block_type(ctx);
+    let if_block1 = current_block_type(ctx);
+    let if_block2 = (
       /*$_CARD_SHOW*/
-      (ctx[6].all || /*_hover*/
-      ctx[3]) && create_if_block_10(ctx)
+      (ctx[7].all || /*_hover*/
+      ctx[3]) && create_if_block_10$1(ctx)
     );
-    let if_block2 = !/*$_CARD_SHOW*/
-    (ctx[6].all || /*_hover*/
-    ctx[3]) && create_if_block$3(ctx);
+    let if_block3 = !/*$_CARD_SHOW*/
+    (ctx[7].all || /*_hover*/
+    ctx[3]) && create_if_block$6(ctx);
     return {
       c() {
         div4 = element("div");
         div3 = element("div");
         div0 = element("div");
-        img0 = element("img");
+        img = element("img");
         t0 = space();
         t1 = text(t1_value);
         t2 = space();
@@ -9001,21 +9555,21 @@
           if_block0.c();
         t3 = space();
         div2 = element("div");
-        img1 = element("img");
+        if_block1.c();
         t4 = space();
         div1 = element("div");
         t5 = text(t5_value);
         t6 = space();
-        if (if_block1)
-          if_block1.c();
-        t7 = space();
         if (if_block2)
           if_block2.c();
-        attr(img0, "class", "card_category-img svelte-1fw75v2");
-        if (!src_url_equal(img0.src, img0_src_value = /*torrentInfo*/
+        t7 = space();
+        if (if_block3)
+          if_block3.c();
+        attr(img, "class", "card_category-img svelte-1fw75v2");
+        if (!src_url_equal(img.src, img_src_value = /*torrentInfo*/
         ctx[0]._categoryImg))
-          attr(img0, "src", img0_src_value);
-        attr(img0, "alt", "");
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "");
         attr(div0, "class", "card-category svelte-1fw75v2");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
@@ -9026,17 +9580,10 @@
         set_style(div0, "color", CONFIG$1.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
-        ] ? getTextColor(CONFIG$1.CATEGORY[
+        ] ? getTextColor$1(CONFIG$1.CATEGORY[
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
-        attr(img1, "class", "card-image--img nexus-lazy-load_Kesa svelte-1fw75v2");
-        if (!src_url_equal(img1.src, img1_src_value = CONFIG$1.LOADING_PIC))
-          attr(img1, "src", img1_src_value);
-        attr(img1, "data-src", img1_data_src_value = /*torrentInfo*/
-        ctx[0].picLink);
-        attr(img1, "alt", img1_alt_value = /*torrentInfo*/
-        ctx[0].torrentName);
         attr(div1, "class", "card-index svelte-1fw75v2");
         attr(div2, "class", "card-image svelte-1fw75v2");
         attr(div3, "class", "card-holder svelte-1fw75v2");
@@ -9046,7 +9593,7 @@
           "display",
           /*torrentInfo*/
           ctx[0].categoryNumber == "440" && /*$_SITE_SETTING*/
-          ctx[4].mt.hide_gay ? "none" : "block"
+          ctx[5].mt.hide_gay ? "none" : "block"
         );
         set_style(
           div4,
@@ -9060,14 +9607,14 @@
           div4,
           "background-color",
           /*$_current_bgColor*/
-          ctx[5]
+          ctx[6]
         );
       },
       m(target, anchor) {
         insert(target, div4, anchor);
         append(div4, div3);
         append(div3, div0);
-        append(div0, img0);
+        append(div0, img);
         append(div0, t0);
         append(div0, t1);
         append(div3, t2);
@@ -9075,41 +9622,35 @@
           if_block0.m(div3, null);
         append(div3, t3);
         append(div3, div2);
-        append(div2, img1);
+        if_block1.m(div2, null);
         append(div2, t4);
         append(div2, div1);
         append(div1, t5);
         append(div3, t6);
-        if (if_block1)
-          if_block1.m(div3, null);
-        append(div3, t7);
         if (if_block2)
           if_block2.m(div3, null);
+        append(div3, t7);
+        if (if_block3)
+          if_block3.m(div3, null);
         if (!mounted) {
           dispose = [
             listen(
-              img1,
-              "load",
-              /*sort_masonry*/
-              ctx[7]
-            ),
-            listen(
-              img1,
+              div2,
               "click",
               /*showDetailIframe*/
-              ctx[8]
+              ctx[9]
             ),
             listen(
               div3,
               "mouseenter",
               /*card_show_detail*/
-              ctx[9]
+              ctx[10]
             ),
             listen(
               div3,
               "mouseleave",
               /*card_hide_detail*/
-              ctx[10]
+              ctx[11]
             )
           ];
           mounted = true;
@@ -9117,9 +9658,9 @@
       },
       p(ctx2, [dirty]) {
         if (dirty & /*torrentInfo*/
-        1 && !src_url_equal(img0.src, img0_src_value = /*torrentInfo*/
+        1 && !src_url_equal(img.src, img_src_value = /*torrentInfo*/
         ctx2[0]._categoryImg)) {
-          attr(img0, "src", img0_src_value);
+          attr(img, "src", img_src_value);
         }
         if (dirty & /*torrentInfo*/
         1 && t1_value !== (t1_value = /*torrentInfo*/
@@ -9142,20 +9683,20 @@
           set_style(div0, "color", CONFIG$1.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
-          ] ? getTextColor(CONFIG$1.CATEGORY[
+          ] ? getTextColor$1(CONFIG$1.CATEGORY[
             /*torrentInfo*/
             ctx2[0].categoryNumber
           ]) : "black");
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[6].title || /*_hover*/
+          ctx2[7].title || /*_hover*/
           ctx2[3]
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_16(ctx2);
+            if_block0 = create_if_block_17$1(ctx2);
             if_block0.c();
             if_block0.m(div3, t3);
           }
@@ -9163,15 +9704,15 @@
           if_block0.d(1);
           if_block0 = null;
         }
-        if (dirty & /*torrentInfo*/
-        1 && img1_data_src_value !== (img1_data_src_value = /*torrentInfo*/
-        ctx2[0].picLink)) {
-          attr(img1, "data-src", img1_data_src_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && img1_alt_value !== (img1_alt_value = /*torrentInfo*/
-        ctx2[0].torrentName)) {
-          attr(img1, "alt", img1_alt_value);
+        if (current_block_type === (current_block_type = select_block_type(ctx2)) && if_block1) {
+          if_block1.p(ctx2, dirty);
+        } else {
+          if_block1.d(1);
+          if_block1 = current_block_type(ctx2);
+          if (if_block1) {
+            if_block1.c();
+            if_block1.m(div2, t4);
+          }
         }
         if (dirty & /*torrentInfo*/
         1 && t5_value !== (t5_value = /*torrentInfo*/
@@ -9179,42 +9720,42 @@
           set_data(t5, t5_value);
         if (
           /*$_CARD_SHOW*/
-          ctx2[6].all || /*_hover*/
+          ctx2[7].all || /*_hover*/
           ctx2[3]
         ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_10(ctx2);
-            if_block1.c();
-            if_block1.m(div3, t7);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (!/*$_CARD_SHOW*/
-        (ctx2[6].all || /*_hover*/
-        ctx2[3])) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block$3(ctx2);
+            if_block2 = create_if_block_10$1(ctx2);
             if_block2.c();
-            if_block2.m(div3, null);
+            if_block2.m(div3, t7);
           }
         } else if (if_block2) {
           if_block2.d(1);
           if_block2 = null;
         }
+        if (!/*$_CARD_SHOW*/
+        (ctx2[7].all || /*_hover*/
+        ctx2[3])) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block$6(ctx2);
+            if_block3.c();
+            if_block3.m(div3, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
         if (dirty & /*torrentInfo, $_SITE_SETTING*/
-        17) {
+        33) {
           set_style(
             div4,
             "display",
             /*torrentInfo*/
             ctx2[0].categoryNumber == "440" && /*$_SITE_SETTING*/
-            ctx2[4].mt.hide_gay ? "none" : "block"
+            ctx2[5].mt.hide_gay ? "none" : "block"
           );
         }
         if (dirty & /*cardWidth*/
@@ -9232,12 +9773,12 @@
           ctx2[0].torrentIndex);
         }
         if (dirty & /*$_current_bgColor*/
-        32) {
+        64) {
           set_style(
             div4,
             "background-color",
             /*$_current_bgColor*/
-            ctx2[5]
+            ctx2[6]
           );
         }
       },
@@ -9248,10 +9789,11 @@
           detach(div4);
         if (if_block0)
           if_block0.d();
-        if (if_block1)
-          if_block1.d();
+        if_block1.d();
         if (if_block2)
           if_block2.d();
+        if (if_block3)
+          if_block3.d();
         mounted = false;
         run_all(dispose);
       }
@@ -9268,7 +9810,7 @@
       console.error(error);
     }
   }
-  function getTextColor(background) {
+  function getTextColor$1(background) {
     const color = background.replace("#", "");
     const red = parseInt(color.substr(0, 2), 16);
     const green = parseInt(color.substr(2, 2), 16);
@@ -9279,17 +9821,17 @@
   const func = (e) => e.outerHTML;
   const func_1 = (e) => e.outerHTML;
   const func_3 = (e) => e.outerHTML;
-  function instance$4($$self, $$props, $$invalidate) {
+  function instance$6($$self, $$props, $$invalidate) {
     let $_iframe_url;
     let $_iframe_switch;
     let $_SITE_SETTING;
     let $_current_bgColor;
     let $_CARD_SHOW;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(13, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(14, $_iframe_switch = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(4, $_SITE_SETTING = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(5, $_current_bgColor = $$value));
-    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(6, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(15, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(16, $_iframe_switch = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(5, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
+    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(7, $_CARD_SHOW = $$value));
     function sort_masonry() {
       sortMasonry();
     }
@@ -9307,6 +9849,10 @@
     function card_hide_detail() {
       $$invalidate(3, _hover = false);
     }
+    let _picError = false;
+    const error_handler = () => {
+      $$invalidate(4, _picError = true);
+    };
     const func_2 = (el) => {
       const _tag = document.createElement("div");
       _tag.innerHTML = el.outerHTML;
@@ -9330,6 +9876,7 @@
       cardWidth,
       ICON2,
       _hover,
+      _picError,
       $_SITE_SETTING,
       $_current_bgColor,
       $_CARD_SHOW,
@@ -9337,6 +9884,7 @@
       showDetailIframe,
       card_show_detail,
       card_hide_detail,
+      error_handler,
       func_2,
       func_4
     ];
@@ -9344,20 +9892,20 @@
   class Mteam extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$4, create_fragment$4, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
+      init(this, options, instance$6, create_fragment$6, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
     }
   }
   function get_each_context_1(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[24] = list[i];
+    child_ctx[23] = list[i];
     return child_ctx;
   }
-  function get_each_context(ctx, list, i) {
+  function get_each_context$1(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[24] = list[i];
+    child_ctx[23] = list[i];
     return child_ctx;
   }
-  function create_else_block_1(ctx) {
+  function create_else_block_1$1(ctx) {
     let div;
     return {
       c() {
@@ -9376,7 +9924,7 @@
       }
     };
   }
-  function create_if_block_3(ctx) {
+  function create_if_block_3$1(ctx) {
     let each_blocks = [];
     let each_1_lookup = /* @__PURE__ */ new Map();
     let each_1_anchor;
@@ -9387,7 +9935,7 @@
     );
     const get_key = (ctx2) => (
       /*info*/
-      ctx2[24].torrentIndex
+      ctx2[23].torrentIndex
     );
     for (let i = 0; i < each_value_1.length; i += 1) {
       let child_ctx = get_each_context_1(ctx, each_value_1, i);
@@ -9443,7 +9991,7 @@
       }
     };
   }
-  function create_if_block_2(ctx) {
+  function create_if_block_2$1(ctx) {
     let each_blocks = [];
     let each_1_lookup = /* @__PURE__ */ new Map();
     let each_1_anchor;
@@ -9454,12 +10002,12 @@
     );
     const get_key = (ctx2) => (
       /*info*/
-      ctx2[24].torrentIndex
+      ctx2[23].torrentIndex
     );
     for (let i = 0; i < each_value.length; i += 1) {
-      let child_ctx = get_each_context(ctx, each_value, i);
+      let child_ctx = get_each_context$1(ctx, each_value, i);
       let key = get_key(child_ctx);
-      each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+      each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
     }
     return {
       c() {
@@ -9483,7 +10031,7 @@
           each_value = /*infoList*/
           ctx2[2];
           group_outros();
-          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block, each_1_anchor, get_each_context);
+          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block$1, each_1_anchor, get_each_context$1);
           check_outros();
         }
       },
@@ -9518,7 +10066,7 @@
       props: {
         torrentInfo: (
           /*info*/
-          ctx[24]
+          ctx[23]
         ),
         cardWidth: (
           /*CARD*/
@@ -9546,7 +10094,7 @@
         if (dirty & /*infoList*/
         4)
           mteam_changes.torrentInfo = /*info*/
-          ctx[24];
+          ctx[23];
         if (dirty & /*CARD*/
         1)
           mteam_changes.cardWidth = /*CARD*/
@@ -9570,7 +10118,7 @@
       }
     };
   }
-  function create_each_block(key_1, ctx) {
+  function create_each_block$1(key_1, ctx) {
     let first;
     let kamept;
     let current;
@@ -9578,7 +10126,7 @@
       props: {
         torrentInfo: (
           /*info*/
-          ctx[24]
+          ctx[23]
         ),
         cardWidth: (
           /*CARD*/
@@ -9606,7 +10154,7 @@
         if (dirty & /*infoList*/
         4)
           kamept_changes.torrentInfo = /*info*/
-          ctx[24];
+          ctx[23];
         if (dirty & /*CARD*/
         1)
           kamept_changes.cardWidth = /*CARD*/
@@ -9630,7 +10178,7 @@
       }
     };
   }
-  function create_else_block$1(ctx) {
+  function create_else_block$2(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[5].normal + ""
@@ -9650,7 +10198,7 @@
       }
     };
   }
-  function create_if_block_1$1(ctx) {
+  function create_if_block_1$3(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[5].suspend + ""
@@ -9670,7 +10218,7 @@
       }
     };
   }
-  function create_if_block$2(ctx) {
+  function create_if_block$5(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[5].disable + ""
@@ -9690,7 +10238,7 @@
       }
     };
   }
-  function create_fragment$3(ctx) {
+  function create_fragment$5(ctx) {
     let current_block_type_index;
     let if_block0;
     let t;
@@ -9700,7 +10248,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block_2, create_if_block_3, create_else_block_1];
+    const if_block_creators = [create_if_block_2$1, create_if_block_3$1, create_else_block_1$1];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -9722,13 +10270,13 @@
         /*$_turnPage*/
         ctx2[4]
       )
-        return create_if_block$2;
+        return create_if_block$5;
       if (
         /*isButtonDisabled*/
         ctx2[1]
       )
-        return create_if_block_1$1;
-      return create_else_block$1;
+        return create_if_block_1$3;
+      return create_else_block$2;
     }
     let current_block_type = select_block_type_1(ctx);
     let if_block1 = current_block_type(ctx);
@@ -9822,20 +10370,23 @@
       }
     };
   }
-  function instance$3($$self, $$props, $$invalidate) {
+  function instance$5($$self, $$props, $$invalidate) {
     var _a;
     let $_Global_Masonry;
+    let $_animated;
     let $_card_width;
     let $_current_domain;
     let $_turnPage;
     let $_current_bgColor;
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(14, $_Global_Masonry = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(10, $_card_width = $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(15, $_Global_Masonry = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(10, $_animated = $$value));
+    component_subscribe($$self, _card_width, ($$value) => $$invalidate(11, $_card_width = $$value));
     component_subscribe($$self, _current_domain, ($$value) => $$invalidate(3, $_current_domain = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(4, $_turnPage = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(15, $_current_bgColor = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(16, $_current_bgColor = $$value));
     let { originTable } = $$props;
     let { waterfallNode } = $$props;
+    window.NEXUS_TOOLS = NEXUS_TOOLS;
     function GET_CARD_GUTTER(containerDom, card_width) {
       const _width = containerDom.clientWidth;
       const card_real_width = card_width + CARD.CARD_BORDER;
@@ -9873,12 +10424,11 @@
         );
       }
     }
-    window.turnPage = turnPage;
+    window.$$$turnPage = turnPage;
     set_store_value(_current_domain, $_current_domain = GET_CURRENT_PT_DOMAIN(), $_current_domain);
-    const mainOuterDOM = document.querySelector("table.mainouter");
-    const themeColor = window.getComputedStyle(mainOuterDOM)["background-color"];
-    set_store_value(_current_bgColor, $_current_bgColor = themeColor, $_current_bgColor);
-    console.log("背景颜色:", themeColor);
+    const bgColor = GET_SITE_BACKGROUND_COLOR();
+    set_store_value(_current_bgColor, $_current_bgColor = bgColor, $_current_bgColor);
+    console.log("背景颜色:", bgColor);
     const config = SITE[$_current_domain];
     let infoList = [];
     infoList = [...infoList, ...config.TORRENT_LIST_TO_JSON(originTable)];
@@ -9899,7 +10449,7 @@
         sortMasonry();
       }
     }
-    debounceLoad = debounce(loadNextPage, PAGE.GAP);
+    debounceLoad = debounceImmediate(loadNextPage, PAGE.GAP);
     function loadNextPage() {
       console.log("到页面底部啦!!! Scrolled to bottom!");
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -9948,7 +10498,9 @@
         {
           itemSelector: ".card",
           columnWidth: $_card_width,
-          gutter: GET_CARD_GUTTER(waterfallNode, $_card_width)
+          gutter: GET_CARD_GUTTER(waterfallNode, $_card_width),
+          // transitions Duration 默认值为 0.4
+          transitionDuration: $_animated ? 0.4 : 0
         }
       ));
       window.masonry = masonry2;
@@ -9966,15 +10518,14 @@
         scan_and_launch();
       });
       NEXUS_TOOLS();
-      window.NEXUS_TOOLS = NEXUS_TOOLS;
     });
     afterUpdate(() => {
-      console.log("afterUpdate-------------------->");
       if (masonry2 && onMountSignal) {
-        console.log("reload Items-------------------->");
         masonry2.reloadItems();
         masonry2.layout();
-        setTimeout(NEXUS_TOOLS, 600);
+        masonry2.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
       }
     });
     $$self.$$set = ($$props2) => {
@@ -9984,8 +10535,15 @@
         $$invalidate(8, waterfallNode = $$props2.waterfallNode);
     };
     $$self.$$.update = () => {
+      if ($$self.$$.dirty & /*masonry, $_animated*/
+      1536) {
+        {
+          if (masonry2)
+            $$invalidate(9, masonry2.options.transitionDuration = $_animated ? "0.4s" : "0", masonry2);
+        }
+      }
       if ($$self.$$.dirty & /*masonry, $_card_width, CARD*/
-      1537) {
+      2561) {
         if (masonry2) {
           $$invalidate(0, CARD.CARD_WIDTH = $_card_width, CARD);
           console.log("卡片宽度:	", CARD.CARD_WIDTH);
@@ -10004,52 +10562,17 @@
       originTable,
       waterfallNode,
       masonry2,
+      $_animated,
       $_card_width
     ];
   }
   class Index extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$3, create_fragment$3, safe_not_equal, { originTable: 7, waterfallNode: 8 });
+      init(this, options, instance$5, create_fragment$5, safe_not_equal, { originTable: 7, waterfallNode: 8 });
     }
   }
-  function create_fragment$2(ctx) {
-    let div;
-    return {
-      c() {
-        div = element("div");
-        div.innerHTML = `<span>asl;kdfjas;ljfdaslkjfsakl;djfsla;k</span>`;
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-      },
-      p: noop,
-      i: noop,
-      o: noop,
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function instance$2($$self, $$props, $$invalidate) {
-    let { originTable } = $$props;
-    let { waterfallNode } = $$props;
-    $$self.$$set = ($$props2) => {
-      if ("originTable" in $$props2)
-        $$invalidate(0, originTable = $$props2.originTable);
-      if ("waterfallNode" in $$props2)
-        $$invalidate(1, waterfallNode = $$props2.waterfallNode);
-    };
-    return [originTable, waterfallNode];
-  }
-  class Index_NEW_MT extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance$2, create_fragment$2, safe_not_equal, { originTable: 0, waterfallNode: 1 });
-    }
-  }
-  function create_else_block(ctx) {
+  function create_else_block$1(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[2].normal + ""
@@ -10069,7 +10592,7 @@
       }
     };
   }
-  function create_if_block_1(ctx) {
+  function create_if_block_1$2(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[2].suspend + ""
@@ -10089,7 +10612,7 @@
       }
     };
   }
-  function create_if_block$1(ctx) {
+  function create_if_block$4(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[2].disable + ""
@@ -10109,7 +10632,7 @@
       }
     };
   }
-  function create_fragment$1(ctx) {
+  function create_fragment$4(ctx) {
     let div;
     let button;
     let button_disabled_value;
@@ -10120,13 +10643,13 @@
         /*$_turnPage*/
         ctx2[1]
       )
-        return create_if_block$1;
+        return create_if_block$4;
       if (
         /*isButtonDisabled*/
         ctx2[0]
       )
-        return create_if_block_1;
-      return create_else_block;
+        return create_if_block_1$2;
+      return create_else_block$1;
     }
     let current_block_type = select_block_type(ctx);
     let if_block = current_block_type(ctx);
@@ -10139,7 +10662,7 @@
         button.disabled = button_disabled_value = /*$_turnPage*/
         ctx[1] || /*isButtonDisabled*/
         ctx[0];
-        attr(button, "class", "svelte-2j14uu");
+        attr(button, "class", "svelte-1gtc1kh");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -10185,7 +10708,7 @@
     };
   }
   const GAP = 3e3;
-  function instance$1($$self, $$props, $$invalidate) {
+  function instance$4($$self, $$props, $$invalidate) {
     let $_turnPage;
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(1, $_turnPage = $$value));
     let isButtonDisabled = false;
@@ -10196,7 +10719,7 @@
     };
     function func2(event) {
       event.preventDefault();
-      window.turnPage(event);
+      window.$$$turnPage();
       if (!isButtonDisabled) {
         $$invalidate(0, isButtonDisabled = true);
         setTimeout(
@@ -10212,21 +10735,28 @@
   class BtnTurnPage extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
+      init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
     }
   }
-  function create_if_block(ctx) {
-    let div;
+  function create_if_block$3(ctx) {
+    let div2;
+    let div1;
     let iframe;
     let iframe_src_value;
-    let div_transition;
+    let t;
+    let div0;
+    let div2_transition;
     let current;
     let mounted;
     let dispose;
     return {
       c() {
-        div = element("div");
+        div2 = element("div");
+        div1 = element("div");
         iframe = element("iframe");
+        t = space();
+        div0 = element("div");
+        div0.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"><circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle><path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path></g></svg>`;
         if (!src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
         ctx[1]))
           attr(iframe, "src", iframe_src_value);
@@ -10239,21 +10769,34 @@
           /*$_current_domain*/
           ctx[2]
         ].Iframe_Width : 1e3) + "px");
-        attr(iframe, "class", "svelte-1wevt6e");
-        attr(div, "id", "_iframe");
-        attr(div, "class", "svelte-1wevt6e");
+        attr(iframe, "class", "svelte-12ghpfg");
+        attr(div0, "class", "_iframeCloseBtn svelte-12ghpfg");
+        attr(div1, "class", "_iframe svelte-12ghpfg");
+        attr(div2, "id", "_iframe");
+        attr(div2, "class", "svelte-12ghpfg");
       },
       m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, iframe);
+        insert(target, div2, anchor);
+        append(div2, div1);
+        append(div1, iframe);
+        append(div1, t);
+        append(div1, div0);
         current = true;
         if (!mounted) {
-          dispose = listen(
-            div,
-            "click",
-            /*toggleIframe*/
-            ctx[3]
-          );
+          dispose = [
+            listen(
+              div0,
+              "click",
+              /*toggleIframe*/
+              ctx[3]
+            ),
+            listen(
+              div2,
+              "click",
+              /*toggleIframe*/
+              ctx[3]
+            )
+          ];
           mounted = true;
         }
       },
@@ -10280,25 +10823,3232 @@
         add_render_callback(() => {
           if (!current)
             return;
-          if (!div_transition)
-            div_transition = create_bidirectional_transition(div, fade, { duration: 300 }, true);
-          div_transition.run(1);
+          if (!div2_transition)
+            div2_transition = create_bidirectional_transition(div2, fade, { duration: 300 }, true);
+          div2_transition.run(1);
         });
         current = true;
       },
       o(local) {
-        if (!div_transition)
-          div_transition = create_bidirectional_transition(div, fade, { duration: 300 }, false);
-        div_transition.run(0);
+        if (!div2_transition)
+          div2_transition = create_bidirectional_transition(div2, fade, { duration: 300 }, false);
+        div2_transition.run(0);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        if (detaching && div2_transition)
+          div2_transition.end();
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_fragment$3(ctx) {
+    let if_block_anchor;
+    let current;
+    let mounted;
+    let dispose;
+    let if_block = (
+      /*$_iframe_switch*/
+      ctx[0] && create_if_block$3(ctx)
+    );
+    return {
+      c() {
+        if (if_block)
+          if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if (if_block)
+          if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+        current = true;
+        if (!mounted) {
+          dispose = listen(
+            window,
+            "keydown",
+            /*key_closePanels*/
+            ctx[4],
+            true
+          );
+          mounted = true;
+        }
+      },
+      p(ctx2, [dirty]) {
+        if (
+          /*$_iframe_switch*/
+          ctx2[0]
+        ) {
+          if (if_block) {
+            if_block.p(ctx2, dirty);
+            if (dirty & /*$_iframe_switch*/
+            1) {
+              transition_in(if_block, 1);
+            }
+          } else {
+            if_block = create_if_block$3(ctx2);
+            if_block.c();
+            transition_in(if_block, 1);
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        } else if (if_block) {
+          group_outros();
+          transition_out(if_block, 1, 1, () => {
+            if_block = null;
+          });
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block);
+        current = false;
+      },
+      d(detaching) {
+        if (if_block)
+          if_block.d(detaching);
+        if (detaching)
+          detach(if_block_anchor);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function instance$3($$self, $$props, $$invalidate) {
+    let $_show_configPanel;
+    let $_iframe_switch;
+    let $_list_viewMode;
+    let $_iframe_url;
+    let $_current_domain;
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(9, $_show_configPanel = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(0, $_iframe_switch = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(1, $_iframe_url = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(2, $_current_domain = $$value));
+    console.log(`[${( new Date()).toLocaleTimeString()}]<--------------------------HMR-------------------------->`);
+    const _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+    while (!Masonry) {
+      console.log("等待初始化......");
+    }
+    const parentNode = _ORIGIN_TL_Node.parentNode;
+    const waterfallNode = document.createElement("div");
+    waterfallNode.classList.add("waterfall");
+    parentNode.insertBefore(waterfallNode, _ORIGIN_TL_Node.nextSibling);
+    const nextPageNode = document.createElement("div");
+    nextPageNode.classList.add("nextPage");
+    parentNode.insertBefore(nextPageNode, _ORIGIN_TL_Node.nextSibling);
+    function toggleIframe() {
+      set_store_value(_iframe_switch, $_iframe_switch = 0, $_iframe_switch);
+    }
+    function key_closePanels(event) {
+      if (event.key === "Escape") {
+        console.log(event);
+        set_store_value(_iframe_switch, $_iframe_switch = 0, $_iframe_switch);
+        set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
+      }
+    }
+    onMount(() => {
+      new Sidepanel({ target: document.body });
+      new Index({
+        target: waterfallNode,
+        props: {
+          // 传递给组件的属性
+          originTable: _ORIGIN_TL_Node,
+          waterfallNode
+        }
+      });
+      new BtnTurnPage({ target: nextPageNode });
+    });
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty & /*$_list_viewMode*/
+      32) {
+        {
+          _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+          nextPageNode.style.display = $_list_viewMode ? "none" : "block";
+          waterfallNode.style.display = $_list_viewMode ? "block" : "none";
+        }
+      }
+    };
+    return [
+      $_iframe_switch,
+      $_iframe_url,
+      $_current_domain,
+      toggleIframe,
+      key_closePanels,
+      $_list_viewMode
+    ];
+  }
+  class Main extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
+    }
+  }
+  const _PicNoLOGO = "data:image/svg+xml;base64,PHN2ZwogIHZpZXdCb3g9Ii0yLjQgLTIuNCAyOC44MCAyOC44MCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICBzdHJva2U9IiMwMDAwMDAiCj4KICA8ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTUuNiAxNS42QzE1LjYgMTUuNiAxNC4yNSAxMy44IDEyIDEzLjhDOS43NSAxMy44IDguNCAxNS42IDguNCAxNS42TTE0LjcgOS4zSDE0LjcwOU05LjMgOS4zSDkuMzA5TTIxIDEyQzIxIDE2Ljk3MDYgMTYuOTcwNiAyMSAxMiAyMUM3LjAyOTQ0IDIxIDMgMTYuOTcwNiAzIDEyQzMgNy4wMjk0NCA3LjAyOTQ0IDMgMTIgM0MxNi45NzA2IDMgMjEgNy4wMjk0NCAyMSAxMlpNMTUuMTUgOS4zQzE1LjE1IDkuNTQ4NTMgMTQuOTQ4NSA5Ljc1IDE0LjcgOS43NUMxNC40NTE1IDkuNzUgMTQuMjUgOS41NDg1MyAxNC4yNSA5LjNDMTQuMjUgOS4wNTE0NyAxNC40NTE1IDguODUgMTQuNyA4Ljg1QzE0Ljk0ODUgOC44NSAxNS4xNSA5LjA1MTQ3IDE1LjE1IDkuM1pNOS43NSA5LjNDOS43NSA5LjU0ODUzIDkuNTQ4NTMgOS43NSA5LjMgOS43NUM5LjA1MTQ3IDkuNzUgOC44NSA5LjU0ODUzIDguODUgOS4zQzguODUgOS4wNTE0NyA5LjA1MTQ3IDguODUgOS4zIDguODVDOS41NDg1MyA4Ljg1IDkuNzUgOS4wNTE0NyA5Ljc1IDkuM1oiCiAgICAgIHN0cm9rZT0iIzAwMDAwMCIKICAgICAgc3Ryb2tlLXdpZHRoPSIxLjgiCiAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIC8+CiAgPC9nPgo8L3N2Zz4=";
+  function create_if_block_23(ctx) {
+    let div;
+    let a;
+    let b;
+    let t_value = (
+      /*torrentInfo*/
+      ctx[1].name + ""
+    );
+    let t;
+    let a_href_value;
+    return {
+      c() {
+        div = element("div");
+        a = element("a");
+        b = element("b");
+        t = text(t_value);
+        attr(a, "class", "two-lines svelte-xpikqe");
+        attr(a, "href", a_href_value = "/detail/" + /*torrentInfo*/
+        ctx[1].id);
+        attr(a, "target", "_blank");
+        attr(div, "class", "card-title svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, a);
+        append(a, b);
+        append(b, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*torrentInfo*/
+        2 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[1].name + ""))
+          set_data(t, t_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && a_href_value !== (a_href_value = "/detail/" + /*torrentInfo*/
+        ctx2[1].id)) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_else_block_1(ctx) {
+    let div2;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let div1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div2 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        div1 = element("div");
+        div1.textContent = "图片加载失败";
+        set_style(img, "height", "100%");
+        set_style(img, "width", "100px");
+        if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "pic error");
+        attr(img, "class", "svelte-xpikqe");
+        attr(div2, "class", "pic_error");
+        attr(div2, "style", "");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, img);
+        append(div2, t0);
+        append(div2, div1);
+        if (!mounted) {
+          dispose = listen(
+            img,
+            "load",
+            /*sort_masonry*/
+            ctx[11]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_21(ctx) {
+    let if_block_anchor;
+    function select_block_type_1(ctx2, dirty) {
+      if (
+        /*torrentInfo*/
+        ctx2[1].imageList[0]
+      )
+        return create_if_block_22;
+      return create_else_block;
+    }
+    let current_block_type = select_block_type_1(ctx);
+    let if_block = current_block_type(ctx);
+    return {
+      c() {
+        if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (current_block_type === (current_block_type = select_block_type_1(ctx2)) && if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block.d(1);
+          if_block = current_block_type(ctx2);
+          if (if_block) {
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        }
+      },
+      d(detaching) {
+        if_block.d(detaching);
+        if (detaching)
+          detach(if_block_anchor);
+      }
+    };
+  }
+  function create_else_block(ctx) {
+    let div2;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let div1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div2 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        div1 = element("div");
+        div1.textContent = "本种没有图片";
+        set_style(img, "height", "100%");
+        set_style(img, "width", "100px");
+        if (!src_url_equal(img.src, img_src_value = _PicNoLOGO))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "no pic");
+        attr(img, "class", "svelte-xpikqe");
+        attr(div2, "class", "pic_error");
+        attr(div2, "style", "");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, img);
+        append(div2, t0);
+        append(div2, div1);
+        if (!mounted) {
+          dispose = listen(
+            img,
+            "load",
+            /*sort_masonry*/
+            ctx[11]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_if_block_22(ctx) {
+    let img;
+    let img_src_value;
+    let img_data_src_value;
+    let img_alt_value;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        img = element("img");
+        attr(img, "class", "nexus-lazy-load_Kesa svelte-xpikqe");
+        if (!src_url_equal(img.src, img_src_value = CONFIG.LOADING_PIC))
+          attr(img, "src", img_src_value);
+        attr(img, "data-src", img_data_src_value = /*torrentInfo*/
+        ctx[1].imageList[0] ? (
+          /*torrentInfo*/
+          ctx[1].imageList[0]
+        ) : "");
+        attr(img, "alt", img_alt_value = /*torrentInfo*/
+        ctx[1].name);
+      },
+      m(target, anchor) {
+        insert(target, img, anchor);
+        if (!mounted) {
+          dispose = [
+            listen(
+              img,
+              "load",
+              /*sort_masonry*/
+              ctx[11]
+            ),
+            listen(
+              img,
+              "error",
+              /*error_handler*/
+              ctx[23]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*torrentInfo*/
+        2 && img_data_src_value !== (img_data_src_value = /*torrentInfo*/
+        ctx2[1].imageList[0] ? (
+          /*torrentInfo*/
+          ctx2[1].imageList[0]
+        ) : "")) {
+          attr(img, "data-src", img_data_src_value);
+        }
+        if (dirty[0] & /*torrentInfo*/
+        2 && img_alt_value !== (img_alt_value = /*torrentInfo*/
+        ctx2[1].name)) {
+          attr(img, "alt", img_alt_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(img);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_12(ctx) {
+    let t0;
+    let t1;
+    let t2;
+    let div7;
+    let div4;
+    let div3;
+    let div0;
+    let span0;
+    let t3;
+    let t4_value = (Number(
+      /*torrentInfo*/
+      ctx[1].size
+    ) / 1024 / 1024 / 1024).toFixed(2) + "G";
+    let t4;
+    let t5;
+    let div1;
+    let t6;
+    let div2;
+    let span2;
+    let promise_1;
+    let t7;
+    let div5;
+    let img0;
+    let img0_src_value;
+    let t8;
+    let t9_value = `${/*_CT*/
+  ctx[17].day} 日`;
+    let t9;
+    let t10;
+    let t11_value = (
+      /*_CT*/
+      ctx[17].hour ? `${/*_CT*/
+    ctx[17].hour} 时` : ""
+    );
+    let t11;
+    let t12;
+    let div6;
+    let img1;
+    let img1_src_value;
+    let t13;
+    let b0;
+    let t14_value = (
+      /*torrentInfo*/
+      ctx[1].status.comments + ""
+    );
+    let t14;
+    let t15;
+    let img2;
+    let img2_src_value;
+    let t16;
+    let b1;
+    let t17_value = (
+      /*torrentInfo*/
+      ctx[1].status.seeders + ""
+    );
+    let t17;
+    let t18;
+    let img3;
+    let img3_src_value;
+    let t19;
+    let b2;
+    let t20_value = (
+      /*torrentInfo*/
+      ctx[1].status.leechers + ""
+    );
+    let t20;
+    let mounted;
+    let dispose;
+    let if_block0 = (
+      /*torrentInfo*/
+      ctx[1].smallDescr && create_if_block_20(ctx)
+    );
+    let if_block1 = (
+      /*torrentInfo*/
+      (ctx[1].status.discount || /*torrentInfo*/
+      ctx[1].status.toppingLevel) && create_if_block_17(ctx)
+    );
+    let if_block2 = (
+      /*torrentInfo*/
+      ctx[1].labels != 0 && create_if_block_13(ctx)
+    );
+    let info = {
+      ctx,
+      current: null,
+      token: null,
+      hasCatch: true,
+      pending: create_pending_block_1,
+      then: create_then_block_1,
+      catch: create_catch_block_1,
+      value: 33,
+      error: 34
+    };
+    handle_promise(promise_1 = /*promise*/
+    ctx[4], info);
+    return {
+      c() {
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        t2 = space();
+        div7 = element("div");
+        div4 = element("div");
+        div3 = element("div");
+        div0 = element("div");
+        span0 = element("span");
+        span0.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="25" width="25" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; --darkreader-inline-fill: currentColor; --darkreader-inline-stroke: currentColor;"><path d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path><path d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"></path></svg>`;
+        t3 = text("\n               ");
+        t4 = text(t4_value);
+        t5 = text("\n\n            \n              \n            \n            ");
+        div1 = element("div");
+        div1.innerHTML = `<span class="icon_holder svelte-xpikqe"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
+        t6 = text("\n\n            \n              \n            \n            ");
+        div2 = element("div");
+        span2 = element("span");
+        info.block.c();
+        t7 = space();
+        div5 = element("div");
+        img0 = element("img");
+        t8 = text("\n           ");
+        t9 = text(t9_value);
+        t10 = space();
+        t11 = text(t11_value);
+        t12 = space();
+        div6 = element("div");
+        img1 = element("img");
+        t13 = text("\n           \n          ");
+        b0 = element("b");
+        t14 = text(t14_value);
+        t15 = text("\n            \n          ");
+        img2 = element("img");
+        t16 = text("\n           \n          ");
+        b1 = element("b");
+        t17 = text(t17_value);
+        t18 = text("\n            \n          ");
+        img3 = element("img");
+        t19 = text("\n           \n          ");
+        b2 = element("b");
+        t20 = text(t20_value);
+        attr(span0, "class", "icon_holder svelte-xpikqe");
+        attr(div0, "class", "cl-btn svelte-xpikqe");
+        attr(div1, "class", "cl-btn svelte-xpikqe");
+        set_style(div1, "cursor", "pointer");
+        attr(span2, "class", "icon_holder svelte-xpikqe");
+        attr(div2, "class", "cl-btn svelte-xpikqe");
+        set_style(div2, "cursor", "pointer");
+        attr(div3, "class", "cl-center svelte-xpikqe");
+        attr(div4, "class", "card-line svelte-xpikqe");
+        if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.TIME))
+          attr(img0, "src", img0_src_value);
+        attr(img0, "alt", "SVG_Time");
+        attr(div5, "class", "card-line cl-btn svelte-xpikqe");
+        if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.COMMENT))
+          attr(img1, "src", img1_src_value);
+        attr(img1, "alt", "SVG_Comment");
+        if (!src_url_equal(img2.src, img2_src_value = CONFIG.ICON.SEEDERS))
+          attr(img2, "src", img2_src_value);
+        attr(img2, "alt", "SVG_Seeders");
+        if (!src_url_equal(img3.src, img3_src_value = CONFIG.ICON.LEECHERS))
+          attr(img3, "src", img3_src_value);
+        attr(img3, "alt", "SVG_Leechers");
+        attr(div6, "class", "card-line svelte-xpikqe");
+        attr(div7, "class", "card-details svelte-xpikqe");
+      },
+      m(target, anchor) {
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t1, anchor);
+        if (if_block2)
+          if_block2.m(target, anchor);
+        insert(target, t2, anchor);
+        insert(target, div7, anchor);
+        append(div7, div4);
+        append(div4, div3);
+        append(div3, div0);
+        append(div0, span0);
+        append(div0, t3);
+        append(div0, t4);
+        append(div3, t5);
+        append(div3, div1);
+        append(div3, t6);
+        append(div3, div2);
+        append(div2, span2);
+        info.block.m(span2, info.anchor = null);
+        info.mount = () => span2;
+        info.anchor = null;
+        append(div7, t7);
+        append(div7, div5);
+        append(div5, img0);
+        append(div5, t8);
+        append(div5, t9);
+        append(div5, t10);
+        append(div5, t11);
+        append(div7, t12);
+        append(div7, div6);
+        append(div6, img1);
+        append(div6, t13);
+        append(div6, b0);
+        append(b0, t14);
+        append(div6, t15);
+        append(div6, img2);
+        append(div6, t16);
+        append(div6, b1);
+        append(b1, t17);
+        append(div6, t18);
+        append(div6, img3);
+        append(div6, t19);
+        append(div6, b2);
+        append(b2, t20);
+        if (!mounted) {
+          dispose = [
+            listen(
+              div1,
+              "click",
+              /*torrent_download*/
+              ctx[18]
+            ),
+            listen(
+              div2,
+              "click",
+              /*handleCollection*/
+              ctx[19]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        if (
+          /*torrentInfo*/
+          ctx[1].smallDescr
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx, dirty);
+          } else {
+            if_block0 = create_if_block_20(ctx);
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx[1].status.discount || /*torrentInfo*/
+          ctx[1].status.toppingLevel
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx, dirty);
+          } else {
+            if_block1 = create_if_block_17(ctx);
+            if_block1.c();
+            if_block1.m(t1.parentNode, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*torrentInfo*/
+          ctx[1].labels != 0
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx, dirty);
+          } else {
+            if_block2 = create_if_block_13(ctx);
+            if_block2.c();
+            if_block2.m(t2.parentNode, t2);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (dirty[0] & /*torrentInfo*/
+        2 && t4_value !== (t4_value = (Number(
+          /*torrentInfo*/
+          ctx[1].size
+        ) / 1024 / 1024 / 1024).toFixed(2) + "G"))
+          set_data(t4, t4_value);
+        info.ctx = ctx;
+        if (dirty[0] & /*promise*/
+        16 && promise_1 !== (promise_1 = /*promise*/
+        ctx[4]) && handle_promise(promise_1, info))
+          ;
+        else {
+          update_await_block_branch(info, ctx, dirty);
+        }
+        if (dirty[0] & /*torrentInfo*/
+        2 && t14_value !== (t14_value = /*torrentInfo*/
+        ctx[1].status.comments + ""))
+          set_data(t14, t14_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && t17_value !== (t17_value = /*torrentInfo*/
+        ctx[1].status.seeders + ""))
+          set_data(t17, t17_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && t20_value !== (t20_value = /*torrentInfo*/
+        ctx[1].status.leechers + ""))
+          set_data(t20, t20_value);
+      },
+      d(detaching) {
+        if (if_block0)
+          if_block0.d(detaching);
+        if (detaching)
+          detach(t0);
+        if (if_block1)
+          if_block1.d(detaching);
+        if (detaching)
+          detach(t1);
+        if (if_block2)
+          if_block2.d(detaching);
+        if (detaching)
+          detach(t2);
+        if (detaching)
+          detach(div7);
+        info.block.d();
+        info.token = null;
+        info = null;
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_20(ctx) {
+    let div;
+    let a;
+    let t_value = (
+      /*torrentInfo*/
+      ctx[1].smallDescr + ""
+    );
+    let t;
+    let a_href_value;
+    return {
+      c() {
+        div = element("div");
+        a = element("a");
+        t = text(t_value);
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[1].torrentLink);
+        attr(a, "class", "svelte-xpikqe");
+        attr(div, "class", "card-description svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, a);
+        append(a, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*torrentInfo*/
+        2 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[1].smallDescr + ""))
+          set_data(t, t_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[1].torrentLink)) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_17(ctx) {
+    let div;
+    let t;
+    let if_block0 = (
+      /*torrentInfo*/
+      ctx[1].status.toppingLevel && create_if_block_19()
+    );
+    let if_block1 = (
+      /*_discount*/
+      ctx[13] != "NORMAL" && create_if_block_18(ctx)
+    );
+    return {
+      c() {
+        div = element("div");
+        if (if_block0)
+          if_block0.c();
+        t = space();
+        if (if_block1)
+          if_block1.c();
+        attr(div, "class", "cl-tags svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        if (if_block0)
+          if_block0.m(div, null);
+        append(div, t);
+        if (if_block1)
+          if_block1.m(div, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          ctx2[1].status.toppingLevel
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_19();
+            if_block0.c();
+            if_block0.m(div, t);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*_discount*/
+          ctx2[13] != "NORMAL"
+        )
+          if_block1.p(ctx2, dirty);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+      }
+    };
+  }
+  function create_if_block_19(ctx) {
+    let img;
+    let img_src_value;
+    let t;
+    return {
+      c() {
+        img = element("img");
+        t = text("\n             ");
+        set_style(img, "background", "url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px");
+        set_style(img, "height", "14px");
+        set_style(img, "width", "14px");
+        if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.PIN))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "SVG_Comment");
+      },
+      m(target, anchor) {
+        insert(target, img, anchor);
+        insert(target, t, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(img);
+        if (detaching)
+          detach(t);
+      }
+    };
+  }
+  function create_if_block_18(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = `${/*_discountText*/
+      ctx[15][
+        /*_discount*/
+        ctx[13]
+      ]}${/*_discountEndTime*/
+      ctx[14] ? " : " + /*_discountCalcTime*/
+      ctx[16]() + " 小时" : ""}`;
+        attr(div, "class", "_tag svelte-xpikqe");
+        toggle_class(
+          div,
+          "_tag_discount_free",
+          /*_discount*/
+          ctx[13] == "FREE"
+        );
+        toggle_class(
+          div,
+          "_tag_discount_50",
+          /*_discount*/
+          ctx[13] == "PERCENT_50"
+        );
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_13(ctx) {
+    let div;
+    let t0;
+    let t1;
+    let if_block0 = (
+      /*torrentInfo*/
+      (ctx[1].labels & 1) === 1 && create_if_block_16()
+    );
+    let if_block1 = (
+      /*torrentInfo*/
+      (ctx[1].labels & 2) === 2 && create_if_block_15()
+    );
+    let if_block2 = (
+      /*torrentInfo*/
+      (ctx[1].labels & 4) === 4 && create_if_block_14()
+    );
+    return {
+      c() {
+        div = element("div");
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        attr(div, "class", "cl-tags svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        if (if_block0)
+          if_block0.m(div, null);
+        append(div, t0);
+        if (if_block1)
+          if_block1.m(div, null);
+        append(div, t1);
+        if (if_block2)
+          if_block2.m(div, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          (ctx2[1].labels & 1) === 1
+        ) {
+          if (if_block0)
+            ;
+          else {
+            if_block0 = create_if_block_16();
+            if_block0.c();
+            if_block0.m(div, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*torrentInfo*/
+          (ctx2[1].labels & 2) === 2
+        ) {
+          if (if_block1)
+            ;
+          else {
+            if_block1 = create_if_block_15();
+            if_block1.c();
+            if_block1.m(div, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*torrentInfo*/
+          (ctx2[1].labels & 4) === 4
+        ) {
+          if (if_block2)
+            ;
+          else {
+            if_block2 = create_if_block_14();
+            if_block2.c();
+            if_block2.m(div, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+      }
+    };
+  }
+  function create_if_block_16(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = "DIY";
+        attr(div, "class", "_tag _tag_diy svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_15(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = "国配";
+        attr(div, "class", "_tag _tag_dub svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_14(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = "中字";
+        attr(div, "class", "_tag _tag_sub svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_catch_block_1(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[34].message + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        set_style(p, "color", "red");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*promise*/
+        16 && t_value !== (t_value = /*error*/
+        ctx2[34].message + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(p);
+      }
+    };
+  }
+  function create_then_block_1(ctx) {
+    let svg;
+    let path;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path = svg_element("path");
+        attr(path, "d", "M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z");
+        attr(svg, "viewBox", "64 64 896 896");
+        attr(svg, "focusable", "false");
+        attr(svg, "data-icon", "star");
+        attr(svg, "width", "1em");
+        attr(svg, "height", "1em");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "aria-hidden", "true");
+        set_style(
+          svg,
+          "color",
+          /*collectionMark*/
+          ctx[3] ? "orange" : "black"
+        );
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*collectionMark*/
+        8) {
+          set_style(
+            svg,
+            "color",
+            /*collectionMark*/
+            ctx2[3] ? "orange" : "black"
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  function create_pending_block_1(ctx) {
+    let span;
+    return {
+      c() {
+        span = element("span");
+        span.textContent = "···";
+        set_style(span, "display", "flex");
+        set_style(span, "align-items", "center");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(span);
+      }
+    };
+  }
+  function create_if_block$2(ctx) {
+    let t0;
+    let t1;
+    let t2;
+    let div;
+    let t3;
+    let t4;
+    let if_block0 = (
+      /*$_CARD_SHOW*/
+      ctx[10].free && /*torrentInfo*/
+      (ctx[1].status.discount || /*torrentInfo*/
+      ctx[1].status.toppingLevel) && create_if_block_9(ctx)
+    );
+    let if_block1 = (
+      /*$_CARD_SHOW*/
+      ctx[10].sub_title && /*torrentInfo*/
+      ctx[1].smallDescr && create_if_block_8(ctx)
+    );
+    let if_block2 = (
+      /*$_CARD_SHOW*/
+      ctx[10].tags && /*torrentInfo*/
+      ctx[1].labels != 0 && create_if_block_4(ctx)
+    );
+    let if_block3 = (
+      /*$_CARD_SHOW*/
+      ctx[10].size_download_collect && create_if_block_3(ctx)
+    );
+    let if_block4 = (
+      /*$_CARD_SHOW*/
+      ctx[10].upload_time && create_if_block_2(ctx)
+    );
+    let if_block5 = (
+      /*$_CARD_SHOW*/
+      ctx[10].statistics && create_if_block_1$1(ctx)
+    );
+    return {
+      c() {
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        t2 = space();
+        div = element("div");
+        if (if_block3)
+          if_block3.c();
+        t3 = space();
+        if (if_block4)
+          if_block4.c();
+        t4 = space();
+        if (if_block5)
+          if_block5.c();
+        attr(div, "class", "card-details svelte-xpikqe");
+      },
+      m(target, anchor) {
+        if (if_block0)
+          if_block0.m(target, anchor);
+        insert(target, t0, anchor);
+        if (if_block1)
+          if_block1.m(target, anchor);
+        insert(target, t1, anchor);
+        if (if_block2)
+          if_block2.m(target, anchor);
+        insert(target, t2, anchor);
+        insert(target, div, anchor);
+        if (if_block3)
+          if_block3.m(div, null);
+        append(div, t3);
+        if (if_block4)
+          if_block4.m(div, null);
+        append(div, t4);
+        if (if_block5)
+          if_block5.m(div, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].free && /*torrentInfo*/
+          (ctx2[1].status.discount || /*torrentInfo*/
+          ctx2[1].status.toppingLevel)
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_9(ctx2);
+            if_block0.c();
+            if_block0.m(t0.parentNode, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].sub_title && /*torrentInfo*/
+          ctx2[1].smallDescr
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+          } else {
+            if_block1 = create_if_block_8(ctx2);
+            if_block1.c();
+            if_block1.m(t1.parentNode, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].tags && /*torrentInfo*/
+          ctx2[1].labels != 0
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_4(ctx2);
+            if_block2.c();
+            if_block2.m(t2.parentNode, t2);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].size_download_collect
+        ) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block_3(ctx2);
+            if_block3.c();
+            if_block3.m(div, t3);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].upload_time
+        ) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block_2(ctx2);
+            if_block4.c();
+            if_block4.m(div, t4);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].statistics
+        ) {
+          if (if_block5) {
+            if_block5.p(ctx2, dirty);
+          } else {
+            if_block5 = create_if_block_1$1(ctx2);
+            if_block5.c();
+            if_block5.m(div, null);
+          }
+        } else if (if_block5) {
+          if_block5.d(1);
+          if_block5 = null;
+        }
+      },
+      d(detaching) {
+        if (if_block0)
+          if_block0.d(detaching);
+        if (detaching)
+          detach(t0);
+        if (if_block1)
+          if_block1.d(detaching);
+        if (detaching)
+          detach(t1);
+        if (if_block2)
+          if_block2.d(detaching);
+        if (detaching)
+          detach(t2);
+        if (detaching)
+          detach(div);
+        if (if_block3)
+          if_block3.d();
+        if (if_block4)
+          if_block4.d();
+        if (if_block5)
+          if_block5.d();
+      }
+    };
+  }
+  function create_if_block_9(ctx) {
+    let div;
+    let t;
+    let if_block0 = (
+      /*torrentInfo*/
+      ctx[1].status.toppingLevel && create_if_block_11()
+    );
+    let if_block1 = (
+      /*_discount*/
+      ctx[13] != "NORMAL" && create_if_block_10(ctx)
+    );
+    return {
+      c() {
+        div = element("div");
+        if (if_block0)
+          if_block0.c();
+        t = space();
+        if (if_block1)
+          if_block1.c();
+        attr(div, "class", "cl-tags svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        if (if_block0)
+          if_block0.m(div, null);
+        append(div, t);
+        if (if_block1)
+          if_block1.m(div, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          ctx2[1].status.toppingLevel
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_11();
+            if_block0.c();
+            if_block0.m(div, t);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*_discount*/
+          ctx2[13] != "NORMAL"
+        )
+          if_block1.p(ctx2, dirty);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+      }
+    };
+  }
+  function create_if_block_11(ctx) {
+    let img;
+    let img_src_value;
+    let t;
+    return {
+      c() {
+        img = element("img");
+        t = text("\n             ");
+        set_style(img, "background", "url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px");
+        set_style(img, "height", "14px");
+        set_style(img, "width", "14px");
+        if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.PIN))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "SVG_Comment");
+      },
+      m(target, anchor) {
+        insert(target, img, anchor);
+        insert(target, t, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(img);
+        if (detaching)
+          detach(t);
+      }
+    };
+  }
+  function create_if_block_10(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = `${/*_discountText*/
+      ctx[15][
+        /*_discount*/
+        ctx[13]
+      ]}${/*_discountEndTime*/
+      ctx[14] ? " : " + /*_discountCalcTime*/
+      ctx[16]() + " 小时" : ""}`;
+        attr(div, "class", "_tag svelte-xpikqe");
+        toggle_class(
+          div,
+          "_tag_discount_free",
+          /*_discount*/
+          ctx[13] == "FREE"
+        );
+        toggle_class(
+          div,
+          "_tag_discount_50",
+          /*_discount*/
+          ctx[13] == "PERCENT_50"
+        );
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_8(ctx) {
+    let div;
+    let a;
+    let t_value = (
+      /*torrentInfo*/
+      ctx[1].smallDescr + ""
+    );
+    let t;
+    let a_href_value;
+    return {
+      c() {
+        div = element("div");
+        a = element("a");
+        t = text(t_value);
+        attr(a, "href", a_href_value = /*torrentInfo*/
+        ctx[1].torrentLink);
+        attr(a, "class", "svelte-xpikqe");
+        attr(div, "class", "card-description svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, a);
+        append(a, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*torrentInfo*/
+        2 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[1].smallDescr + ""))
+          set_data(t, t_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[1].torrentLink)) {
+          attr(a, "href", a_href_value);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_4(ctx) {
+    let div;
+    let t0;
+    let t1;
+    let if_block0 = (
+      /*torrentInfo*/
+      (ctx[1].labels & 1) === 1 && create_if_block_7()
+    );
+    let if_block1 = (
+      /*torrentInfo*/
+      (ctx[1].labels & 2) === 2 && create_if_block_6()
+    );
+    let if_block2 = (
+      /*torrentInfo*/
+      (ctx[1].labels & 4) === 4 && create_if_block_5()
+    );
+    return {
+      c() {
+        div = element("div");
+        if (if_block0)
+          if_block0.c();
+        t0 = space();
+        if (if_block1)
+          if_block1.c();
+        t1 = space();
+        if (if_block2)
+          if_block2.c();
+        attr(div, "class", "cl-tags svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        if (if_block0)
+          if_block0.m(div, null);
+        append(div, t0);
+        if (if_block1)
+          if_block1.m(div, null);
+        append(div, t1);
+        if (if_block2)
+          if_block2.m(div, null);
+      },
+      p(ctx2, dirty) {
+        if (
+          /*torrentInfo*/
+          (ctx2[1].labels & 1) === 1
+        ) {
+          if (if_block0)
+            ;
+          else {
+            if_block0 = create_if_block_7();
+            if_block0.c();
+            if_block0.m(div, t0);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (
+          /*torrentInfo*/
+          (ctx2[1].labels & 2) === 2
+        ) {
+          if (if_block1)
+            ;
+          else {
+            if_block1 = create_if_block_6();
+            if_block1.c();
+            if_block1.m(div, t1);
+          }
+        } else if (if_block1) {
+          if_block1.d(1);
+          if_block1 = null;
+        }
+        if (
+          /*torrentInfo*/
+          (ctx2[1].labels & 4) === 4
+        ) {
+          if (if_block2)
+            ;
+          else {
+            if_block2 = create_if_block_5();
+            if_block2.c();
+            if_block2.m(div, null);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+        if (if_block2)
+          if_block2.d();
+      }
+    };
+  }
+  function create_if_block_7(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = "DIY";
+        attr(div, "class", "_tag _tag_diy svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_6(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = "国配";
+        attr(div, "class", "_tag _tag_dub svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_5(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        div.textContent = "中字";
+        attr(div, "class", "_tag _tag_sub svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_3(ctx) {
+    let div4;
+    let div3;
+    let div0;
+    let span0;
+    let t0;
+    let t1_value = (Number(
+      /*torrentInfo*/
+      ctx[1].size
+    ) / 1024 / 1024 / 1024).toFixed(2) + "G";
+    let t1;
+    let t2;
+    let div1;
+    let t3;
+    let div2;
+    let span2;
+    let promise_1;
+    let mounted;
+    let dispose;
+    let info = {
+      ctx,
+      current: null,
+      token: null,
+      hasCatch: true,
+      pending: create_pending_block,
+      then: create_then_block,
+      catch: create_catch_block,
+      value: 33,
+      error: 34
+    };
+    handle_promise(promise_1 = /*promise*/
+    ctx[4], info);
+    return {
+      c() {
+        div4 = element("div");
+        div3 = element("div");
+        div0 = element("div");
+        span0 = element("span");
+        span0.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="25" width="25" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; --darkreader-inline-fill: currentColor; --darkreader-inline-stroke: currentColor;"><path d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path><path d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"></path></svg>`;
+        t0 = text("\n                 ");
+        t1 = text(t1_value);
+        t2 = text("\n\n              \n                \n              \n              ");
+        div1 = element("div");
+        div1.innerHTML = `<span class="icon_holder svelte-xpikqe"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
+        t3 = text("\n\n              \n                \n              \n              ");
+        div2 = element("div");
+        span2 = element("span");
+        info.block.c();
+        attr(span0, "class", "icon_holder svelte-xpikqe");
+        attr(div0, "class", "cl-btn svelte-xpikqe");
+        attr(div1, "class", "cl-btn svelte-xpikqe");
+        set_style(div1, "cursor", "pointer");
+        attr(span2, "class", "icon_holder svelte-xpikqe");
+        attr(div2, "class", "cl-btn svelte-xpikqe");
+        set_style(div2, "cursor", "pointer");
+        attr(div3, "class", "cl-center svelte-xpikqe");
+        attr(div4, "class", "card-line svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div4, anchor);
+        append(div4, div3);
+        append(div3, div0);
+        append(div0, span0);
+        append(div0, t0);
+        append(div0, t1);
+        append(div3, t2);
+        append(div3, div1);
+        append(div3, t3);
+        append(div3, div2);
+        append(div2, span2);
+        info.block.m(span2, info.anchor = null);
+        info.mount = () => span2;
+        info.anchor = null;
+        if (!mounted) {
+          dispose = [
+            listen(
+              div1,
+              "click",
+              /*torrent_download*/
+              ctx[18]
+            ),
+            listen(
+              div2,
+              "click",
+              /*handleCollection*/
+              ctx[19]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        if (dirty[0] & /*torrentInfo*/
+        2 && t1_value !== (t1_value = (Number(
+          /*torrentInfo*/
+          ctx[1].size
+        ) / 1024 / 1024 / 1024).toFixed(2) + "G"))
+          set_data(t1, t1_value);
+        info.ctx = ctx;
+        if (dirty[0] & /*promise*/
+        16 && promise_1 !== (promise_1 = /*promise*/
+        ctx[4]) && handle_promise(promise_1, info))
+          ;
+        else {
+          update_await_block_branch(info, ctx, dirty);
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div4);
+        info.block.d();
+        info.token = null;
+        info = null;
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_catch_block(ctx) {
+    let p;
+    let t_value = (
+      /*error*/
+      ctx[34].message + ""
+    );
+    let t;
+    return {
+      c() {
+        p = element("p");
+        t = text(t_value);
+        set_style(p, "color", "red");
+      },
+      m(target, anchor) {
+        insert(target, p, anchor);
+        append(p, t);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*promise*/
+        16 && t_value !== (t_value = /*error*/
+        ctx2[34].message + ""))
+          set_data(t, t_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(p);
+      }
+    };
+  }
+  function create_then_block(ctx) {
+    let svg;
+    let path;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path = svg_element("path");
+        attr(path, "d", "M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z");
+        attr(svg, "viewBox", "64 64 896 896");
+        attr(svg, "focusable", "false");
+        attr(svg, "data-icon", "star");
+        attr(svg, "width", "1em");
+        attr(svg, "height", "1em");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "aria-hidden", "true");
+        set_style(
+          svg,
+          "color",
+          /*collectionMark*/
+          ctx[3] ? "orange" : "black"
+        );
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*collectionMark*/
+        8) {
+          set_style(
+            svg,
+            "color",
+            /*collectionMark*/
+            ctx2[3] ? "orange" : "black"
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  function create_pending_block(ctx) {
+    let span;
+    return {
+      c() {
+        span = element("span");
+        span.textContent = "···";
+        set_style(span, "display", "flex");
+        set_style(span, "align-items", "center");
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(span);
+      }
+    };
+  }
+  function create_if_block_2(ctx) {
+    let div;
+    let img;
+    let img_src_value;
+    let t0;
+    let t1_value = `${/*_CT*/
+  ctx[17].day} 日`;
+    let t1;
+    let t2;
+    let t3_value = (
+      /*_CT*/
+      ctx[17].hour ? `${/*_CT*/
+    ctx[17].hour} 时` : ""
+    );
+    let t3;
+    return {
+      c() {
+        div = element("div");
+        img = element("img");
+        t0 = text("\n             ");
+        t1 = text(t1_value);
+        t2 = space();
+        t3 = text(t3_value);
+        if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.TIME))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "SVG_Time");
+        attr(div, "class", "card-line cl-btn svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, img);
+        append(div, t0);
+        append(div, t1);
+        append(div, t2);
+        append(div, t3);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_if_block_1$1(ctx) {
+    let div;
+    let img0;
+    let img0_src_value;
+    let t0;
+    let b0;
+    let t1_value = (
+      /*torrentInfo*/
+      ctx[1].status.comments + ""
+    );
+    let t1;
+    let t2;
+    let img1;
+    let img1_src_value;
+    let t3;
+    let b1;
+    let t4_value = (
+      /*torrentInfo*/
+      ctx[1].status.seeders + ""
+    );
+    let t4;
+    let t5;
+    let img2;
+    let img2_src_value;
+    let t6;
+    let b2;
+    let t7_value = (
+      /*torrentInfo*/
+      ctx[1].status.leechers + ""
+    );
+    let t7;
+    return {
+      c() {
+        div = element("div");
+        img0 = element("img");
+        t0 = text("\n             \n            ");
+        b0 = element("b");
+        t1 = text(t1_value);
+        t2 = text("\n              \n            ");
+        img1 = element("img");
+        t3 = text("\n             \n            ");
+        b1 = element("b");
+        t4 = text(t4_value);
+        t5 = text("\n              \n            ");
+        img2 = element("img");
+        t6 = text("\n             \n            ");
+        b2 = element("b");
+        t7 = text(t7_value);
+        if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.COMMENT))
+          attr(img0, "src", img0_src_value);
+        attr(img0, "alt", "SVG_Comment");
+        if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.SEEDERS))
+          attr(img1, "src", img1_src_value);
+        attr(img1, "alt", "SVG_Seeders");
+        if (!src_url_equal(img2.src, img2_src_value = CONFIG.ICON.LEECHERS))
+          attr(img2, "src", img2_src_value);
+        attr(img2, "alt", "SVG_Leechers");
+        attr(div, "class", "card-line svelte-xpikqe");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, img0);
+        append(div, t0);
+        append(div, b0);
+        append(b0, t1);
+        append(div, t2);
+        append(div, img1);
+        append(div, t3);
+        append(div, b1);
+        append(b1, t4);
+        append(div, t5);
+        append(div, img2);
+        append(div, t6);
+        append(div, b2);
+        append(b2, t7);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*torrentInfo*/
+        2 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx2[1].status.comments + ""))
+          set_data(t1, t1_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && t4_value !== (t4_value = /*torrentInfo*/
+        ctx2[1].status.seeders + ""))
+          set_data(t4, t4_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && t7_value !== (t7_value = /*torrentInfo*/
+        ctx2[1].status.leechers + ""))
+          set_data(t7, t7_value);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
+  function create_fragment$2(ctx) {
+    let div4;
+    let div3;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let t1_value = CONFIG.CATEGORY_NAME[
+      /*torrentInfo*/
+      ctx[1].category
+    ] + "";
+    let t1;
+    let div0_data_href_value;
+    let t2;
+    let t3;
+    let div2;
+    let t4;
+    let div1;
+    let t5_value = (
+      /*index*/
+      ctx[0] + 1 + ""
+    );
+    let t5;
+    let t6;
+    let t7;
+    let mounted;
+    let dispose;
+    let if_block0 = (
+      /*$_CARD_SHOW*/
+      (ctx[10].title || /*_hover*/
+      ctx[5]) && create_if_block_23(ctx)
+    );
+    function select_block_type(ctx2, dirty) {
+      if (!/*_picError*/
+      ctx2[6])
+        return create_if_block_21;
+      return create_else_block_1;
+    }
+    let current_block_type = select_block_type(ctx);
+    let if_block1 = current_block_type(ctx);
+    let if_block2 = (
+      /*$_CARD_SHOW*/
+      (ctx[10].all || /*_hover*/
+      ctx[5]) && create_if_block_12(ctx)
+    );
+    let if_block3 = !/*$_CARD_SHOW*/
+    (ctx[10].all || /*_hover*/
+    ctx[5]) && create_if_block$2(ctx);
+    return {
+      c() {
+        div4 = element("div");
+        div3 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        t1 = text(t1_value);
+        t2 = space();
+        if (if_block0)
+          if_block0.c();
+        t3 = space();
+        div2 = element("div");
+        if_block1.c();
+        t4 = space();
+        div1 = element("div");
+        t5 = text(t5_value);
+        t6 = space();
+        if (if_block2)
+          if_block2.c();
+        t7 = space();
+        if (if_block3)
+          if_block3.c();
+        attr(img, "class", "card_category-img svelte-xpikqe");
+        if (!src_url_equal(img.src, img_src_value = /*torrentInfo*/
+        ctx[1]._categoryImg))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "");
+        attr(div0, "class", "card-category svelte-xpikqe");
+        attr(div0, "data-href", div0_data_href_value = "https://test2.m-team.cc/browse?cat=" + /*torrentInfo*/
+        ctx[1].category);
+        set_style(
+          div0,
+          "background-color",
+          /*_categoryColor*/
+          ctx[22] ?? "transparent"
+        );
+        set_style(
+          div0,
+          "color",
+          /*_categoryColor*/
+          ctx[22] ? getTextColor(
+            /*_categoryColor*/
+            ctx[22]
+          ) : "black"
+        );
+        attr(div1, "class", "card-index svelte-xpikqe");
+        attr(div2, "class", "card-image svelte-xpikqe");
+        attr(div3, "class", "card-holder svelte-xpikqe");
+        set_style(div3, "background", "linear-gradient (to bottom, " + /*_categoryColor*/
+        (ctx[22] ?? _defaultColor) + " 18px, rgba(255, 255, 255, 0.4) 18px, rgba(255, 255, 255, 0))");
+        attr(div4, "class", "card svelte-xpikqe");
+        set_style(
+          div4,
+          "display",
+          /*torrentInfo*/
+          ctx[1].category == "440" && /*$_SITE_SETTING*/
+          ctx[8].mt.hide_gay ? "none" : "block"
+        );
+        set_style(
+          div4,
+          "width",
+          /*cardWidth*/
+          ctx[2] + "px"
+        );
+        set_style(div4, "z-index", 1e4 - /*index*/
+        ctx[0]);
+        set_style(
+          div4,
+          "border-color",
+          /*_categoryColor*/
+          ctx[22] ?? _defaultColor
+        );
+        set_style(
+          div4,
+          "background-color",
+          /*$_current_bgColor*/
+          ctx[9]
+        );
+        set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
+        (ctx[22] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
+        ctx[9] + " 18px)");
+      },
+      m(target, anchor) {
+        insert(target, div4, anchor);
+        append(div4, div3);
+        append(div3, div0);
+        append(div0, img);
+        append(div0, t0);
+        append(div0, t1);
+        append(div3, t2);
+        if (if_block0)
+          if_block0.m(div3, null);
+        append(div3, t3);
+        append(div3, div2);
+        if_block1.m(div2, null);
+        append(div2, t4);
+        append(div2, div1);
+        append(div1, t5);
+        append(div3, t6);
+        if (if_block2)
+          if_block2.m(div3, null);
+        append(div3, t7);
+        if (if_block3)
+          if_block3.m(div3, null);
+        ctx[24](div4);
+        if (!mounted) {
+          dispose = [
+            listen(
+              div2,
+              "click",
+              /*showDetailIframe*/
+              ctx[12]
+            ),
+            listen(
+              div3,
+              "mouseenter",
+              /*card_show_detail*/
+              ctx[20]
+            ),
+            listen(
+              div3,
+              "mouseleave",
+              /*card_hide_detail*/
+              ctx[21]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*torrentInfo*/
+        2 && !src_url_equal(img.src, img_src_value = /*torrentInfo*/
+        ctx2[1]._categoryImg)) {
+          attr(img, "src", img_src_value);
+        }
+        if (dirty[0] & /*torrentInfo*/
+        2 && t1_value !== (t1_value = CONFIG.CATEGORY_NAME[
+          /*torrentInfo*/
+          ctx2[1].category
+        ] + ""))
+          set_data(t1, t1_value);
+        if (dirty[0] & /*torrentInfo*/
+        2 && div0_data_href_value !== (div0_data_href_value = "https://test2.m-team.cc/browse?cat=" + /*torrentInfo*/
+        ctx2[1].category)) {
+          attr(div0, "data-href", div0_data_href_value);
+        }
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].title || /*_hover*/
+          ctx2[5]
+        ) {
+          if (if_block0) {
+            if_block0.p(ctx2, dirty);
+          } else {
+            if_block0 = create_if_block_23(ctx2);
+            if_block0.c();
+            if_block0.m(div3, t3);
+          }
+        } else if (if_block0) {
+          if_block0.d(1);
+          if_block0 = null;
+        }
+        if (current_block_type === (current_block_type = select_block_type(ctx2)) && if_block1) {
+          if_block1.p(ctx2, dirty);
+        } else {
+          if_block1.d(1);
+          if_block1 = current_block_type(ctx2);
+          if (if_block1) {
+            if_block1.c();
+            if_block1.m(div2, t4);
+          }
+        }
+        if (dirty[0] & /*index*/
+        1 && t5_value !== (t5_value = /*index*/
+        ctx2[0] + 1 + ""))
+          set_data(t5, t5_value);
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].all || /*_hover*/
+          ctx2[5]
+        ) {
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_12(ctx2);
+            if_block2.c();
+            if_block2.m(div3, t7);
+          }
+        } else if (if_block2) {
+          if_block2.d(1);
+          if_block2 = null;
+        }
+        if (!/*$_CARD_SHOW*/
+        (ctx2[10].all || /*_hover*/
+        ctx2[5])) {
+          if (if_block3) {
+            if_block3.p(ctx2, dirty);
+          } else {
+            if_block3 = create_if_block$2(ctx2);
+            if_block3.c();
+            if_block3.m(div3, null);
+          }
+        } else if (if_block3) {
+          if_block3.d(1);
+          if_block3 = null;
+        }
+        if (dirty[0] & /*torrentInfo, $_SITE_SETTING*/
+        258) {
+          set_style(
+            div4,
+            "display",
+            /*torrentInfo*/
+            ctx2[1].category == "440" && /*$_SITE_SETTING*/
+            ctx2[8].mt.hide_gay ? "none" : "block"
+          );
+        }
+        if (dirty[0] & /*cardWidth*/
+        4) {
+          set_style(
+            div4,
+            "width",
+            /*cardWidth*/
+            ctx2[2] + "px"
+          );
+        }
+        if (dirty[0] & /*index*/
+        1) {
+          set_style(div4, "z-index", 1e4 - /*index*/
+          ctx2[0]);
+        }
+        if (dirty[0] & /*$_current_bgColor*/
+        512) {
+          set_style(
+            div4,
+            "background-color",
+            /*$_current_bgColor*/
+            ctx2[9]
+          );
+        }
+        if (dirty[0] & /*$_current_bgColor*/
+        512) {
+          set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
+          (ctx2[22] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
+          ctx2[9] + " 18px)");
+        }
+      },
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div4);
+        if (if_block0)
+          if_block0.d();
+        if_block1.d();
+        if (if_block2)
+          if_block2.d();
+        if (if_block3)
+          if_block3.d();
+        ctx[24](null);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  const _defaultColor = "rgba(255, 255, 255, 0.5)";
+  function getTextColor(background) {
+    const color = background.replace("#", "");
+    const red = parseInt(color.substr(0, 2), 16);
+    const green = parseInt(color.substr(2, 2), 16);
+    const blue = parseInt(color.substr(4, 2), 16);
+    const brightness = (red * 299 + green * 587 + blue * 114) / 1e3;
+    return brightness < 128 ? "white" : "black";
+  }
+  function instance$2($$self, $$props, $$invalidate) {
+    let $_iframe_url;
+    let $_iframe_switch;
+    let $_SITE_SETTING;
+    let $_current_bgColor;
+    let $_CARD_SHOW;
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(25, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(26, $_iframe_switch = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(8, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(9, $_current_bgColor = $$value));
+    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(10, $_CARD_SHOW = $$value));
+    function fetchData(api, payload, func2) {
+      if (!CONFIG.API[api]) {
+        console.warn(`没有名为 ${api} 的 API 接口.`);
+        return;
+      }
+      const url = CONFIG.HOST + CONFIG.API[api].url;
+      const method = CONFIG.API[api].method;
+      fetch(url, { method, body: payload }).then((response) => response.json()).then((data) => {
+        func2(data);
+      }).catch((error) => console.error(error));
+    }
+    window.fetchData = fetchData;
+    function sort_masonry() {
+      sortMasonry();
+    }
+    function showDetailIframe() {
+      set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
+      set_store_value(_iframe_url, $_iframe_url = torrentInfo.torrentLink + "#kdescr", $_iframe_url);
+      set_store_value(_iframe_url, $_iframe_url = "https://test2.m-team.cc/detail/" + torrentInfo.id, $_iframe_url);
+    }
+    let { index } = $$props;
+    let { torrentInfo } = $$props;
+    let { cardWidth } = $$props;
+    const _discount = torrentInfo.status.discount;
+    const _discountEndTime = torrentInfo.status.discountEndTime;
+    const _discountText = { FREE: "免费", PERCENT_50: "50%" };
+    const _discountCalcTime = () => {
+      const now2 = /* @__PURE__ */ new Date();
+      const end = new Date(_discountEndTime);
+      const res = Math.floor((end.getTime() - now2.getTime()) / (1e3 * 3600));
+      return res;
+    };
+    const _createdDate = torrentInfo.status.createdDate;
+    const _createdCalcTime = () => {
+      const now2 = /* @__PURE__ */ new Date();
+      const then = new Date(_createdDate);
+      const gap = now2.getTime() - then.getTime();
+      const day = Math.floor(gap / (1e3 * 3600 * 24));
+      const hour = Math.floor(gap % (1e3 * 3600 * 24) / (1e3 * 3600));
+      return { day, hour };
+    };
+    const _CT = _createdCalcTime();
+    function torrent_download() {
+      const formdata2 = new FormData();
+      formdata2.append("id", torrentInfo.id);
+      fetchData("genDlToken", formdata2, (data) => {
+        console.log(data);
+        if (data.data)
+          window.open(data.data, "_blank");
+      });
+    }
+    let collectionMark = Boolean(torrentInfo.collection);
+    const formdata = new FormData();
+    formdata.append("id", torrentInfo.id);
+    formdata.append("make", !collectionMark);
+    let promise2;
+    async function torrent_collection(api, payload, func2) {
+      if (!CONFIG.API[api]) {
+        console.warn(`没有名为 ${api} 的 API 接口.`);
+        return;
+      }
+      const url = CONFIG.HOST + CONFIG.API[api].url;
+      const method = CONFIG.API[api].method;
+      const res = await fetch(url, { method, body: payload });
+      const json = await res.json();
+      if (res.ok) {
+        func2(json);
+        return json;
+      } else {
+        throw new Error(json);
+      }
+    }
+    function handleCollection() {
+      $$invalidate(4, promise2 = torrent_collection("collection", formdata, collectionCallBack));
+    }
+    function collectionCallBack(data) {
+      console.log(data);
+      $$invalidate(3, collectionMark = !collectionMark);
+    }
+    let _hover = false;
+    function card_show_detail() {
+      $$invalidate(5, _hover = true);
+      $$invalidate(
+        7,
+        thisDom.style.boxShadow = `
+    ${_categoryColor ?? _defaultColor} 5px 5px 0px, 
+    rgba(0, 0, 0, 0.1) -1px -1px 0px`,
+        thisDom
+      );
+    }
+    function card_hide_detail() {
+      $$invalidate(5, _hover = false);
+      $$invalidate(7, thisDom.style.boxShadow = "", thisDom);
+    }
+    let _picError = false;
+    const _categoryColor = CONFIG.CATEGORY_COLOR[torrentInfo.category];
+    let thisDom;
+    const error_handler = () => {
+      $$invalidate(6, _picError = true);
+    };
+    function div4_binding($$value) {
+      binding_callbacks[$$value ? "unshift" : "push"](() => {
+        thisDom = $$value;
+        $$invalidate(7, thisDom);
+      });
+    }
+    $$self.$$set = ($$props2) => {
+      if ("index" in $$props2)
+        $$invalidate(0, index = $$props2.index);
+      if ("torrentInfo" in $$props2)
+        $$invalidate(1, torrentInfo = $$props2.torrentInfo);
+      if ("cardWidth" in $$props2)
+        $$invalidate(2, cardWidth = $$props2.cardWidth);
+    };
+    return [
+      index,
+      torrentInfo,
+      cardWidth,
+      collectionMark,
+      promise2,
+      _hover,
+      _picError,
+      thisDom,
+      $_SITE_SETTING,
+      $_current_bgColor,
+      $_CARD_SHOW,
+      sort_masonry,
+      showDetailIframe,
+      _discount,
+      _discountEndTime,
+      _discountText,
+      _discountCalcTime,
+      _CT,
+      torrent_download,
+      handleCollection,
+      card_show_detail,
+      card_hide_detail,
+      _categoryColor,
+      error_handler,
+      div4_binding
+    ];
+  }
+  class TestMteam extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance$2, create_fragment$2, safe_not_equal, { index: 0, torrentInfo: 1, cardWidth: 2 }, null, [-1, -1]);
+    }
+  }
+  function get_each_context(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[32] = list[i];
+    child_ctx[34] = i;
+    return child_ctx;
+  }
+  function create_if_block_1(ctx) {
+    let div2;
+    let div2_transition;
+    let current;
+    return {
+      c() {
+        div2 = element("div");
+        div2.innerHTML = `<div class="loading_SubHolder svelte-11rmzun"><div class="loading_Text svelte-11rmzun">页面切换加载中...</div></div>`;
+        attr(div2, "class", "loading_Holder svelte-11rmzun");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        current = true;
+      },
+      i(local) {
+        if (current)
+          return;
+        add_render_callback(() => {
+          if (!current)
+            return;
+          if (!div2_transition)
+            div2_transition = create_bidirectional_transition(div2, fade, { duration: 600 }, true);
+          div2_transition.run(1);
+        });
+        current = true;
+      },
+      o(local) {
+        if (!div2_transition)
+          div2_transition = create_bidirectional_transition(div2, fade, { duration: 600 }, false);
+        div2_transition.run(0);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        if (detaching && div2_transition)
+          div2_transition.end();
+      }
+    };
+  }
+  function create_if_block$1(ctx) {
+    let each_blocks = [];
+    let each_1_lookup = /* @__PURE__ */ new Map();
+    let each_1_anchor;
+    let current;
+    let each_value = (
+      /*infoList*/
+      ctx[3]
+    );
+    const get_key = (ctx2) => (
+      /*info*/
+      ctx2[32].id
+    );
+    for (let i = 0; i < each_value.length; i += 1) {
+      let child_ctx = get_each_context(ctx, each_value, i);
+      let key = get_key(child_ctx);
+      each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        each_1_anchor = empty();
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, each_1_anchor, anchor);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*infoList, CARD*/
+        9) {
+          each_value = /*infoList*/
+          ctx2[3];
+          group_outros();
+          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block, each_1_anchor, get_each_context);
+          check_outros();
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        for (let i = 0; i < each_value.length; i += 1) {
+          transition_in(each_blocks[i]);
+        }
+        current = true;
+      },
+      o(local) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          transition_out(each_blocks[i]);
+        }
+        current = false;
+      },
+      d(detaching) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].d(detaching);
+        }
+        if (detaching)
+          detach(each_1_anchor);
+      }
+    };
+  }
+  function create_each_block(key_1, ctx) {
+    let first;
+    let testmteam;
+    let current;
+    testmteam = new TestMteam({
+      props: {
+        index: (
+          /*index*/
+          ctx[34]
+        ),
+        torrentInfo: (
+          /*info*/
+          ctx[32]
+        ),
+        cardWidth: (
+          /*CARD*/
+          ctx[0].CARD_WIDTH
+        )
+      }
+    });
+    return {
+      key: key_1,
+      first: null,
+      c() {
+        first = empty();
+        create_component(testmteam.$$.fragment);
+        this.first = first;
+      },
+      m(target, anchor) {
+        insert(target, first, anchor);
+        mount_component(testmteam, target, anchor);
+        current = true;
+      },
+      p(new_ctx, dirty) {
+        ctx = new_ctx;
+        const testmteam_changes = {};
+        if (dirty[0] & /*infoList*/
+        8)
+          testmteam_changes.index = /*index*/
+          ctx[34];
+        if (dirty[0] & /*infoList*/
+        8)
+          testmteam_changes.torrentInfo = /*info*/
+          ctx[32];
+        if (dirty[0] & /*CARD*/
+        1)
+          testmteam_changes.cardWidth = /*CARD*/
+          ctx[0].CARD_WIDTH;
+        testmteam.$set(testmteam_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(testmteam.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(testmteam.$$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          detach(first);
+        destroy_component(testmteam, detaching);
+      }
+    };
+  }
+  function create_fragment$1(ctx) {
+    let div;
+    let t;
+    let current;
+    let if_block0 = !/*loading_hide*/
+    ctx[1] && create_if_block_1();
+    let if_block1 = (
+      /*$_current_domain*/
+      ctx[4] == "test2.m-team.cc" && create_if_block$1(ctx)
+    );
+    return {
+      c() {
+        div = element("div");
+        if (if_block0)
+          if_block0.c();
+        t = space();
+        if (if_block1)
+          if_block1.c();
+        attr(div, "class", "svelte-11rmzun");
+        toggle_class(div, "masonry_Holder_unload_1st", !/*loading_hide*/
+        ctx[1] && /*loading_first*/
+        ctx[2]);
+        toggle_class(
+          div,
+          "masonry_Holder_loaded_1st",
+          /*loading_hide*/
+          ctx[1] && /*loading_first*/
+          ctx[2]
+        );
+        toggle_class(div, "masonry_Holder_unloaded", !/*loading_hide*/
+        ctx[1] && !/*loading_first*/
+        ctx[2]);
+        toggle_class(
+          div,
+          "masonry_Holder_loaded",
+          /*loading_hide*/
+          ctx[1] && !/*loading_first*/
+          ctx[2]
+        );
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        if (if_block0)
+          if_block0.m(div, null);
+        append(div, t);
+        if (if_block1)
+          if_block1.m(div, null);
+        current = true;
+      },
+      p(ctx2, dirty) {
+        if (!/*loading_hide*/
+        ctx2[1]) {
+          if (if_block0) {
+            if (dirty[0] & /*loading_hide*/
+            2) {
+              transition_in(if_block0, 1);
+            }
+          } else {
+            if_block0 = create_if_block_1();
+            if_block0.c();
+            transition_in(if_block0, 1);
+            if_block0.m(div, t);
+          }
+        } else if (if_block0) {
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
+        }
+        if (
+          /*$_current_domain*/
+          ctx2[4] == "test2.m-team.cc"
+        ) {
+          if (if_block1) {
+            if_block1.p(ctx2, dirty);
+            if (dirty[0] & /*$_current_domain*/
+            16) {
+              transition_in(if_block1, 1);
+            }
+          } else {
+            if_block1 = create_if_block$1(ctx2);
+            if_block1.c();
+            transition_in(if_block1, 1);
+            if_block1.m(div, null);
+          }
+        } else if (if_block1) {
+          group_outros();
+          transition_out(if_block1, 1, 1, () => {
+            if_block1 = null;
+          });
+          check_outros();
+        }
+        if (!current || dirty[0] & /*loading_hide, loading_first*/
+        6) {
+          toggle_class(div, "masonry_Holder_unload_1st", !/*loading_hide*/
+          ctx2[1] && /*loading_first*/
+          ctx2[2]);
+        }
+        if (!current || dirty[0] & /*loading_hide, loading_first*/
+        6) {
+          toggle_class(
+            div,
+            "masonry_Holder_loaded_1st",
+            /*loading_hide*/
+            ctx2[1] && /*loading_first*/
+            ctx2[2]
+          );
+        }
+        if (!current || dirty[0] & /*loading_hide, loading_first*/
+        6) {
+          toggle_class(div, "masonry_Holder_unloaded", !/*loading_hide*/
+          ctx2[1] && !/*loading_first*/
+          ctx2[2]);
+        }
+        if (!current || dirty[0] & /*loading_hide, loading_first*/
+        6) {
+          toggle_class(
+            div,
+            "masonry_Holder_loaded",
+            /*loading_hide*/
+            ctx2[1] && !/*loading_first*/
+            ctx2[2]
+          );
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block0);
+        transition_in(if_block1);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block0);
+        transition_out(if_block1);
         current = false;
       },
       d(detaching) {
         if (detaching)
           detach(div);
-        if (detaching && div_transition)
-          div_transition.end();
+        if (if_block0)
+          if_block0.d();
+        if (if_block1)
+          if_block1.d();
+      }
+    };
+  }
+  function instance$1($$self, $$props, $$invalidate) {
+    let $_list_viewMode;
+    let $_Global_Masonry;
+    let $_animated;
+    let $_card_width;
+    let $_turnPage;
+    let $_current_bgColor;
+    let $_current_domain;
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(12, $_list_viewMode = $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(13, $_Global_Masonry = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(9, $_animated = $$value));
+    component_subscribe($$self, _card_width, ($$value) => $$invalidate(10, $_card_width = $$value));
+    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(14, $_turnPage = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(15, $_current_bgColor = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(4, $_current_domain = $$value));
+    let { waterfallNode } = $$props;
+    let { waterfallParentNode } = $$props;
+    let { update_ORIGIN_TL_Node } = $$props;
+    const searchApiURL = CONFIG.HOST + CONFIG.API.search.url;
+    window.NEXUS_TOOLS = NEXUS_TOOLS;
+    let masonry2;
+    let loading_hide = false;
+    let loading_first = true;
+    waterfallParentNode.style.height = "116px";
+    set_store_value(_current_domain, $_current_domain = GET_CURRENT_PT_DOMAIN(), $_current_domain);
+    const bgColor = GET_SITE_BACKGROUND_COLOR();
+    set_store_value(_current_bgColor, $_current_bgColor = bgColor, $_current_bgColor);
+    console.log("背景颜色:", bgColor);
+    function GET_CARD_GUTTER(containerDom, card_width) {
+      const _width = containerDom.clientWidth;
+      const card_real_width = card_width + CARD.CARD_BORDER;
+      const columns = Math.floor(_width / card_real_width);
+      const gutter = (_width - columns * card_real_width) / (columns - 1);
+      console.log(`列数:${columns} 间隔:${gutter}`);
+      console.log(`容器宽:${_width} 列宽:${masonry2 ? masonry2.columnWidth : "masonry 丢失!!!"}`);
+      return Math.floor(gutter);
+    }
+    function ChangeShowMode() {
+      const _$_ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+      const _$nextPageNode = document.querySelector(".nextPage");
+      const _$waterfallNode = document.querySelector(".waterfall.waterfall_newMT");
+      _$_ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+      _$nextPageNode.style.display = $_list_viewMode ? "block" : "none";
+      _$waterfallNode.style.display = $_list_viewMode ? "block" : "none";
+    }
+    function CHANGE_CARD_LAYOUT() {
+      ChangeShowMode();
+      $$invalidate(8, masonry2.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width), masonry2);
+      $$invalidate(8, masonry2.options.columnWidth = $_card_width, masonry2);
+      sortMasonry("fast");
+      sortMasonry("fast");
+    }
+    window.CHANGE_CARD_LAYOUT = CHANGE_CARD_LAYOUT;
+    let infoList = [];
+    function RequestExample() {
+      console.log("当前页面 path:	", location.pathname);
+      let pageSize = getPageSize();
+      const payload = {
+        categories: UrlPath_2_ParamList(),
+        pageNumber: 1,
+        pageSize,
+        sortDirection: "DESC",
+        sortField: "CREATED_DATE"
+      };
+      fetch(searchApiURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        },
+        body: JSON.stringify(payload)
+      }).then((response) => response.json()).then((data) => {
+        console.log(data);
+        const list = data.data.data;
+        $$invalidate(3, infoList = [...list]);
+      }).then(() => {
+        masonry2.reloadItems();
+        $$invalidate(2, loading_first = false);
+        $$invalidate(1, loading_hide = true);
+        $$invalidate(5, waterfallParentNode.style.height = "auto", waterfallParentNode);
+        masonry2.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
+      }).catch((error) => {
+        console.error("网络请求错误:", error);
+      });
+    }
+    function Request(payload, successCallback = null) {
+      console.log("当前页面 path:	", location.pathname);
+      fetch(searchApiURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        },
+        body: JSON.stringify(payload)
+      }).then((response) => response.json()).then((data) => {
+        console.log(data);
+        const list = data.data.data;
+        $$invalidate(3, infoList = [...list]);
+      }).then(() => {
+        masonry2.reloadItems();
+        $$invalidate(1, loading_hide = true);
+        masonry2.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
+        if (successCallback)
+          successCallback();
+      }).catch((error) => {
+        console.error("网络请求错误:", error);
+      });
+    }
+    function getPageSize() {
+      const sysinfo = parseLocalStorage("persist:persist").sysinfo;
+      if (!sysinfo.pageSize)
+        return 20;
+      if (!sysinfo.pageSize.torrent)
+        return 20;
+      return Number(sysinfo.pageSize.torrent);
+    }
+    function UrlPath_2_ParamList(path = location.pathname) {
+      const categoryParam = (
+        // @ts-ignore
+        path == "/browse" ? "safe" : path.slice("/browse/".length)
+      );
+      console.log(`search param:	`, categoryParam);
+      const lsInfo = parseLocalStorage("persist:persist");
+      return Array.from(lsInfo.sysinfo.categoryList[categoryParam]);
+    }
+    const originalPushState = history.pushState;
+    function OverWritePushState() {
+      history.pushState = function(state, title, path) {
+        $$invalidate(1, loading_hide = false);
+        console.log(`%c ====> URL跳转劫持: %c${path}`, "color: cyan", "color: white");
+        if (path.includes("/browse/") || path == "/browse") {
+          console.log("--->属于 browse 范围, search 启动");
+          $$invalidate(5, waterfallParentNode.style.display = "block", waterfallParentNode);
+          const searchApiList = UrlPath_2_ParamList(path);
+          const pageSizeParam = getPageSize();
+          const payload = {
+            categories: searchApiList,
+            pageNumber: 1,
+            pageSize: pageSizeParam,
+            sortDirection: "DESC",
+            sortField: "CREATED_DATE"
+          };
+          Request(payload, update_ORIGIN_TL_Node);
+        } else {
+          $$invalidate(5, waterfallParentNode.style.display = "none", waterfallParentNode);
+        }
+        originalPushState.apply(history, arguments);
+      };
+    }
+    PAGE.$setPage(1);
+    let debounceLoad;
+    debounceLoad = debounceImmediate(loadNextPage, PAGE.GAP);
+    const scrollDOM = document.querySelector(".ant-layout");
+    function scan_and_launch() {
+      const scrollHeight = scrollDOM.scrollHeight;
+      const clientHeight = scrollDOM.clientHeight;
+      const scrollTop = scrollDOM.scrollTop || scrollDOM.scrollTop;
+      if (scrollTop + clientHeight >= scrollHeight - PAGE.DISTANCE_newMT) {
+        if ($_turnPage) {
+          debounceLoad();
+        } else {
+          console.log("加载模式: 按钮");
+        }
+        sortMasonry();
+      }
+    }
+    function loadNextPage() {
+      const payload = {
+        categories: UrlPath_2_ParamList(),
+        pageNumber: PAGE.$getCurrentPage() + 1,
+        pageSize: getPageSize(),
+        sortDirection: "DESC",
+        sortField: "CREATED_DATE"
+      };
+      fetch(searchApiURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        },
+        body: JSON.stringify(payload)
+      }).then((response) => response.json()).then((data) => {
+        console.log(data);
+        const list = data.data.data;
+        $$invalidate(3, infoList = [...infoList, ...list]);
+      }).then(() => {
+        masonry2.reloadItems();
+        masonry2.once("layoutComplete", () => {
+          NEXUS_TOOLS();
+        });
+        PAGE.$turnPage();
+      }).catch((error) => {
+        console.error("网络请求错误:", error);
+      });
+    }
+    function turnPage() {
+      if (!$_turnPage)
+        debounceLoad();
+    }
+    window.$$$turnPage = turnPage;
+    onMount(() => {
+      $$invalidate(8, masonry2 = new Masonry(
+        waterfallNode,
+        {
+          itemSelector: ".card",
+          columnWidth: $_card_width,
+          gutter: GET_CARD_GUTTER(waterfallNode, $_card_width),
+          // transitions Duration 默认值为 0.4
+          transitionDuration: $_animated ? 0.4 : 0
+        }
+      ));
+      window.masonry = masonry2;
+      set_store_value(_Global_Masonry, $_Global_Masonry = masonry2, $_Global_Masonry);
+      masonry2.layout("fast");
+      masonry2.layout("fast");
+      waterfallNode.addEventListener("click", (event) => {
+        if (event.target === event.currentTarget) {
+          if (masonry2)
+            masonry2.layout();
+          console.log("Masonry 已整理~");
+        }
+      });
+      scrollDOM.addEventListener("scroll", function() {
+        if ($_list_viewMode)
+          scan_and_launch();
+      });
+      RequestExample();
+      OverWritePushState();
+    });
+    $$self.$$set = ($$props2) => {
+      if ("waterfallNode" in $$props2)
+        $$invalidate(6, waterfallNode = $$props2.waterfallNode);
+      if ("waterfallParentNode" in $$props2)
+        $$invalidate(5, waterfallParentNode = $$props2.waterfallParentNode);
+      if ("update_ORIGIN_TL_Node" in $$props2)
+        $$invalidate(7, update_ORIGIN_TL_Node = $$props2.update_ORIGIN_TL_Node);
+    };
+    $$self.$$.update = () => {
+      if ($$self.$$.dirty[0] & /*masonry, $_animated*/
+      768) {
+        {
+          if (masonry2)
+            $$invalidate(8, masonry2.options.transitionDuration = $_animated ? "0.4s" : "0", masonry2);
+        }
+      }
+      if ($$self.$$.dirty[0] & /*masonry, $_card_width, CARD*/
+      1281) {
+        if (masonry2) {
+          $$invalidate(0, CARD.CARD_WIDTH = $_card_width, CARD);
+          console.log("卡片宽度:	", CARD.CARD_WIDTH);
+          CHANGE_CARD_LAYOUT();
+        }
+      }
+    };
+    return [
+      CARD,
+      loading_hide,
+      loading_first,
+      infoList,
+      $_current_domain,
+      waterfallParentNode,
+      waterfallNode,
+      update_ORIGIN_TL_Node,
+      masonry2,
+      $_animated,
+      $_card_width
+    ];
+  }
+  class Index_newMT extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(
+        this,
+        options,
+        instance$1,
+        create_fragment$1,
+        safe_not_equal,
+        {
+          waterfallNode: 6,
+          waterfallParentNode: 5,
+          update_ORIGIN_TL_Node: 7
+        },
+        null,
+        [-1, -1]
+      );
+    }
+  }
+  const { window: window_1 } = globals;
+  function create_if_block(ctx) {
+    let div2;
+    let div1;
+    let iframe;
+    let iframe_src_value;
+    let t;
+    let div0;
+    let div2_transition;
+    let current;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div2 = element("div");
+        div1 = element("div");
+        iframe = element("iframe");
+        t = space();
+        div0 = element("div");
+        div0.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"><circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle><path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path></g></svg>`;
+        if (!src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
+        ctx[1]))
+          attr(iframe, "src", iframe_src_value);
+        attr(iframe, "frameborder", "0");
+        attr(iframe, "title", "wow");
+        set_style(iframe, "width", (SITE[
+          /*$_current_domain*/
+          ctx[2]
+        ] ? SITE[
+          /*$_current_domain*/
+          ctx[2]
+        ].Iframe_Width : 1e3) + "px");
+        attr(iframe, "class", "svelte-12ghpfg");
+        attr(div0, "class", "_iframeCloseBtn svelte-12ghpfg");
+        attr(div1, "class", "_iframe svelte-12ghpfg");
+        attr(div2, "id", "_iframe");
+        attr(div2, "class", "svelte-12ghpfg");
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div1);
+        append(div1, iframe);
+        append(div1, t);
+        append(div1, div0);
+        current = true;
+        if (!mounted) {
+          dispose = [
+            listen(
+              div0,
+              "click",
+              /*toggleIframe*/
+              ctx[3]
+            ),
+            listen(
+              div2,
+              "click",
+              /*toggleIframe*/
+              ctx[3]
+            )
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (!current || dirty & /*$_iframe_url*/
+        2 && !src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
+        ctx2[1])) {
+          attr(iframe, "src", iframe_src_value);
+        }
+        if (!current || dirty & /*$_current_domain*/
+        4) {
+          set_style(iframe, "width", (SITE[
+            /*$_current_domain*/
+            ctx2[2]
+          ] ? SITE[
+            /*$_current_domain*/
+            ctx2[2]
+          ].Iframe_Width : 1e3) + "px");
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        add_render_callback(() => {
+          if (!current)
+            return;
+          if (!div2_transition)
+            div2_transition = create_bidirectional_transition(div2, fade, { duration: 300 }, true);
+          div2_transition.run(1);
+        });
+        current = true;
+      },
+      o(local) {
+        if (!div2_transition)
+          div2_transition = create_bidirectional_transition(div2, fade, { duration: 300 }, false);
+        div2_transition.run(0);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        if (detaching && div2_transition)
+          div2_transition.end();
         mounted = false;
-        dispose();
+        run_all(dispose);
       }
     };
   }
@@ -10324,7 +14074,7 @@
         current = true;
         if (!mounted) {
           dispose = listen(
-            window,
+            window_1,
             "keydown",
             /*key_closePanels*/
             ctx[4],
@@ -10378,29 +14128,46 @@
       }
     };
   }
+  function getDOMElement(selector, maxRetries = 5, interval = 200, func2 = (el) => {
+  }) {
+    const element2 = document.querySelector(selector);
+    if (element2) {
+      func2(element2);
+      return element2;
+    }
+    if (maxRetries > 0) {
+      setTimeout(
+        () => {
+          getDOMElement(selector, maxRetries - 1, interval, func2);
+        },
+        interval
+      );
+    } else {
+      console.log(`无法找到元素: ${selector}`);
+    }
+  }
   function instance($$self, $$props, $$invalidate) {
     let $_show_configPanel;
     let $_iframe_switch;
     let $_list_viewMode;
     let $_iframe_url;
     let $_current_domain;
-    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(9, $_show_configPanel = $$value));
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(10, $_show_configPanel = $$value));
     component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(0, $_iframe_switch = $$value));
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(11, $_list_viewMode = $$value));
     component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(1, $_iframe_url = $$value));
     component_subscribe($$self, _current_domain, ($$value) => $$invalidate(2, $_current_domain = $$value));
-    console.log(`[${( new Date()).toLocaleTimeString()}]<--------------------------HMR-------------------------->`);
-    const _ORIGIN_TL_Node2 = document.querySelector(GET_TORRENT_LIST_SELECTOR());
-    while (!Masonry) {
-      console.log("等待初始化......");
+    console.log(`[${( new Date()).toLocaleTimeString()}]<----------------------HMR_NewMT---------------------->`);
+    let _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+    window._ORIGIN_TL_Node = _ORIGIN_TL_Node;
+    function update_ORIGIN_TL_Node() {
+      console.log("--------> 更新 _ORIGIN_TL_Node");
+      if (document.querySelector(GET_TORRENT_LIST_SELECTOR()) != _ORIGIN_TL_Node) {
+        console.log("--------> 已替换 _ORIGIN_TL_Node");
+        _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+        _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+      }
     }
-    const parentNode = _ORIGIN_TL_Node2.parentNode;
-    const waterfallNode = document.createElement("div");
-    waterfallNode.classList.add("waterfall");
-    parentNode.insertBefore(waterfallNode, _ORIGIN_TL_Node2.nextSibling);
-    const nextPageNode = document.createElement("div");
-    nextPageNode.classList.add("nextPage");
-    parentNode.insertBefore(nextPageNode, _ORIGIN_TL_Node2.nextSibling);
     function toggleIframe() {
       set_store_value(_iframe_switch, $_iframe_switch = 0, $_iframe_switch);
     }
@@ -10411,67 +14178,76 @@
         set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
       }
     }
-    onMount(() => {
+    while (!Masonry) {
+      console.log("等待初始化......");
+    }
+    let waterfallNode;
+    let waterfallParentNode;
+    let nextPageNode;
+    getDOMElement(".ant-card.ant-card-small", 5, 200, (_stateBar) => {
+      const parentNode = _stateBar.parentNode;
+      waterfallNode = document.createElement("div");
+      waterfallNode.classList.add("waterfall");
+      waterfallNode.classList.add("waterfall_newMT");
+      waterfallParentNode = document.createElement("div");
+      waterfallParentNode.classList.add("waterfallParent");
+      waterfallParentNode.append(waterfallNode);
+      parentNode.insertBefore(waterfallParentNode, _stateBar.nextSibling);
+      nextPageNode = document.createElement("div");
+      nextPageNode.classList.add("nextPage");
+      waterfallParentNode.append(nextPageNode);
       new Sidepanel({ target: document.body });
-      if (!GET_SITE_ARCHITECTURE()) {
-        new Index({
-          target: waterfallNode,
-          props: {
-            // 传递给组件的属性
-            originTable: _ORIGIN_TL_Node2,
-            waterfallNode
-          }
-        });
-      } else if (GET_SITE_ARCHITECTURE() == "NEW_MT") {
-        new Index_NEW_MT({
-          target: waterfallNode,
-          props: {
-            // 传递给组件的属性
-            originTable: _ORIGIN_TL_Node2,
-            waterfallNode
-          }
-        });
-      }
+      new Index_newMT({
+        target: waterfallNode,
+        props: {
+          // 传递给组件的属性
+          // 瀑布流DOM & 瀑布流父DOM
+          waterfallNode,
+          waterfallParentNode,
+          // 原列表DOM
+          // _ORIGIN_TL_Node,
+          // 重置原列表节点DOM函数
+          update_ORIGIN_TL_Node
+        }
+      });
       new BtnTurnPage({ target: nextPageNode });
     });
-    $$self.$$.update = () => {
-      if ($$self.$$.dirty & /*$_list_viewMode*/
-      32) {
-        {
-          _ORIGIN_TL_Node2.style.display = $_list_viewMode ? "none" : "block";
-          nextPageNode.style.display = $_list_viewMode ? "none" : "block";
-          waterfallNode.style.display = $_list_viewMode ? "block" : "none";
-        }
-      }
-    };
-    return [
-      $_iframe_switch,
-      $_iframe_url,
-      $_current_domain,
-      toggleIframe,
-      key_closePanels,
-      $_list_viewMode
-    ];
+    return [$_iframe_switch, $_iframe_url, $_current_domain, toggleIframe, key_closePanels];
   }
-  class Main extends SvelteComponent {
+  class Main_newMT extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance, create_fragment, safe_not_equal, {});
     }
   }
   console.log("________PT-TorrentList-Masonry________");
-  const list_selector = GET_TORRENT_LIST_SELECTOR();
-  const _ORIGIN_TL_Node = document.querySelector(list_selector);
-  if (list_selector && !!_ORIGIN_TL_Node) {
-    new Main({
-      target: (() => {
-        const app2 = document.createElement("div");
-        document.body.append(app2);
-        return app2;
-      })()
+  if (GET_SITE_ARCHITECTURE() == "NEW_MT") {
+    if (location.pathname.includes("/browse")) {
+      new Main_newMT({
+        target: (() => {
+          const app2 = document.createElement("div");
+          document.body.append(app2);
+          return app2;
+        })()
+      });
+    }
+    new BtnReload({
+      target: document.body
     });
   } else {
-    console.log("未识别到种子列表捏~");
+    const list_selector = GET_TORRENT_LIST_SELECTOR();
+    const _ORIGIN_TL_Node = document.querySelector(list_selector);
+    if (list_selector && !!_ORIGIN_TL_Node) {
+      new Main({
+        target: (() => {
+          const app2 = document.createElement("div");
+          document.body.append(app2);
+          return app2;
+        })()
+      });
+    } else {
+      console.log("未识别到种子列表捏~");
+    }
   }
 
 })();
