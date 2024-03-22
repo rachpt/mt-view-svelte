@@ -23,7 +23,7 @@ export const config = {
     "*/viewrequests.php*",
     "*/seek.php*",
   ],
-  
+
   // 暂时弃用这个设计, 可能没啥用还容易导致 bug
   // "run-at": "document-start",
   // "run-at": "document-idle",
@@ -32,5 +32,5 @@ export const config = {
   license: "MIT",
 
   // NOTE: 经常修改这里就行了
-  version: "1.1.3",
+  version: "1.1.4",
 }

@@ -13,6 +13,7 @@
     _panelPos,
     _show_debug_btn,
     _show_nexus_pic,
+    _trigger_nexus_pic,
     _delay_nexus_pic,
     _show_configPanel,
     _current_domain,
@@ -47,12 +48,12 @@
     const res_X = posRangeIn(
       e.clientX - offsetX,
       0,
-      window.innerWidth - (sideDom.getBoundingClientRect().width + 5)
+      window.innerWidth - (sideDom.getBoundingClientRect().width + 5),
     );
     const res_Y = posRangeIn(
       e.clientY - offsetY,
       0,
-      window.innerHeight - (sideDom.getBoundingClientRect().height + 5)
+      window.innerHeight - (sideDom.getBoundingClientRect().height + 5),
     );
 
     // console.log(sideDom.getBoundingClientRect().width);
@@ -419,6 +420,15 @@
             title_red="核心功能->确定不用再关"
             bind:checked={$_show_nexus_pic}
           />
+          <!-- NOTE: 这里配置悬浮预览大图的触发方式 -->
+          <Switch
+            title_fixed={"预览大图方式"}
+            title_green="局部悬浮预览区域"
+            title_red="全图悬浮预览"
+            label="开发中 <br> 为优化用户预览大图体验 <br> 鼠标放到图片上就显示大图会遮挡信息 <br> 指定在图片的局部 区域放大"
+            bind:checked={$_trigger_nexus_pic}
+          />
+
           {#if $_show_nexus_pic}
             <Switch
               title_fixed={`悬浮预览延迟${

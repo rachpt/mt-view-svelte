@@ -3,7 +3,7 @@
  */
 
 import { get } from 'svelte/store'
-import { _show_nexus_pic, _delay_nexus_pic, _animated } from '../stores'
+import { _show_nexus_pic, _trigger_nexus_pic, _delay_nexus_pic, _animated } from '../stores'
 
 export { debounce, debounceImmediate, throttle, sortMasonry, NEXUS_TOOLS, parseLocalStorage }
 /**瀑布流执行次数 */
@@ -325,7 +325,9 @@ function NEXUS_TOOLS() {
   let buffer = null;
 
   function handleMouseOver(e) {
-    imgEle = e.target;
+    // NOTE: 全图悬浮 和 局部悬浮的 图像dom 判定
+    imgEle = get(_trigger_nexus_pic) == 0 ? e.target : e.relatedTarget;
+    // console.log(e);
 
     // NOTE: 加一个延迟, 让突然划过去的指针不被大图干扰
     buffer = setTimeout(() => {
@@ -364,11 +366,27 @@ function NEXUS_TOOLS() {
     kesa_preview.style.height = cssPos.height;
   }
 
+  // NOTE: 悬浮大图触发方式
   document.body.addEventListener("mouseover", function (e) {
-    // @ts-ignore
-    if (e.target.matches(selector)) {
+
+    // 全图触发
+    console.log(get(_trigger_nexus_pic));
+    if (get(_trigger_nexus_pic) == 0) {
       // @ts-ignore
-      handleMouseOver(e);
+      if (e.target.matches(selector)) {
+        // @ts-ignore
+        handleMouseOver(e);
+      }
+    }
+
+    // 局部触发
+    if (get(_trigger_nexus_pic) == 1) {
+      // @ts-ignore
+      if (e.target.matches('div.hover-trigger')) {
+        // @ts-ignore
+        handleMouseOver(e);
+        // console.log(e);
+      }
     }
   });
 

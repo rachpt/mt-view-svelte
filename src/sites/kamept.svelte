@@ -5,6 +5,7 @@
     _current_bgColor,
     _iframe_switch,
     _iframe_url,
+    _trigger_nexus_pic,
   } from "../stores";
   import { sortMasonry } from "../utils";
   import { config } from "./kamept";
@@ -169,6 +170,13 @@
       <div class="card-index">
         {torrentInfo.torrentIndex + 1}
       </div>
+
+      {#if $_trigger_nexus_pic}
+        <!-- 索引标号 -->
+        <div class="hover-trigger">
+          <!-- {torrentInfo.torrentIndex + 1} -->
+        </div>
+      {/if}
     </div>
 
     <!-- NOTE: 完整内部显示 -->
@@ -180,7 +188,7 @@
             <!-- 置顶等级 -->
             {#if torrentInfo.place_at_the_top.length != 0}
               {@html Array.from(torrentInfo.place_at_the_top).map(
-                (e) => e.outerHTML
+                (e) => e.outerHTML,
               ) + "&nbsp;"}
             {/if}
 
@@ -238,7 +246,7 @@
               id="tI_{torrentInfo.torrentIndex}"
               on:click={COLLET_AND_ICON_CHANGE(
                 torrentInfo.collectLink,
-                "tI_" + torrentInfo.torrentIndex
+                "tI_" + torrentInfo.torrentIndex,
               )}
             >
               {@html torrentInfo.collectState == "Unbookmarked"
@@ -274,7 +282,7 @@
             <!-- 置顶等级 -->
             {#if torrentInfo.place_at_the_top.length != 0}
               {@html Array.from(torrentInfo.place_at_the_top).map(
-                (e) => e.outerHTML
+                (e) => e.outerHTML,
               ) + "&nbsp;"}
             {/if}
 
@@ -335,7 +343,7 @@
                 id="tI_{torrentInfo.torrentIndex}"
                 on:click={COLLET_AND_ICON_CHANGE(
                   torrentInfo.collectLink,
-                  "tI_" + torrentInfo.torrentIndex
+                  "tI_" + torrentInfo.torrentIndex,
                 )}
               >
                 {@html torrentInfo.collectState == "Unbookmarked"
@@ -388,13 +396,16 @@
 
     cursor: pointer;
 
-    box-shadow: rgba(0, 0, 0, 0.3) 3px 3px 0px, rgba(0, 0, 0, 0.1) -1px -1px 0px;
+    box-shadow:
+      rgba(0, 0, 0, 0.3) 3px 3px 0px,
+      rgba(0, 0, 0, 0.1) -1px -1px 0px;
     transition: box-shadow 0.2s;
   }
 
   /* 指针卡片悬浮效果 */
   .card:hover {
-    box-shadow: rgba(115, 0, 255, 0.3) 5px 5px 0px,
+    box-shadow:
+      rgba(115, 0, 255, 0.3) 5px 5px 0px,
       rgba(0, 0, 0, 0.1) -1px -1px 0px;
   }
 
@@ -558,6 +569,39 @@
     align-items: center;
 
     pointer-events: none;
+  }
+
+  /* 悬浮预览: 局部触发器 */
+  .hover-trigger {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    /* padding-right: 19px; */
+    /* padding-left: 2px; */
+    padding: 0;
+    width: 42px;
+    margin: 0;
+    height: 40px;
+    line-height: 16px;
+    font-size: 16px;
+
+    background-color: rgb(255, 187, 16);
+
+    opacity: 0.5;
+
+    /* color: yellow; */
+    /* border-top-right-radius: 0px; */
+    /* border-bottom-left-radius: 100px; */
+    border-radius: 9999px;
+
+    display: flex;
+    align-items: center;
+
+    /* pointer-events: none; */
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   /* 卡片: 收藏按钮 */
