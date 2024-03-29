@@ -361,7 +361,7 @@
       <!-- ---------------- 站点专业配置 ---------------- -->
 
       <!-- MT 专用配置 -->
-      {#if $_current_domain == "kp.m-team.cc" || $_current_domain == "test2.m-team.cc"}
+      {#if $_current_domain.includes("m-team")}
         <div class="section">
           <h1 class="s_title">MT专用配置</h1>
           <div class="s_panel">
@@ -383,7 +383,7 @@
             title_fixed={"显示模式"}
             title_green="瀑布流"
             title_red="原始表格"
-            label={$_current_domain == "test2.m-team.cc"
+            label={$_current_domain.includes("m-team")
               ? ""
               : "原始表格模式仅支持点击图片显示iframe和加载下一页"}
             bind:checked={$_list_viewMode}

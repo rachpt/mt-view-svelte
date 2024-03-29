@@ -2,15 +2,18 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.3
+// @version         1.1.5
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
 // @license         MIT
 // @icon            https://avatars.githubusercontent.com/u/23617963
 // @match           https://kamept.com/*
-// @match           https://kp.m-team.cc/*
 // @match           https://pterclub.com/*
+// @match           https://kp.m-team.cc/*
+// @match           https://xp.m-team.io/*
+// @match           https://xp.m-team.cc/*
+// @match           https://ap.m-team.cc/*
 // @match           https://test2.m-team.cc/*
 // @exclude         */offers.php*
 // @exclude         */index.php*
@@ -20,7 +23,7 @@
 // @grant           none
 // ==/UserScript==
 
-(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-vdh3h6.svelte-vdh3h6{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-vdh3h6.svelte-vdh3h6:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-vdh3h6.svelte-vdh3h6{padding:2px 0}.card-holder.svelte-vdh3h6.svelte-vdh3h6{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-vdh3h6.svelte-vdh3h6{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-vdh3h6.svelte-vdh3h6{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-vdh3h6.svelte-vdh3h6{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-vdh3h6.svelte-vdh3h6:hover{-webkit-line-clamp:100}.cl-center.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-vdh3h6.svelte-vdh3h6:has(span){padding-top:2px}.card-details.svelte-vdh3h6.svelte-vdh3h6{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-vdh3h6.svelte-vdh3h6{height:100%;position:relative}.card-image.svelte-vdh3h6 img.svelte-vdh3h6{width:100%;object-fit:cover}.card-alter.svelte-vdh3h6.svelte-vdh3h6{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-vdh3h6.svelte-vdh3h6{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-vdh3h6.svelte-vdh3h6{color:#00f}._2XFree.svelte-vdh3h6.svelte-vdh3h6{color:green}.card-description.svelte-vdh3h6.svelte-vdh3h6{padding-left:4px;padding-right:4px}.card-index.svelte-vdh3h6.svelte-vdh3h6{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-vdh3h6.svelte-vdh3h6{padding:1px 2px;cursor:pointer}.hot.svelte-vdh3h6.svelte-vdh3h6,.new.svelte-vdh3h6.svelte-vdh3h6{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-xpikqe.svelte-xpikqe{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-xpikqe.svelte-xpikqe{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-xpikqe.svelte-xpikqe{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-xpikqe.svelte-xpikqe{padding:2px 0}.card-holder.svelte-xpikqe.svelte-xpikqe{background-color:#ffffff80}.card-line.svelte-xpikqe.svelte-xpikqe{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-xpikqe.svelte-xpikqe{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-xpikqe.svelte-xpikqe:hover{-webkit-line-clamp:100}.cl-center.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-xpikqe.svelte-xpikqe{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-xpikqe.svelte-xpikqe{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5abd48}._tag_dub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5a3b14}._tag_sub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-xpikqe.svelte-xpikqe{background-color:#f50;color:#fff}._tag_discount_free.svelte-xpikqe.svelte-xpikqe{background-color:#108ee9;color:#fff}.card-details.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-xpikqe.svelte-xpikqe{height:100%;position:relative}.card-image.svelte-xpikqe img.svelte-xpikqe{width:100%;object-fit:cover}.card-description.svelte-xpikqe.svelte-xpikqe{padding:2px 4px}.card-description.svelte-xpikqe a.svelte-xpikqe,.card-description.svelte-xpikqe a.svelte-xpikqe:hover{color:#000}.card-index.svelte-xpikqe.svelte-xpikqe{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
+(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-namdgo.svelte-namdgo{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-namdgo.svelte-namdgo:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-namdgo.svelte-namdgo{padding:2px 0}.card-holder.svelte-namdgo.svelte-namdgo{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-namdgo.svelte-namdgo{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-namdgo.svelte-namdgo{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-namdgo.svelte-namdgo{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-namdgo.svelte-namdgo:hover{-webkit-line-clamp:100}.cl-center.svelte-namdgo.svelte-namdgo{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-namdgo.svelte-namdgo{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-namdgo.svelte-namdgo:has(span){padding-top:2px}.card-details.svelte-namdgo.svelte-namdgo{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-namdgo.svelte-namdgo{height:100%;position:relative}.card-image.svelte-namdgo img.svelte-namdgo{width:100%;object-fit:cover}.card-alter.svelte-namdgo.svelte-namdgo{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-namdgo.svelte-namdgo{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-namdgo.svelte-namdgo{color:#00f}._2XFree.svelte-namdgo.svelte-namdgo{color:green}.card-description.svelte-namdgo.svelte-namdgo{padding-left:4px;padding-right:4px}.card-index.svelte-namdgo.svelte-namdgo{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-namdgo.svelte-namdgo{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;background-color:#ffbb10;opacity:.5;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-namdgo.svelte-namdgo:hover{opacity:1}.btnCollet.svelte-namdgo.svelte-namdgo{padding:1px 2px;cursor:pointer}.hot.svelte-namdgo.svelte-namdgo,.new.svelte-namdgo.svelte-namdgo{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-xpikqe.svelte-xpikqe{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-xpikqe.svelte-xpikqe{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-xpikqe.svelte-xpikqe{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-xpikqe.svelte-xpikqe{padding:2px 0}.card-holder.svelte-xpikqe.svelte-xpikqe{background-color:#ffffff80}.card-line.svelte-xpikqe.svelte-xpikqe{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-xpikqe.svelte-xpikqe{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-xpikqe.svelte-xpikqe:hover{-webkit-line-clamp:100}.cl-center.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-xpikqe.svelte-xpikqe{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-xpikqe.svelte-xpikqe{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5abd48}._tag_dub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5a3b14}._tag_sub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-xpikqe.svelte-xpikqe{background-color:#f50;color:#fff}._tag_discount_free.svelte-xpikqe.svelte-xpikqe{background-color:#108ee9;color:#fff}.card-details.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-xpikqe.svelte-xpikqe{height:100%;position:relative}.card-image.svelte-xpikqe img.svelte-xpikqe{width:100%;object-fit:cover}.card-description.svelte-xpikqe.svelte-xpikqe{padding:2px 4px}.card-description.svelte-xpikqe a.svelte-xpikqe,.card-description.svelte-xpikqe a.svelte-xpikqe:hover{color:#000}.card-index.svelte-xpikqe.svelte-xpikqe{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
 
 (function () {
   'use strict';
@@ -2652,7 +2655,7 @@
     const selector = "img.preview_Kesa";
     let buffer = null;
     function handleMouseOver(e) {
-      imgEle = e.target;
+      imgEle = get_store_value(_trigger_nexus_pic) == 0 ? e.target : e.relatedTarget;
       buffer = setTimeout(() => {
         if (get_store_value(_show_nexus_pic)) {
           let src = imgEle.getAttribute("src");
@@ -2686,8 +2689,16 @@
       kesa_preview.style.height = cssPos.height;
     }
     document.body.addEventListener("mouseover", function(e) {
-      if (e.target.matches(selector)) {
-        handleMouseOver(e);
+      console.log(get_store_value(_trigger_nexus_pic));
+      if (get_store_value(_trigger_nexus_pic) == 0) {
+        if (e.target.matches(selector)) {
+          handleMouseOver(e);
+        }
+      }
+      if (get_store_value(_trigger_nexus_pic) == 1) {
+        if (e.target.matches("div.hover-trigger")) {
+          handleMouseOver(e);
+        }
       }
     });
     document.body.addEventListener("mouseout", function(e) {
@@ -2788,6 +2799,7 @@
   const _turnPage = persistStore("_turnPage", false);
   const _show_debug_btn = persistStore("_show_debug_btn", 0);
   const _show_nexus_pic = persistStore("_show_nexus_pic", 1);
+  const _trigger_nexus_pic = persistStore("_trigger_nexus_pic", 1);
   const _delay_nexus_pic = persistStore("_delay_nexus_pic", 600);
   const _animated = persistStore("_animated", true);
   const _card_width = persistStore("_card_width", 300);
@@ -3119,7 +3131,7 @@
       }
     };
   }
-  function create_if_block_1$6(ctx) {
+  function create_if_block_1$5(ctx) {
     let div;
     let input;
     let t;
@@ -3266,7 +3278,7 @@
     );
     let if_block2 = (
       /*type*/
-      ctx[1] == "switch" && create_if_block_1$6(ctx)
+      ctx[1] == "switch" && create_if_block_1$5(ctx)
     );
     let if_block3 = (
       /*type*/
@@ -3374,7 +3386,7 @@
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_1$6(ctx2);
+            if_block2 = create_if_block_1$5(ctx2);
             if_block2.c();
             if_block2.m(div1, t4);
           }
@@ -3612,25 +3624,25 @@
               button0,
               "click",
               /*config_changeWidth*/
-              ctx[18]
+              ctx[19]
             ),
             listen(
               button1,
               "click",
               /*config_showAllDetails*/
-              ctx[19]
+              ctx[20]
             ),
             listen(
               button2,
               "click",
               /*config_switchMode*/
-              ctx[20]
+              ctx[21]
             ),
             listen(
               button3,
               "click",
               /*config_changeLoadMode*/
-              ctx[21]
+              ctx[22]
             )
           ];
           mounted = true;
@@ -3673,6 +3685,10 @@
     let t1;
     let button0;
     let t2;
+    let show_if = (
+      /*$_current_domain*/
+      ctx[10].includes("m-team")
+    );
     let t3;
     let div2;
     let h10;
@@ -3745,13 +3761,9 @@
     let current;
     let mounted;
     let dispose;
-    let if_block0 = (
-      /*$_current_domain*/
-      (ctx[10] == "kp.m-team.cc" || /*$_current_domain*/
-      ctx[10] == "test2.m-team.cc") && create_if_block_3$4(ctx)
-    );
+    let if_block0 = show_if && create_if_block_3$4(ctx);
     function switch0_checked_binding(value) {
-      ctx[28](value);
+      ctx[29](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
@@ -3759,11 +3771,11 @@
       title_red: "原始表格",
       label: (
         /*$_current_domain*/
-        ctx[10] == "test2.m-team.cc" ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
+        ctx[10].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
       ),
       func: (
         /*func*/
-        ctx[27]
+        ctx[28]
       )
     };
     if (
@@ -3776,7 +3788,7 @@
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[29](value);
+      ctx[30](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3795,7 +3807,7 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[30](value);
+      ctx[31](value);
     }
     let switch2_props = {
       title_fixed: "卡片移动动画",
@@ -3814,7 +3826,7 @@
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[31](value);
+      ctx[32](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3831,20 +3843,20 @@
     switch3 = new Switch({ props: switch3_props });
     binding_callbacks.push(() => bind(switch3, "checked", switch3_checked_binding));
     function switch4_checked_binding(value) {
-      ctx[32](value);
+      ctx[33](value);
     }
     let switch4_props = {
       title_fixed: "预览大图方式",
-      title_green: "指定预览区域",
-      title_red: "直接延迟预览",
-      label: "阿斯蒂芬 <br> asdf"
+      title_green: "局部悬浮预览区域",
+      title_red: "全图悬浮预览",
+      label: "开发中 <br> 为优化用户预览大图体验 <br> 鼠标放到图片上就显示大图会遮挡信息 <br> 指定在图片的局部 区域放大"
     };
     if (
-      /*$_show_nexus_pic*/
-      ctx[13] !== void 0
+      /*$_trigger_nexus_pic*/
+      ctx[14] !== void 0
     ) {
-      switch4_props.checked = /*$_show_nexus_pic*/
-      ctx[13];
+      switch4_props.checked = /*$_trigger_nexus_pic*/
+      ctx[14];
     }
     switch4 = new Switch({ props: switch4_props });
     binding_callbacks.push(() => bind(switch4, "checked", switch4_checked_binding));
@@ -3853,7 +3865,7 @@
       ctx[13] && create_if_block_2$4(ctx)
     );
     function switch5_checked_binding(value) {
-      ctx[34](value);
+      ctx[35](value);
     }
     let switch5_props = {
       title_fixed: "侧边栏debug按钮",
@@ -3871,7 +3883,7 @@
     switch5 = new Switch({ props: switch5_props });
     binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
     function switch6_checked_binding(value) {
-      ctx[35](value);
+      ctx[36](value);
     }
     let switch6_props = {
       title_fixed: "卡片信息",
@@ -3891,10 +3903,10 @@
     switch6.$on(
       "click",
       /*sortMasonryBundle*/
-      ctx[22]
+      ctx[23]
     );
     function switch7_checked_binding(value) {
-      ctx[36](value);
+      ctx[37](value);
     }
     let switch7_props = { title_fixed: "显示种子名称" };
     if (
@@ -3907,7 +3919,7 @@
     switch7 = new Switch({ props: switch7_props });
     binding_callbacks.push(() => bind(switch7, "checked", switch7_checked_binding));
     function switch8_checked_binding(value) {
-      ctx[37](value);
+      ctx[38](value);
     }
     let switch8_props = { title_fixed: "显示置顶和免费" };
     if (
@@ -3920,7 +3932,7 @@
     switch8 = new Switch({ props: switch8_props });
     binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
     function switch9_checked_binding(value) {
-      ctx[38](value);
+      ctx[39](value);
     }
     let switch9_props = { title_fixed: "显示副标题" };
     if (
@@ -3933,7 +3945,7 @@
     switch9 = new Switch({ props: switch9_props });
     binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
     function switch10_checked_binding(value) {
-      ctx[39](value);
+      ctx[40](value);
     }
     let switch10_props = { title_fixed: "显示标签" };
     if (
@@ -3946,7 +3958,7 @@
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
-      ctx[40](value);
+      ctx[41](value);
     }
     let switch11_props = { title_fixed: "显示 [大小/下载/收藏]" };
     if (
@@ -3959,7 +3971,7 @@
     switch11 = new Switch({ props: switch11_props });
     binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
     function switch12_checked_binding(value) {
-      ctx[41](value);
+      ctx[42](value);
     }
     let switch12_props = { title_fixed: "显示上传时间" };
     if (
@@ -3972,7 +3984,7 @@
     switch12 = new Switch({ props: switch12_props });
     binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
     function switch13_checked_binding(value) {
-      ctx[42](value);
+      ctx[43](value);
     }
     let switch13_props = { title_fixed: "显示 [评论/上传/下载/完成]" };
     if (
@@ -4147,28 +4159,28 @@
               button0,
               "click",
               /*click_handler_1*/
-              ctx[25]
+              ctx[26]
             ),
             listen(
               button1,
               "click",
               /*config_changeWidth*/
-              ctx[18]
+              ctx[19]
             ),
             listen(div8, "click", self(
               /*click_handler_2*/
-              ctx[57]
+              ctx[58]
             ))
           ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (
-          /*$_current_domain*/
-          ctx2[10] == "kp.m-team.cc" || /*$_current_domain*/
-          ctx2[10] == "test2.m-team.cc"
-        ) {
+        if (dirty[0] & /*$_current_domain*/
+        1024)
+          show_if = /*$_current_domain*/
+          ctx2[10].includes("m-team");
+        if (show_if) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
             if (dirty[0] & /*$_current_domain*/
@@ -4192,7 +4204,7 @@
         if (dirty[0] & /*$_current_domain*/
         1024)
           switch0_changes.label = /*$_current_domain*/
-          ctx2[10] == "test2.m-team.cc" ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
+          ctx2[10].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
         if (!updating_checked && dirty[0] & /*$_list_viewMode*/
         32) {
           updating_checked = true;
@@ -4229,11 +4241,11 @@
         }
         switch3.$set(switch3_changes);
         const switch4_changes = {};
-        if (!updating_checked_4 && dirty[0] & /*$_show_nexus_pic*/
-        8192) {
+        if (!updating_checked_4 && dirty[0] & /*$_trigger_nexus_pic*/
+        16384) {
           updating_checked_4 = true;
-          switch4_changes.checked = /*$_show_nexus_pic*/
-          ctx2[13];
+          switch4_changes.checked = /*$_trigger_nexus_pic*/
+          ctx2[14];
           add_flush_callback(() => updating_checked_4 = false);
         }
         switch4.$set(switch4_changes);
@@ -4436,7 +4448,7 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[26](value);
+      ctx[27](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
@@ -4506,10 +4518,10 @@
     switch_1 = new Switch({
       props: {
         title_fixed: `悬浮预览延迟${/*$_delay_nexus_pic*/
-      ctx[14] ? ":" + /*$_delay_nexus_pic*/
-      ctx[14] + "ms" : ""}`,
+      ctx[15] ? ":" + /*$_delay_nexus_pic*/
+      ctx[15] + "ms" : ""}`,
         title_red: `${/*$_delay_nexus_pic*/
-      ctx[14] ? "" : "无延迟"}`,
+      ctx[15] ? "" : "无延迟"}`,
         label: "防止无意滑动时大图打开妨碍预览",
         type: "range",
         $$slots: { default: [create_default_slot] },
@@ -4527,17 +4539,17 @@
       p(ctx2, dirty) {
         const switch_1_changes = {};
         if (dirty[0] & /*$_delay_nexus_pic*/
-        16384)
+        32768)
           switch_1_changes.title_fixed = `悬浮预览延迟${/*$_delay_nexus_pic*/
-        ctx2[14] ? ":" + /*$_delay_nexus_pic*/
-        ctx2[14] + "ms" : ""}`;
+        ctx2[15] ? ":" + /*$_delay_nexus_pic*/
+        ctx2[15] + "ms" : ""}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        16384)
+        32768)
           switch_1_changes.title_red = `${/*$_delay_nexus_pic*/
-        ctx2[14] ? "" : "无延迟"}`;
+        ctx2[15] ? "" : "无延迟"}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        16384 | dirty[2] & /*$$scope*/
-        16) {
+        32768 | dirty[2] & /*$$scope*/
+        32) {
           switch_1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch_1.$set(switch_1_changes);
@@ -4575,7 +4587,7 @@
         set_input_value(
           input,
           /*$_delay_nexus_pic*/
-          ctx[14]
+          ctx[15]
         );
         if (!mounted) {
           dispose = [
@@ -4583,13 +4595,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[33]
+              ctx[34]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[33]
+              ctx[34]
             )
           ];
           mounted = true;
@@ -4597,11 +4609,11 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*$_delay_nexus_pic*/
-        16384) {
+        32768) {
           set_input_value(
             input,
             /*$_delay_nexus_pic*/
-            ctx2[14]
+            ctx2[15]
           );
         }
       },
@@ -4712,7 +4724,7 @@
         append(div3, t5);
         if (if_block1)
           if_block1.m(div3, null);
-        ctx[24](div4);
+        ctx[25](div4);
         insert(target, t6, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
@@ -4725,25 +4737,25 @@
               div0,
               "mousedown",
               /*onMouseDown*/
-              ctx[15]
+              ctx[16]
             ),
             listen(
               button0,
               "click",
               /*__show_originTable*/
-              ctx[17]
+              ctx[18]
             ),
             listen(
               button1,
               "click",
               /*click_handler*/
-              ctx[23]
+              ctx[24]
             ),
             listen(
               div5,
               "click",
               /*resetPanelPos*/
-              ctx[16]
+              ctx[17]
             )
           ];
           mounted = true;
@@ -4840,7 +4852,7 @@
         if_block0.d();
         if (if_block1)
           if_block1.d();
-        ctx[24](null);
+        ctx[25](null);
         if (detaching)
           detach(t6);
         if (if_block2)
@@ -4875,12 +4887,13 @@
     let $_SITE_SETTING;
     let $_animated;
     let $_show_nexus_pic;
+    let $_trigger_nexus_pic;
     let $_delay_nexus_pic;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(61, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(62, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
     component_subscribe($$self, _card_width, ($$value) => $$invalidate(4, $_card_width = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(62, $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(63, $$value));
     component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
     component_subscribe($$self, _panelPos, ($$value) => $$invalidate(6, $_panelPos = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(7, $_current_bgColor = $$value));
@@ -4890,7 +4903,8 @@
     component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(11, $_SITE_SETTING = $$value));
     component_subscribe($$self, _animated, ($$value) => $$invalidate(12, $_animated = $$value));
     component_subscribe($$self, _show_nexus_pic, ($$value) => $$invalidate(13, $_show_nexus_pic = $$value));
-    component_subscribe($$self, _delay_nexus_pic, ($$value) => $$invalidate(14, $_delay_nexus_pic = $$value));
+    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(14, $_trigger_nexus_pic = $$value));
+    component_subscribe($$self, _delay_nexus_pic, ($$value) => $$invalidate(15, $_delay_nexus_pic = $$value));
     let sideDom;
     let isMouseDown = false;
     let offsetX = 0;
@@ -4988,8 +5002,8 @@
       _show_nexus_pic.set($_show_nexus_pic);
     }
     function switch4_checked_binding(value) {
-      $_show_nexus_pic = value;
-      _show_nexus_pic.set($_show_nexus_pic);
+      $_trigger_nexus_pic = value;
+      _trigger_nexus_pic.set($_trigger_nexus_pic);
     }
     function input_change_input_handler() {
       $_delay_nexus_pic = to_number(this.value);
@@ -5112,6 +5126,7 @@
       $_SITE_SETTING,
       $_animated,
       $_show_nexus_pic,
+      $_trigger_nexus_pic,
       $_delay_nexus_pic,
       onMouseDown,
       resetPanelPos,
@@ -5536,10 +5551,12 @@
     /** 架构 */
     architecture: "NEW_MT",
     /** 默认的种子表格 dom selector */
-    torrentListTable: "div.ant-table-wrapper",
+    // torrentListTable: "div.ant-table-wrapper",
+    torrentListTable: "div.app-content__inner",
     /** 加载图片等待时的默认图片 */
-    LOADING_PIC: "https://test2.m-team.cc/static/media/logo.80b63235eaf702e44a8d.png",
+    LOADING_PIC: "/static/media/logo.80b63235eaf702e44a8d.png",
     /** 网站 host*/
+    /** FIXME: 没用的字段了*/
     HOST: "https://test2.m-team.cc",
     /** 网站 api */
     API: {
@@ -5717,7 +5734,14 @@
   };
   const SITE = {
     "kamept.com": CONFIG$2,
-    "kp.m-team.cc": CONFIG$1,
+    // 旧 M-Team
+    // "kp.m-team.cc": config_Mteam,
+    // 新 M-Team
+    "kp.m-team.cc": CONFIG,
+    "xp.m-team.io": CONFIG,
+    "xp.m-team.cc": CONFIG,
+    "ap.m-team.cc": CONFIG,
+    // 新 M-Team 测试站
     "test2.m-team.cc": CONFIG
   };
   function GET_CURRENT_PT_DOMAIN() {
@@ -5818,7 +5842,7 @@
     COLLETED: '<img class="bookmark" src="pic/trans.gif" alt="Bookmarked">'
   };
   const _PicErrorLOGO = "data:image/svg+xml;base64,PHN2ZwogIHdpZHRoPSIyNTZweCIKICBoZWlnaHQ9IjI1NnB4IgogIHZpZXdCb3g9IjAgMCAyNC4wMCAyNC4wMCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAwLCAwKSIKPgogIDxnCiAgICBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiCiAgICBzdHJva2Utd2lkdGg9IjAiCiAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApLCBzY2FsZSgxKSIKICAvPgogIDxnCiAgICBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIgogICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIHN0cm9rZT0iI0NDQ0NDQyIKICAgIHN0cm9rZS13aWR0aD0iMC4wNDgiCiAgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTMgM0wxMy43MDcxIDIuMjkyODlDMTMuNTE5NiAyLjEwNTM2IDEzLjI2NTIgMiAxMyAyVjNaTTE0IDIyQzE0LjU1MjMgMjIgMTUgMjEuNTUyMyAxNSAyMUMxNSAyMC40NDc3IDE0LjU1MjMgMjAgMTQgMjBWMjJaTTE5IDlIMjBDMjAgOC43MzQ3OCAxOS44OTQ2IDguNDgwNDMgMTkuNzA3MSA4LjI5Mjg5TDE5IDlaTTE4IDEwQzE4IDEwLjU1MjMgMTguNDQ3NyAxMSAxOSAxMUMxOS41NTIzIDExIDIwIDEwLjU1MjMgMjAgMTBIMThaTTUuMjE3OTkgMTkuOTA4TDQuMzI2OTggMjAuMzYySDQuMzI2OThMNS4yMTc5OSAxOS45MDhaTTYuMDkyMDIgMjAuNzgyTDYuNTQ2MDEgMTkuODkxTDYuNTQ2MDEgMTkuODkxTDYuMDkyMDIgMjAuNzgyWk02LjA5MjAyIDMuMjE3OTlMNS42MzgwMyAyLjMyNjk4TDUuNjM4MDMgMi4zMjY5OEw2LjA5MjAyIDMuMjE3OTlaTTUuMjE3OTkgNC4wOTIwMkw0LjMyNjk4IDMuNjM4MDNMNC4zMjY5OCAzLjYzODAzTDUuMjE3OTkgNC4wOTIwMlpNMTMuMTA5IDguNDUzOTlMMTQgOFY4TDEzLjEwOSA4LjQ1Mzk5Wk0xMy41NDYgOC44OTEwMUwxNCA4TDEzLjU0NiA4Ljg5MTAxWk0xNy4yMjk5IDE3Ljc5MjlDMTYuODM5NCAxOC4xODM0IDE2LjgzOTQgMTguODE2NiAxNy4yMjk5IDE5LjIwNzFDMTcuNjIwNCAxOS41OTc2IDE4LjI1MzYgMTkuNTk3NiAxOC42NDQxIDE5LjIwNzFMMTcuMjI5OSAxNy43OTI5Wk0xNS4wMzE2IDE1LjI1MDdDMTQuODkzOSAxNS43ODU2IDE1LjIxNTkgMTYuMzMwOCAxNS43NTA3IDE2LjQ2ODRDMTYuMjg1NiAxNi42MDYxIDE2LjgzMDggMTYuMjg0MSAxNi45Njg0IDE1Ljc0OTNMMTUuMDMxNiAxNS4yNTA3Wk0xNy45Mzc1IDIwQzE3LjM4NTIgMjAgMTYuOTM3NSAyMC40NDc3IDE2LjkzNzUgMjFDMTYuOTM3NSAyMS41NTIzIDE3LjM4NTIgMjIgMTcuOTM3NSAyMlYyMFpNMTcuOTQ3NSAyMkMxOC40OTk4IDIyIDE4Ljk0NzUgMjEuNTUyMyAxOC45NDc1IDIxQzE4Ljk0NzUgMjAuNDQ3NyAxOC40OTk4IDIwIDE3Ljk0NzUgMjBWMjJaTTEzIDJIOC4yVjRIMTNWMlpNNCA2LjJWMTcuOEg2VjYuMkg0Wk04LjIgMjJIMTRWMjBIOC4yVjIyWk0xOS43MDcxIDguMjkyODlMMTMuNzA3MSAyLjI5Mjg5TDEyLjI5MjkgMy43MDcxMUwxOC4yOTI5IDkuNzA3MTFMMTkuNzA3MSA4LjI5Mjg5Wk0yMCAxMFY5SDE4VjEwSDIwWk00IDE3LjhDNCAxOC4zNDM2IDMuOTk5MjIgMTguODExNCA0LjAzMDU3IDE5LjE5NUM0LjA2Mjg3IDE5LjU5MDQgNC4xMzQxOSAxOS45ODM2IDQuMzI2OTggMjAuMzYyTDYuMTA4OTkgMTkuNDU0QzYuMDgzOCAxOS40MDQ1IDYuMDQ2MTIgMTkuMzAzOCA2LjAyMzkzIDE5LjAzMjJDNi4wMDA3OCAxOC43NDg4IDYgMTguMzc2NiA2IDE3LjhINFpNOC4yIDIwQzcuNjIzNDUgMjAgNy4yNTExNyAxOS45OTkyIDYuOTY3ODQgMTkuOTc2MUM2LjY5NjE3IDE5Ljk1MzkgNi41OTU0NSAxOS45MTYyIDYuNTQ2MDEgMTkuODkxTDUuNjM4MDMgMjEuNjczQzYuMDE2NDEgMjEuODY1OCA2LjQwOTYzIDIxLjkzNzEgNi44MDQ5NyAyMS45Njk0QzcuMTg4NjQgMjIuMDAwOCA3LjY1NjQ1IDIyIDguMiAyMlYyMFpNNC4zMjY5OCAyMC4zNjJDNC42MTQ2IDIwLjkyNjUgNS4wNzM1NCAyMS4zODU0IDUuNjM4MDMgMjEuNjczTDYuNTQ2MDEgMTkuODkxQzYuMzU3ODUgMTkuNzk1MSA2LjIwNDg3IDE5LjY0MjIgNi4xMDg5OSAxOS40NTRMNC4zMjY5OCAyMC4zNjJaTTguMiAyQzcuNjU2NDUgMiA3LjE4ODY0IDEuOTk5MjIgNi44MDQ5NyAyLjAzMDU3QzYuNDA5NjMgMi4wNjI4NyA2LjAxNjQxIDIuMTM0MTkgNS42MzgwMyAyLjMyNjk4TDYuNTQ2MDEgNC4xMDg5OUM2LjU5NTQ1IDQuMDgzOCA2LjY5NjE3IDQuMDQ2MTIgNi45Njc4NCA0LjAyMzkzQzcuMjUxMTcgNC4wMDA3OCA3LjYyMzQ1IDQgOC4yIDRWMlpNNiA2LjJDNiA1LjYyMzQ1IDYuMDAwNzggNS4yNTExNyA2LjAyMzkzIDQuOTY3ODRDNi4wNDYxMiA0LjY5NjE3IDYuMDgzOCA0LjU5NTQ1IDYuMTA4OTkgNC41NDYwMUw0LjMyNjk4IDMuNjM4MDNDNC4xMzQxOSA0LjAxNjQxIDQuMDYyODcgNC40MDk2MyA0LjAzMDU3IDQuODA0OTdDMy45OTkyMiA1LjE4ODY0IDQgNS42NTY0NSA0IDYuMkg2Wk01LjYzODAzIDIuMzI2OThDNS4wNzM1NCAyLjYxNDYgNC42MTQ2IDMuMDczNTQgNC4zMjY5OCAzLjYzODAzTDYuMTA4OTkgNC41NDYwMUM2LjIwNDg3IDQuMzU3ODUgNi4zNTc4NSA0LjIwNDg3IDYuNTQ2MDEgNC4xMDg5OUw1LjYzODAzIDIuMzI2OThaTTEyIDNWNy40SDE0VjNIMTJaTTE0LjYgMTBIMTlWOEgxNC42VjEwWk0xMiA3LjRDMTIgNy42NjM1MyAxMS45OTkyIDcuOTIxMzEgMTIuMDE2OSA4LjEzODIzQzEyLjAzNTYgOC4zNjY4MiAxMi4wNzk3IDguNjM2NTYgMTIuMjE4IDguOTA3OThMMTQgOEMxNC4wMjkzIDguMDU3NTEgMTQuMDE4OSA4LjA4MDI4IDE0LjAxMDMgNy45NzUzN0MxNC4wMDA4IDcuODU4NzggMTQgNy42OTY1MyAxNCA3LjRIMTJaTTE0LjYgOEMxNC4zMDM1IDggMTQuMTQxMiA3Ljk5OTIyIDE0LjAyNDYgNy45ODk3QzEzLjkxOTcgNy45ODExMyAxMy45NDI1IDcuOTcwNyAxNCA4TDEzLjA5MiA5Ljc4MjAxQzEzLjM2MzQgOS45MjAzMSAxMy42MzMyIDkuOTY0MzggMTMuODYxOCA5Ljk4MzA1QzE0LjA3ODcgMTAuMDAwOCAxNC4zMzY1IDEwIDE0LjYgMTBWOFpNMTIuMjE4IDguOTA3OThDMTIuNDA5NyA5LjI4NDMgMTIuNzE1NyA5LjU5MDI3IDEzLjA5MiA5Ljc4MjAxTDE0IDhWOEwxMi4yMTggOC45MDc5OFpNMTguOTM3IDE2QzE4LjkzNyAxNi4xNzMyIDE4Ljg5MTUgMTYuMzA1MyAxOC42MTc1IDE2LjU2OTdDMTguNDYzOCAxNi43MTggMTguMjgyOCAxNi44NjUzIDE4LjAzMTkgMTcuMDc0QzE3Ljc5MzYgMTcuMjcyMyAxNy41MTQxIDE3LjUwODcgMTcuMjI5OSAxNy43OTI5TDE4LjY0NDEgMTkuMjA3MUMxOC44NiAxOC45OTEzIDE5LjA4MDUgMTguODAzMyAxOS4zMTA5IDE4LjYxMTZDMTkuNTI4NyAxOC40MzA1IDE5Ljc4NTIgMTguMjIyMyAyMC4wMDY1IDE4LjAwODdDMjAuNDgyNSAxNy41NDkzIDIwLjkzNyAxNi45MzE0IDIwLjkzNyAxNkgxOC45MzdaTTE3LjkzNyAxNUMxOC40ODkzIDE1IDE4LjkzNyAxNS40NDc3IDE4LjkzNyAxNkgyMC45MzdDMjAuOTM3IDE0LjM0MzEgMTkuNTkzOCAxMyAxNy45MzcgMTNWMTVaTTE2Ljk2ODQgMTUuNzQ5M0MxNy4wNzk1IDE1LjMxNzcgMTcuNDcyNCAxNSAxNy45MzcgMTVWMTNDMTYuNTM3NyAxMyAxNS4zNjQ1IDEzLjk1NyAxNS4wMzE2IDE1LjI1MDdMMTYuOTY4NCAxNS43NDkzWk0xNy45Mzc1IDIySDE3Ljk0NzVWMjBIMTcuOTM3NVYyMloiCiAgICAgIGZpbGw9IiNjMDAwMDAiCiAgICAvPgogIDwvZz4KPC9zdmc+";
-  function create_if_block_17$2(ctx) {
+  function create_if_block_18$2(ctx) {
     let div;
     let a;
     let html_tag;
@@ -5846,11 +5870,11 @@
         b = element("b");
         t1 = text(t1_value);
         html_tag.a = t0;
-        attr(a, "class", "two-lines svelte-vdh3h6");
+        attr(a, "class", "two-lines svelte-namdgo");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
         attr(a, "target", "_blank");
-        attr(div, "class", "card-title svelte-vdh3h6");
+        attr(div, "class", "card-title svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -5906,7 +5930,7 @@
         if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
           attr(img, "src", img_src_value);
         attr(img, "alt", "pic error");
-        attr(img, "class", "svelte-vdh3h6");
+        attr(img, "class", "svelte-namdgo");
         attr(div2, "class", "pic_error");
         attr(div2, "style", "");
       },
@@ -5921,7 +5945,7 @@
             img,
             "load",
             /*sort_masonry*/
-            ctx[7]
+            ctx[8]
           );
           mounted = true;
         }
@@ -5935,7 +5959,7 @@
       }
     };
   }
-  function create_if_block_16$2(ctx) {
+  function create_if_block_17$2(ctx) {
     let img;
     let img_src_value;
     let img_data_src_value;
@@ -5945,7 +5969,7 @@
     return {
       c() {
         img = element("img");
-        attr(img, "class", "nexus-lazy-load_Kesa svelte-vdh3h6");
+        attr(img, "class", "nexus-lazy-load_Kesa svelte-namdgo");
         if (!src_url_equal(img.src, img_src_value = CONFIG$2.LOADING_PIC))
           attr(img, "src", img_src_value);
         attr(img, "data-src", img_data_src_value = /*torrentInfo*/
@@ -5961,13 +5985,13 @@
               img,
               "load",
               /*sort_masonry*/
-              ctx[7]
+              ctx[8]
             ),
             listen(
               img,
               "error",
               /*error_handler*/
-              ctx[11]
+              ctx[12]
             )
           ];
           mounted = true;
@@ -5993,6 +6017,22 @@
       }
     };
   }
+  function create_if_block_16$2(ctx) {
+    let div;
+    return {
+      c() {
+        div = element("div");
+        attr(div, "class", "hover-trigger svelte-namdgo");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+      },
+      d(detaching) {
+        if (detaching)
+          detach(div);
+      }
+    };
+  }
   function create_if_block_10$2(ctx) {
     let t0;
     let t1;
@@ -6001,7 +6041,7 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_2*/
-        ctx[12]
+        ctx[13]
       ).join("") + ""
     );
     let t2;
@@ -6178,26 +6218,26 @@
         t25 = text(" ");
         b6 = element("b");
         t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-vdh3h6");
+        attr(div0, "class", "cl-tags svelte-namdgo");
         html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-vdh3h6");
+        attr(div1, "class", "cl-center svelte-namdgo");
         html_tag_1.a = t6;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-vdh3h6");
+        attr(div2, "class", "cl-center svelte-namdgo");
         html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-vdh3h6");
+        attr(div3, "class", "btnCollet cl-center svelte-namdgo");
         attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-vdh3h6");
-        attr(div5, "class", "card-line svelte-vdh3h6");
-        attr(div6, "class", "card-line svelte-vdh3h6");
+        attr(div4, "class", "cl-center svelte-namdgo");
+        attr(div5, "class", "card-line svelte-namdgo");
+        attr(div6, "class", "card-line svelte-namdgo");
         html_tag_3.a = t16;
         html_tag_4.a = t19;
         html_tag_5.a = t22;
         html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-vdh3h6");
-        attr(div8, "class", "card-details svelte-vdh3h6");
+        attr(div7, "class", "card-line svelte-namdgo");
+        attr(div8, "class", "card-details svelte-namdgo");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6309,7 +6349,7 @@
         1 && raw0_value !== (raw0_value = /*torrentInfo*/
         ctx[0].tagsDOM.map(
           /*func_2*/
-          ctx[12]
+          ctx[13]
         ).join("") + ""))
           div0.innerHTML = raw0_value;
         if (dirty & /*ICON*/
@@ -6432,8 +6472,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-vdh3h6");
-        attr(div1, "class", "card-alter svelte-vdh3h6");
+        ctx[0].free_type + " svelte-namdgo");
+        attr(div1, "class", "card-alter svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6495,7 +6535,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-vdh3h6")) {
+        ctx2[0].free_type + " svelte-namdgo")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -6620,7 +6660,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-vdh3h6");
+        attr(a, "class", "card-description svelte-namdgo");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -6677,7 +6717,7 @@
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[6].statistics && create_if_block_1$5(ctx)
+      ctx[6].statistics && create_if_block_1$4(ctx)
     );
     return {
       c() {
@@ -6699,7 +6739,7 @@
         t4 = space();
         if (if_block5)
           if_block5.c();
-        attr(div, "class", "card-details svelte-vdh3h6");
+        attr(div, "class", "card-details svelte-namdgo");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6807,7 +6847,7 @@
           if (if_block5) {
             if_block5.p(ctx2, dirty);
           } else {
-            if_block5 = create_if_block_1$5(ctx2);
+            if_block5 = create_if_block_1$4(ctx2);
             if_block5.c();
             if_block5.m(div, null);
           }
@@ -6871,8 +6911,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-vdh3h6");
-        attr(div1, "class", "card-alter svelte-vdh3h6");
+        ctx[0].free_type + " svelte-namdgo");
+        attr(div1, "class", "card-alter svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6934,7 +6974,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-vdh3h6")) {
+        ctx2[0].free_type + " svelte-namdgo")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -7059,7 +7099,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-vdh3h6");
+        attr(a, "class", "card-description svelte-namdgo");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -7090,13 +7130,13 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_4*/
-        ctx[13]
+        ctx[14]
       ).join("") + ""
     );
     return {
       c() {
         div = element("div");
-        attr(div, "class", "cl-tags svelte-vdh3h6");
+        attr(div, "class", "cl-tags svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7107,7 +7147,7 @@
         1 && raw_value !== (raw_value = /*torrentInfo*/
         ctx2[0].tagsDOM.map(
           /*func_4*/
-          ctx2[13]
+          ctx2[14]
         ).join("") + ""))
           div.innerHTML = raw_value;
       },
@@ -7184,17 +7224,17 @@
         b1 = element("b");
         b1.textContent = "收藏";
         html_tag.a = t0;
-        attr(div0, "class", "cl-center svelte-vdh3h6");
+        attr(div0, "class", "cl-center svelte-namdgo");
         html_tag_1.a = t3;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div1, "class", "cl-center svelte-vdh3h6");
+        attr(div1, "class", "cl-center svelte-namdgo");
         html_tag_2.a = t6;
-        attr(div2, "class", "btnCollet cl-center svelte-vdh3h6");
+        attr(div2, "class", "btnCollet cl-center svelte-namdgo");
         attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div3, "class", "cl-center svelte-vdh3h6");
-        attr(div4, "class", "card-line svelte-vdh3h6");
+        attr(div3, "class", "cl-center svelte-namdgo");
+        attr(div4, "class", "card-line svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -7292,7 +7332,7 @@
         b.textContent = "上传时间:";
         t1 = space();
         t2 = text(t2_value);
-        attr(div, "class", "card-line svelte-vdh3h6");
+        attr(div, "class", "card-line svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7312,7 +7352,7 @@
       }
     };
   }
-  function create_if_block_1$5(ctx) {
+  function create_if_block_1$4(ctx) {
     let div;
     let html_tag;
     let raw0_value = (
@@ -7391,7 +7431,7 @@
         html_tag_1.a = t3;
         html_tag_2.a = t6;
         html_tag_3.a = t9;
-        attr(div, "class", "card-line svelte-vdh3h6");
+        attr(div, "class", "card-line svelte-namdgo");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7477,27 +7517,32 @@
     let t4;
     let t5;
     let t6;
+    let t7;
     let mounted;
     let dispose;
     let if_block0 = (
       /*$_CARD_SHOW*/
       (ctx[6].title || /*_hover*/
-      ctx[3]) && create_if_block_17$2(ctx)
+      ctx[3]) && create_if_block_18$2(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (!/*_picError*/
       ctx2[4])
-        return create_if_block_16$2;
+        return create_if_block_17$2;
       return create_else_block$4;
     }
     let current_block_type = select_block_type(ctx);
     let if_block1 = current_block_type(ctx);
     let if_block2 = (
+      /*$_trigger_nexus_pic*/
+      ctx[7] && create_if_block_16$2()
+    );
+    let if_block3 = (
       /*$_CARD_SHOW*/
       (ctx[6].all || /*_hover*/
       ctx[3]) && create_if_block_10$2(ctx)
     );
-    let if_block3 = !/*$_CARD_SHOW*/
+    let if_block4 = !/*$_CARD_SHOW*/
     (ctx[6].all || /*_hover*/
     ctx[3]) && create_if_block$7(ctx);
     return {
@@ -7521,7 +7566,10 @@
         t6 = space();
         if (if_block3)
           if_block3.c();
-        attr(div0, "class", "card-category svelte-vdh3h6");
+        t7 = space();
+        if (if_block4)
+          if_block4.c();
+        attr(div0, "class", "card-category svelte-namdgo");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
         set_style(div0, "background-color", CONFIG$2.CATEGORY[
@@ -7535,10 +7583,10 @@
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
-        attr(div1, "class", "card-index svelte-vdh3h6");
-        attr(div2, "class", "card-image svelte-vdh3h6");
-        attr(div3, "class", "card-holder svelte-vdh3h6");
-        attr(div4, "class", "card svelte-vdh3h6");
+        attr(div1, "class", "card-index svelte-namdgo");
+        attr(div2, "class", "card-image svelte-namdgo");
+        attr(div3, "class", "card-holder svelte-namdgo");
+        attr(div4, "class", "card svelte-namdgo");
         set_style(
           div4,
           "width",
@@ -7568,31 +7616,34 @@
         append(div2, t3);
         append(div2, div1);
         append(div1, t4);
-        append(div3, t5);
+        append(div2, t5);
         if (if_block2)
-          if_block2.m(div3, null);
+          if_block2.m(div2, null);
         append(div3, t6);
         if (if_block3)
           if_block3.m(div3, null);
+        append(div3, t7);
+        if (if_block4)
+          if_block4.m(div3, null);
         if (!mounted) {
           dispose = [
             listen(
               div2,
               "click",
               /*showDetailIframe*/
-              ctx[8]
+              ctx[9]
             ),
             listen(
               div3,
               "mouseenter",
               /*card_show_detail*/
-              ctx[9]
+              ctx[10]
             ),
             listen(
               div3,
               "mouseleave",
               /*card_hide_detail*/
-              ctx[10]
+              ctx[11]
             )
           ];
           mounted = true;
@@ -7633,7 +7684,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_17$2(ctx2);
+            if_block0 = create_if_block_18$2(ctx2);
             if_block0.c();
             if_block0.m(div3, t2);
           }
@@ -7656,34 +7707,49 @@
         ctx2[0].torrentIndex + 1 + ""))
           set_data(t4, t4_value);
         if (
-          /*$_CARD_SHOW*/
-          ctx2[6].all || /*_hover*/
-          ctx2[3]
+          /*$_trigger_nexus_pic*/
+          ctx2[7]
         ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_10$2(ctx2);
+          if (if_block2)
+            ;
+          else {
+            if_block2 = create_if_block_16$2();
             if_block2.c();
-            if_block2.m(div3, t6);
+            if_block2.m(div2, null);
           }
         } else if (if_block2) {
           if_block2.d(1);
           if_block2 = null;
         }
-        if (!/*$_CARD_SHOW*/
-        (ctx2[6].all || /*_hover*/
-        ctx2[3])) {
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].all || /*_hover*/
+          ctx2[3]
+        ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block$7(ctx2);
+            if_block3 = create_if_block_10$2(ctx2);
             if_block3.c();
-            if_block3.m(div3, null);
+            if_block3.m(div3, t7);
           }
         } else if (if_block3) {
           if_block3.d(1);
           if_block3 = null;
+        }
+        if (!/*$_CARD_SHOW*/
+        (ctx2[6].all || /*_hover*/
+        ctx2[3])) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block$7(ctx2);
+            if_block4.c();
+            if_block4.m(div3, null);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
         }
         if (dirty & /*cardWidth*/
         2) {
@@ -7721,6 +7787,8 @@
           if_block2.d();
         if (if_block3)
           if_block3.d();
+        if (if_block4)
+          if_block4.d();
         mounted = false;
         run_all(dispose);
       }
@@ -7753,10 +7821,12 @@
     let $_iframe_switch;
     let $_current_bgColor;
     let $_CARD_SHOW;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(14, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(15, $_iframe_switch = $$value));
+    let $_trigger_nexus_pic;
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(15, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(16, $_iframe_switch = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(5, $_current_bgColor = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(6, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(7, $_trigger_nexus_pic = $$value));
     function sort_masonry() {
       sortMasonry();
     }
@@ -7804,6 +7874,7 @@
       _picError,
       $_current_bgColor,
       $_CARD_SHOW,
+      $_trigger_nexus_pic,
       sort_masonry,
       showDetailIframe,
       card_show_detail,
@@ -8715,7 +8786,7 @@
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[7].statistics && create_if_block_1$4(ctx)
+      ctx[7].statistics && create_if_block_1$3(ctx)
     );
     return {
       c() {
@@ -8846,7 +8917,7 @@
           if (if_block5) {
             if_block5.p(ctx2, dirty);
           } else {
-            if_block5 = create_if_block_1$4(ctx2);
+            if_block5 = create_if_block_1$3(ctx2);
             if_block5.c();
             if_block5.m(div, null);
           }
@@ -9351,7 +9422,7 @@
       }
     };
   }
-  function create_if_block_1$4(ctx) {
+  function create_if_block_1$3(ctx) {
     let div;
     let html_tag;
     let raw0_value = (
@@ -10198,7 +10269,7 @@
       }
     };
   }
-  function create_if_block_1$3(ctx) {
+  function create_if_block_1$2(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[5].suspend + ""
@@ -10275,7 +10346,7 @@
         /*isButtonDisabled*/
         ctx2[1]
       )
-        return create_if_block_1$3;
+        return create_if_block_1$2;
       return create_else_block$2;
     }
     let current_block_type = select_block_type_1(ctx);
@@ -10592,7 +10663,7 @@
       }
     };
   }
-  function create_if_block_1$2(ctx) {
+  function create_if_block_1$1(ctx) {
     let t_value = (
       /*LOAD_TEXT*/
       ctx[2].suspend + ""
@@ -10648,7 +10719,7 @@
         /*isButtonDisabled*/
         ctx2[0]
       )
-        return create_if_block_1$2;
+        return create_if_block_1$1;
       return create_else_block$1;
     }
     let current_block_type = select_block_type(ctx);
@@ -12017,7 +12088,7 @@
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[10].statistics && create_if_block_1$1(ctx)
+      ctx[10].statistics && create_if_block_1(ctx)
     );
     return {
       c() {
@@ -12148,7 +12219,7 @@
           if (if_block5) {
             if_block5.p(ctx2, dirty);
           } else {
-            if_block5 = create_if_block_1$1(ctx2);
+            if_block5 = create_if_block_1(ctx2);
             if_block5.c();
             if_block5.m(div, null);
           }
@@ -12751,7 +12822,7 @@
       }
     };
   }
-  function create_if_block_1$1(ctx) {
+  function create_if_block_1(ctx) {
     let div;
     let img0;
     let img0_src_value;
@@ -12924,7 +12995,7 @@
           attr(img, "src", img_src_value);
         attr(img, "alt", "");
         attr(div0, "class", "card-category svelte-xpikqe");
-        attr(div0, "data-href", div0_data_href_value = "https://test2.m-team.cc/browse?cat=" + /*torrentInfo*/
+        attr(div0, "data-href", div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
         ctx[1].category);
         set_style(
           div0,
@@ -13038,7 +13109,7 @@
         ] + ""))
           set_data(t1, t1_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && div0_data_href_value !== (div0_data_href_value = "https://test2.m-team.cc/browse?cat=" + /*torrentInfo*/
+        2 && div0_data_href_value !== (div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
         ctx2[1].category)) {
           attr(div0, "data-href", div0_data_href_value);
         }
@@ -13198,7 +13269,7 @@
     function showDetailIframe() {
       set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
       set_store_value(_iframe_url, $_iframe_url = torrentInfo.torrentLink + "#kdescr", $_iframe_url);
-      set_store_value(_iframe_url, $_iframe_url = "https://test2.m-team.cc/detail/" + torrentInfo.id, $_iframe_url);
+      set_store_value(_iframe_url, $_iframe_url = `https://${location.host}/detail/` + torrentInfo.id, $_iframe_url);
     }
     let { index } = $$props;
     let { torrentInfo } = $$props;
@@ -13334,7 +13405,7 @@
     child_ctx[34] = i;
     return child_ctx;
   }
-  function create_if_block_1(ctx) {
+  function create_if_block$1(ctx) {
     let div2;
     let div2_transition;
     let current;
@@ -13371,73 +13442,6 @@
           detach(div2);
         if (detaching && div2_transition)
           div2_transition.end();
-      }
-    };
-  }
-  function create_if_block$1(ctx) {
-    let each_blocks = [];
-    let each_1_lookup = /* @__PURE__ */ new Map();
-    let each_1_anchor;
-    let current;
-    let each_value = (
-      /*infoList*/
-      ctx[3]
-    );
-    const get_key = (ctx2) => (
-      /*info*/
-      ctx2[32].id
-    );
-    for (let i = 0; i < each_value.length; i += 1) {
-      let child_ctx = get_each_context(ctx, each_value, i);
-      let key = get_key(child_ctx);
-      each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (dirty[0] & /*infoList, CARD*/
-        9) {
-          each_value = /*infoList*/
-          ctx2[3];
-          group_outros();
-          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block, each_1_anchor, get_each_context);
-          check_outros();
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        for (let i = 0; i < each_value.length; i += 1) {
-          transition_in(each_blocks[i]);
-        }
-        current = true;
-      },
-      o(local) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          transition_out(each_blocks[i]);
-        }
-        current = false;
-      },
-      d(detaching) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].d(detaching);
-        }
-        if (detaching)
-          detach(each_1_anchor);
       }
     };
   }
@@ -13511,21 +13515,33 @@
   function create_fragment$1(ctx) {
     let div;
     let t;
+    let each_blocks = [];
+    let each_1_lookup = /* @__PURE__ */ new Map();
     let current;
-    let if_block0 = !/*loading_hide*/
-    ctx[1] && create_if_block_1();
-    let if_block1 = (
-      /*$_current_domain*/
-      ctx[4] == "test2.m-team.cc" && create_if_block$1(ctx)
+    let if_block = !/*loading_hide*/
+    ctx[1] && create_if_block$1();
+    let each_value = (
+      /*infoList*/
+      ctx[3]
     );
+    const get_key = (ctx2) => (
+      /*info*/
+      ctx2[32].id
+    );
+    for (let i = 0; i < each_value.length; i += 1) {
+      let child_ctx = get_each_context(ctx, each_value, i);
+      let key = get_key(child_ctx);
+      each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
+    }
     return {
       c() {
         div = element("div");
-        if (if_block0)
-          if_block0.c();
+        if (if_block)
+          if_block.c();
         t = space();
-        if (if_block1)
-          if_block1.c();
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
         attr(div, "class", "svelte-11rmzun");
         toggle_class(div, "masonry_Holder_unload_1st", !/*loading_hide*/
         ctx[1] && /*loading_first*/
@@ -13550,55 +13566,43 @@
       },
       m(target, anchor) {
         insert(target, div, anchor);
-        if (if_block0)
-          if_block0.m(div, null);
+        if (if_block)
+          if_block.m(div, null);
         append(div, t);
-        if (if_block1)
-          if_block1.m(div, null);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(div, null);
+          }
+        }
         current = true;
       },
       p(ctx2, dirty) {
         if (!/*loading_hide*/
         ctx2[1]) {
-          if (if_block0) {
+          if (if_block) {
             if (dirty[0] & /*loading_hide*/
             2) {
-              transition_in(if_block0, 1);
+              transition_in(if_block, 1);
             }
           } else {
-            if_block0 = create_if_block_1();
-            if_block0.c();
-            transition_in(if_block0, 1);
-            if_block0.m(div, t);
+            if_block = create_if_block$1();
+            if_block.c();
+            transition_in(if_block, 1);
+            if_block.m(div, t);
           }
-        } else if (if_block0) {
+        } else if (if_block) {
           group_outros();
-          transition_out(if_block0, 1, 1, () => {
-            if_block0 = null;
+          transition_out(if_block, 1, 1, () => {
+            if_block = null;
           });
           check_outros();
         }
-        if (
-          /*$_current_domain*/
-          ctx2[4] == "test2.m-team.cc"
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-            if (dirty[0] & /*$_current_domain*/
-            16) {
-              transition_in(if_block1, 1);
-            }
-          } else {
-            if_block1 = create_if_block$1(ctx2);
-            if_block1.c();
-            transition_in(if_block1, 1);
-            if_block1.m(div, null);
-          }
-        } else if (if_block1) {
+        if (dirty[0] & /*infoList, CARD*/
+        9) {
+          each_value = /*infoList*/
+          ctx2[3];
           group_outros();
-          transition_out(if_block1, 1, 1, () => {
-            if_block1 = null;
-          });
+          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, div, outro_and_destroy_block, create_each_block, null, get_each_context);
           check_outros();
         }
         if (!current || dirty[0] & /*loading_hide, loading_first*/
@@ -13637,24 +13641,51 @@
       i(local) {
         if (current)
           return;
-        transition_in(if_block0);
-        transition_in(if_block1);
+        transition_in(if_block);
+        for (let i = 0; i < each_value.length; i += 1) {
+          transition_in(each_blocks[i]);
+        }
         current = true;
       },
       o(local) {
-        transition_out(if_block0);
-        transition_out(if_block1);
+        transition_out(if_block);
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          transition_out(each_blocks[i]);
+        }
         current = false;
       },
       d(detaching) {
         if (detaching)
           detach(div);
-        if (if_block0)
-          if_block0.d();
-        if (if_block1)
-          if_block1.d();
+        if (if_block)
+          if_block.d();
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].d();
+        }
       }
     };
+  }
+  function UrlPath_2_ParamList(path = location.href) {
+    let url = path;
+    if (path.indexOf("/browse") == 0) {
+      url = location.protocol + "//" + location.host + path;
+    }
+    console.log(`url 补全: ${url}`);
+    let urlObject = new URL(url);
+    let mode = urlObject.pathname.split("/")[2];
+    let categories = urlObject.searchParams.getAll("cat");
+    let standards = urlObject.searchParams.getAll("stand");
+    let output = {};
+    if (mode !== void 0)
+      output.mode = mode;
+    else
+      output.mode = "normal";
+    if (categories !== void 0)
+      output.categories = categories;
+    if (standards !== void 0)
+      output.standards = standards;
+    console.log(output);
+    return output;
   }
   function instance$1($$self, $$props, $$invalidate) {
     let $_list_viewMode;
@@ -13664,17 +13695,17 @@
     let $_turnPage;
     let $_current_bgColor;
     let $_current_domain;
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(12, $_list_viewMode = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(13, $_Global_Masonry = $$value));
-    component_subscribe($$self, _animated, ($$value) => $$invalidate(9, $_animated = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(10, $_card_width = $$value));
-    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(14, $_turnPage = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(15, $_current_bgColor = $$value));
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(4, $_current_domain = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(11, $_list_viewMode = $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(12, $_Global_Masonry = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(8, $_animated = $$value));
+    component_subscribe($$self, _card_width, ($$value) => $$invalidate(9, $_card_width = $$value));
+    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(13, $_turnPage = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(14, $_current_bgColor = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(15, $_current_domain = $$value));
     let { waterfallNode } = $$props;
     let { waterfallParentNode } = $$props;
     let { update_ORIGIN_TL_Node } = $$props;
-    const searchApiURL = CONFIG.HOST + CONFIG.API.search.url;
+    const searchApiURL = location.protocol + "//" + location.host + CONFIG.API.search.url;
     window.NEXUS_TOOLS = NEXUS_TOOLS;
     let masonry2;
     let loading_hide = false;
@@ -13693,18 +13724,20 @@
       console.log(`容器宽:${_width} 列宽:${masonry2 ? masonry2.columnWidth : "masonry 丢失!!!"}`);
       return Math.floor(gutter);
     }
+    const originSelector = GET_TORRENT_LIST_SELECTOR();
     function ChangeShowMode() {
-      const _$_ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+      const _$_ORIGIN_TL_Node = document.querySelector(originSelector);
       const _$nextPageNode = document.querySelector(".nextPage");
       const _$waterfallNode = document.querySelector(".waterfall.waterfall_newMT");
-      _$_ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+      if (_$_ORIGIN_TL_Node)
+        _$_ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
       _$nextPageNode.style.display = $_list_viewMode ? "block" : "none";
       _$waterfallNode.style.display = $_list_viewMode ? "block" : "none";
     }
     function CHANGE_CARD_LAYOUT() {
       ChangeShowMode();
-      $$invalidate(8, masonry2.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width), masonry2);
-      $$invalidate(8, masonry2.options.columnWidth = $_card_width, masonry2);
+      $$invalidate(7, masonry2.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width), masonry2);
+      $$invalidate(7, masonry2.options.columnWidth = $_card_width, masonry2);
       sortMasonry("fast");
       sortMasonry("fast");
     }
@@ -13713,13 +13746,8 @@
     function RequestExample() {
       console.log("当前页面 path:	", location.pathname);
       let pageSize = getPageSize();
-      const payload = {
-        categories: UrlPath_2_ParamList(),
-        pageNumber: 1,
-        pageSize,
-        sortDirection: "DESC",
-        sortField: "CREATED_DATE"
-      };
+      const payload = { pageNumber: 1, pageSize, visible: 1 };
+      Object.assign(payload, UrlPath_2_ParamList());
       fetch(searchApiURL, {
         method: "POST",
         headers: {
@@ -13734,7 +13762,7 @@
         masonry2.reloadItems();
         $$invalidate(2, loading_first = false);
         $$invalidate(1, loading_hide = true);
-        $$invalidate(5, waterfallParentNode.style.height = "auto", waterfallParentNode);
+        $$invalidate(4, waterfallParentNode.style.height = "auto", waterfallParentNode);
         masonry2.once("layoutComplete", () => {
           NEXUS_TOOLS();
         });
@@ -13769,40 +13797,32 @@
     function getPageSize() {
       const sysinfo = parseLocalStorage("persist:persist").sysinfo;
       if (!sysinfo.pageSize)
-        return 20;
+        return 50;
       if (!sysinfo.pageSize.torrent)
-        return 20;
+        return 50;
       return Number(sysinfo.pageSize.torrent);
-    }
-    function UrlPath_2_ParamList(path = location.pathname) {
-      const categoryParam = (
-        // @ts-ignore
-        path == "/browse" ? "safe" : path.slice("/browse/".length)
-      );
-      console.log(`search param:	`, categoryParam);
-      const lsInfo = parseLocalStorage("persist:persist");
-      return Array.from(lsInfo.sysinfo.categoryList[categoryParam]);
     }
     const originalPushState = history.pushState;
     function OverWritePushState() {
       history.pushState = function(state, title, path) {
         $$invalidate(1, loading_hide = false);
         console.log(`%c ====> URL跳转劫持: %c${path}`, "color: cyan", "color: white");
-        if (path.includes("/browse/") || path == "/browse") {
+        if (path.includes("/browse") || path == "/browse") {
           console.log("--->属于 browse 范围, search 启动");
-          $$invalidate(5, waterfallParentNode.style.display = "block", waterfallParentNode);
+          $$invalidate(4, waterfallParentNode.style.display = "block", waterfallParentNode);
           const searchApiList = UrlPath_2_ParamList(path);
           const pageSizeParam = getPageSize();
           const payload = {
-            categories: searchApiList,
             pageNumber: 1,
             pageSize: pageSizeParam,
-            sortDirection: "DESC",
-            sortField: "CREATED_DATE"
+            visible: 1
           };
+          Object.assign(payload, searchApiList);
           Request(payload, update_ORIGIN_TL_Node);
+          ChangeShowMode();
         } else {
-          $$invalidate(5, waterfallParentNode.style.display = "none", waterfallParentNode);
+          $$invalidate(4, waterfallParentNode.style.display = "none", waterfallParentNode);
+          document.querySelector(originSelector).style.display = "block";
         }
         originalPushState.apply(history, arguments);
       };
@@ -13826,12 +13846,11 @@
     }
     function loadNextPage() {
       const payload = {
-        categories: UrlPath_2_ParamList(),
         pageNumber: PAGE.$getCurrentPage() + 1,
         pageSize: getPageSize(),
-        sortDirection: "DESC",
-        sortField: "CREATED_DATE"
+        visible: 1
       };
+      Object.assign(payload, UrlPath_2_ParamList());
       fetch(searchApiURL, {
         method: "POST",
         headers: {
@@ -13858,7 +13877,7 @@
     }
     window.$$$turnPage = turnPage;
     onMount(() => {
-      $$invalidate(8, masonry2 = new Masonry(
+      $$invalidate(7, masonry2 = new Masonry(
         waterfallNode,
         {
           itemSelector: ".card",
@@ -13888,22 +13907,22 @@
     });
     $$self.$$set = ($$props2) => {
       if ("waterfallNode" in $$props2)
-        $$invalidate(6, waterfallNode = $$props2.waterfallNode);
+        $$invalidate(5, waterfallNode = $$props2.waterfallNode);
       if ("waterfallParentNode" in $$props2)
-        $$invalidate(5, waterfallParentNode = $$props2.waterfallParentNode);
+        $$invalidate(4, waterfallParentNode = $$props2.waterfallParentNode);
       if ("update_ORIGIN_TL_Node" in $$props2)
-        $$invalidate(7, update_ORIGIN_TL_Node = $$props2.update_ORIGIN_TL_Node);
+        $$invalidate(6, update_ORIGIN_TL_Node = $$props2.update_ORIGIN_TL_Node);
     };
     $$self.$$.update = () => {
       if ($$self.$$.dirty[0] & /*masonry, $_animated*/
-      768) {
+      384) {
         {
           if (masonry2)
-            $$invalidate(8, masonry2.options.transitionDuration = $_animated ? "0.4s" : "0", masonry2);
+            $$invalidate(7, masonry2.options.transitionDuration = $_animated ? "0.4s" : "0", masonry2);
         }
       }
       if ($$self.$$.dirty[0] & /*masonry, $_card_width, CARD*/
-      1281) {
+      641) {
         if (masonry2) {
           $$invalidate(0, CARD.CARD_WIDTH = $_card_width, CARD);
           console.log("卡片宽度:	", CARD.CARD_WIDTH);
@@ -13916,7 +13935,6 @@
       loading_hide,
       loading_first,
       infoList,
-      $_current_domain,
       waterfallParentNode,
       waterfallNode,
       update_ORIGIN_TL_Node,
@@ -13935,9 +13953,9 @@
         create_fragment$1,
         safe_not_equal,
         {
-          waterfallNode: 6,
-          waterfallParentNode: 5,
-          update_ORIGIN_TL_Node: 7
+          waterfallNode: 5,
+          waterfallParentNode: 4,
+          update_ORIGIN_TL_Node: 6
         },
         null,
         [-1, -1]
@@ -14152,9 +14170,9 @@
     let $_list_viewMode;
     let $_iframe_url;
     let $_current_domain;
-    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(10, $_show_configPanel = $$value));
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(9, $_show_configPanel = $$value));
     component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(0, $_iframe_switch = $$value));
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(11, $_list_viewMode = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(10, $_list_viewMode = $$value));
     component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(1, $_iframe_url = $$value));
     component_subscribe($$self, _current_domain, ($$value) => $$invalidate(2, $_current_domain = $$value));
     console.log(`[${( new Date()).toLocaleTimeString()}]<----------------------HMR_NewMT---------------------->`);

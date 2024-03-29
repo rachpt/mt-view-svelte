@@ -51,7 +51,8 @@
   // 0. 变量声明 & 配置 ------------------------------------------------
 
   // search api
-  const searchApiURL = config.HOST + config.API.search.url;
+  const searchApiURL =
+    location.protocol + "//" + location.host + config.API.search.url;
 
   // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
   // Nexus_Tools 绑定
@@ -112,17 +113,19 @@
     return Math.floor(gutter);
   }
 
+  const originSelector = GET_TORRENT_LIST_SELECTOR();
+
   /** 切换显示模式 */
   function ChangeShowMode() {
-    const _$_ORIGIN_TL_Node = document.querySelector(
-      GET_TORRENT_LIST_SELECTOR()
-    );
+    const _$_ORIGIN_TL_Node = document.querySelector(originSelector);
     const _$nextPageNode = document.querySelector(".nextPage");
     const _$waterfallNode = document.querySelector(
       ".waterfall.waterfall_newMT"
     );
     // 一组: 原表格
-    _$_ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+    if (_$_ORIGIN_TL_Node)
+      _$_ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
+
     // 一组: 瀑布流 + 按钮
     _$nextPageNode.style.display = $_list_viewMode ? "block" : "none";
     _$waterfallNode.style.display = $_list_viewMode ? "block" : "none";
@@ -155,12 +158,14 @@
     let pageSize = getPageSize();
 
     const payload = {
-      categories: UrlPath_2_ParamList(),
       pageNumber: 1,
       pageSize,
-      sortDirection: "DESC",
-      sortField: "CREATED_DATE",
+      visible: 1,
+      // mode: UrlPath_2_ParamList(),
+      // sortDirection: "DESC",
+      // sortField: "CREATED_DATE",
     };
+    Object.assign(payload, UrlPath_2_ParamList());
 
     fetch(searchApiURL, {
       method: "POST",
@@ -211,7 +216,8 @@
   /**常规 search 请求
    * 详见 {@link https://test2.m-team.cc/api/doc.html#/%E5%B8%B8%E8%A7%84%E6%8E%A5%E5%8F%A3/%E7%A7%8D%E5%AD%90/search newMT接口文档}
    * @param {object} payload - 自定义载荷(payload)
-   * @param {number[]} payload.categories - 分类
+   * @param {string} payload.mode - 大致分类
+   * @param {number[]} payload.categories - 具体分类
    * @param {number} payload.pageNumber - 页数
    * @param {number} payload.pageSize - 每页种子数
    * @param {string} payload.sortDirection - 正倒序(ACS,DESC)
@@ -264,8 +270,8 @@
   /** 获取 ls 里的 pageSize */
   function getPageSize() {
     const sysinfo = parseLocalStorage("persist:persist").sysinfo;
-    if (!sysinfo.pageSize) return 20;
-    if (!sysinfo.pageSize.torrent) return 20;
+    if (!sysinfo.pageSize) return 50;
+    if (!sysinfo.pageSize.torrent) return 50;
     return Number(sysinfo.pageSize.torrent);
   }
 
@@ -274,15 +280,34 @@
   /**URL路径转化 => search api 参数列表
    * @param path 默认值为 URL pathname
    */
-  function UrlPath_2_ParamList(path = location.pathname) {
-    const categoryParam =
-      // @ts-ignore
-      path == "/browse" ? "safe" : path.slice("/browse/".length);
-    console.log(`search param:\t`, categoryParam);
-    // 从 localstorage 中获取 category 相应的 categoryParam
-    const lsInfo = parseLocalStorage("persist:persist");
-    // @ts-ignore
-    return Array.from(lsInfo.sysinfo.categoryList[categoryParam]);
+  function UrlPath_2_ParamList(path = location.href) {
+    // 补全 url
+    // if (path != location.pathname) console.log(`path自定义路径: ${path}`);
+    let url = path;
+    // 以 /browse 开头的是非完整链接, 不能自动获取 searchParam, 需要补全
+    if (path.indexOf("/browse") == 0) {
+      url = location.protocol + "//" + location.host + path;
+    }
+    console.log(`url 补全: ${url}`);
+
+    let urlObject = new URL(url);
+
+    // 从 url对象 获得 mode / categories / standards 等参数
+    // -- mode
+    let mode = urlObject.pathname.split("/")[2];
+    let categories = urlObject.searchParams.getAll("cat");
+    let standards = urlObject.searchParams.getAll("stand");
+
+    let output = {};
+
+    if (mode !== undefined) output.mode = mode;
+    else output.mode = "normal";
+    if (categories !== undefined) output.categories = categories;
+    if (standards !== undefined) output.standards = standards;
+
+    console.log(output);
+
+    return output;
   }
 
   // FIXME: 这里在每次切换 /browse 又回来之后, _ORIGIN_TL_Node 会丢失
@@ -310,7 +335,7 @@
 
       // 判读是否在 /browse path 内, 在就进行 search api 筛选
       // @ts-ignore
-      if (path.includes("/browse/") || path == "/browse") {
+      if (path.includes("/browse") || path == "/browse") {
         console.log("--->属于 browse 范围, search 启动");
 
         // 在 /browse 内即显示 waterfallParentNode
@@ -325,18 +350,27 @@
 
         // 装载 payload
         const payload = {
-          categories: searchApiList,
           pageNumber: 1,
           pageSize: pageSizeParam,
-          sortDirection: "DESC",
-          sortField: "CREATED_DATE",
+          visible: 1,
+          // mode: searchApiList,
+          // sortDirection: "DESC",
+          // sortField: "CREATED_DATE",
         };
+
+        Object.assign(payload, searchApiList);
 
         // 默认每次切换页面重置 ORIGIN_TL_Node
         Request(payload, update_ORIGIN_TL_Node);
+
+        // 按时调整显示模式
+        ChangeShowMode();
       } else {
         // 不在 /browse 内即不显示 waterfallParentNode
         waterfallParentNode.style.display = "none";
+
+        // 显示主表
+        document.querySelector(originSelector).style.display = "block";
       }
 
       // FIXME: 别动这个就行
@@ -385,12 +419,14 @@
   function loadNextPage() {
     // -- 1. 对 目标页数页数 & 单页数量 进行统计 -> 打包要 POST 的 payload
     const payload = {
-      categories: UrlPath_2_ParamList(),
       pageNumber: PAGE.$getCurrentPage() + 1,
       pageSize: getPageSize(),
-      sortDirection: "DESC",
-      sortField: "CREATED_DATE",
+      visible: 1,
+      // mode: UrlPath_2_ParamList(),
+      // sortDirection: "DESC",
+      // sortField: "CREATED_DATE",
     };
+    Object.assign(payload, UrlPath_2_ParamList());
 
     // -- 2. fetch payload, 并在获得后更新 List
     fetch(searchApiURL, {
@@ -503,11 +539,11 @@
   {/if}
 
   <!-- 卡片渲染模版 -->
-  {#if $_current_domain == "test2.m-team.cc"}
-    {#each infoList as info, index (info.id)}
-      <TestMteam {index} torrentInfo={info} cardWidth={CARD.CARD_WIDTH} />
-    {/each}
-  {/if}
+  <!-- {#if $_current_domain == "test2.m-team.cc"} -->
+  {#each infoList as info, index (info.id)}
+    <TestMteam {index} torrentInfo={info} cardWidth={CARD.CARD_WIDTH} />
+  {/each}
+  <!-- {/if} -->
 </div>
 
 <style>

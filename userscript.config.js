@@ -12,8 +12,13 @@ export const config = {
   author: "Kesa",
   match: [
     "https://kamept.com/*",
-    "https://kp.m-team.cc/*",
     "https://pterclub.com/*",
+
+    // M-Team 全系列域名
+    "https://kp.m-team.cc/*",
+    "https://xp.m-team.io/*",
+    "https://xp.m-team.cc/*",
+    "https://ap.m-team.cc/*",
     "https://test2.m-team.cc/*",
   ],
   exclude: [
@@ -32,5 +37,5 @@ export const config = {
   license: "MIT",
 
   // NOTE: 经常修改这里就行了
-  version: "1.1.4",
+  version: "1.1.5",
 }

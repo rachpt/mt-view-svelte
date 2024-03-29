@@ -46,34 +46,6 @@
   // }
   let triggerNext = false;
 
-  // ----------------------------
-  // FIXME: 不记得这里是干什么了, 实在没啥用可以删掉
-
-  function stopChecking() {
-    if (observer) {
-      observer.disconnect();
-      console.log("Stopped checking for DOM element.");
-    }
-  }
-
-  function checkForElement() {
-    const targetElement = document.querySelector(GET_TORRENT_LIST_SELECTOR());
-
-    if (targetElement) {
-      stopChecking();
-      console.log("DOM element exists:", targetElement);
-      triggerNext = true;
-      // 在这里执行您想要的操作
-    } else {
-      console.log("DOM element not found, still checking...");
-    }
-  }
-
-  // checkForElement(); // 立即检查一次
-  // let observer;
-  // observer = new MutationObserver(checkForElement);
-  // observer.observe(document.body, { childList: true, subtree: true });
-
   // 面板相关 ------------------------------------------------
 
   /** 关闭 iframe */
@@ -102,15 +74,6 @@
   while (!Masonry) {
     console.log("等待初始化......");
   }
-
-  // FIXME: 打包模式读不到一开始的 DOM, 这样处理了
-  // $: {
-  //   // 一组: 原表格
-  //   _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
-  //   // 一组: 瀑布流 + 按钮
-  //   nextPageNode.style.display = $_list_viewMode ? "block" : "none";
-  //   waterfallNode.style.display = $_list_viewMode ? "block" : "none";
-  // }
 
   // 给状态栏上 z-index
 

@@ -5,7 +5,17 @@ import { config as config_testMteam } from "./testMteam";
 /** 站点参数相关参数顶层对象 */
 const SITE = {
   "kamept.com": config_Kame,
-  "kp.m-team.cc": config_Mteam,
+
+  // 旧 M-Team
+  // "kp.m-team.cc": config_Mteam,
+
+  // 新 M-Team
+  "kp.m-team.cc": config_testMteam,
+  "xp.m-team.io": config_testMteam,
+  "xp.m-team.cc": config_testMteam,
+  "ap.m-team.cc": config_testMteam,
+
+  // 新 M-Team 测试站
   "test2.m-team.cc": config_testMteam,
 };
 

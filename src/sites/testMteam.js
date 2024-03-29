@@ -17,12 +17,14 @@ const CONFIG = {
   architecture: "NEW_MT",
 
   /** 默认的种子表格 dom selector */
-  torrentListTable: "div.ant-table-wrapper",
+  // torrentListTable: "div.ant-table-wrapper",
+  torrentListTable: "div.app-content__inner",
 
   /** 加载图片等待时的默认图片 */
-  LOADING_PIC: "https://test2.m-team.cc/static/media/logo.80b63235eaf702e44a8d.png",
+  LOADING_PIC: "/static/media/logo.80b63235eaf702e44a8d.png",
 
   /** 网站 host*/
+  /** FIXME: 没用的字段了*/
   HOST: "https://test2.m-team.cc",
 
   /** 网站 api */

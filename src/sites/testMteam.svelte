@@ -68,7 +68,7 @@
   function showDetailIframe() {
     $_iframe_switch = 1;
     $_iframe_url = torrentInfo.torrentLink + "#kdescr";
-    $_iframe_url = "https://test2.m-team.cc/detail/" + torrentInfo.id;
+    $_iframe_url = `https://${location.host}/detail/` + torrentInfo.id;
   }
 
   // ------------------------------------------------
@@ -239,7 +239,7 @@
     <!-- 分区类别 -->
     <div
       class="card-category"
-      data-href={"https://test2.m-team.cc/browse?cat=" + torrentInfo.category}
+      data-href={`https://${location.host}/browse?cat=` + torrentInfo.category}
       style="
         background-color: 
           {_categoryColor ?? 'transparent'};
