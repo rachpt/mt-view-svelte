@@ -2,7 +2,7 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.6
+// @version         1.1.7
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
@@ -2802,7 +2802,12 @@
   const _trigger_nexus_pic = persistStore("_trigger_nexus_pic", 1);
   const _delay_nexus_pic = persistStore("_delay_nexus_pic", 600);
   const _animated = persistStore("_animated", true);
-  const _card_width = persistStore("_card_width", 300);
+  const _card_layout = persistStore("_card_layout", {
+    // 列数
+    column: 4,
+    // 间距
+    gap: 20
+  });
   const site_setting = {
     mt: {
       // 隐藏gay卡片: 默认为true
@@ -3578,71 +3583,57 @@
     let button0;
     let t1;
     let button1;
+    let t2;
     let t3;
-    let button2;
     let t4;
-    let t5;
-    let t6;
-    let button3;
+    let button2;
     let mounted;
     let dispose;
     return {
       c() {
         button0 = element("button");
-        button0.textContent = "[d]切换宽度";
+        button0.textContent = "[d]显示详情";
         t1 = space();
         button1 = element("button");
-        button1.textContent = "[d]显示详情";
-        t3 = space();
-        button2 = element("button");
-        t4 = text("[d]");
-        t5 = text(
+        t2 = text("[d]");
+        t3 = text(
           /*label_switchMode*/
           ctx[1]
         );
-        t6 = space();
-        button3 = element("button");
-        button3.textContent = "[d]iframe";
+        t4 = space();
+        button2 = element("button");
+        button2.textContent = "[d]iframe";
         attr(button0, "class", "sideP__btn svelte-kk96f3");
         attr(button1, "class", "sideP__btn svelte-kk96f3");
         attr(button2, "class", "sideP__btn svelte-kk96f3");
-        attr(button3, "class", "sideP__btn svelte-kk96f3");
       },
       m(target, anchor) {
         insert(target, button0, anchor);
         insert(target, t1, anchor);
         insert(target, button1, anchor);
-        insert(target, t3, anchor);
+        append(button1, t2);
+        append(button1, t3);
+        insert(target, t4, anchor);
         insert(target, button2, anchor);
-        append(button2, t4);
-        append(button2, t5);
-        insert(target, t6, anchor);
-        insert(target, button3, anchor);
         if (!mounted) {
           dispose = [
             listen(
               button0,
               "click",
-              /*config_changeWidth*/
+              /*config_showAllDetails*/
               ctx[19]
             ),
             listen(
               button1,
               "click",
-              /*config_showAllDetails*/
+              /*config_switchMode*/
               ctx[20]
             ),
             listen(
               button2,
               "click",
-              /*config_switchMode*/
-              ctx[21]
-            ),
-            listen(
-              button3,
-              "click",
               /*config_changeLoadMode*/
-              ctx[22]
+              ctx[21]
             )
           ];
           mounted = true;
@@ -3652,7 +3643,7 @@
         if (dirty[0] & /*label_switchMode*/
         2)
           set_data(
-            t5,
+            t3,
             /*label_switchMode*/
             ctx2[1]
           );
@@ -3665,29 +3656,25 @@
         if (detaching)
           detach(button1);
         if (detaching)
-          detach(t3);
+          detach(t4);
         if (detaching)
           detach(button2);
-        if (detaching)
-          detach(t6);
-        if (detaching)
-          detach(button3);
         mounted = false;
         run_all(dispose);
       }
     };
   }
   function create_if_block$8(ctx) {
-    let div8;
-    let div7;
+    let div10;
+    let div9;
     let div0;
     let p;
     let t1;
-    let button0;
+    let button;
     let t2;
     let show_if = (
       /*$_current_domain*/
-      ctx[10].includes("m-team")
+      ctx[9].includes("m-team")
     );
     let t3;
     let div2;
@@ -3721,48 +3708,52 @@
     let switch5;
     let updating_checked_5;
     let t16;
-    let button1;
-    let t17;
-    let t18;
-    let t19;
-    let div6;
+    let div4;
     let h11;
-    let t21;
+    let t18;
     let div3;
     let switch6;
-    let updating_checked_6;
+    let t19;
+    let switch7;
+    let t20;
+    let div8;
+    let h12;
     let t22;
     let div5;
-    let h3;
-    let t24;
-    let div4;
-    let switch7;
-    let updating_checked_7;
-    let t25;
     let switch8;
-    let updating_checked_8;
-    let t26;
+    let updating_checked_6;
+    let t23;
+    let div7;
+    let h3;
+    let t25;
+    let div6;
     let switch9;
-    let updating_checked_9;
-    let t27;
+    let updating_checked_7;
+    let t26;
     let switch10;
-    let updating_checked_10;
-    let t28;
+    let updating_checked_8;
+    let t27;
     let switch11;
-    let updating_checked_11;
-    let t29;
+    let updating_checked_9;
+    let t28;
     let switch12;
-    let updating_checked_12;
-    let t30;
+    let updating_checked_10;
+    let t29;
     let switch13;
+    let updating_checked_11;
+    let t30;
+    let switch14;
+    let updating_checked_12;
+    let t31;
+    let switch15;
     let updating_checked_13;
-    let div8_transition;
+    let div10_transition;
     let current;
     let mounted;
     let dispose;
     let if_block0 = show_if && create_if_block_2$4(ctx);
     function switch0_checked_binding(value) {
-      ctx[28](value);
+      ctx[27](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
@@ -3770,24 +3761,24 @@
       title_red: "原始表格",
       label: (
         /*$_current_domain*/
-        ctx[10].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
+        ctx[9].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
       ),
       func: (
         /*func*/
-        ctx[27]
+        ctx[26]
       )
     };
     if (
       /*$_list_viewMode*/
-      ctx[5] !== void 0
+      ctx[4] !== void 0
     ) {
       switch0_props.checked = /*$_list_viewMode*/
-      ctx[5];
+      ctx[4];
     }
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[29](value);
+      ctx[28](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3806,7 +3797,7 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[30](value);
+      ctx[29](value);
     }
     let switch2_props = {
       title_fixed: "卡片移动动画",
@@ -3817,15 +3808,15 @@
     };
     if (
       /*$_animated*/
-      ctx[12] !== void 0
+      ctx[11] !== void 0
     ) {
       switch2_props.checked = /*$_animated*/
-      ctx[12];
+      ctx[11];
     }
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[31](value);
+      ctx[30](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3834,15 +3825,15 @@
     };
     if (
       /*$_show_nexus_pic*/
-      ctx[13] !== void 0
+      ctx[12] !== void 0
     ) {
       switch3_props.checked = /*$_show_nexus_pic*/
-      ctx[13];
+      ctx[12];
     }
     switch3 = new Switch({ props: switch3_props });
     binding_callbacks.push(() => bind(switch3, "checked", switch3_checked_binding));
     function switch4_checked_binding(value) {
-      ctx[32](value);
+      ctx[31](value);
     }
     let switch4_props = {
       title_fixed: "预览大图方式",
@@ -3852,19 +3843,19 @@
     };
     if (
       /*$_trigger_nexus_pic*/
-      ctx[14] !== void 0
+      ctx[13] !== void 0
     ) {
       switch4_props.checked = /*$_trigger_nexus_pic*/
-      ctx[14];
+      ctx[13];
     }
     switch4 = new Switch({ props: switch4_props });
     binding_callbacks.push(() => bind(switch4, "checked", switch4_checked_binding));
     let if_block1 = (
       /*$_show_nexus_pic*/
-      ctx[13] && create_if_block_1$5(ctx)
+      ctx[12] && create_if_block_1$5(ctx)
     );
     function switch5_checked_binding(value) {
-      ctx[34](value);
+      ctx[33](value);
     }
     let switch5_props = {
       title_fixed: "侧边栏debug按钮",
@@ -3874,17 +3865,37 @@
     };
     if (
       /*$_show_debug_btn*/
-      ctx[9] !== void 0
+      ctx[8] !== void 0
     ) {
       switch5_props.checked = /*$_show_debug_btn*/
-      ctx[9];
+      ctx[8];
     }
     switch5 = new Switch({ props: switch5_props });
     binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
-    function switch6_checked_binding(value) {
-      ctx[35](value);
+    switch6 = new Switch({
+      props: {
+        title_fixed: `卡片列数: ${/*$_card_layout*/
+      ctx[15].column}`,
+        label: "范围: 2~7 列",
+        type: "range",
+        $$slots: { default: [create_default_slot_1] },
+        $$scope: { ctx }
+      }
+    });
+    switch7 = new Switch({
+      props: {
+        title_fixed: `卡片间距: ${/*$_card_layout*/
+      ctx[15].gap}px`,
+        label: "范围: 2~100 px",
+        type: "range",
+        $$slots: { default: [create_default_slot] },
+        $$scope: { ctx }
+      }
+    });
+    function switch8_checked_binding(value) {
+      ctx[36](value);
     }
-    let switch6_props = {
+    let switch8_props = {
       title_fixed: "卡片信息",
       title_green: "显示下方所选信息(精简)",
       title_red: "显示所有信息(较乱)",
@@ -3895,28 +3906,28 @@
       /*$_CARD_SHOW*/
       ctx[3].all !== void 0
     ) {
-      switch6_props.checked = /*$_CARD_SHOW*/
+      switch8_props.checked = /*$_CARD_SHOW*/
       ctx[3].all;
     }
-    switch6 = new Switch({ props: switch6_props });
-    binding_callbacks.push(() => bind(switch6, "checked", switch6_checked_binding));
-    function switch7_checked_binding(value) {
-      ctx[36](value);
+    switch8 = new Switch({ props: switch8_props });
+    binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
+    function switch9_checked_binding(value) {
+      ctx[37](value);
     }
-    let switch7_props = { title_fixed: "显示种子名称", func: sortMasonry };
+    let switch9_props = { title_fixed: "显示种子名称", func: sortMasonry };
     if (
       /*$_CARD_SHOW*/
       ctx[3].title !== void 0
     ) {
-      switch7_props.checked = /*$_CARD_SHOW*/
+      switch9_props.checked = /*$_CARD_SHOW*/
       ctx[3].title;
     }
-    switch7 = new Switch({ props: switch7_props });
-    binding_callbacks.push(() => bind(switch7, "checked", switch7_checked_binding));
-    function switch8_checked_binding(value) {
-      ctx[37](value);
+    switch9 = new Switch({ props: switch9_props });
+    binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
+    function switch10_checked_binding(value) {
+      ctx[38](value);
     }
-    let switch8_props = {
+    let switch10_props = {
       title_fixed: "显示置顶和免费",
       func: sortMasonry
     };
@@ -3924,41 +3935,41 @@
       /*$_CARD_SHOW*/
       ctx[3].free !== void 0
     ) {
-      switch8_props.checked = /*$_CARD_SHOW*/
-      ctx[3].free;
-    }
-    switch8 = new Switch({ props: switch8_props });
-    binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
-    function switch9_checked_binding(value) {
-      ctx[38](value);
-    }
-    let switch9_props = { title_fixed: "显示副标题", func: sortMasonry };
-    if (
-      /*$_CARD_SHOW*/
-      ctx[3].sub_title !== void 0
-    ) {
-      switch9_props.checked = /*$_CARD_SHOW*/
-      ctx[3].sub_title;
-    }
-    switch9 = new Switch({ props: switch9_props });
-    binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
-    function switch10_checked_binding(value) {
-      ctx[39](value);
-    }
-    let switch10_props = { title_fixed: "显示标签", func: sortMasonry };
-    if (
-      /*$_CARD_SHOW*/
-      ctx[3].tags !== void 0
-    ) {
       switch10_props.checked = /*$_CARD_SHOW*/
-      ctx[3].tags;
+      ctx[3].free;
     }
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
+      ctx[39](value);
+    }
+    let switch11_props = { title_fixed: "显示副标题", func: sortMasonry };
+    if (
+      /*$_CARD_SHOW*/
+      ctx[3].sub_title !== void 0
+    ) {
+      switch11_props.checked = /*$_CARD_SHOW*/
+      ctx[3].sub_title;
+    }
+    switch11 = new Switch({ props: switch11_props });
+    binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
+    function switch12_checked_binding(value) {
       ctx[40](value);
     }
-    let switch11_props = {
+    let switch12_props = { title_fixed: "显示标签", func: sortMasonry };
+    if (
+      /*$_CARD_SHOW*/
+      ctx[3].tags !== void 0
+    ) {
+      switch12_props.checked = /*$_CARD_SHOW*/
+      ctx[3].tags;
+    }
+    switch12 = new Switch({ props: switch12_props });
+    binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
+    function switch13_checked_binding(value) {
+      ctx[41](value);
+    }
+    let switch13_props = {
       title_fixed: "显示 [大小/下载/收藏]",
       func: sortMasonry
     };
@@ -3966,28 +3977,28 @@
       /*$_CARD_SHOW*/
       ctx[3].size_download_collect !== void 0
     ) {
-      switch11_props.checked = /*$_CARD_SHOW*/
+      switch13_props.checked = /*$_CARD_SHOW*/
       ctx[3].size_download_collect;
     }
-    switch11 = new Switch({ props: switch11_props });
-    binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
-    function switch12_checked_binding(value) {
-      ctx[41](value);
+    switch13 = new Switch({ props: switch13_props });
+    binding_callbacks.push(() => bind(switch13, "checked", switch13_checked_binding));
+    function switch14_checked_binding(value) {
+      ctx[42](value);
     }
-    let switch12_props = { title_fixed: "显示上传时间", func: sortMasonry };
+    let switch14_props = { title_fixed: "显示上传时间", func: sortMasonry };
     if (
       /*$_CARD_SHOW*/
       ctx[3].upload_time !== void 0
     ) {
-      switch12_props.checked = /*$_CARD_SHOW*/
+      switch14_props.checked = /*$_CARD_SHOW*/
       ctx[3].upload_time;
     }
-    switch12 = new Switch({ props: switch12_props });
-    binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
-    function switch13_checked_binding(value) {
-      ctx[42](value);
+    switch14 = new Switch({ props: switch14_props });
+    binding_callbacks.push(() => bind(switch14, "checked", switch14_checked_binding));
+    function switch15_checked_binding(value) {
+      ctx[43](value);
     }
-    let switch13_props = {
+    let switch15_props = {
       title_fixed: "显示 [评论/上传/下载/完成]",
       func: sortMasonry
     };
@@ -3995,21 +4006,21 @@
       /*$_CARD_SHOW*/
       ctx[3].statistics !== void 0
     ) {
-      switch13_props.checked = /*$_CARD_SHOW*/
+      switch15_props.checked = /*$_CARD_SHOW*/
       ctx[3].statistics;
     }
-    switch13 = new Switch({ props: switch13_props });
-    binding_callbacks.push(() => bind(switch13, "checked", switch13_checked_binding));
+    switch15 = new Switch({ props: switch15_props });
+    binding_callbacks.push(() => bind(switch15, "checked", switch15_checked_binding));
     return {
       c() {
-        div8 = element("div");
-        div7 = element("div");
+        div10 = element("div");
+        div9 = element("div");
         div0 = element("div");
         p = element("p");
         p.textContent = "详细配置面板";
         t1 = space();
-        button0 = element("button");
-        button0.innerHTML = `<svg class="feather feather-x" fill="none" height="28" width="28" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="20" x2="6" y1="6" y2="20"></line><line x1="6" x2="20" y1="6" y2="20"></line></svg>`;
+        button = element("button");
+        button.innerHTML = `<svg class="feather feather-x" fill="none" height="28" width="28" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="20" x2="6" y1="6" y2="20"></line><line x1="6" x2="20" y1="6" y2="20"></line></svg>`;
         t2 = space();
         if (if_block0)
           if_block0.c();
@@ -4042,65 +4053,69 @@
         t15 = space();
         create_component(switch5.$$.fragment);
         t16 = space();
-        button1 = element("button");
-        t17 = text("切换宽度(开发中): ");
-        t18 = text(
-          /*$_card_width*/
-          ctx[4]
-        );
-        t19 = space();
-        div6 = element("div");
+        div4 = element("div");
         h11 = element("h1");
-        h11.textContent = "卡片信息";
-        t21 = space();
+        h11.textContent = "卡片布局";
+        t18 = space();
         div3 = element("div");
         create_component(switch6.$$.fragment);
+        t19 = space();
+        create_component(switch7.$$.fragment);
+        t20 = space();
+        div8 = element("div");
+        h12 = element("h1");
+        h12.textContent = "卡片信息";
         t22 = space();
         div5 = element("div");
+        create_component(switch8.$$.fragment);
+        t23 = space();
+        div7 = element("div");
         h3 = element("h3");
         h3.textContent = "配置常驻卡片信息";
-        t24 = space();
-        div4 = element("div");
-        create_component(switch7.$$.fragment);
         t25 = space();
-        create_component(switch8.$$.fragment);
-        t26 = space();
+        div6 = element("div");
         create_component(switch9.$$.fragment);
-        t27 = space();
+        t26 = space();
         create_component(switch10.$$.fragment);
-        t28 = space();
+        t27 = space();
         create_component(switch11.$$.fragment);
-        t29 = space();
+        t28 = space();
         create_component(switch12.$$.fragment);
-        t30 = space();
+        t29 = space();
         create_component(switch13.$$.fragment);
+        t30 = space();
+        create_component(switch14.$$.fragment);
+        t31 = space();
+        create_component(switch15.$$.fragment);
         set_style(p, "margin", "auto 0");
         attr(div0, "class", "configP_title svelte-kk96f3");
         attr(h10, "class", "s_title");
-        attr(button1, "class", "sideP__btn svelte-kk96f3");
         attr(div1, "class", "s_panel");
         attr(div2, "class", "section svelte-kk96f3");
         attr(h11, "class", "s_title");
         attr(div3, "class", "s_panel");
+        attr(div4, "class", "section svelte-kk96f3");
+        attr(h12, "class", "s_title");
+        attr(div5, "class", "s_panel");
         attr(h3, "class", "s_title");
-        attr(div4, "class", "s_panel");
-        attr(div5, "class", "section svelte-kk96f3");
-        attr(div6, "class", "section svelte-kk96f3");
-        attr(div7, "class", "configP_holder svelte-kk96f3");
-        attr(div8, "class", "configP svelte-kk96f3");
+        attr(div6, "class", "s_panel");
+        attr(div7, "class", "section svelte-kk96f3");
+        attr(div8, "class", "section svelte-kk96f3");
+        attr(div9, "class", "configP_holder svelte-kk96f3");
+        attr(div10, "class", "configP svelte-kk96f3");
       },
       m(target, anchor) {
-        insert(target, div8, anchor);
-        append(div8, div7);
-        append(div7, div0);
+        insert(target, div10, anchor);
+        append(div10, div9);
+        append(div9, div0);
         append(div0, p);
         append(div0, t1);
-        append(div0, button0);
-        append(div7, t2);
+        append(div0, button);
+        append(div9, t2);
         if (if_block0)
-          if_block0.m(div7, null);
-        append(div7, t3);
-        append(div7, div2);
+          if_block0.m(div9, null);
+        append(div9, t3);
+        append(div9, div2);
         append(div2, h10);
         append(div2, t5);
         append(div2, div1);
@@ -4126,52 +4141,50 @@
         append(div1, br3);
         append(div1, t15);
         mount_component(switch5, div1, null);
-        append(div1, t16);
-        append(div1, button1);
-        append(button1, t17);
-        append(button1, t18);
-        append(div7, t19);
-        append(div7, div6);
-        append(div6, h11);
-        append(div6, t21);
-        append(div6, div3);
+        append(div9, t16);
+        append(div9, div4);
+        append(div4, h11);
+        append(div4, t18);
+        append(div4, div3);
         mount_component(switch6, div3, null);
-        append(div6, t22);
-        append(div6, div5);
-        append(div5, h3);
-        append(div5, t24);
-        append(div5, div4);
-        mount_component(switch7, div4, null);
-        append(div4, t25);
-        mount_component(switch8, div4, null);
-        append(div4, t26);
-        mount_component(switch9, div4, null);
-        append(div4, t27);
-        mount_component(switch10, div4, null);
-        append(div4, t28);
-        mount_component(switch11, div4, null);
-        append(div4, t29);
-        mount_component(switch12, div4, null);
-        append(div4, t30);
-        mount_component(switch13, div4, null);
+        append(div3, t19);
+        mount_component(switch7, div3, null);
+        append(div9, t20);
+        append(div9, div8);
+        append(div8, h12);
+        append(div8, t22);
+        append(div8, div5);
+        mount_component(switch8, div5, null);
+        append(div8, t23);
+        append(div8, div7);
+        append(div7, h3);
+        append(div7, t25);
+        append(div7, div6);
+        mount_component(switch9, div6, null);
+        append(div6, t26);
+        mount_component(switch10, div6, null);
+        append(div6, t27);
+        mount_component(switch11, div6, null);
+        append(div6, t28);
+        mount_component(switch12, div6, null);
+        append(div6, t29);
+        mount_component(switch13, div6, null);
+        append(div6, t30);
+        mount_component(switch14, div6, null);
+        append(div6, t31);
+        mount_component(switch15, div6, null);
         current = true;
         if (!mounted) {
           dispose = [
             listen(
-              button0,
+              button,
               "click",
               /*click_handler_1*/
-              ctx[25]
+              ctx[24]
             ),
-            listen(
-              button1,
-              "click",
-              /*config_changeWidth*/
-              ctx[19]
-            ),
-            listen(div8, "click", self(
+            listen(div10, "click", self(
               /*click_handler_2*/
-              ctx[43]
+              ctx[44]
             ))
           ];
           mounted = true;
@@ -4179,21 +4192,21 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*$_current_domain*/
-        1024)
+        512)
           show_if = /*$_current_domain*/
-          ctx2[10].includes("m-team");
+          ctx2[9].includes("m-team");
         if (show_if) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
             if (dirty[0] & /*$_current_domain*/
-            1024) {
+            512) {
               transition_in(if_block0, 1);
             }
           } else {
             if_block0 = create_if_block_2$4(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
-            if_block0.m(div7, t3);
+            if_block0.m(div9, t3);
           }
         } else if (if_block0) {
           group_outros();
@@ -4204,14 +4217,14 @@
         }
         const switch0_changes = {};
         if (dirty[0] & /*$_current_domain*/
-        1024)
+        512)
           switch0_changes.label = /*$_current_domain*/
-          ctx2[10].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
+          ctx2[9].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
         if (!updating_checked && dirty[0] & /*$_list_viewMode*/
-        32) {
+        16) {
           updating_checked = true;
           switch0_changes.checked = /*$_list_viewMode*/
-          ctx2[5];
+          ctx2[4];
           add_flush_callback(() => updating_checked = false);
         }
         switch0.$set(switch0_changes);
@@ -4226,39 +4239,39 @@
         switch1.$set(switch1_changes);
         const switch2_changes = {};
         if (!updating_checked_2 && dirty[0] & /*$_animated*/
-        4096) {
+        2048) {
           updating_checked_2 = true;
           switch2_changes.checked = /*$_animated*/
-          ctx2[12];
+          ctx2[11];
           add_flush_callback(() => updating_checked_2 = false);
         }
         switch2.$set(switch2_changes);
         const switch3_changes = {};
         if (!updating_checked_3 && dirty[0] & /*$_show_nexus_pic*/
-        8192) {
+        4096) {
           updating_checked_3 = true;
           switch3_changes.checked = /*$_show_nexus_pic*/
-          ctx2[13];
+          ctx2[12];
           add_flush_callback(() => updating_checked_3 = false);
         }
         switch3.$set(switch3_changes);
         const switch4_changes = {};
         if (!updating_checked_4 && dirty[0] & /*$_trigger_nexus_pic*/
-        16384) {
+        8192) {
           updating_checked_4 = true;
           switch4_changes.checked = /*$_trigger_nexus_pic*/
-          ctx2[14];
+          ctx2[13];
           add_flush_callback(() => updating_checked_4 = false);
         }
         switch4.$set(switch4_changes);
         if (
           /*$_show_nexus_pic*/
-          ctx2[13]
+          ctx2[12]
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
             if (dirty[0] & /*$_show_nexus_pic*/
-            8192) {
+            4096) {
               transition_in(if_block1, 1);
             }
           } else {
@@ -4276,92 +4289,107 @@
         }
         const switch5_changes = {};
         if (!updating_checked_5 && dirty[0] & /*$_show_debug_btn*/
-        512) {
+        256) {
           updating_checked_5 = true;
           switch5_changes.checked = /*$_show_debug_btn*/
-          ctx2[9];
+          ctx2[8];
           add_flush_callback(() => updating_checked_5 = false);
         }
         switch5.$set(switch5_changes);
-        if (!current || dirty[0] & /*$_card_width*/
-        16)
-          set_data(
-            t18,
-            /*$_card_width*/
-            ctx2[4]
-          );
         const switch6_changes = {};
-        if (!updating_checked_6 && dirty[0] & /*$_CARD_SHOW*/
-        8) {
-          updating_checked_6 = true;
-          switch6_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].all;
-          add_flush_callback(() => updating_checked_6 = false);
+        if (dirty[0] & /*$_card_layout*/
+        32768)
+          switch6_changes.title_fixed = `卡片列数: ${/*$_card_layout*/
+        ctx2[15].column}`;
+        if (dirty[0] & /*$_card_layout*/
+        32768 | dirty[1] & /*$$scope*/
+        4194304) {
+          switch6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch6.$set(switch6_changes);
         const switch7_changes = {};
-        if (!updating_checked_7 && dirty[0] & /*$_CARD_SHOW*/
-        8) {
-          updating_checked_7 = true;
-          switch7_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].title;
-          add_flush_callback(() => updating_checked_7 = false);
+        if (dirty[0] & /*$_card_layout*/
+        32768)
+          switch7_changes.title_fixed = `卡片间距: ${/*$_card_layout*/
+        ctx2[15].gap}px`;
+        if (dirty[0] & /*$_card_layout*/
+        32768 | dirty[1] & /*$$scope*/
+        4194304) {
+          switch7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch7.$set(switch7_changes);
         const switch8_changes = {};
-        if (!updating_checked_8 && dirty[0] & /*$_CARD_SHOW*/
+        if (!updating_checked_6 && dirty[0] & /*$_CARD_SHOW*/
         8) {
-          updating_checked_8 = true;
+          updating_checked_6 = true;
           switch8_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].free;
-          add_flush_callback(() => updating_checked_8 = false);
+          ctx2[3].all;
+          add_flush_callback(() => updating_checked_6 = false);
         }
         switch8.$set(switch8_changes);
         const switch9_changes = {};
-        if (!updating_checked_9 && dirty[0] & /*$_CARD_SHOW*/
+        if (!updating_checked_7 && dirty[0] & /*$_CARD_SHOW*/
         8) {
-          updating_checked_9 = true;
+          updating_checked_7 = true;
           switch9_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].sub_title;
-          add_flush_callback(() => updating_checked_9 = false);
+          ctx2[3].title;
+          add_flush_callback(() => updating_checked_7 = false);
         }
         switch9.$set(switch9_changes);
         const switch10_changes = {};
-        if (!updating_checked_10 && dirty[0] & /*$_CARD_SHOW*/
+        if (!updating_checked_8 && dirty[0] & /*$_CARD_SHOW*/
         8) {
-          updating_checked_10 = true;
+          updating_checked_8 = true;
           switch10_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].tags;
-          add_flush_callback(() => updating_checked_10 = false);
+          ctx2[3].free;
+          add_flush_callback(() => updating_checked_8 = false);
         }
         switch10.$set(switch10_changes);
         const switch11_changes = {};
-        if (!updating_checked_11 && dirty[0] & /*$_CARD_SHOW*/
+        if (!updating_checked_9 && dirty[0] & /*$_CARD_SHOW*/
         8) {
-          updating_checked_11 = true;
+          updating_checked_9 = true;
           switch11_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].size_download_collect;
-          add_flush_callback(() => updating_checked_11 = false);
+          ctx2[3].sub_title;
+          add_flush_callback(() => updating_checked_9 = false);
         }
         switch11.$set(switch11_changes);
         const switch12_changes = {};
-        if (!updating_checked_12 && dirty[0] & /*$_CARD_SHOW*/
+        if (!updating_checked_10 && dirty[0] & /*$_CARD_SHOW*/
         8) {
-          updating_checked_12 = true;
+          updating_checked_10 = true;
           switch12_changes.checked = /*$_CARD_SHOW*/
-          ctx2[3].upload_time;
-          add_flush_callback(() => updating_checked_12 = false);
+          ctx2[3].tags;
+          add_flush_callback(() => updating_checked_10 = false);
         }
         switch12.$set(switch12_changes);
         const switch13_changes = {};
+        if (!updating_checked_11 && dirty[0] & /*$_CARD_SHOW*/
+        8) {
+          updating_checked_11 = true;
+          switch13_changes.checked = /*$_CARD_SHOW*/
+          ctx2[3].size_download_collect;
+          add_flush_callback(() => updating_checked_11 = false);
+        }
+        switch13.$set(switch13_changes);
+        const switch14_changes = {};
+        if (!updating_checked_12 && dirty[0] & /*$_CARD_SHOW*/
+        8) {
+          updating_checked_12 = true;
+          switch14_changes.checked = /*$_CARD_SHOW*/
+          ctx2[3].upload_time;
+          add_flush_callback(() => updating_checked_12 = false);
+        }
+        switch14.$set(switch14_changes);
+        const switch15_changes = {};
         if (!updating_checked_13 && dirty[0] & /*$_CARD_SHOW*/
         8) {
           updating_checked_13 = true;
-          switch13_changes.checked = /*$_CARD_SHOW*/
+          switch15_changes.checked = /*$_CARD_SHOW*/
           ctx2[3].statistics;
           add_flush_callback(() => updating_checked_13 = false);
         }
-        switch13.$set(switch13_changes);
+        switch15.$set(switch15_changes);
       },
       i(local) {
         if (current)
@@ -4382,12 +4410,14 @@
         transition_in(switch11.$$.fragment, local);
         transition_in(switch12.$$.fragment, local);
         transition_in(switch13.$$.fragment, local);
+        transition_in(switch14.$$.fragment, local);
+        transition_in(switch15.$$.fragment, local);
         add_render_callback(() => {
           if (!current)
             return;
-          if (!div8_transition)
-            div8_transition = create_bidirectional_transition(div8, fade, { duration: 100 }, true);
-          div8_transition.run(1);
+          if (!div10_transition)
+            div10_transition = create_bidirectional_transition(div10, fade, { duration: 100 }, true);
+          div10_transition.run(1);
         });
         current = true;
       },
@@ -4408,14 +4438,16 @@
         transition_out(switch11.$$.fragment, local);
         transition_out(switch12.$$.fragment, local);
         transition_out(switch13.$$.fragment, local);
-        if (!div8_transition)
-          div8_transition = create_bidirectional_transition(div8, fade, { duration: 100 }, false);
-        div8_transition.run(0);
+        transition_out(switch14.$$.fragment, local);
+        transition_out(switch15.$$.fragment, local);
+        if (!div10_transition)
+          div10_transition = create_bidirectional_transition(div10, fade, { duration: 100 }, false);
+        div10_transition.run(0);
         current = false;
       },
       d(detaching) {
         if (detaching)
-          detach(div8);
+          detach(div10);
         if (if_block0)
           if_block0.d();
         destroy_component(switch0);
@@ -4434,8 +4466,10 @@
         destroy_component(switch11);
         destroy_component(switch12);
         destroy_component(switch13);
-        if (detaching && div8_transition)
-          div8_transition.end();
+        destroy_component(switch14);
+        destroy_component(switch15);
+        if (detaching && div10_transition)
+          div10_transition.end();
         mounted = false;
         run_all(dispose);
       }
@@ -4450,7 +4484,7 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[26](value);
+      ctx[25](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
@@ -4459,10 +4493,10 @@
     };
     if (
       /*$_SITE_SETTING*/
-      ctx[11].mt.hide_gay !== void 0
+      ctx[10].mt.hide_gay !== void 0
     ) {
       switch_1_props.checked = /*$_SITE_SETTING*/
-      ctx[11].mt.hide_gay;
+      ctx[10].mt.hide_gay;
     }
     switch_1 = new Switch({ props: switch_1_props });
     binding_callbacks.push(() => bind(switch_1, "checked", switch_1_checked_binding));
@@ -4489,10 +4523,10 @@
       p(ctx2, dirty) {
         const switch_1_changes = {};
         if (!updating_checked && dirty[0] & /*$_SITE_SETTING*/
-        2048) {
+        1024) {
           updating_checked = true;
           switch_1_changes.checked = /*$_SITE_SETTING*/
-          ctx2[11].mt.hide_gay;
+          ctx2[10].mt.hide_gay;
           add_flush_callback(() => updating_checked = false);
         }
         switch_1.$set(switch_1_changes);
@@ -4520,13 +4554,13 @@
     switch_1 = new Switch({
       props: {
         title_fixed: `悬浮预览延迟${/*$_delay_nexus_pic*/
-      ctx[15] ? ":" + /*$_delay_nexus_pic*/
-      ctx[15] + "ms" : ""}`,
+      ctx[14] ? ":" + /*$_delay_nexus_pic*/
+      ctx[14] + "ms" : ""}`,
         title_red: `${/*$_delay_nexus_pic*/
-      ctx[15] ? "" : "无延迟"}`,
+      ctx[14] ? "" : "无延迟"}`,
         label: "防止无意滑动时大图打开妨碍预览",
         type: "range",
-        $$slots: { default: [create_default_slot] },
+        $$slots: { default: [create_default_slot_2] },
         $$scope: { ctx }
       }
     });
@@ -4541,17 +4575,17 @@
       p(ctx2, dirty) {
         const switch_1_changes = {};
         if (dirty[0] & /*$_delay_nexus_pic*/
-        32768)
+        16384)
           switch_1_changes.title_fixed = `悬浮预览延迟${/*$_delay_nexus_pic*/
-        ctx2[15] ? ":" + /*$_delay_nexus_pic*/
-        ctx2[15] + "ms" : ""}`;
+        ctx2[14] ? ":" + /*$_delay_nexus_pic*/
+        ctx2[14] + "ms" : ""}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        32768)
+        16384)
           switch_1_changes.title_red = `${/*$_delay_nexus_pic*/
-        ctx2[15] ? "" : "无延迟"}`;
+        ctx2[14] ? "" : "无延迟"}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        32768 | dirty[1] & /*$$scope*/
-        2097152) {
+        16384 | dirty[1] & /*$$scope*/
+        4194304) {
           switch_1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch_1.$set(switch_1_changes);
@@ -4571,7 +4605,7 @@
       }
     };
   }
-  function create_default_slot(ctx) {
+  function create_default_slot_2(ctx) {
     let input;
     let mounted;
     let dispose;
@@ -4589,7 +4623,7 @@
         set_input_value(
           input,
           /*$_delay_nexus_pic*/
-          ctx[15]
+          ctx[14]
         );
         if (!mounted) {
           dispose = [
@@ -4597,13 +4631,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[33]
+              ctx[32]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[33]
+              ctx[32]
             )
           ];
           mounted = true;
@@ -4611,11 +4645,125 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*$_delay_nexus_pic*/
-        32768) {
+        16384) {
           set_input_value(
             input,
             /*$_delay_nexus_pic*/
-            ctx2[15]
+            ctx2[14]
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(input);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot_1(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "type", "range");
+        attr(input, "min", "2");
+        attr(input, "max", "7");
+        attr(input, "step", "1");
+        attr(input, "list", "values");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*$_card_layout*/
+          ctx[15].column
+        );
+        if (!mounted) {
+          dispose = [
+            listen(
+              input,
+              "change",
+              /*input_change_input_handler_1*/
+              ctx[34]
+            ),
+            listen(
+              input,
+              "input",
+              /*input_change_input_handler_1*/
+              ctx[34]
+            ),
+            listen(input, "change", window.CHANGE_CARD_LAYOUT)
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*$_card_layout*/
+        32768) {
+          set_input_value(
+            input,
+            /*$_card_layout*/
+            ctx2[15].column
+          );
+        }
+      },
+      d(detaching) {
+        if (detaching)
+          detach(input);
+        mounted = false;
+        run_all(dispose);
+      }
+    };
+  }
+  function create_default_slot(ctx) {
+    let input;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        input = element("input");
+        attr(input, "type", "range");
+        attr(input, "min", "2");
+        attr(input, "max", "100");
+        attr(input, "step", "1");
+        attr(input, "list", "values");
+      },
+      m(target, anchor) {
+        insert(target, input, anchor);
+        set_input_value(
+          input,
+          /*$_card_layout*/
+          ctx[15].gap
+        );
+        if (!mounted) {
+          dispose = [
+            listen(
+              input,
+              "change",
+              /*input_change_input_handler_2*/
+              ctx[35]
+            ),
+            listen(
+              input,
+              "input",
+              /*input_change_input_handler_2*/
+              ctx[35]
+            ),
+            listen(input, "change", window.CHANGE_CARD_LAYOUT)
+          ];
+          mounted = true;
+        }
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*$_card_layout*/
+        32768) {
+          set_input_value(
+            input,
+            /*$_card_layout*/
+            ctx2[15].gap
           );
         }
       },
@@ -4645,7 +4793,7 @@
     function select_block_type(ctx2, dirty) {
       if (
         /*$_list_viewMode*/
-        ctx2[5]
+        ctx2[4]
       )
         return create_if_block_4$3;
       return create_else_block$5;
@@ -4654,11 +4802,11 @@
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*$_show_debug_btn*/
-      ctx[9] && create_if_block_3$4(ctx)
+      ctx[8] && create_if_block_3$4(ctx)
     );
     let if_block2 = (
       /*$_show_configPanel*/
-      ctx[8] && create_if_block$8(ctx)
+      ctx[7] && create_if_block$8(ctx)
     );
     return {
       c() {
@@ -4697,19 +4845,19 @@
           div4,
           "top",
           /*$_panelPos*/
-          ctx[6].y + "px"
+          ctx[5].y + "px"
         );
         set_style(
           div4,
           "left",
           /*$_panelPos*/
-          ctx[6].x + "px"
+          ctx[5].x + "px"
         );
         set_style(
           div4,
           "background-color",
           /*$_current_bgColor*/
-          ctx[7]
+          ctx[6]
         );
         attr(div5, "id", "reset_panel_pos");
         attr(div5, "class", "svelte-kk96f3");
@@ -4726,7 +4874,7 @@
         append(div3, t5);
         if (if_block1)
           if_block1.m(div3, null);
-        ctx[24](div4);
+        ctx[23](div4);
         insert(target, t6, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
@@ -4751,7 +4899,7 @@
               button1,
               "click",
               /*click_handler*/
-              ctx[23]
+              ctx[22]
             ),
             listen(
               div5,
@@ -4774,7 +4922,7 @@
         }
         if (
           /*$_show_debug_btn*/
-          ctx2[9]
+          ctx2[8]
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
@@ -4788,40 +4936,40 @@
           if_block1 = null;
         }
         if (!current || dirty[0] & /*$_panelPos*/
-        64) {
+        32) {
           set_style(
             div4,
             "top",
             /*$_panelPos*/
-            ctx2[6].y + "px"
+            ctx2[5].y + "px"
           );
         }
         if (!current || dirty[0] & /*$_panelPos*/
-        64) {
+        32) {
           set_style(
             div4,
             "left",
             /*$_panelPos*/
-            ctx2[6].x + "px"
+            ctx2[5].x + "px"
           );
         }
         if (!current || dirty[0] & /*$_current_bgColor*/
-        128) {
+        64) {
           set_style(
             div4,
             "background-color",
             /*$_current_bgColor*/
-            ctx2[7]
+            ctx2[6]
           );
         }
         if (
           /*$_show_configPanel*/
-          ctx2[8]
+          ctx2[7]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
             if (dirty[0] & /*$_show_configPanel*/
-            256) {
+            128) {
               transition_in(if_block2, 1);
             }
           } else {
@@ -4854,7 +5002,7 @@
         if_block0.d();
         if (if_block1)
           if_block1.d();
-        ctx[24](null);
+        ctx[23](null);
         if (detaching)
           detach(t6);
         if (if_block2)
@@ -4879,7 +5027,6 @@
     let $_iframe_switch;
     let $_turnPage;
     let $_CARD_SHOW;
-    let $_card_width;
     let $_list_viewMode;
     let $_panelPos;
     let $_current_bgColor;
@@ -4891,22 +5038,23 @@
     let $_show_nexus_pic;
     let $_trigger_nexus_pic;
     let $_delay_nexus_pic;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(47, $_iframe_switch = $$value));
+    let $_card_layout;
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(48, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(4, $_card_width = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(48, $$value));
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
-    component_subscribe($$self, _panelPos, ($$value) => $$invalidate(6, $_panelPos = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(7, $_current_bgColor = $$value));
-    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(8, $_show_configPanel = $$value));
-    component_subscribe($$self, _show_debug_btn, ($$value) => $$invalidate(9, $_show_debug_btn = $$value));
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(10, $_current_domain = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(11, $_SITE_SETTING = $$value));
-    component_subscribe($$self, _animated, ($$value) => $$invalidate(12, $_animated = $$value));
-    component_subscribe($$self, _show_nexus_pic, ($$value) => $$invalidate(13, $_show_nexus_pic = $$value));
-    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(14, $_trigger_nexus_pic = $$value));
-    component_subscribe($$self, _delay_nexus_pic, ($$value) => $$invalidate(15, $_delay_nexus_pic = $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(49, $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(4, $_list_viewMode = $$value));
+    component_subscribe($$self, _panelPos, ($$value) => $$invalidate(5, $_panelPos = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(7, $_show_configPanel = $$value));
+    component_subscribe($$self, _show_debug_btn, ($$value) => $$invalidate(8, $_show_debug_btn = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(9, $_current_domain = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(10, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(11, $_animated = $$value));
+    component_subscribe($$self, _show_nexus_pic, ($$value) => $$invalidate(12, $_show_nexus_pic = $$value));
+    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(13, $_trigger_nexus_pic = $$value));
+    component_subscribe($$self, _delay_nexus_pic, ($$value) => $$invalidate(14, $_delay_nexus_pic = $$value));
+    component_subscribe($$self, _card_layout, ($$value) => $$invalidate(15, $_card_layout = $$value));
     let sideDom;
     let isMouseDown = false;
     let offsetX = 0;
@@ -4936,16 +5084,6 @@
       set_store_value(_list_viewMode, $_list_viewMode = !$_list_viewMode, $_list_viewMode);
       if (window.CHANGE_CARD_LAYOUT)
         window.CHANGE_CARD_LAYOUT();
-    }
-    function config_changeWidth() {
-      set_store_value(_card_width, $_card_width = $_card_width == 300 ? 200 : 300, $_card_width);
-      console.log(`[debug]$card_width: ${$_card_width}`);
-      setTimeout(
-        () => {
-          sortMasonry();
-        },
-        0
-      );
     }
     function config_showAllDetails() {
       set_store_value(_CARD_SHOW, $_CARD_SHOW.all = !$_CARD_SHOW.all, $_CARD_SHOW);
@@ -5019,49 +5157,57 @@
       $_show_debug_btn = value;
       _show_debug_btn.set($_show_debug_btn);
     }
-    function switch6_checked_binding(value) {
+    function input_change_input_handler_1() {
+      $_card_layout.column = to_number(this.value);
+      _card_layout.set($_card_layout);
+    }
+    function input_change_input_handler_2() {
+      $_card_layout.gap = to_number(this.value);
+      _card_layout.set($_card_layout);
+    }
+    function switch8_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.all, value)) {
         $_CARD_SHOW.all = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch7_checked_binding(value) {
+    function switch9_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.title, value)) {
         $_CARD_SHOW.title = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch8_checked_binding(value) {
+    function switch10_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.free, value)) {
         $_CARD_SHOW.free = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch9_checked_binding(value) {
+    function switch11_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.sub_title, value)) {
         $_CARD_SHOW.sub_title = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch10_checked_binding(value) {
+    function switch12_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.tags, value)) {
         $_CARD_SHOW.tags = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch11_checked_binding(value) {
+    function switch13_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.size_download_collect, value)) {
         $_CARD_SHOW.size_download_collect = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch12_checked_binding(value) {
+    function switch14_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.upload_time, value)) {
         $_CARD_SHOW.upload_time = value;
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function switch13_checked_binding(value) {
+    function switch15_checked_binding(value) {
       if ($$self.$$.not_equal($_CARD_SHOW.statistics, value)) {
         $_CARD_SHOW.statistics = value;
         _CARD_SHOW.set($_CARD_SHOW);
@@ -5073,7 +5219,6 @@
       label_switchMode,
       $_turnPage,
       $_CARD_SHOW,
-      $_card_width,
       $_list_viewMode,
       $_panelPos,
       $_current_bgColor,
@@ -5085,10 +5230,10 @@
       $_show_nexus_pic,
       $_trigger_nexus_pic,
       $_delay_nexus_pic,
+      $_card_layout,
       onMouseDown,
       resetPanelPos,
       __show_originTable,
-      config_changeWidth,
       config_showAllDetails,
       config_switchMode,
       config_changeLoadMode,
@@ -5104,14 +5249,16 @@
       switch4_checked_binding,
       input_change_input_handler,
       switch5_checked_binding,
-      switch6_checked_binding,
-      switch7_checked_binding,
+      input_change_input_handler_1,
+      input_change_input_handler_2,
       switch8_checked_binding,
       switch9_checked_binding,
       switch10_checked_binding,
       switch11_checked_binding,
       switch12_checked_binding,
       switch13_checked_binding,
+      switch14_checked_binding,
+      switch15_checked_binding,
       click_handler_2
     ];
   }
@@ -5718,8 +5865,8 @@
     return (_a = SITE[domain]) == null ? void 0 : _a.get_bg_color();
   }
   const CARD = {
-    /** 瀑布流卡片宽度 */
-    CARD_WIDTH: get_store_value(_card_width),
+    /** 瀑布流卡片宽度 (废弃) */
+    // CARD_WIDTH: get(_card_width),
     /** NOTE: 瀑布流卡片边框宽度 -> 这个2是真值, 但是边框好像是会随着分辨率和缩放变化, 给高有利大分辨率, 给低有利于小分辨率 */
     CARD_BORDER: 0,
     /** 瀑布流卡片索引 */
@@ -10397,36 +10544,41 @@
   function instance$5($$self, $$props, $$invalidate) {
     var _a;
     let $_Global_Masonry;
+    let $_card_layout;
     let $_animated;
-    let $_card_width;
     let $_current_domain;
     let $_turnPage;
     let $_current_bgColor;
     component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(15, $_Global_Masonry = $$value));
-    component_subscribe($$self, _animated, ($$value) => $$invalidate(10, $_animated = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(11, $_card_width = $$value));
+    component_subscribe($$self, _card_layout, ($$value) => $$invalidate(10, $_card_layout = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(11, $_animated = $$value));
     component_subscribe($$self, _current_domain, ($$value) => $$invalidate(3, $_current_domain = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(4, $_turnPage = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(16, $_current_bgColor = $$value));
     let { originTable } = $$props;
     let { waterfallNode } = $$props;
     window.NEXUS_TOOLS = NEXUS_TOOLS;
-    function GET_CARD_GUTTER(containerDom, card_width) {
-      const _width = containerDom.clientWidth;
-      const card_real_width = card_width + CARD.CARD_BORDER;
-      const columns = Math.floor(_width / card_real_width);
-      const gutter = (_width - columns * card_real_width) / (columns - 1);
-      console.log(`列数:${columns} 间隔:${gutter}`);
-      console.log(`容器宽:${_width} 列宽:${masonry2 ? masonry2.columnWidth : "对象"}`);
-      return Math.floor(gutter);
-    }
     function CHANGE_CARD_LAYOUT() {
-      $$invalidate(9, masonry2.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width), masonry2);
-      $$invalidate(9, masonry2.options.columnWidth = $_card_width, masonry2);
+      resizeMasonry($_card_layout.column, $_card_layout.gap);
       sortMasonry("fast");
       sortMasonry("fast");
     }
     window.CHANGE_CARD_LAYOUT = CHANGE_CARD_LAYOUT;
+    function resizeMasonry(columns, gutter = 10) {
+      if (columns <= 1 || gutter <= 1) {
+        console.warn("卡片列数或卡片间隔过小, 列数不小于2, 间隔不小于1");
+        return;
+      }
+      const widthContainer = document.querySelector("div.waterfall").clientWidth;
+      const widthCard = (widthContainer - (columns - 1) * gutter) / columns;
+      Array.from(document.querySelectorAll(".card")).forEach((el) => el.style.width = widthCard + "px");
+      if (masonry2) {
+        $$invalidate(9, masonry2.options.columnWidth = widthCard, masonry2);
+        $$invalidate(9, masonry2.options.gutter = gutter, masonry2);
+        masonry2.layout();
+      }
+      return widthCard;
+    }
     let isButtonDisabled = false;
     let onMountSignal = false;
     const LOAD_TEXT = {
@@ -10522,12 +10674,13 @@
         waterfallNode,
         {
           itemSelector: ".card",
-          columnWidth: $_card_width,
-          gutter: GET_CARD_GUTTER(waterfallNode, $_card_width),
+          columnWidth: resizeMasonry($_card_layout.column, $_card_layout.gap),
+          gutter: $_card_layout.gap,
           // transitions Duration 默认值为 0.4
           transitionDuration: $_animated ? 0.4 : 0
         }
       ));
+      resizeMasonry($_card_layout.column, $_card_layout.gap);
       window.masonry = masonry2;
       set_store_value(_Global_Masonry, $_Global_Masonry = masonry2, $_Global_Masonry);
       masonry2.layout("fast");
@@ -10561,16 +10714,16 @@
     };
     $$self.$$.update = () => {
       if ($$self.$$.dirty & /*masonry, $_animated*/
-      1536) {
+      2560) {
         {
           if (masonry2)
             $$invalidate(9, masonry2.options.transitionDuration = $_animated ? "0.4s" : "0", masonry2);
         }
       }
-      if ($$self.$$.dirty & /*masonry, $_card_width, CARD*/
-      2561) {
+      if ($$self.$$.dirty & /*masonry, $_card_layout, CARD*/
+      1537) {
         if (masonry2) {
-          $$invalidate(0, CARD.CARD_WIDTH = $_card_width, CARD);
+          $$invalidate(0, CARD.CARD_WIDTH = resizeMasonry($_card_layout.column, $_card_layout.gap), CARD);
           console.log("卡片宽度:	", CARD.CARD_WIDTH);
           CHANGE_CARD_LAYOUT();
         }
@@ -10587,8 +10740,8 @@
       originTable,
       waterfallNode,
       masonry2,
-      $_animated,
-      $_card_width
+      $_card_layout,
+      $_animated
     ];
   }
   class Index extends SvelteComponent {
@@ -13701,15 +13854,15 @@
   function instance$1($$self, $$props, $$invalidate) {
     let $_list_viewMode;
     let $_Global_Masonry;
+    let $_card_layout;
     let $_animated;
-    let $_card_width;
     let $_turnPage;
     let $_current_bgColor;
     let $_current_domain;
     component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(11, $_list_viewMode = $$value));
     component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(12, $_Global_Masonry = $$value));
-    component_subscribe($$self, _animated, ($$value) => $$invalidate(8, $_animated = $$value));
-    component_subscribe($$self, _card_width, ($$value) => $$invalidate(9, $_card_width = $$value));
+    component_subscribe($$self, _card_layout, ($$value) => $$invalidate(8, $_card_layout = $$value));
+    component_subscribe($$self, _animated, ($$value) => $$invalidate(9, $_animated = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(13, $_turnPage = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(14, $_current_bgColor = $$value));
     component_subscribe($$self, _current_domain, ($$value) => $$invalidate(15, $_current_domain = $$value));
@@ -13726,15 +13879,6 @@
     const bgColor = GET_SITE_BACKGROUND_COLOR();
     set_store_value(_current_bgColor, $_current_bgColor = bgColor, $_current_bgColor);
     console.log("背景颜色:", bgColor);
-    function GET_CARD_GUTTER(containerDom, card_width) {
-      const _width = containerDom.clientWidth;
-      const card_real_width = card_width + CARD.CARD_BORDER;
-      const columns = Math.floor(_width / card_real_width);
-      const gutter = (_width - columns * card_real_width) / (columns - 1);
-      console.log(`列数:${columns} 间隔:${gutter}`);
-      console.log(`容器宽:${_width} 列宽:${masonry2 ? masonry2.columnWidth : "masonry 丢失!!!"}`);
-      return Math.floor(gutter);
-    }
     const originSelector = GET_TORRENT_LIST_SELECTOR();
     function ChangeShowMode() {
       const _$_ORIGIN_TL_Node = document.querySelector(originSelector);
@@ -13747,12 +13891,26 @@
     }
     function CHANGE_CARD_LAYOUT() {
       ChangeShowMode();
-      $$invalidate(7, masonry2.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width), masonry2);
-      $$invalidate(7, masonry2.options.columnWidth = $_card_width, masonry2);
+      resizeMasonry($_card_layout.column, $_card_layout.gap);
       sortMasonry("fast");
       sortMasonry("fast");
     }
     window.CHANGE_CARD_LAYOUT = CHANGE_CARD_LAYOUT;
+    function resizeMasonry(columns, gutter = 10) {
+      if (columns <= 1 || gutter <= 1) {
+        console.warn("卡片列数或卡片间隔过小, 列数不小于2, 间隔不小于1");
+        return;
+      }
+      const widthContainer = document.querySelector("div.waterfall").clientWidth;
+      const widthCard = (widthContainer - (columns - 1) * gutter) / columns;
+      Array.from(document.querySelectorAll(".card")).forEach((el) => el.style.width = widthCard + "px");
+      if (masonry2) {
+        $$invalidate(7, masonry2.options.columnWidth = widthCard, masonry2);
+        $$invalidate(7, masonry2.options.gutter = gutter, masonry2);
+        masonry2.layout();
+      }
+      return widthCard;
+    }
     let infoList = [];
     function RequestExample() {
       console.log("当前页面 path:	", location.pathname);
@@ -13892,12 +14050,13 @@
         waterfallNode,
         {
           itemSelector: ".card",
-          columnWidth: $_card_width,
-          gutter: GET_CARD_GUTTER(waterfallNode, $_card_width),
+          columnWidth: resizeMasonry($_card_layout.column, $_card_layout.gap),
+          gutter: $_card_layout.gap,
           // transitions Duration 默认值为 0.4
           transitionDuration: $_animated ? 0.4 : 0
         }
       ));
+      resizeMasonry($_card_layout.column, $_card_layout.gap);
       window.masonry = masonry2;
       set_store_value(_Global_Masonry, $_Global_Masonry = masonry2, $_Global_Masonry);
       masonry2.layout("fast");
@@ -13926,16 +14085,16 @@
     };
     $$self.$$.update = () => {
       if ($$self.$$.dirty[0] & /*masonry, $_animated*/
-      384) {
+      640) {
         {
           if (masonry2)
             $$invalidate(7, masonry2.options.transitionDuration = $_animated ? "0.4s" : "0", masonry2);
         }
       }
-      if ($$self.$$.dirty[0] & /*masonry, $_card_width, CARD*/
-      641) {
+      if ($$self.$$.dirty[0] & /*masonry, $_card_layout, CARD*/
+      385) {
         if (masonry2) {
-          $$invalidate(0, CARD.CARD_WIDTH = $_card_width, CARD);
+          $$invalidate(0, CARD.CARD_WIDTH = resizeMasonry($_card_layout.column, $_card_layout.gap), CARD);
           console.log("卡片宽度:	", CARD.CARD_WIDTH);
           CHANGE_CARD_LAYOUT();
         }
@@ -13950,8 +14109,8 @@
       waterfallNode,
       update_ORIGIN_TL_Node,
       masonry2,
-      $_animated,
-      $_card_width
+      $_card_layout,
+      $_animated
     ];
   }
   class Index_newMT extends SvelteComponent {
