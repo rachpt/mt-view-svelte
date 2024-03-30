@@ -37,5 +37,5 @@ export const config = {
   license: "MIT",
 
   // NOTE: 经常修改这里就行了
-  version: "1.1.5",
+  version: "1.1.6",
 }

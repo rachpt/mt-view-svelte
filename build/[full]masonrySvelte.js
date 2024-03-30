@@ -2,7 +2,7 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.5
+// @version         1.1.6
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
@@ -23,7 +23,7 @@
 // @grant           none
 // ==/UserScript==
 
-(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-namdgo.svelte-namdgo{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-namdgo.svelte-namdgo:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-namdgo.svelte-namdgo{padding:2px 0}.card-holder.svelte-namdgo.svelte-namdgo{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-namdgo.svelte-namdgo{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-namdgo.svelte-namdgo{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-namdgo.svelte-namdgo{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-namdgo.svelte-namdgo:hover{-webkit-line-clamp:100}.cl-center.svelte-namdgo.svelte-namdgo{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-namdgo.svelte-namdgo{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-namdgo.svelte-namdgo:has(span){padding-top:2px}.card-details.svelte-namdgo.svelte-namdgo{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-namdgo.svelte-namdgo{height:100%;position:relative}.card-image.svelte-namdgo img.svelte-namdgo{width:100%;object-fit:cover}.card-alter.svelte-namdgo.svelte-namdgo{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-namdgo.svelte-namdgo{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-namdgo.svelte-namdgo{color:#00f}._2XFree.svelte-namdgo.svelte-namdgo{color:green}.card-description.svelte-namdgo.svelte-namdgo{padding-left:4px;padding-right:4px}.card-index.svelte-namdgo.svelte-namdgo{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-namdgo.svelte-namdgo{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;background-color:#ffbb10;opacity:.5;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-namdgo.svelte-namdgo:hover{opacity:1}.btnCollet.svelte-namdgo.svelte-namdgo{padding:1px 2px;cursor:pointer}.hot.svelte-namdgo.svelte-namdgo,.new.svelte-namdgo.svelte-namdgo{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-xpikqe.svelte-xpikqe{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-xpikqe.svelte-xpikqe{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-xpikqe.svelte-xpikqe{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-xpikqe.svelte-xpikqe{padding:2px 0}.card-holder.svelte-xpikqe.svelte-xpikqe{background-color:#ffffff80}.card-line.svelte-xpikqe.svelte-xpikqe{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-xpikqe.svelte-xpikqe{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-xpikqe.svelte-xpikqe:hover{-webkit-line-clamp:100}.cl-center.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-xpikqe.svelte-xpikqe{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-xpikqe.svelte-xpikqe{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5abd48}._tag_dub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#5a3b14}._tag_sub.svelte-xpikqe.svelte-xpikqe{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-xpikqe.svelte-xpikqe{background-color:#f50;color:#fff}._tag_discount_free.svelte-xpikqe.svelte-xpikqe{background-color:#108ee9;color:#fff}.card-details.svelte-xpikqe.svelte-xpikqe{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-xpikqe.svelte-xpikqe{height:100%;position:relative}.card-image.svelte-xpikqe img.svelte-xpikqe{width:100%;object-fit:cover}.card-description.svelte-xpikqe.svelte-xpikqe{padding:2px 4px}.card-description.svelte-xpikqe a.svelte-xpikqe,.card-description.svelte-xpikqe a.svelte-xpikqe:hover{color:#000}.card-index.svelte-xpikqe.svelte-xpikqe{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
+(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-4b9kml.svelte-4b9kml{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-4b9kml.svelte-4b9kml:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-4b9kml.svelte-4b9kml{padding:2px 0}.card-holder.svelte-4b9kml.svelte-4b9kml{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-4b9kml.svelte-4b9kml{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-4b9kml.svelte-4b9kml{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-4b9kml.svelte-4b9kml{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-4b9kml.svelte-4b9kml:hover{-webkit-line-clamp:100}.cl-center.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-4b9kml.svelte-4b9kml:has(span){padding-top:2px}.card-details.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-4b9kml.svelte-4b9kml{height:100%;position:relative}.card-image.svelte-4b9kml img.svelte-4b9kml{width:100%;object-fit:cover}.card-alter.svelte-4b9kml.svelte-4b9kml{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-4b9kml.svelte-4b9kml{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-4b9kml.svelte-4b9kml{color:#00f}._2XFree.svelte-4b9kml.svelte-4b9kml{color:green}.card-description.svelte-4b9kml.svelte-4b9kml{padding-left:4px;padding-right:4px}.card-index.svelte-4b9kml.svelte-4b9kml{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-4b9kml.svelte-4b9kml{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-4b9kml.svelte-4b9kml:hover{opacity:1}.btnCollet.svelte-4b9kml.svelte-4b9kml{padding:1px 2px;cursor:pointer}.hot.svelte-4b9kml.svelte-4b9kml,.new.svelte-4b9kml.svelte-4b9kml{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-rhfb99.svelte-rhfb99{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-rhfb99.svelte-rhfb99{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-rhfb99.svelte-rhfb99{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-rhfb99.svelte-rhfb99{padding:2px 0}.card-holder.svelte-rhfb99.svelte-rhfb99{background-color:#ffffff80}.card-line.svelte-rhfb99.svelte-rhfb99{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-rhfb99.svelte-rhfb99{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-rhfb99.svelte-rhfb99:hover{-webkit-line-clamp:100}.cl-center.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-rhfb99.svelte-rhfb99{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-rhfb99.svelte-rhfb99{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5abd48}._tag_dub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5a3b14}._tag_sub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-rhfb99.svelte-rhfb99{background-color:#f50;color:#fff}._tag_discount_free.svelte-rhfb99.svelte-rhfb99{background-color:#108ee9;color:#fff}.card-details.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-rhfb99.svelte-rhfb99{height:100%;position:relative}.card-image.svelte-rhfb99 img.svelte-rhfb99{width:100%;object-fit:cover}.card-description.svelte-rhfb99.svelte-rhfb99{padding:2px 4px}.card-description.svelte-rhfb99 a.svelte-rhfb99,.card-description.svelte-rhfb99 a.svelte-rhfb99:hover{color:#000}.card-index.svelte-rhfb99.svelte-rhfb99{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-rhfb99.svelte-rhfb99{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-rhfb99.svelte-rhfb99:hover{opacity:1}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
 
 (function () {
   'use strict';
@@ -2930,7 +2930,7 @@
         /*checked*/
         ctx2[0]
       )
-        return create_if_block_5$4;
+        return create_if_block_5$3;
       return create_else_block_1$2;
     }
     let current_block_type = select_block_type(ctx);
@@ -2998,7 +2998,7 @@
       }
     };
   }
-  function create_if_block_5$4(ctx) {
+  function create_if_block_5$3(ctx) {
     let span;
     let t;
     return {
@@ -3131,7 +3131,7 @@
       }
     };
   }
-  function create_if_block_1$5(ctx) {
+  function create_if_block_1$6(ctx) {
     let div;
     let input;
     let t;
@@ -3278,7 +3278,7 @@
     );
     let if_block2 = (
       /*type*/
-      ctx[1] == "switch" && create_if_block_1$5(ctx)
+      ctx[1] == "switch" && create_if_block_1$6(ctx)
     );
     let if_block3 = (
       /*type*/
@@ -3386,7 +3386,7 @@
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_1$5(ctx2);
+            if_block2 = create_if_block_1$6(ctx2);
             if_block2.c();
             if_block2.m(div1, t4);
           }
@@ -3547,7 +3547,7 @@
       }
     };
   }
-  function create_if_block_5$3(ctx) {
+  function create_if_block_4$3(ctx) {
     let div0;
     let t0;
     let div1;
@@ -3574,7 +3574,7 @@
       }
     };
   }
-  function create_if_block_4$3(ctx) {
+  function create_if_block_3$4(ctx) {
     let button0;
     let t1;
     let button1;
@@ -3756,14 +3756,13 @@
     let t30;
     let switch13;
     let updating_checked_13;
-    let t31;
     let div8_transition;
     let current;
     let mounted;
     let dispose;
-    let if_block0 = show_if && create_if_block_3$4(ctx);
+    let if_block0 = show_if && create_if_block_2$4(ctx);
     function switch0_checked_binding(value) {
-      ctx[29](value);
+      ctx[28](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
@@ -3775,7 +3774,7 @@
       ),
       func: (
         /*func*/
-        ctx[28]
+        ctx[27]
       )
     };
     if (
@@ -3788,7 +3787,7 @@
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[30](value);
+      ctx[29](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3807,7 +3806,7 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[31](value);
+      ctx[30](value);
     }
     let switch2_props = {
       title_fixed: "卡片移动动画",
@@ -3826,7 +3825,7 @@
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[32](value);
+      ctx[31](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3843,7 +3842,7 @@
     switch3 = new Switch({ props: switch3_props });
     binding_callbacks.push(() => bind(switch3, "checked", switch3_checked_binding));
     function switch4_checked_binding(value) {
-      ctx[33](value);
+      ctx[32](value);
     }
     let switch4_props = {
       title_fixed: "预览大图方式",
@@ -3862,10 +3861,10 @@
     binding_callbacks.push(() => bind(switch4, "checked", switch4_checked_binding));
     let if_block1 = (
       /*$_show_nexus_pic*/
-      ctx[13] && create_if_block_2$4(ctx)
+      ctx[13] && create_if_block_1$5(ctx)
     );
     function switch5_checked_binding(value) {
-      ctx[35](value);
+      ctx[34](value);
     }
     let switch5_props = {
       title_fixed: "侧边栏debug按钮",
@@ -3883,13 +3882,14 @@
     switch5 = new Switch({ props: switch5_props });
     binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
     function switch6_checked_binding(value) {
-      ctx[36](value);
+      ctx[35](value);
     }
     let switch6_props = {
       title_fixed: "卡片信息",
       title_green: "显示下方所选信息(精简)",
       title_red: "显示所有信息(较乱)",
-      green_state: false
+      green_state: false,
+      func: sortMasonry
     };
     if (
       /*$_CARD_SHOW*/
@@ -3900,15 +3900,10 @@
     }
     switch6 = new Switch({ props: switch6_props });
     binding_callbacks.push(() => bind(switch6, "checked", switch6_checked_binding));
-    switch6.$on(
-      "click",
-      /*sortMasonryBundle*/
-      ctx[23]
-    );
     function switch7_checked_binding(value) {
-      ctx[37](value);
+      ctx[36](value);
     }
-    let switch7_props = { title_fixed: "显示种子名称" };
+    let switch7_props = { title_fixed: "显示种子名称", func: sortMasonry };
     if (
       /*$_CARD_SHOW*/
       ctx[3].title !== void 0
@@ -3919,9 +3914,12 @@
     switch7 = new Switch({ props: switch7_props });
     binding_callbacks.push(() => bind(switch7, "checked", switch7_checked_binding));
     function switch8_checked_binding(value) {
-      ctx[38](value);
+      ctx[37](value);
     }
-    let switch8_props = { title_fixed: "显示置顶和免费" };
+    let switch8_props = {
+      title_fixed: "显示置顶和免费",
+      func: sortMasonry
+    };
     if (
       /*$_CARD_SHOW*/
       ctx[3].free !== void 0
@@ -3932,9 +3930,9 @@
     switch8 = new Switch({ props: switch8_props });
     binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
     function switch9_checked_binding(value) {
-      ctx[39](value);
+      ctx[38](value);
     }
-    let switch9_props = { title_fixed: "显示副标题" };
+    let switch9_props = { title_fixed: "显示副标题", func: sortMasonry };
     if (
       /*$_CARD_SHOW*/
       ctx[3].sub_title !== void 0
@@ -3945,9 +3943,9 @@
     switch9 = new Switch({ props: switch9_props });
     binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
     function switch10_checked_binding(value) {
-      ctx[40](value);
+      ctx[39](value);
     }
-    let switch10_props = { title_fixed: "显示标签" };
+    let switch10_props = { title_fixed: "显示标签", func: sortMasonry };
     if (
       /*$_CARD_SHOW*/
       ctx[3].tags !== void 0
@@ -3958,9 +3956,12 @@
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
-      ctx[41](value);
+      ctx[40](value);
     }
-    let switch11_props = { title_fixed: "显示 [大小/下载/收藏]" };
+    let switch11_props = {
+      title_fixed: "显示 [大小/下载/收藏]",
+      func: sortMasonry
+    };
     if (
       /*$_CARD_SHOW*/
       ctx[3].size_download_collect !== void 0
@@ -3971,9 +3972,9 @@
     switch11 = new Switch({ props: switch11_props });
     binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
     function switch12_checked_binding(value) {
-      ctx[42](value);
+      ctx[41](value);
     }
-    let switch12_props = { title_fixed: "显示上传时间" };
+    let switch12_props = { title_fixed: "显示上传时间", func: sortMasonry };
     if (
       /*$_CARD_SHOW*/
       ctx[3].upload_time !== void 0
@@ -3984,9 +3985,12 @@
     switch12 = new Switch({ props: switch12_props });
     binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
     function switch13_checked_binding(value) {
-      ctx[43](value);
+      ctx[42](value);
     }
-    let switch13_props = { title_fixed: "显示 [评论/上传/下载/完成]" };
+    let switch13_props = {
+      title_fixed: "显示 [评论/上传/下载/完成]",
+      func: sortMasonry
+    };
     if (
       /*$_CARD_SHOW*/
       ctx[3].statistics !== void 0
@@ -4070,7 +4074,6 @@
         create_component(switch12.$$.fragment);
         t30 = space();
         create_component(switch13.$$.fragment);
-        t31 = space();
         set_style(p, "margin", "auto 0");
         attr(div0, "class", "configP_title svelte-kk96f3");
         attr(h10, "class", "s_title");
@@ -4151,7 +4154,6 @@
         mount_component(switch12, div4, null);
         append(div4, t30);
         mount_component(switch13, div4, null);
-        append(div4, t31);
         current = true;
         if (!mounted) {
           dispose = [
@@ -4159,7 +4161,7 @@
               button0,
               "click",
               /*click_handler_1*/
-              ctx[26]
+              ctx[25]
             ),
             listen(
               button1,
@@ -4169,7 +4171,7 @@
             ),
             listen(div8, "click", self(
               /*click_handler_2*/
-              ctx[58]
+              ctx[43]
             ))
           ];
           mounted = true;
@@ -4188,7 +4190,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_3$4(ctx2);
+            if_block0 = create_if_block_2$4(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div7, t3);
@@ -4260,7 +4262,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_2$4(ctx2);
+            if_block1 = create_if_block_1$5(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(div1, t14);
@@ -4439,7 +4441,7 @@
       }
     };
   }
-  function create_if_block_3$4(ctx) {
+  function create_if_block_2$4(ctx) {
     let div1;
     let h1;
     let t1;
@@ -4448,7 +4450,7 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[27](value);
+      ctx[26](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
@@ -4512,7 +4514,7 @@
       }
     };
   }
-  function create_if_block_2$4(ctx) {
+  function create_if_block_1$5(ctx) {
     let switch_1;
     let current;
     switch_1 = new Switch({
@@ -4548,8 +4550,8 @@
           switch_1_changes.title_red = `${/*$_delay_nexus_pic*/
         ctx2[15] ? "" : "无延迟"}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
-        32768 | dirty[2] & /*$$scope*/
-        32) {
+        32768 | dirty[1] & /*$$scope*/
+        2097152) {
           switch_1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch_1.$set(switch_1_changes);
@@ -4595,13 +4597,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[34]
+              ctx[33]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[34]
+              ctx[33]
             )
           ];
           mounted = true;
@@ -4645,14 +4647,14 @@
         /*$_list_viewMode*/
         ctx2[5]
       )
-        return create_if_block_5$3;
+        return create_if_block_4$3;
       return create_else_block$5;
     }
     let current_block_type = select_block_type(ctx);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*$_show_debug_btn*/
-      ctx[9] && create_if_block_4$3(ctx)
+      ctx[9] && create_if_block_3$4(ctx)
     );
     let if_block2 = (
       /*$_show_configPanel*/
@@ -4724,7 +4726,7 @@
         append(div3, t5);
         if (if_block1)
           if_block1.m(div3, null);
-        ctx[25](div4);
+        ctx[24](div4);
         insert(target, t6, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
@@ -4749,7 +4751,7 @@
               button1,
               "click",
               /*click_handler*/
-              ctx[24]
+              ctx[23]
             ),
             listen(
               div5,
@@ -4777,7 +4779,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_4$3(ctx2);
+            if_block1 = create_if_block_3$4(ctx2);
             if_block1.c();
             if_block1.m(div3, null);
           }
@@ -4852,7 +4854,7 @@
         if_block0.d();
         if (if_block1)
           if_block1.d();
-        ctx[25](null);
+        ctx[24](null);
         if (detaching)
           detach(t6);
         if (if_block2)
@@ -4889,11 +4891,11 @@
     let $_show_nexus_pic;
     let $_trigger_nexus_pic;
     let $_delay_nexus_pic;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(62, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(47, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
     component_subscribe($$self, _card_width, ($$value) => $$invalidate(4, $_card_width = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(63, $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(48, $$value));
     component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(5, $_list_viewMode = $$value));
     component_subscribe($$self, _panelPos, ($$value) => $$invalidate(6, $_panelPos = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(7, $_current_bgColor = $$value));
@@ -4938,11 +4940,21 @@
     function config_changeWidth() {
       set_store_value(_card_width, $_card_width = $_card_width == 300 ? 200 : 300, $_card_width);
       console.log(`[debug]$card_width: ${$_card_width}`);
-      sortMasonryBundle();
+      setTimeout(
+        () => {
+          sortMasonry();
+        },
+        0
+      );
     }
     function config_showAllDetails() {
       set_store_value(_CARD_SHOW, $_CARD_SHOW.all = !$_CARD_SHOW.all, $_CARD_SHOW);
-      sortMasonryBundle();
+      setTimeout(
+        () => {
+          sortMasonry();
+        },
+        0
+      );
     }
     let label_switchMode = $_turnPage ? "滚动加载" : "按钮加载";
     function config_switchMode() {
@@ -4951,12 +4963,6 @@
     }
     function config_changeLoadMode() {
       set_store_value(_iframe_switch, $_iframe_switch = $_iframe_switch == 0 ? 1 : 0, $_iframe_switch);
-    }
-    function sortMasonryBundle() {
-      sortMasonry("fast");
-      sortMasonry("fast");
-      sortMasonry();
-      sortMasonry();
     }
     onMount(() => {
       window.addEventListener("mousemove", onMouseMove);
@@ -5061,55 +5067,6 @@
         _CARD_SHOW.set($_CARD_SHOW);
       }
     }
-    function input0_change_handler() {
-      $_CARD_SHOW.title = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler = () => {
-      sortMasonry();
-    };
-    function input1_change_handler() {
-      $_CARD_SHOW.free = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler_1 = () => {
-      sortMasonry();
-    };
-    function input2_change_handler() {
-      $_CARD_SHOW.sub_title = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler_2 = () => {
-      sortMasonry();
-    };
-    function input3_change_handler() {
-      $_CARD_SHOW.tags = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler_3 = () => {
-      sortMasonry();
-    };
-    function input4_change_handler() {
-      $_CARD_SHOW.size_download_collect = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler_4 = () => {
-      sortMasonry();
-    };
-    function input5_change_handler() {
-      $_CARD_SHOW.upload_time = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler_5 = () => {
-      sortMasonry();
-    };
-    function input6_change_handler() {
-      $_CARD_SHOW.statistics = this.checked;
-      _CARD_SHOW.set($_CARD_SHOW);
-    }
-    const change_handler_6 = () => {
-      sortMasonry();
-    };
     const click_handler_2 = () => set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
     return [
       sideDom,
@@ -5135,7 +5092,6 @@
       config_showAllDetails,
       config_switchMode,
       config_changeLoadMode,
-      sortMasonryBundle,
       click_handler,
       div4_binding,
       click_handler_1,
@@ -5156,27 +5112,13 @@
       switch11_checked_binding,
       switch12_checked_binding,
       switch13_checked_binding,
-      input0_change_handler,
-      change_handler,
-      input1_change_handler,
-      change_handler_1,
-      input2_change_handler,
-      change_handler_2,
-      input3_change_handler,
-      change_handler_3,
-      input4_change_handler,
-      change_handler_4,
-      input5_change_handler,
-      change_handler_5,
-      input6_change_handler,
-      change_handler_6,
       click_handler_2
     ];
   }
   class Sidepanel extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$8, create_fragment$8, safe_not_equal, {}, null, [-1, -1, -1]);
+      init(this, options, instance$8, create_fragment$8, safe_not_equal, {}, null, [-1, -1]);
     }
   }
   const CONFIG$2 = {
@@ -5545,6 +5487,7 @@
   const SVG_Download = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IgogIGZvY3VzYWJsZT0iZmFsc2UiCiAgZGF0YS1pY29uPSJkb3dubG9hZCIKICB3aWR0aD0iMWVtIgogIGhlaWdodD0iMWVtIgogIGZpbGw9ImN1cnJlbnRDb2xvciIKICBhcmlhLWhpZGRlbj0idHJ1ZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogID4KICA8cGF0aCAKICAgIGQ9Ik01MDUuNyA2NjFhOCA4IDAgMDAxMi42IDBsMTEyLTE0MS43YzQuMS01LjIuNC0xMi45LTYuMy0xMi45aC03NC4xVjE2OGMwLTQuNC0zLjYtOC04LThoLTYwYy00LjQgMC04IDMuNi04IDh2MzM4LjNINDAwYy02LjcgMC0xMC40IDcuNy02LjMgMTIuOWwxMTIgMTQxLjh6TTg3OCA2MjZoLTYwYy00LjQgMC04IDMuNi04IDh2MTU0SDIxNFY2MzRjMC00LjQtMy42LTgtOC04aC02MGMtNC40IDAtOCAzLjYtOCA4djE5OGMwIDE3LjcgMTQuMyAzMiAzMiAzMmg2ODRjMTcuNyAwIDMyLTE0LjMgMzItMzJWNjM0YzAtNC40LTMuNi04LTgtOHoiPgogIDwvcGF0aD4KPC9zdmc+";
   const SVG_Collection = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249InN0YXIiIAogIHdpZHRoPSIxZW0iIAogIGhlaWdodD0iMWVtIiAKICBmaWxsPSJjdXJyZW50Q29sb3IiIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgCj4KICA8cGF0aCAKICAgIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjNhMzIuMDUgMzIuMDUgMCAwMC42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWEzMS45NSAzMS45NSAwIDAwNDYuNCAzMy43TDUxMiA3NTRsMjI3LjEgMTE5LjRjNi4yIDMuMyAxMy40IDQuNCAyMC4zIDMuMiAxNy40LTMgMjkuMS0xOS41IDI2LjEtMzYuOWwtNDMuNC0yNTIuOSAxODMuNy0xNzkuMWM1LTQuOSA4LjMtMTEuMyA5LjMtMTguMyAyLjctMTcuNS05LjUtMzMuNy0yNy0zNi4zeiI+CiAgPC9wYXRoPgo8L3N2Zz4=";
   const SVG_Time = "data:image/svg+xml;base64,PHN2ZyBzdHJva2U9ImN1cnJlbnRDb2xvciIgCiAgZmlsbD0iY3VycmVudENvbG9yIiAKICBzdHJva2Utd2lkdGg9IjAiIAogIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgY2xhc3M9Ii10cmFuc2xhdGUteS1bMnB4XSIgCiAgaGVpZ2h0PSIxOCIgCiAgd2lkdGg9IjE4IiAKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogIHN0eWxlPSJ2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOyI+CiAgPHBhdGggZD0iTTEyIDJDNi40ODYgMiAyIDYuNDg2IDIgMTJzNC40ODYgMTAgMTAgMTAgMTAtNC40ODYgMTAtMTBTMTcuNTE0IDIgMTIgMnptMCAxOGMtNC40MTEgMC04LTMuNTg5LTgtOHMzLjU4OS04IDgtOCA4IDMuNTg5IDggOC0zLjU4OSA4LTggOHoiPgogIDwvcGF0aD4KICA8cGF0aCBkPSJNMTMgN2gtMnY2aDZ2LTJoLTR6Ij4KICA8L3BhdGg+Cjwvc3ZnPg==";
+  const SVG_Preview = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMXtmaWxsOiMyZWIxYjc7fQogICAgICAuY2xzLTJ7ZmlsbDojNTZiNTRlO30KICAgICAgLmNscy0ze2ZpbGw6IzVkYzZkMTt9CiAgICAgIC5jbHMtNHtmaWxsOiM2MGNjNWE7fQogICAgICAuY2xzLTV7ZmlsbDojZmZjZTY5O30KICAgICAgLmNscy02e2ZpbGw6IzZjMmU3Yzt9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8ZyBpZD0iSWNvbnMiPgogICAgPHJlY3QgY2xhc3M9ImNscy0xIiBoZWlnaHQ9IjIyIiByeD0iNCIgd2lkdGg9IjIyIiB4PSIxIiB5PSIxIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yMywxOHYxYTQsNCwwLDAsMS00LDRINWE0LDQsMCwwLDEtMy45LTMuMWw3LjE5LTcuMTlhMS4wMDgsMS4wMDgsMCwwLDEsMS40MiwwbDEuOCwxLjhhMSwxLDAsMCwwLDEuNDYtLjA1bDIuMzMtMi42NWExLDEsMCwwLDEsMS40Ni0uMDVaIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0yMyw1djlhNC4wMjUsNC4wMjUsMCwwLDEtMS4xNywyLjgzbC01LjA3LTUuMDdhMSwxLDAsMCwwLTEuNDYuMDVsLTIuMzMsMi42NWExLDEsMCwwLDEtMS40Ni4wNWwtMS44LTEuOGExLjAwOCwxLjAwOCwwLDAsMC0xLjQyLDBMMy4zNiwxNy42NEEzLjk4OCwzLjk4OCwwLDAsMSwxLDE0VjVBNCw0LDAsMCwxLDUsMUgxOUE0LDQsMCwwLDEsMjMsNVoiLz4KICAgIDxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTIxLjgzLDE2LjgzQTQuMDI1LDQuMDI1LDAsMCwxLDE5LDE4SDVhMy45MzEsMy45MzEsMCwwLDEtMS42NC0uMzZsNC45My00LjkzYTEuMDA4LDEuMDA4LDAsMCwxLDEuNDIsMGwxLjgsMS44YTEsMSwwLDAsMCwxLjQ2LS4wNWwyLjMzLTIuNjVhMSwxLDAsMCwxLDEuNDYtLjA1WiIvPgogICAgPGNpcmNsZSBjbGFzcz0iY2xzLTUiIGN4PSI3IiBjeT0iNyIgcj0iMiIvPgogIDwvZz4KICA8ZyBkYXRhLW5hbWU9IkxheWVyIDQiIGlkPSJMYXllcl80Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtNiIgZD0iTTE5LDBINUE1LjAwNiw1LjAwNiwwLDAsMCwwLDVWMTlhNS4wMDYsNS4wMDYsMCwwLDAsNSw1SDE5YTUuMDA2LDUuMDA2LDAsMCwwLDUtNVY1QTUuMDA2LDUuMDA2LDAsMCwwLDE5LDBabTMsMTlhMywzLDAsMCwxLTMsM0g1YTMsMywwLDAsMS0zLTNWNUEzLDMsMCwwLDEsNSwySDE5YTMsMywwLDAsMSwzLDNaIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik03LDEwQTMsMywwLDEsMCw0LDcsMywzLDAsMCwwLDcsMTBaTTcsNkExLDEsMCwxLDEsNiw3LDEsMSwwLDAsMSw3LDZaIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik0xNi43MDcsMTAuMjkzYS45NTYuOTU2LDAsMCwwLS43NC0uMjkzLDEuMDA2LDEuMDA2LDAsMCwwLS43Mi4zNDFMMTIuMjE3LDEzLjhsLTIuNTEtMi41MTFhMSwxLDAsMCwwLTEuNDE0LDBsLTQsNGExLDEsMCwxLDAsMS40MTQsMS40MTRMOSwxMy40MTRsMS45LDEuOUw4LjI0NywxOC4zNDFhMSwxLDAsMCwwLDEuNTA2LDEuMzE4bDMuMjE4LTMuNjc4LjAwNiwwLC4wMDctLjAxMSwzLjA2NS0zLjUsMi4yNDQsMi4yNDRhMSwxLDAsMCwwLDEuNDE0LTEuNDE0WiIvPgogIDwvZz4KPC9zdmc+";
   const CONFIG = {
     /** 是否非 NexusPHP 架构 */
     noneNexusPHP: true,
@@ -5600,7 +5543,9 @@
       /** 置顶图标 (没用, 看的是 css URL) */
       PIN: "/static/trans.gif",
       /** 时间图标 */
-      TIME: SVG_Time
+      TIME: SVG_Time,
+      /** 预览图标 */
+      PREVIEW: SVG_Preview
     },
     /**如果站点有必要设置分类颜色, 可以用自定义的 */
     CATEGORY_COLOR: {
@@ -5839,7 +5784,9 @@
     /** 未收藏图标 */
     COLLET: '<img class="delbookmark" src="pic/trans.gif" alt="Unbookmarked" title="收藏">',
     /** 已收藏图标 */
-    COLLETED: '<img class="bookmark" src="pic/trans.gif" alt="Bookmarked">'
+    COLLETED: '<img class="bookmark" src="pic/trans.gif" alt="Bookmarked">',
+    /** 预览图标 */
+    PREVIEW: SVG_Preview
   };
   const _PicErrorLOGO = "data:image/svg+xml;base64,PHN2ZwogIHdpZHRoPSIyNTZweCIKICBoZWlnaHQ9IjI1NnB4IgogIHZpZXdCb3g9IjAgMCAyNC4wMCAyNC4wMCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAwLCAwKSIKPgogIDxnCiAgICBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiCiAgICBzdHJva2Utd2lkdGg9IjAiCiAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApLCBzY2FsZSgxKSIKICAvPgogIDxnCiAgICBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIgogICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIHN0cm9rZT0iI0NDQ0NDQyIKICAgIHN0cm9rZS13aWR0aD0iMC4wNDgiCiAgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTMgM0wxMy43MDcxIDIuMjkyODlDMTMuNTE5NiAyLjEwNTM2IDEzLjI2NTIgMiAxMyAyVjNaTTE0IDIyQzE0LjU1MjMgMjIgMTUgMjEuNTUyMyAxNSAyMUMxNSAyMC40NDc3IDE0LjU1MjMgMjAgMTQgMjBWMjJaTTE5IDlIMjBDMjAgOC43MzQ3OCAxOS44OTQ2IDguNDgwNDMgMTkuNzA3MSA4LjI5Mjg5TDE5IDlaTTE4IDEwQzE4IDEwLjU1MjMgMTguNDQ3NyAxMSAxOSAxMUMxOS41NTIzIDExIDIwIDEwLjU1MjMgMjAgMTBIMThaTTUuMjE3OTkgMTkuOTA4TDQuMzI2OTggMjAuMzYySDQuMzI2OThMNS4yMTc5OSAxOS45MDhaTTYuMDkyMDIgMjAuNzgyTDYuNTQ2MDEgMTkuODkxTDYuNTQ2MDEgMTkuODkxTDYuMDkyMDIgMjAuNzgyWk02LjA5MjAyIDMuMjE3OTlMNS42MzgwMyAyLjMyNjk4TDUuNjM4MDMgMi4zMjY5OEw2LjA5MjAyIDMuMjE3OTlaTTUuMjE3OTkgNC4wOTIwMkw0LjMyNjk4IDMuNjM4MDNMNC4zMjY5OCAzLjYzODAzTDUuMjE3OTkgNC4wOTIwMlpNMTMuMTA5IDguNDUzOTlMMTQgOFY4TDEzLjEwOSA4LjQ1Mzk5Wk0xMy41NDYgOC44OTEwMUwxNCA4TDEzLjU0NiA4Ljg5MTAxWk0xNy4yMjk5IDE3Ljc5MjlDMTYuODM5NCAxOC4xODM0IDE2LjgzOTQgMTguODE2NiAxNy4yMjk5IDE5LjIwNzFDMTcuNjIwNCAxOS41OTc2IDE4LjI1MzYgMTkuNTk3NiAxOC42NDQxIDE5LjIwNzFMMTcuMjI5OSAxNy43OTI5Wk0xNS4wMzE2IDE1LjI1MDdDMTQuODkzOSAxNS43ODU2IDE1LjIxNTkgMTYuMzMwOCAxNS43NTA3IDE2LjQ2ODRDMTYuMjg1NiAxNi42MDYxIDE2LjgzMDggMTYuMjg0MSAxNi45Njg0IDE1Ljc0OTNMMTUuMDMxNiAxNS4yNTA3Wk0xNy45Mzc1IDIwQzE3LjM4NTIgMjAgMTYuOTM3NSAyMC40NDc3IDE2LjkzNzUgMjFDMTYuOTM3NSAyMS41NTIzIDE3LjM4NTIgMjIgMTcuOTM3NSAyMlYyMFpNMTcuOTQ3NSAyMkMxOC40OTk4IDIyIDE4Ljk0NzUgMjEuNTUyMyAxOC45NDc1IDIxQzE4Ljk0NzUgMjAuNDQ3NyAxOC40OTk4IDIwIDE3Ljk0NzUgMjBWMjJaTTEzIDJIOC4yVjRIMTNWMlpNNCA2LjJWMTcuOEg2VjYuMkg0Wk04LjIgMjJIMTRWMjBIOC4yVjIyWk0xOS43MDcxIDguMjkyODlMMTMuNzA3MSAyLjI5Mjg5TDEyLjI5MjkgMy43MDcxMUwxOC4yOTI5IDkuNzA3MTFMMTkuNzA3MSA4LjI5Mjg5Wk0yMCAxMFY5SDE4VjEwSDIwWk00IDE3LjhDNCAxOC4zNDM2IDMuOTk5MjIgMTguODExNCA0LjAzMDU3IDE5LjE5NUM0LjA2Mjg3IDE5LjU5MDQgNC4xMzQxOSAxOS45ODM2IDQuMzI2OTggMjAuMzYyTDYuMTA4OTkgMTkuNDU0QzYuMDgzOCAxOS40MDQ1IDYuMDQ2MTIgMTkuMzAzOCA2LjAyMzkzIDE5LjAzMjJDNi4wMDA3OCAxOC43NDg4IDYgMTguMzc2NiA2IDE3LjhINFpNOC4yIDIwQzcuNjIzNDUgMjAgNy4yNTExNyAxOS45OTkyIDYuOTY3ODQgMTkuOTc2MUM2LjY5NjE3IDE5Ljk1MzkgNi41OTU0NSAxOS45MTYyIDYuNTQ2MDEgMTkuODkxTDUuNjM4MDMgMjEuNjczQzYuMDE2NDEgMjEuODY1OCA2LjQwOTYzIDIxLjkzNzEgNi44MDQ5NyAyMS45Njk0QzcuMTg4NjQgMjIuMDAwOCA3LjY1NjQ1IDIyIDguMiAyMlYyMFpNNC4zMjY5OCAyMC4zNjJDNC42MTQ2IDIwLjkyNjUgNS4wNzM1NCAyMS4zODU0IDUuNjM4MDMgMjEuNjczTDYuNTQ2MDEgMTkuODkxQzYuMzU3ODUgMTkuNzk1MSA2LjIwNDg3IDE5LjY0MjIgNi4xMDg5OSAxOS40NTRMNC4zMjY5OCAyMC4zNjJaTTguMiAyQzcuNjU2NDUgMiA3LjE4ODY0IDEuOTk5MjIgNi44MDQ5NyAyLjAzMDU3QzYuNDA5NjMgMi4wNjI4NyA2LjAxNjQxIDIuMTM0MTkgNS42MzgwMyAyLjMyNjk4TDYuNTQ2MDEgNC4xMDg5OUM2LjU5NTQ1IDQuMDgzOCA2LjY5NjE3IDQuMDQ2MTIgNi45Njc4NCA0LjAyMzkzQzcuMjUxMTcgNC4wMDA3OCA3LjYyMzQ1IDQgOC4yIDRWMlpNNiA2LjJDNiA1LjYyMzQ1IDYuMDAwNzggNS4yNTExNyA2LjAyMzkzIDQuOTY3ODRDNi4wNDYxMiA0LjY5NjE3IDYuMDgzOCA0LjU5NTQ1IDYuMTA4OTkgNC41NDYwMUw0LjMyNjk4IDMuNjM4MDNDNC4xMzQxOSA0LjAxNjQxIDQuMDYyODcgNC40MDk2MyA0LjAzMDU3IDQuODA0OTdDMy45OTkyMiA1LjE4ODY0IDQgNS42NTY0NSA0IDYuMkg2Wk01LjYzODAzIDIuMzI2OThDNS4wNzM1NCAyLjYxNDYgNC42MTQ2IDMuMDczNTQgNC4zMjY5OCAzLjYzODAzTDYuMTA4OTkgNC41NDYwMUM2LjIwNDg3IDQuMzU3ODUgNi4zNTc4NSA0LjIwNDg3IDYuNTQ2MDEgNC4xMDg5OUw1LjYzODAzIDIuMzI2OThaTTEyIDNWNy40SDE0VjNIMTJaTTE0LjYgMTBIMTlWOEgxNC42VjEwWk0xMiA3LjRDMTIgNy42NjM1MyAxMS45OTkyIDcuOTIxMzEgMTIuMDE2OSA4LjEzODIzQzEyLjAzNTYgOC4zNjY4MiAxMi4wNzk3IDguNjM2NTYgMTIuMjE4IDguOTA3OThMMTQgOEMxNC4wMjkzIDguMDU3NTEgMTQuMDE4OSA4LjA4MDI4IDE0LjAxMDMgNy45NzUzN0MxNC4wMDA4IDcuODU4NzggMTQgNy42OTY1MyAxNCA3LjRIMTJaTTE0LjYgOEMxNC4zMDM1IDggMTQuMTQxMiA3Ljk5OTIyIDE0LjAyNDYgNy45ODk3QzEzLjkxOTcgNy45ODExMyAxMy45NDI1IDcuOTcwNyAxNCA4TDEzLjA5MiA5Ljc4MjAxQzEzLjM2MzQgOS45MjAzMSAxMy42MzMyIDkuOTY0MzggMTMuODYxOCA5Ljk4MzA1QzE0LjA3ODcgMTAuMDAwOCAxNC4zMzY1IDEwIDE0LjYgMTBWOFpNMTIuMjE4IDguOTA3OThDMTIuNDA5NyA5LjI4NDMgMTIuNzE1NyA5LjU5MDI3IDEzLjA5MiA5Ljc4MjAxTDE0IDhWOEwxMi4yMTggOC45MDc5OFpNMTguOTM3IDE2QzE4LjkzNyAxNi4xNzMyIDE4Ljg5MTUgMTYuMzA1MyAxOC42MTc1IDE2LjU2OTdDMTguNDYzOCAxNi43MTggMTguMjgyOCAxNi44NjUzIDE4LjAzMTkgMTcuMDc0QzE3Ljc5MzYgMTcuMjcyMyAxNy41MTQxIDE3LjUwODcgMTcuMjI5OSAxNy43OTI5TDE4LjY0NDEgMTkuMjA3MUMxOC44NiAxOC45OTEzIDE5LjA4MDUgMTguODAzMyAxOS4zMTA5IDE4LjYxMTZDMTkuNTI4NyAxOC40MzA1IDE5Ljc4NTIgMTguMjIyMyAyMC4wMDY1IDE4LjAwODdDMjAuNDgyNSAxNy41NDkzIDIwLjkzNyAxNi45MzE0IDIwLjkzNyAxNkgxOC45MzdaTTE3LjkzNyAxNUMxOC40ODkzIDE1IDE4LjkzNyAxNS40NDc3IDE4LjkzNyAxNkgyMC45MzdDMjAuOTM3IDE0LjM0MzEgMTkuNTkzOCAxMyAxNy45MzcgMTNWMTVaTTE2Ljk2ODQgMTUuNzQ5M0MxNy4wNzk1IDE1LjMxNzcgMTcuNDcyNCAxNSAxNy45MzcgMTVWMTNDMTYuNTM3NyAxMyAxNS4zNjQ1IDEzLjk1NyAxNS4wMzE2IDE1LjI1MDdMMTYuOTY4NCAxNS43NDkzWk0xNy45Mzc1IDIySDE3Ljk0NzVWMjBIMTcuOTM3NVYyMloiCiAgICAgIGZpbGw9IiNjMDAwMDAiCiAgICAvPgogIDwvZz4KPC9zdmc+";
   function create_if_block_18$2(ctx) {
@@ -5870,11 +5817,11 @@
         b = element("b");
         t1 = text(t1_value);
         html_tag.a = t0;
-        attr(a, "class", "two-lines svelte-namdgo");
+        attr(a, "class", "two-lines svelte-4b9kml");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
         attr(a, "target", "_blank");
-        attr(div, "class", "card-title svelte-namdgo");
+        attr(div, "class", "card-title svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -5930,7 +5877,7 @@
         if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
           attr(img, "src", img_src_value);
         attr(img, "alt", "pic error");
-        attr(img, "class", "svelte-namdgo");
+        attr(img, "class", "svelte-4b9kml");
         attr(div2, "class", "pic_error");
         attr(div2, "style", "");
       },
@@ -5969,7 +5916,7 @@
     return {
       c() {
         img = element("img");
-        attr(img, "class", "nexus-lazy-load_Kesa svelte-namdgo");
+        attr(img, "class", "nexus-lazy-load_Kesa svelte-4b9kml");
         if (!src_url_equal(img.src, img_src_value = CONFIG$2.LOADING_PIC))
           attr(img, "src", img_src_value);
         attr(img, "data-src", img_data_src_value = /*torrentInfo*/
@@ -5991,7 +5938,7 @@
               img,
               "error",
               /*error_handler*/
-              ctx[12]
+              ctx[13]
             )
           ];
           mounted = true;
@@ -6019,13 +5966,30 @@
   }
   function create_if_block_16$2(ctx) {
     let div;
+    let img;
+    let img_src_value;
     return {
       c() {
         div = element("div");
-        attr(div, "class", "hover-trigger svelte-namdgo");
+        img = element("img");
+        set_style(img, "pointer-events", "none");
+        if (!src_url_equal(img.src, img_src_value = /*ICON*/
+        ctx[2].PREVIEW))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "PREVIEW");
+        attr(img, "class", "svelte-4b9kml");
+        attr(div, "class", "hover-trigger svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
+        append(div, img);
+      },
+      p(ctx2, dirty) {
+        if (dirty & /*ICON*/
+        4 && !src_url_equal(img.src, img_src_value = /*ICON*/
+        ctx2[2].PREVIEW)) {
+          attr(img, "src", img_src_value);
+        }
       },
       d(detaching) {
         if (detaching)
@@ -6041,7 +6005,7 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_2*/
-        ctx[13]
+        ctx[14]
       ).join("") + ""
     );
     let t2;
@@ -6218,26 +6182,26 @@
         t25 = text(" ");
         b6 = element("b");
         t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-namdgo");
+        attr(div0, "class", "cl-tags svelte-4b9kml");
         html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-namdgo");
+        attr(div1, "class", "cl-center svelte-4b9kml");
         html_tag_1.a = t6;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-namdgo");
+        attr(div2, "class", "cl-center svelte-4b9kml");
         html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-namdgo");
+        attr(div3, "class", "btnCollet cl-center svelte-4b9kml");
         attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-namdgo");
-        attr(div5, "class", "card-line svelte-namdgo");
-        attr(div6, "class", "card-line svelte-namdgo");
+        attr(div4, "class", "cl-center svelte-4b9kml");
+        attr(div5, "class", "card-line svelte-4b9kml");
+        attr(div6, "class", "card-line svelte-4b9kml");
         html_tag_3.a = t16;
         html_tag_4.a = t19;
         html_tag_5.a = t22;
         html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-namdgo");
-        attr(div8, "class", "card-details svelte-namdgo");
+        attr(div7, "class", "card-line svelte-4b9kml");
+        attr(div8, "class", "card-details svelte-4b9kml");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6295,34 +6259,25 @@
         append(div7, b6);
         append(b6, t26);
         if (!mounted) {
-          dispose = listen(div3, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE$1(
-              /*torrentInfo*/
-              ctx[0].collectLink,
-              "tI_" + /*torrentInfo*/
-              ctx[0].torrentIndex
-            )))
-              COLLET_AND_ICON_CHANGE$1(
-                /*torrentInfo*/
-                ctx[0].collectLink,
-                "tI_" + /*torrentInfo*/
-                ctx[0].torrentIndex
-              ).apply(this, arguments);
-          });
+          dispose = listen(
+            div3,
+            "click",
+            /*click_handler*/
+            ctx[15]
+          );
           mounted = true;
         }
       },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
+      p(ctx2, dirty) {
         if (
           /*torrentInfo*/
-          ctx[0].free_type || /*torrentInfo*/
-          ctx[0].pattMsg
+          ctx2[0].free_type || /*torrentInfo*/
+          ctx2[0].pattMsg
         ) {
           if (if_block0) {
-            if_block0.p(ctx, dirty);
+            if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_12$2(ctx);
+            if_block0 = create_if_block_12$2(ctx2);
             if_block0.c();
             if_block0.m(t0.parentNode, t0);
           }
@@ -6332,12 +6287,12 @@
         }
         if (
           /*torrentInfo*/
-          ctx[0].description
+          ctx2[0].description
         ) {
           if (if_block1) {
-            if_block1.p(ctx, dirty);
+            if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_11$2(ctx);
+            if_block1 = create_if_block_11$2(ctx2);
             if_block1.c();
             if_block1.m(t1.parentNode, t1);
           }
@@ -6347,78 +6302,78 @@
         }
         if (dirty & /*torrentInfo*/
         1 && raw0_value !== (raw0_value = /*torrentInfo*/
-        ctx[0].tagsDOM.map(
+        ctx2[0].tagsDOM.map(
           /*func_2*/
-          ctx[13]
+          ctx2[14]
         ).join("") + ""))
           div0.innerHTML = raw0_value;
         if (dirty & /*ICON*/
         4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx[2].SIZE + ""))
+        ctx2[2].SIZE + ""))
           html_tag.p(raw1_value);
         if (dirty & /*torrentInfo*/
         1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx[0].size + ""))
+        ctx2[0].size + ""))
           set_data(t4, t4_value);
         if (dirty & /*ICON*/
         4 && raw2_value !== (raw2_value = /*ICON*/
-        ctx[2].DOWNLOAD + ""))
+        ctx2[2].DOWNLOAD + ""))
           html_tag_1.p(raw2_value);
         if (dirty & /*torrentInfo*/
         1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink)) {
+        ctx2[0].downloadLink)) {
           attr(a, "href", a_href_value);
         }
         if (dirty & /*torrentInfo, ICON*/
         5 && raw3_value !== (raw3_value = /*torrentInfo*/
-        (ctx[0].collectState == "Unbookmarked" ? (
+        (ctx2[0].collectState == "Unbookmarked" ? (
           /*ICON*/
-          ctx[2].COLLET
+          ctx2[2].COLLET
         ) : (
           /*ICON*/
-          ctx[2].COLLETED
+          ctx2[2].COLLETED
         )) + ""))
           html_tag_2.p(raw3_value);
         if (dirty & /*torrentInfo*/
         1 && div3_id_value !== (div3_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex)) {
+        ctx2[0].torrentIndex)) {
           attr(div3, "id", div3_id_value);
         }
         if (dirty & /*torrentInfo*/
         1 && t14_value !== (t14_value = /*torrentInfo*/
-        ctx[0].upload_date + ""))
+        ctx2[0].upload_date + ""))
           set_data(t14, t14_value);
         if (dirty & /*ICON*/
         4 && raw4_value !== (raw4_value = /*ICON*/
-        ctx[2].COMMENT + ""))
+        ctx2[2].COMMENT + ""))
           html_tag_3.p(raw4_value);
         if (dirty & /*torrentInfo*/
         1 && t17_value !== (t17_value = /*torrentInfo*/
-        ctx[0].comments + ""))
+        ctx2[0].comments + ""))
           set_data(t17, t17_value);
         if (dirty & /*ICON*/
         4 && raw5_value !== (raw5_value = /*ICON*/
-        ctx[2].SEEDERS + ""))
+        ctx2[2].SEEDERS + ""))
           html_tag_4.p(raw5_value);
         if (dirty & /*torrentInfo*/
         1 && t20_value !== (t20_value = /*torrentInfo*/
-        ctx[0].seeders + ""))
+        ctx2[0].seeders + ""))
           set_data(t20, t20_value);
         if (dirty & /*ICON*/
         4 && raw6_value !== (raw6_value = /*ICON*/
-        ctx[2].LEECHERS + ""))
+        ctx2[2].LEECHERS + ""))
           html_tag_5.p(raw6_value);
         if (dirty & /*torrentInfo*/
         1 && t23_value !== (t23_value = /*torrentInfo*/
-        ctx[0].leechers + ""))
+        ctx2[0].leechers + ""))
           set_data(t23, t23_value);
         if (dirty & /*ICON*/
         4 && raw7_value !== (raw7_value = /*ICON*/
-        ctx[2].SNATCHED + ""))
+        ctx2[2].SNATCHED + ""))
           html_tag_6.p(raw7_value);
         if (dirty & /*torrentInfo*/
         1 && t26_value !== (t26_value = /*torrentInfo*/
-        ctx[0].snatched + ""))
+        ctx2[0].snatched + ""))
           set_data(t26, t26_value);
       },
       d(detaching) {
@@ -6472,8 +6427,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-namdgo");
-        attr(div1, "class", "card-alter svelte-namdgo");
+        ctx[0].free_type + " svelte-4b9kml");
+        attr(div1, "class", "card-alter svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6535,7 +6490,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-namdgo")) {
+        ctx2[0].free_type + " svelte-4b9kml")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -6660,7 +6615,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-namdgo");
+        attr(a, "class", "card-description svelte-4b9kml");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -6739,7 +6694,7 @@
         t4 = space();
         if (if_block5)
           if_block5.c();
-        attr(div, "class", "card-details svelte-namdgo");
+        attr(div, "class", "card-details svelte-4b9kml");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6911,8 +6866,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-namdgo");
-        attr(div1, "class", "card-alter svelte-namdgo");
+        ctx[0].free_type + " svelte-4b9kml");
+        attr(div1, "class", "card-alter svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6974,7 +6929,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-namdgo")) {
+        ctx2[0].free_type + " svelte-4b9kml")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -7099,7 +7054,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-namdgo");
+        attr(a, "class", "card-description svelte-4b9kml");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -7130,13 +7085,13 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_4*/
-        ctx[14]
+        ctx[16]
       ).join("") + ""
     );
     return {
       c() {
         div = element("div");
-        attr(div, "class", "cl-tags svelte-namdgo");
+        attr(div, "class", "cl-tags svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7147,7 +7102,7 @@
         1 && raw_value !== (raw_value = /*torrentInfo*/
         ctx2[0].tagsDOM.map(
           /*func_4*/
-          ctx2[14]
+          ctx2[16]
         ).join("") + ""))
           div.innerHTML = raw_value;
       },
@@ -7224,17 +7179,17 @@
         b1 = element("b");
         b1.textContent = "收藏";
         html_tag.a = t0;
-        attr(div0, "class", "cl-center svelte-namdgo");
+        attr(div0, "class", "cl-center svelte-4b9kml");
         html_tag_1.a = t3;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div1, "class", "cl-center svelte-namdgo");
+        attr(div1, "class", "cl-center svelte-4b9kml");
         html_tag_2.a = t6;
-        attr(div2, "class", "btnCollet cl-center svelte-namdgo");
+        attr(div2, "class", "btnCollet cl-center svelte-4b9kml");
         attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div3, "class", "cl-center svelte-namdgo");
-        attr(div4, "class", "card-line svelte-namdgo");
+        attr(div3, "class", "cl-center svelte-4b9kml");
+        attr(div4, "class", "card-line svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -7256,55 +7211,46 @@
         append(div2, t6);
         append(div2, b1);
         if (!mounted) {
-          dispose = listen(div2, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE$1(
-              /*torrentInfo*/
-              ctx[0].collectLink,
-              "tI_" + /*torrentInfo*/
-              ctx[0].torrentIndex
-            )))
-              COLLET_AND_ICON_CHANGE$1(
-                /*torrentInfo*/
-                ctx[0].collectLink,
-                "tI_" + /*torrentInfo*/
-                ctx[0].torrentIndex
-              ).apply(this, arguments);
-          });
+          dispose = listen(
+            div2,
+            "click",
+            /*click_handler_1*/
+            ctx[17]
+          );
           mounted = true;
         }
       },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
+      p(ctx2, dirty) {
         if (dirty & /*ICON*/
         4 && raw0_value !== (raw0_value = /*ICON*/
-        ctx[2].SIZE + ""))
+        ctx2[2].SIZE + ""))
           html_tag.p(raw0_value);
         if (dirty & /*torrentInfo*/
         1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx[0].size + ""))
+        ctx2[0].size + ""))
           set_data(t1, t1_value);
         if (dirty & /*ICON*/
         4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx[2].DOWNLOAD + ""))
+        ctx2[2].DOWNLOAD + ""))
           html_tag_1.p(raw1_value);
         if (dirty & /*torrentInfo*/
         1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink)) {
+        ctx2[0].downloadLink)) {
           attr(a, "href", a_href_value);
         }
         if (dirty & /*torrentInfo, ICON*/
         5 && raw2_value !== (raw2_value = /*torrentInfo*/
-        (ctx[0].collectState == "Unbookmarked" ? (
+        (ctx2[0].collectState == "Unbookmarked" ? (
           /*ICON*/
-          ctx[2].COLLET
+          ctx2[2].COLLET
         ) : (
           /*ICON*/
-          ctx[2].COLLETED
+          ctx2[2].COLLETED
         )) + ""))
           html_tag_2.p(raw2_value);
         if (dirty & /*torrentInfo*/
         1 && div2_id_value !== (div2_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex)) {
+        ctx2[0].torrentIndex)) {
           attr(div2, "id", div2_id_value);
         }
       },
@@ -7332,7 +7278,7 @@
         b.textContent = "上传时间:";
         t1 = space();
         t2 = text(t2_value);
-        attr(div, "class", "card-line svelte-namdgo");
+        attr(div, "class", "card-line svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7431,7 +7377,7 @@
         html_tag_1.a = t3;
         html_tag_2.a = t6;
         html_tag_3.a = t9;
-        attr(div, "class", "card-line svelte-namdgo");
+        attr(div, "class", "card-line svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7535,7 +7481,7 @@
     let if_block1 = current_block_type(ctx);
     let if_block2 = (
       /*$_trigger_nexus_pic*/
-      ctx[7] && create_if_block_16$2()
+      ctx[7] && create_if_block_16$2(ctx)
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
@@ -7569,7 +7515,7 @@
         t7 = space();
         if (if_block4)
           if_block4.c();
-        attr(div0, "class", "card-category svelte-namdgo");
+        attr(div0, "class", "card-category svelte-4b9kml");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
         set_style(div0, "background-color", CONFIG$2.CATEGORY[
@@ -7583,10 +7529,10 @@
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
-        attr(div1, "class", "card-index svelte-namdgo");
-        attr(div2, "class", "card-image svelte-namdgo");
-        attr(div3, "class", "card-holder svelte-namdgo");
-        attr(div4, "class", "card svelte-namdgo");
+        attr(div1, "class", "card-index svelte-4b9kml");
+        attr(div2, "class", "card-image svelte-4b9kml");
+        attr(div3, "class", "card-holder svelte-4b9kml");
+        attr(div4, "class", "card svelte-4b9kml");
         set_style(
           div4,
           "width",
@@ -7631,19 +7577,19 @@
               div2,
               "click",
               /*showDetailIframe*/
-              ctx[9]
+              ctx[10]
             ),
             listen(
               div3,
               "mouseenter",
               /*card_show_detail*/
-              ctx[10]
+              ctx[11]
             ),
             listen(
               div3,
               "mouseleave",
               /*card_hide_detail*/
-              ctx[11]
+              ctx[12]
             )
           ];
           mounted = true;
@@ -7710,10 +7656,10 @@
           /*$_trigger_nexus_pic*/
           ctx2[7]
         ) {
-          if (if_block2)
-            ;
-          else {
-            if_block2 = create_if_block_16$2();
+          if (if_block2) {
+            if_block2.p(ctx2, dirty);
+          } else {
+            if_block2 = create_if_block_16$2(ctx2);
             if_block2.c();
             if_block2.m(div2, null);
           }
@@ -7794,17 +7740,6 @@
       }
     };
   }
-  function COLLET_AND_ICON_CHANGE$1(jsCodeLink, card_id) {
-    try {
-      window.location.href = jsCodeLink;
-      const btn = document.querySelector(`div#${card_id}`);
-      const img = btn.children[0];
-      img.className = img.className == "delbookmark" ? "bookmark" : "delbookmark";
-      console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
-    } catch (error) {
-      console.error(error);
-    }
-  }
   function getTextColor$2(background) {
     const color = background.replace("#", "");
     const red = parseInt(color.substr(0, 2), 16);
@@ -7822,13 +7757,26 @@
     let $_current_bgColor;
     let $_CARD_SHOW;
     let $_trigger_nexus_pic;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(15, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(16, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(18, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(19, $_iframe_switch = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(5, $_current_bgColor = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(6, $_CARD_SHOW = $$value));
     component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(7, $_trigger_nexus_pic = $$value));
     function sort_masonry() {
       sortMasonry();
+    }
+    function COLLET_AND_ICON_CHANGE2(jsCodeLink, card_id) {
+      try {
+        window.location.href = jsCodeLink;
+        $$invalidate(
+          0,
+          torrentInfo.collectState = torrentInfo.collectState == "Unbookmarked" ? "Bookmarked" : "Unbookmarked",
+          torrentInfo
+        );
+        console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
+      } catch (error) {
+        console.error(error);
+      }
     }
     function showDetailIframe() {
       set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
@@ -7853,11 +7801,13 @@
       _tag.innerHTML = el.outerHTML;
       return _tag.outerHTML;
     };
+    const click_handler = () => COLLET_AND_ICON_CHANGE2(torrentInfo.collectLink, "tI_" + torrentInfo.torrentIndex);
     const func_4 = (el) => {
       const _tag = document.createElement("div");
       _tag.innerHTML = el.outerHTML;
       return _tag.outerHTML;
     };
+    const click_handler_1 = () => COLLET_AND_ICON_CHANGE2(torrentInfo.collectLink, "tI_" + torrentInfo.torrentIndex);
     $$self.$$set = ($$props2) => {
       if ("torrentInfo" in $$props2)
         $$invalidate(0, torrentInfo = $$props2.torrentInfo);
@@ -7876,12 +7826,15 @@
       $_CARD_SHOW,
       $_trigger_nexus_pic,
       sort_masonry,
+      COLLET_AND_ICON_CHANGE2,
       showDetailIframe,
       card_show_detail,
       card_hide_detail,
       error_handler,
       func_2,
-      func_4
+      click_handler,
+      func_4,
+      click_handler_1
     ];
   }
   class Kamept extends SvelteComponent {
@@ -10482,7 +10435,8 @@
       disable: "不可用"
     };
     function turnPage(event) {
-      event.preventDefault();
+      if (event)
+        event.preventDefault();
       if (!$_turnPage)
         debounceLoad();
       if (!isButtonDisabled) {
@@ -11063,7 +11017,7 @@
     }
   }
   const _PicNoLOGO = "data:image/svg+xml;base64,PHN2ZwogIHZpZXdCb3g9Ii0yLjQgLTIuNCAyOC44MCAyOC44MCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICBzdHJva2U9IiMwMDAwMDAiCj4KICA8ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTUuNiAxNS42QzE1LjYgMTUuNiAxNC4yNSAxMy44IDEyIDEzLjhDOS43NSAxMy44IDguNCAxNS42IDguNCAxNS42TTE0LjcgOS4zSDE0LjcwOU05LjMgOS4zSDkuMzA5TTIxIDEyQzIxIDE2Ljk3MDYgMTYuOTcwNiAyMSAxMiAyMUM3LjAyOTQ0IDIxIDMgMTYuOTcwNiAzIDEyQzMgNy4wMjk0NCA3LjAyOTQ0IDMgMTIgM0MxNi45NzA2IDMgMjEgNy4wMjk0NCAyMSAxMlpNMTUuMTUgOS4zQzE1LjE1IDkuNTQ4NTMgMTQuOTQ4NSA5Ljc1IDE0LjcgOS43NUMxNC40NTE1IDkuNzUgMTQuMjUgOS41NDg1MyAxNC4yNSA5LjNDMTQuMjUgOS4wNTE0NyAxNC40NTE1IDguODUgMTQuNyA4Ljg1QzE0Ljk0ODUgOC44NSAxNS4xNSA5LjA1MTQ3IDE1LjE1IDkuM1pNOS43NSA5LjNDOS43NSA5LjU0ODUzIDkuNTQ4NTMgOS43NSA5LjMgOS43NUM5LjA1MTQ3IDkuNzUgOC44NSA5LjU0ODUzIDguODUgOS4zQzguODUgOS4wNTE0NyA5LjA1MTQ3IDguODUgOS4zIDguODVDOS41NDg1MyA4Ljg1IDkuNzUgOS4wNTE0NyA5Ljc1IDkuM1oiCiAgICAgIHN0cm9rZT0iIzAwMDAwMCIKICAgICAgc3Ryb2tlLXdpZHRoPSIxLjgiCiAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIC8+CiAgPC9nPgo8L3N2Zz4=";
-  function create_if_block_23(ctx) {
+  function create_if_block_24(ctx) {
     let div;
     let a;
     let b;
@@ -11079,11 +11033,11 @@
         a = element("a");
         b = element("b");
         t = text(t_value);
-        attr(a, "class", "two-lines svelte-xpikqe");
+        attr(a, "class", "two-lines svelte-rhfb99");
         attr(a, "href", a_href_value = "/detail/" + /*torrentInfo*/
         ctx[1].id);
         attr(a, "target", "_blank");
-        attr(div, "class", "card-title svelte-xpikqe");
+        attr(div, "class", "card-title svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11130,7 +11084,7 @@
         if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
           attr(img, "src", img_src_value);
         attr(img, "alt", "pic error");
-        attr(img, "class", "svelte-xpikqe");
+        attr(img, "class", "svelte-rhfb99");
         attr(div2, "class", "pic_error");
         attr(div2, "style", "");
       },
@@ -11145,7 +11099,7 @@
             img,
             "load",
             /*sort_masonry*/
-            ctx[11]
+            ctx[12]
           );
           mounted = true;
         }
@@ -11159,14 +11113,14 @@
       }
     };
   }
-  function create_if_block_21(ctx) {
+  function create_if_block_22(ctx) {
     let if_block_anchor;
     function select_block_type_1(ctx2, dirty) {
       if (
         /*torrentInfo*/
         ctx2[1].imageList[0]
       )
-        return create_if_block_22;
+        return create_if_block_23;
       return create_else_block;
     }
     let current_block_type = select_block_type_1(ctx);
@@ -11221,7 +11175,7 @@
         if (!src_url_equal(img.src, img_src_value = _PicNoLOGO))
           attr(img, "src", img_src_value);
         attr(img, "alt", "no pic");
-        attr(img, "class", "svelte-xpikqe");
+        attr(img, "class", "svelte-rhfb99");
         attr(div2, "class", "pic_error");
         attr(div2, "style", "");
       },
@@ -11236,7 +11190,7 @@
             img,
             "load",
             /*sort_masonry*/
-            ctx[11]
+            ctx[12]
           );
           mounted = true;
         }
@@ -11250,7 +11204,7 @@
       }
     };
   }
-  function create_if_block_22(ctx) {
+  function create_if_block_23(ctx) {
     let img;
     let img_src_value;
     let img_data_src_value;
@@ -11260,7 +11214,7 @@
     return {
       c() {
         img = element("img");
-        attr(img, "class", "nexus-lazy-load_Kesa svelte-xpikqe");
+        attr(img, "class", "nexus-lazy-load_Kesa svelte-rhfb99");
         if (!src_url_equal(img.src, img_src_value = CONFIG.LOADING_PIC))
           attr(img, "src", img_src_value);
         attr(img, "data-src", img_data_src_value = /*torrentInfo*/
@@ -11279,13 +11233,13 @@
               img,
               "load",
               /*sort_masonry*/
-              ctx[11]
+              ctx[12]
             ),
             listen(
               img,
               "error",
               /*error_handler*/
-              ctx[23]
+              ctx[24]
             )
           ];
           mounted = true;
@@ -11311,6 +11265,32 @@
           detach(img);
         mounted = false;
         run_all(dispose);
+      }
+    };
+  }
+  function create_if_block_21(ctx) {
+    let div;
+    let img;
+    let img_src_value;
+    return {
+      c() {
+        div = element("div");
+        img = element("img");
+        set_style(img, "pointer-events", "none");
+        if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.PREVIEW))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "PREVIEW");
+        attr(img, "class", "svelte-rhfb99");
+        attr(div, "class", "hover-trigger svelte-rhfb99");
+      },
+      m(target, anchor) {
+        insert(target, div, anchor);
+        append(div, img);
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div);
       }
     };
   }
@@ -11341,13 +11321,13 @@
     let img0_src_value;
     let t8;
     let t9_value = `${/*_CT*/
-  ctx[17].day} 日`;
+  ctx[18].day} 日`;
     let t9;
     let t10;
     let t11_value = (
       /*_CT*/
-      ctx[17].hour ? `${/*_CT*/
-    ctx[17].hour} 时` : ""
+      ctx[18].hour ? `${/*_CT*/
+    ctx[18].hour} 时` : ""
     );
     let t11;
     let t12;
@@ -11404,8 +11384,8 @@
       pending: create_pending_block_1,
       then: create_then_block_1,
       catch: create_catch_block_1,
-      value: 33,
-      error: 34
+      value: 34,
+      error: 35
     };
     handle_promise(promise_1 = /*promise*/
     ctx[4], info);
@@ -11430,7 +11410,7 @@
         t4 = text(t4_value);
         t5 = text("\n\n            \n              \n            \n            ");
         div1 = element("div");
-        div1.innerHTML = `<span class="icon_holder svelte-xpikqe"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
+        div1.innerHTML = `<span class="icon_holder svelte-rhfb99"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
         t6 = text("\n\n            \n              \n            \n            ");
         div2 = element("div");
         span2 = element("span");
@@ -11458,19 +11438,19 @@
         t19 = text("\n           \n          ");
         b2 = element("b");
         t20 = text(t20_value);
-        attr(span0, "class", "icon_holder svelte-xpikqe");
-        attr(div0, "class", "cl-btn svelte-xpikqe");
-        attr(div1, "class", "cl-btn svelte-xpikqe");
+        attr(span0, "class", "icon_holder svelte-rhfb99");
+        attr(div0, "class", "cl-btn svelte-rhfb99");
+        attr(div1, "class", "cl-btn svelte-rhfb99");
         set_style(div1, "cursor", "pointer");
-        attr(span2, "class", "icon_holder svelte-xpikqe");
-        attr(div2, "class", "cl-btn svelte-xpikqe");
+        attr(span2, "class", "icon_holder svelte-rhfb99");
+        attr(div2, "class", "cl-btn svelte-rhfb99");
         set_style(div2, "cursor", "pointer");
-        attr(div3, "class", "cl-center svelte-xpikqe");
-        attr(div4, "class", "card-line svelte-xpikqe");
+        attr(div3, "class", "cl-center svelte-rhfb99");
+        attr(div4, "class", "card-line svelte-rhfb99");
         if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.TIME))
           attr(img0, "src", img0_src_value);
         attr(img0, "alt", "SVG_Time");
-        attr(div5, "class", "card-line cl-btn svelte-xpikqe");
+        attr(div5, "class", "card-line cl-btn svelte-rhfb99");
         if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.COMMENT))
           attr(img1, "src", img1_src_value);
         attr(img1, "alt", "SVG_Comment");
@@ -11480,8 +11460,8 @@
         if (!src_url_equal(img3.src, img3_src_value = CONFIG.ICON.LEECHERS))
           attr(img3, "src", img3_src_value);
         attr(img3, "alt", "SVG_Leechers");
-        attr(div6, "class", "card-line svelte-xpikqe");
-        attr(div7, "class", "card-details svelte-xpikqe");
+        attr(div6, "class", "card-line svelte-rhfb99");
+        attr(div7, "class", "card-details svelte-rhfb99");
       },
       m(target, anchor) {
         if (if_block0)
@@ -11537,13 +11517,13 @@
               div1,
               "click",
               /*torrent_download*/
-              ctx[18]
+              ctx[19]
             ),
             listen(
               div2,
               "click",
               /*handleCollection*/
-              ctx[19]
+              ctx[20]
             )
           ];
           mounted = true;
@@ -11663,8 +11643,8 @@
         t = text(t_value);
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[1].torrentLink);
-        attr(a, "class", "svelte-xpikqe");
-        attr(div, "class", "card-description svelte-xpikqe");
+        attr(a, "class", "svelte-rhfb99");
+        attr(div, "class", "card-description svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11697,7 +11677,7 @@
     );
     let if_block1 = (
       /*_discount*/
-      ctx[13] != "NORMAL" && create_if_block_18(ctx)
+      ctx[14] != "NORMAL" && create_if_block_18(ctx)
     );
     return {
       c() {
@@ -11707,7 +11687,7 @@
         t = space();
         if (if_block1)
           if_block1.c();
-        attr(div, "class", "cl-tags svelte-xpikqe");
+        attr(div, "class", "cl-tags svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11735,7 +11715,7 @@
         }
         if (
           /*_discount*/
-          ctx2[13] != "NORMAL"
+          ctx2[14] != "NORMAL"
         )
           if_block1.p(ctx2, dirty);
       },
@@ -11783,24 +11763,24 @@
       c() {
         div = element("div");
         div.textContent = `${/*_discountText*/
-      ctx[15][
+      ctx[16][
         /*_discount*/
-        ctx[13]
+        ctx[14]
       ]}${/*_discountEndTime*/
-      ctx[14] ? " : " + /*_discountCalcTime*/
-      ctx[16]() + " 小时" : ""}`;
-        attr(div, "class", "_tag svelte-xpikqe");
+      ctx[15] ? " : " + /*_discountCalcTime*/
+      ctx[17]() + " 小时" : ""}`;
+        attr(div, "class", "_tag svelte-rhfb99");
         toggle_class(
           div,
           "_tag_discount_free",
           /*_discount*/
-          ctx[13] == "FREE"
+          ctx[14] == "FREE"
         );
         toggle_class(
           div,
           "_tag_discount_50",
           /*_discount*/
-          ctx[13] == "PERCENT_50"
+          ctx[14] == "PERCENT_50"
         );
       },
       m(target, anchor) {
@@ -11840,7 +11820,7 @@
         t1 = space();
         if (if_block2)
           if_block2.c();
-        attr(div, "class", "cl-tags svelte-xpikqe");
+        attr(div, "class", "cl-tags svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11918,7 +11898,7 @@
       c() {
         div = element("div");
         div.textContent = "DIY";
-        attr(div, "class", "_tag _tag_diy svelte-xpikqe");
+        attr(div, "class", "_tag _tag_diy svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11935,7 +11915,7 @@
       c() {
         div = element("div");
         div.textContent = "国配";
-        attr(div, "class", "_tag _tag_dub svelte-xpikqe");
+        attr(div, "class", "_tag _tag_dub svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11952,7 +11932,7 @@
       c() {
         div = element("div");
         div.textContent = "中字";
-        attr(div, "class", "_tag _tag_sub svelte-xpikqe");
+        attr(div, "class", "_tag _tag_sub svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -11967,7 +11947,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[34].message + ""
+      ctx[35].message + ""
     );
     let t;
     return {
@@ -11983,7 +11963,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
         16 && t_value !== (t_value = /*error*/
-        ctx2[34].message + ""))
+        ctx2[35].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -12110,7 +12090,7 @@
         t4 = space();
         if (if_block5)
           if_block5.c();
-        attr(div, "class", "card-details svelte-xpikqe");
+        attr(div, "class", "card-details svelte-rhfb99");
       },
       m(target, anchor) {
         if (if_block0)
@@ -12261,7 +12241,7 @@
     );
     let if_block1 = (
       /*_discount*/
-      ctx[13] != "NORMAL" && create_if_block_10(ctx)
+      ctx[14] != "NORMAL" && create_if_block_10(ctx)
     );
     return {
       c() {
@@ -12271,7 +12251,7 @@
         t = space();
         if (if_block1)
           if_block1.c();
-        attr(div, "class", "cl-tags svelte-xpikqe");
+        attr(div, "class", "cl-tags svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12299,7 +12279,7 @@
         }
         if (
           /*_discount*/
-          ctx2[13] != "NORMAL"
+          ctx2[14] != "NORMAL"
         )
           if_block1.p(ctx2, dirty);
       },
@@ -12347,24 +12327,24 @@
       c() {
         div = element("div");
         div.textContent = `${/*_discountText*/
-      ctx[15][
+      ctx[16][
         /*_discount*/
-        ctx[13]
+        ctx[14]
       ]}${/*_discountEndTime*/
-      ctx[14] ? " : " + /*_discountCalcTime*/
-      ctx[16]() + " 小时" : ""}`;
-        attr(div, "class", "_tag svelte-xpikqe");
+      ctx[15] ? " : " + /*_discountCalcTime*/
+      ctx[17]() + " 小时" : ""}`;
+        attr(div, "class", "_tag svelte-rhfb99");
         toggle_class(
           div,
           "_tag_discount_free",
           /*_discount*/
-          ctx[13] == "FREE"
+          ctx[14] == "FREE"
         );
         toggle_class(
           div,
           "_tag_discount_50",
           /*_discount*/
-          ctx[13] == "PERCENT_50"
+          ctx[14] == "PERCENT_50"
         );
       },
       m(target, anchor) {
@@ -12393,8 +12373,8 @@
         t = text(t_value);
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[1].torrentLink);
-        attr(a, "class", "svelte-xpikqe");
-        attr(div, "class", "card-description svelte-xpikqe");
+        attr(a, "class", "svelte-rhfb99");
+        attr(div, "class", "card-description svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12445,7 +12425,7 @@
         t1 = space();
         if (if_block2)
           if_block2.c();
-        attr(div, "class", "cl-tags svelte-xpikqe");
+        attr(div, "class", "cl-tags svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12523,7 +12503,7 @@
       c() {
         div = element("div");
         div.textContent = "DIY";
-        attr(div, "class", "_tag _tag_diy svelte-xpikqe");
+        attr(div, "class", "_tag _tag_diy svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12540,7 +12520,7 @@
       c() {
         div = element("div");
         div.textContent = "国配";
-        attr(div, "class", "_tag _tag_dub svelte-xpikqe");
+        attr(div, "class", "_tag _tag_dub svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12557,7 +12537,7 @@
       c() {
         div = element("div");
         div.textContent = "中字";
-        attr(div, "class", "_tag _tag_sub svelte-xpikqe");
+        attr(div, "class", "_tag _tag_sub svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12595,8 +12575,8 @@
       pending: create_pending_block,
       then: create_then_block,
       catch: create_catch_block,
-      value: 33,
-      error: 34
+      value: 34,
+      error: 35
     };
     handle_promise(promise_1 = /*promise*/
     ctx[4], info);
@@ -12611,20 +12591,20 @@
         t1 = text(t1_value);
         t2 = text("\n\n              \n                \n              \n              ");
         div1 = element("div");
-        div1.innerHTML = `<span class="icon_holder svelte-xpikqe"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
+        div1.innerHTML = `<span class="icon_holder svelte-rhfb99"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
         t3 = text("\n\n              \n                \n              \n              ");
         div2 = element("div");
         span2 = element("span");
         info.block.c();
-        attr(span0, "class", "icon_holder svelte-xpikqe");
-        attr(div0, "class", "cl-btn svelte-xpikqe");
-        attr(div1, "class", "cl-btn svelte-xpikqe");
+        attr(span0, "class", "icon_holder svelte-rhfb99");
+        attr(div0, "class", "cl-btn svelte-rhfb99");
+        attr(div1, "class", "cl-btn svelte-rhfb99");
         set_style(div1, "cursor", "pointer");
-        attr(span2, "class", "icon_holder svelte-xpikqe");
-        attr(div2, "class", "cl-btn svelte-xpikqe");
+        attr(span2, "class", "icon_holder svelte-rhfb99");
+        attr(div2, "class", "cl-btn svelte-rhfb99");
         set_style(div2, "cursor", "pointer");
-        attr(div3, "class", "cl-center svelte-xpikqe");
-        attr(div4, "class", "card-line svelte-xpikqe");
+        attr(div3, "class", "cl-center svelte-rhfb99");
+        attr(div4, "class", "card-line svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -12647,13 +12627,13 @@
               div1,
               "click",
               /*torrent_download*/
-              ctx[18]
+              ctx[19]
             ),
             listen(
               div2,
               "click",
               /*handleCollection*/
-              ctx[19]
+              ctx[20]
             )
           ];
           mounted = true;
@@ -12691,7 +12671,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[34].message + ""
+      ctx[35].message + ""
     );
     let t;
     return {
@@ -12707,7 +12687,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
         16 && t_value !== (t_value = /*error*/
-        ctx2[34].message + ""))
+        ctx2[35].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -12785,13 +12765,13 @@
     let img_src_value;
     let t0;
     let t1_value = `${/*_CT*/
-  ctx[17].day} 日`;
+  ctx[18].day} 日`;
     let t1;
     let t2;
     let t3_value = (
       /*_CT*/
-      ctx[17].hour ? `${/*_CT*/
-    ctx[17].hour} 时` : ""
+      ctx[18].hour ? `${/*_CT*/
+    ctx[18].hour} 时` : ""
     );
     let t3;
     return {
@@ -12805,7 +12785,7 @@
         if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.TIME))
           attr(img, "src", img_src_value);
         attr(img, "alt", "SVG_Time");
-        attr(div, "class", "card-line cl-btn svelte-xpikqe");
+        attr(div, "class", "card-line cl-btn svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12879,7 +12859,7 @@
         if (!src_url_equal(img2.src, img2_src_value = CONFIG.ICON.LEECHERS))
           attr(img2, "src", img2_src_value);
         attr(img2, "alt", "SVG_Leechers");
-        attr(div, "class", "card-line svelte-xpikqe");
+        attr(div, "class", "card-line svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -12943,27 +12923,32 @@
     let t5;
     let t6;
     let t7;
+    let t8;
     let mounted;
     let dispose;
     let if_block0 = (
       /*$_CARD_SHOW*/
       (ctx[10].title || /*_hover*/
-      ctx[5]) && create_if_block_23(ctx)
+      ctx[5]) && create_if_block_24(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (!/*_picError*/
       ctx2[6])
-        return create_if_block_21;
+        return create_if_block_22;
       return create_else_block_1;
     }
     let current_block_type = select_block_type(ctx);
     let if_block1 = current_block_type(ctx);
     let if_block2 = (
+      /*$_trigger_nexus_pic*/
+      ctx[11] && create_if_block_21()
+    );
+    let if_block3 = (
       /*$_CARD_SHOW*/
       (ctx[10].all || /*_hover*/
       ctx[5]) && create_if_block_12(ctx)
     );
-    let if_block3 = !/*$_CARD_SHOW*/
+    let if_block4 = !/*$_CARD_SHOW*/
     (ctx[10].all || /*_hover*/
     ctx[5]) && create_if_block$2(ctx);
     return {
@@ -12989,35 +12974,38 @@
         t7 = space();
         if (if_block3)
           if_block3.c();
-        attr(img, "class", "card_category-img svelte-xpikqe");
+        t8 = space();
+        if (if_block4)
+          if_block4.c();
+        attr(img, "class", "card_category-img svelte-rhfb99");
         if (!src_url_equal(img.src, img_src_value = /*torrentInfo*/
         ctx[1]._categoryImg))
           attr(img, "src", img_src_value);
         attr(img, "alt", "");
-        attr(div0, "class", "card-category svelte-xpikqe");
+        attr(div0, "class", "card-category svelte-rhfb99");
         attr(div0, "data-href", div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
         ctx[1].category);
         set_style(
           div0,
           "background-color",
           /*_categoryColor*/
-          ctx[22] ?? "transparent"
+          ctx[23] ?? "transparent"
         );
         set_style(
           div0,
           "color",
           /*_categoryColor*/
-          ctx[22] ? getTextColor(
+          ctx[23] ? getTextColor(
             /*_categoryColor*/
-            ctx[22]
+            ctx[23]
           ) : "black"
         );
-        attr(div1, "class", "card-index svelte-xpikqe");
-        attr(div2, "class", "card-image svelte-xpikqe");
-        attr(div3, "class", "card-holder svelte-xpikqe");
+        attr(div1, "class", "card-index svelte-rhfb99");
+        attr(div2, "class", "card-image svelte-rhfb99");
+        attr(div3, "class", "card-holder svelte-rhfb99");
         set_style(div3, "background", "linear-gradient (to bottom, " + /*_categoryColor*/
-        (ctx[22] ?? _defaultColor) + " 18px, rgba(255, 255, 255, 0.4) 18px, rgba(255, 255, 255, 0))");
-        attr(div4, "class", "card svelte-xpikqe");
+        (ctx[23] ?? _defaultColor) + " 18px, rgba(255, 255, 255, 0.4) 18px, rgba(255, 255, 255, 0))");
+        attr(div4, "class", "card svelte-rhfb99");
         set_style(
           div4,
           "display",
@@ -13037,7 +13025,7 @@
           div4,
           "border-color",
           /*_categoryColor*/
-          ctx[22] ?? _defaultColor
+          ctx[23] ?? _defaultColor
         );
         set_style(
           div4,
@@ -13046,7 +13034,7 @@
           ctx[9]
         );
         set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
-        (ctx[22] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
+        (ctx[23] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
         ctx[9] + " 18px)");
       },
       m(target, anchor) {
@@ -13065,32 +13053,35 @@
         append(div2, t4);
         append(div2, div1);
         append(div1, t5);
-        append(div3, t6);
+        append(div2, t6);
         if (if_block2)
-          if_block2.m(div3, null);
+          if_block2.m(div2, null);
         append(div3, t7);
         if (if_block3)
           if_block3.m(div3, null);
-        ctx[24](div4);
+        append(div3, t8);
+        if (if_block4)
+          if_block4.m(div3, null);
+        ctx[25](div4);
         if (!mounted) {
           dispose = [
             listen(
               div2,
               "click",
               /*showDetailIframe*/
-              ctx[12]
+              ctx[13]
             ),
             listen(
               div3,
               "mouseenter",
               /*card_show_detail*/
-              ctx[20]
+              ctx[21]
             ),
             listen(
               div3,
               "mouseleave",
               /*card_hide_detail*/
-              ctx[21]
+              ctx[22]
             )
           ];
           mounted = true;
@@ -13121,7 +13112,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_23(ctx2);
+            if_block0 = create_if_block_24(ctx2);
             if_block0.c();
             if_block0.m(div3, t3);
           }
@@ -13144,34 +13135,49 @@
         ctx2[0] + 1 + ""))
           set_data(t5, t5_value);
         if (
-          /*$_CARD_SHOW*/
-          ctx2[10].all || /*_hover*/
-          ctx2[5]
+          /*$_trigger_nexus_pic*/
+          ctx2[11]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_12(ctx2);
+            if_block2 = create_if_block_21();
             if_block2.c();
-            if_block2.m(div3, t7);
+            if_block2.m(div2, null);
           }
         } else if (if_block2) {
           if_block2.d(1);
           if_block2 = null;
         }
-        if (!/*$_CARD_SHOW*/
-        (ctx2[10].all || /*_hover*/
-        ctx2[5])) {
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[10].all || /*_hover*/
+          ctx2[5]
+        ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block$2(ctx2);
+            if_block3 = create_if_block_12(ctx2);
             if_block3.c();
-            if_block3.m(div3, null);
+            if_block3.m(div3, t8);
           }
         } else if (if_block3) {
           if_block3.d(1);
           if_block3 = null;
+        }
+        if (!/*$_CARD_SHOW*/
+        (ctx2[10].all || /*_hover*/
+        ctx2[5])) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block$2(ctx2);
+            if_block4.c();
+            if_block4.m(div3, null);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
         }
         if (dirty[0] & /*torrentInfo, $_SITE_SETTING*/
         258) {
@@ -13209,7 +13215,7 @@
         if (dirty[0] & /*$_current_bgColor*/
         512) {
           set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
-          (ctx2[22] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
+          (ctx2[23] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
           ctx2[9] + " 18px)");
         }
       },
@@ -13225,7 +13231,9 @@
           if_block2.d();
         if (if_block3)
           if_block3.d();
-        ctx[24](null);
+        if (if_block4)
+          if_block4.d();
+        ctx[25](null);
         mounted = false;
         run_all(dispose);
       }
@@ -13246,17 +13254,19 @@
     let $_SITE_SETTING;
     let $_current_bgColor;
     let $_CARD_SHOW;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(25, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(26, $_iframe_switch = $$value));
+    let $_trigger_nexus_pic;
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(26, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(27, $_iframe_switch = $$value));
     component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(8, $_SITE_SETTING = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(9, $_current_bgColor = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(10, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(11, $_trigger_nexus_pic = $$value));
     function fetchData(api, payload, func2) {
       if (!CONFIG.API[api]) {
         console.warn(`没有名为 ${api} 的 API 接口.`);
         return;
       }
-      const url = CONFIG.HOST + CONFIG.API[api].url;
+      const url = location.origin + CONFIG.API[api].url;
       const method = CONFIG.API[api].method;
       fetch(url, { method, body: payload }).then((response) => response.json()).then((data) => {
         func2(data);
@@ -13312,7 +13322,7 @@
         console.warn(`没有名为 ${api} 的 API 接口.`);
         return;
       }
-      const url = CONFIG.HOST + CONFIG.API[api].url;
+      const url = location.origin + CONFIG.API[api].url;
       const method = CONFIG.API[api].method;
       const res = await fetch(url, { method, body: payload });
       const json = await res.json();
@@ -13377,6 +13387,7 @@
       $_SITE_SETTING,
       $_current_bgColor,
       $_CARD_SHOW,
+      $_trigger_nexus_pic,
       sort_masonry,
       showDetailIframe,
       _discount,
@@ -13668,7 +13679,7 @@
   function UrlPath_2_ParamList(path = location.href) {
     let url = path;
     if (path.indexOf("/browse") == 0) {
-      url = location.protocol + "//" + location.host + path;
+      url = location.origin + path;
     }
     console.log(`url 补全: ${url}`);
     let urlObject = new URL(url);
@@ -13705,7 +13716,7 @@
     let { waterfallNode } = $$props;
     let { waterfallParentNode } = $$props;
     let { update_ORIGIN_TL_Node } = $$props;
-    const searchApiURL = location.protocol + "//" + location.host + CONFIG.API.search.url;
+    const searchApiURL = location.origin + CONFIG.API.search.url;
     window.NEXUS_TOOLS = NEXUS_TOOLS;
     let masonry2;
     let loading_hide = false;
