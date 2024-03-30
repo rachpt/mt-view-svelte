@@ -96,8 +96,8 @@
    */
   function turnPage(event) {
     // 防止默认行为的发生
-    event.preventDefault();
     // console.log(event);
+    if (event) event.preventDefault();
 
     // 加载下一页
     if (!$_turnPage) debounceLoad();
