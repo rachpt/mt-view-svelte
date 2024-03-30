@@ -85,9 +85,16 @@ export const _delay_nexus_pic = persistStore('_delay_nexus_pic', 600);
 /** 是否显示卡片过渡动画 */
 export const _animated = persistStore('_animated', true);
 
-/** 卡片宽度 */
-// export const _card_width = writable(200);
-export const _card_width = persistStore('_card_width', 300);
+/** 卡片宽度(废弃) */
+// export const _card_width = persistStore('_card_width', 300);
+
+/** 卡片布置 */
+export const _card_layout = persistStore('_card_layout', {
+  // 列数
+  column: 4,
+  // 间距
+  gap: 20
+});
 
 /** 卡片设置: 全站点配置 & 各个站点配置 */
 const site_setting = {

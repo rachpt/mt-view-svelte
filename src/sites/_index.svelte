@@ -2,13 +2,13 @@
   import {
     _current_domain,
     _Global_Masonry,
-    _card_width,
     _current_bgColor,
     _turnPage,
     _iframe_switch,
     _iframe_url,
     _show_configPanel,
     _animated,
+    _card_layout,
   } from "../stores";
   import { onMount, afterUpdate } from "svelte";
 
@@ -47,36 +47,47 @@
 
   // 组件函数 ------------------------------------------------
 
-  /** 根据容器宽度和卡片宽度动态调整卡片间隔 gutter
-   * @param {object} containerDom 容器dom
-   * @param {number} card_width 卡片宽度
-   */
-  // @ts-ignore
-  function GET_CARD_GUTTER(containerDom, card_width) {
-    // 获取容器宽度
-    const _width = containerDom.clientWidth;
-
-    // 获取一个合适的 gutter
-    const card_real_width = card_width + CARD.CARD_BORDER;
-    const columns = Math.floor(_width / card_real_width);
-    const gutter = (_width - columns * card_real_width) / (columns - 1);
-    console.log(`列数:${columns} 间隔:${gutter}`);
-    console.log(
-      `容器宽:${_width} 列宽:${masonry ? masonry.columnWidth : "对象"}`
-    );
-
-    return Math.floor(gutter);
-  }
-
-  /** 调整卡片布局 */
+  /** 整理卡片布局 */
   function CHANGE_CARD_LAYOUT() {
     // console.log("card width changed.");
-    masonry.options.gutter = GET_CARD_GUTTER(waterfallNode, $_card_width);
-    masonry.options.columnWidth = $_card_width;
+
+    resizeMasonry($_card_layout.column, $_card_layout.gap);
     sortMasonry("fast");
     sortMasonry("fast");
   }
   window.CHANGE_CARD_LAYOUT = CHANGE_CARD_LAYOUT;
+
+  /**调整瀑布流列数 & 间隔
+   * @param {number} columns 列数
+   * @param {number} gutter 间隔(px)
+   * @returns {number} 卡片宽度
+   */
+  function resizeMasonry(columns, gutter = 10) {
+    // 最少两列
+    if (columns <= 1 || gutter <= 1) {
+      console.warn("卡片列数或卡片间隔过小, 列数不小于2, 间隔不小于1");
+      return;
+    }
+
+    // 算宽度
+    const widthContainer = document.querySelector("div.waterfall").clientWidth;
+    const widthCard = (widthContainer - (columns - 1) * gutter) / columns;
+
+    // 配置宽度
+    Array.from(document.querySelectorAll(".card")).forEach(
+      (el) => (el.style.width = widthCard + "px"),
+    );
+
+    if (masonry) {
+      masonry.options.columnWidth = widthCard;
+      masonry.options.gutter = gutter;
+      masonry.layout();
+    }
+
+    // 往 localstorage 里写列数和间隔
+
+    return widthCard;
+  }
 
   // 翻页相关 ------------------------------------------------
 
@@ -142,7 +153,7 @@
 
   let masonry;
   $: if (masonry) {
-    CARD.CARD_WIDTH = $_card_width;
+    CARD.CARD_WIDTH = resizeMasonry($_card_layout.column, $_card_layout.gap);
     console.log("卡片宽度:\t", CARD.CARD_WIDTH);
 
     CHANGE_CARD_LAYOUT();
@@ -191,7 +202,7 @@
     // 如果 "page" 参数不存在，则将页数设为 0，否则打印当前页数
     if (!PAGE.PAGE_CURRENT) {
       console.log(
-        `网页链接没有page参数, 无法跳转下一页, 生成PAGE.PAGE_CURRENT为0`
+        `网页链接没有page参数, 无法跳转下一页, 生成PAGE.PAGE_CURRENT为0`,
       );
       PAGE.PAGE_CURRENT = 0;
     } else {
@@ -283,11 +294,14 @@
     // @ts-ignore
     masonry = new Masonry(waterfallNode, {
       itemSelector: ".card",
-      columnWidth: $_card_width,
-      gutter: GET_CARD_GUTTER(waterfallNode, $_card_width),
+      columnWidth: resizeMasonry($_card_layout.column, $_card_layout.gap),
+      gutter: $_card_layout.gap,
+
       // transitions Duration 默认值为 0.4
       transitionDuration: $_animated ? 0.4 : 0,
     });
+
+    resizeMasonry($_card_layout.column, $_card_layout.gap);
 
     // 绑定各种全局变量
     // @ts-ignore

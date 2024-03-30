@@ -5,7 +5,6 @@
     _current_bgColor,
     _Global_Masonry,
     _list_viewMode,
-    _card_width,
     _CARD_SHOW,
     _SITE_SETTING,
     _turnPage,
@@ -18,6 +17,7 @@
     _show_configPanel,
     _current_domain,
     _animated,
+    _card_layout,
   } from "./stores";
 
   import { sortMasonry } from "./utils";
@@ -97,16 +97,6 @@
   function __sort_masonry() {
     // @ts-ignore
     $_Global_Masonry.layout();
-  }
-
-  /** 切换宽度 */
-  function config_changeWidth() {
-    $_card_width = $_card_width == 300 ? 200 : 300;
-    console.log(`[debug]\$card_width: ${$_card_width}`);
-
-    setTimeout(() => {
-      sortMasonry();
-    }, 0);
   }
 
   /** 显示所有详情界面 */
@@ -289,11 +279,6 @@
     </button>
 
     {#if $_show_debug_btn}
-      <!-- 按钮4: debug -->
-      <button class="sideP__btn" on:click={config_changeWidth}>
-        [d]切换宽度
-      </button>
-
       <!-- 按钮5: debug -->
       <button class="sideP__btn" on:click={config_showAllDetails}>
         [d]显示详情
@@ -451,11 +436,43 @@
             bind:checked={$_show_debug_btn}
             green_state={false}
           />
+        </div>
+      </div>
 
-          <!-- 按钮: 切换宽度 -->
-          <button class="sideP__btn" on:click={config_changeWidth}>
-            切换宽度(开发中): {$_card_width}
-          </button>
+      <!-- ---------------- 卡片布局 ---------------- -->
+      <div class="section">
+        <h1 class="s_title">卡片布局</h1>
+        <div class="s_panel">
+          <Switch
+            title_fixed={`卡片列数: ${$_card_layout.column}`}
+            label="范围: 2~7 列"
+            type="range"
+          >
+            <input
+              type="range"
+              bind:value={$_card_layout.column}
+              min="2"
+              max="7"
+              step="1"
+              list="values"
+              on:change={window.CHANGE_CARD_LAYOUT}
+            />
+          </Switch>
+          <Switch
+            title_fixed={`卡片间距: ${$_card_layout.gap}px`}
+            label="范围: 2~100 px"
+            type="range"
+          >
+            <input
+              type="range"
+              bind:value={$_card_layout.gap}
+              min="2"
+              max="100"
+              step="1"
+              list="values"
+              on:change={window.CHANGE_CARD_LAYOUT}
+            />
+          </Switch>
         </div>
       </div>
 

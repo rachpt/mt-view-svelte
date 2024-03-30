@@ -2,14 +2,13 @@
  * np架构 各种默认参数
  */
 import { get } from 'svelte/store';
-import { _card_width } from './stores';
 // -------------------------------
 import SVG_Preview from "@/assets/icon_preview.svg";
 
 /** 瀑布流卡片相关参数顶层对象 */
 const CARD = {
-  /** 瀑布流卡片宽度 */
-  CARD_WIDTH: get(_card_width),
+  /** 瀑布流卡片宽度 (废弃) */
+  // CARD_WIDTH: get(_card_width),
 
   /** NOTE: 瀑布流卡片边框宽度 -> 这个2是真值, 但是边框好像是会随着分辨率和缩放变化, 给高有利大分辨率, 给低有利于小分辨率 */
   CARD_BORDER: 0,
