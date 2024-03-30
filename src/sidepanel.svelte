@@ -104,14 +104,18 @@
     $_card_width = $_card_width == 300 ? 200 : 300;
     console.log(`[debug]\$card_width: ${$_card_width}`);
 
-    sortMasonryBundle();
+    setTimeout(() => {
+      sortMasonry();
+    }, 0);
   }
 
   /** 显示所有详情界面 */
   function config_showAllDetails() {
     $_CARD_SHOW.all = !$_CARD_SHOW.all;
 
-    sortMasonryBundle();
+    setTimeout(() => {
+      sortMasonry();
+    }, 0);
   }
 
   /** 模式切换按钮标签 */
@@ -124,16 +128,6 @@
   /** 切换下一页加载模式 */
   function config_changeLoadMode() {
     $_iframe_switch = $_iframe_switch == 0 ? 1 : 0;
-  }
-
-  // ------------------------------------------------
-
-  /** 封装的瀑布流整理函数 */
-  function sortMasonryBundle() {
-    sortMasonry("fast");
-    sortMasonry("fast");
-    sortMasonry();
-    sortMasonry();
   }
 
   // ------------------------------------------------
@@ -476,7 +470,7 @@
             title_red="显示所有信息(较乱)"
             bind:checked={$_CARD_SHOW.all}
             green_state={false}
-            on:click={sortMasonryBundle}
+            func={sortMasonry}
           />
           <!-- <button class="sideP__btn" on:click={config_showAllDetails}>显示所有详情界面</button> -->
         </div>
@@ -488,115 +482,38 @@
             <Switch
               title_fixed="显示种子名称"
               bind:checked={$_CARD_SHOW.title}
+              func={sortMasonry}
             />
             <Switch
               title_fixed="显示置顶和免费"
               bind:checked={$_CARD_SHOW.free}
+              func={sortMasonry}
             />
             <Switch
               title_fixed="显示副标题"
               bind:checked={$_CARD_SHOW.sub_title}
+              func={sortMasonry}
             />
-            <Switch title_fixed="显示标签" bind:checked={$_CARD_SHOW.tags} />
+            <Switch
+              title_fixed="显示标签"
+              bind:checked={$_CARD_SHOW.tags}
+              func={sortMasonry}
+            />
             <Switch
               title_fixed="显示 [大小/下载/收藏]"
               bind:checked={$_CARD_SHOW.size_download_collect}
+              func={sortMasonry}
             />
             <Switch
               title_fixed="显示上传时间"
               bind:checked={$_CARD_SHOW.upload_time}
+              func={sortMasonry}
             />
             <Switch
               title_fixed="显示 [评论/上传/下载/完成]"
               bind:checked={$_CARD_SHOW.statistics}
+              func={sortMasonry}
             />
-
-            <!-- NOTE: 废弃的旧型样式 -->
-            {#if false}
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.title}
-                  on:change={() => {
-                    // console.log($_CARD_SHOW.title);
-                    sortMasonry();
-                  }}
-                />
-                显示种子名称
-              </span>
-
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.free}
-                  on:change={() => {
-                    // console.log($_CARD_SHOW.free);
-                    sortMasonry();
-                  }}
-                />
-                显示置顶和免费
-              </span>
-
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.sub_title}
-                  on:change={() => {
-                    // console.log($_CARD_SHOW.sub_title);
-                    sortMasonry();
-                  }}
-                />
-                显示副标题
-              </span>
-
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.tags}
-                  on:change={() => {
-                    // console.log($_CARD_SHOW.tags);
-                    sortMasonry();
-                  }}
-                />
-                显示标签
-              </span>
-
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.size_download_collect}
-                  on:change={() => {
-                    // console.log($_CARD_SHOW.size_download_collect);
-                    sortMasonry();
-                  }}
-                />
-                显示大小&下载&收藏
-              </span>
-
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.upload_time}
-                  on:change={() => {
-                    // console.log($_CARD_SHOW.upload_time);
-                    sortMasonry();
-                  }}
-                />
-                显示上传时间
-              </span>
-
-              <span class="s_checkbox">
-                <input
-                  type="checkbox"
-                  bind:checked={$_CARD_SHOW.statistics}
-                  on:change={() => {
-                    // console.log('statistics:\t'+$_CARD_SHOW.statistics);
-                    sortMasonry();
-                  }}
-                />
-                显示评论/上传/下载/完成
-              </span>
-            {/if}
           </div>
         </div>
       </div>
