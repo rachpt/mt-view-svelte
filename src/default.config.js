@@ -1,9 +1,10 @@
 /**
- * 各种默认参数
+ * np架构 各种默认参数
  */
-
 import { get } from 'svelte/store';
 import { _card_width } from './stores';
+// -------------------------------
+import SVG_Preview from "@/assets/icon_preview.svg";
 
 /** 瀑布流卡片相关参数顶层对象 */
 const CARD = {
@@ -98,6 +99,8 @@ const ICON = {
     '<img class="delbookmark" src="pic/trans.gif" alt="Unbookmarked" title="收藏">',
   /** 已收藏图标 */
   COLLETED: '<img class="bookmark" src="pic/trans.gif" alt="Bookmarked">',
+  /** 预览图标 */
+  PREVIEW: SVG_Preview
 };
 
 export { CARD, PAGE, ICON }

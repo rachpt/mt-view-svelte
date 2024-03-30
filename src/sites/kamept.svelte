@@ -175,6 +175,7 @@
         <!-- 索引标号 -->
         <div class="hover-trigger">
           <!-- {torrentInfo.torrentIndex + 1} -->
+          <img style="pointer-events: none;" src={ICON.PREVIEW} alt="PREVIEW" />
         </div>
       {/if}
     </div>
@@ -587,9 +588,9 @@
     line-height: 16px;
     font-size: 16px;
 
-    background-color: rgb(255, 187, 16);
+    /* background-color: rgb(255, 187, 16); */
 
-    opacity: 0.5;
+    opacity: 0.75;
 
     /* color: yellow; */
     /* border-top-right-radius: 0px; */

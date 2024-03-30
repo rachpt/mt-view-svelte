@@ -76,17 +76,17 @@ RT, 本油猴脚本专为 PT 打造, 让你顺畅划划点点, 一页爽逛种�
       - [ ] 排序区按钮(from tg by 天 胖)
       - [ ] 卡片宽度 & 间距宽度 调整
       - [ ] 简洁模式 & 详细模式 切换
-      - [ ] TODO: 图片中心眼睛 logo
-        - [ ] 跟随预览 & 中间预览 切换(from tg by 天 胖)
+      - [x] TODO: 图片中心眼睛 logo
+        - [x] 跟随预览 & 中间预览 切换(from tg by 天 胖)
     - [x] 加个 ESC 按钮退出 iframe 显示(from tg by LNN)
     - [x] Nexus 触摸显示大图放个半秒再显示？避免划过显示一堆不想看的？(from tg by LNN & 龟龟)
     - [x] 配置一下标题的隐藏(from tg by LNN)
     - [x] 侧边栏右侧位置保护(from tg by 天 胖)
     - [x] 将是否打开原有列表记忆在 localstorage 里(from tg by 天 胖)
     - [x] 给列表模式加点击 iframe 显示详情(from tg by 天 胖)
-    - [ ] 配置悬浮预览大图的触发方式: 全图 or 局部 (以改善直接悬浮图片显示大图的体验) (from tg by 兔纸) 
+    - [x] 配置悬浮预览大图的触发方式: 全图 or 局部 (以改善直接悬浮图片显示大图的体验) (from tg by 兔纸) 
       - [x] Kame
-      - [ ] M-Team
+      - [x] M-Team
     - [ ] TODO: 排列模式:按照列的模式加紧(from tg by 天 胖)  
     基本搞定了, 想想怎么在UI上整合进去就行, 代码也要改, 下面的不过是伪代码罢了.
         ```javascript

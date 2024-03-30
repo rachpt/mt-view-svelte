@@ -6,6 +6,7 @@
     _current_bgColor,
     _iframe_switch,
     _iframe_url,
+    _trigger_nexus_pic,
   } from "../stores";
   import { sortMasonry } from "../utils";
   import { config } from "./testMteam";
@@ -313,6 +314,18 @@
       <div class="card-index">
         {index + 1}
       </div>
+
+      {#if $_trigger_nexus_pic}
+        <!-- 索引标号 -->
+        <div class="hover-trigger">
+          <!-- {torrentInfo.torrentIndex + 1} -->
+          <img
+            style="pointer-events: none;"
+            src={config.ICON.PREVIEW}
+            alt="PREVIEW"
+          />
+        </div>
+      {/if}
     </div>
 
     <!-- NOTE: 完整内部显示 -->
@@ -978,6 +991,39 @@
     align-items: center;
 
     pointer-events: none;
+  }
+
+  /* 悬浮预览: 局部触发器 */
+  .hover-trigger {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    /* padding-right: 19px; */
+    /* padding-left: 2px; */
+    padding: 0;
+    width: 42px;
+    margin: 0;
+    height: 40px;
+    line-height: 16px;
+    font-size: 16px;
+
+    /* background-color: rgb(255, 187, 16); */
+
+    opacity: 0.75;
+
+    /* color: yellow; */
+    /* border-top-right-radius: 0px; */
+    /* border-bottom-left-radius: 100px; */
+    border-radius: 9999px;
+
+    display: flex;
+    align-items: center;
+
+    /* pointer-events: none; */
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   /* 卡片: 收藏按钮 */
