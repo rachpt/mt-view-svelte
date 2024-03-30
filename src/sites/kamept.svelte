@@ -28,12 +28,12 @@
       // 收藏链接
       window.location.href = jsCodeLink;
 
-      // 操作相应的收藏图片
-      const btn = document.querySelector(`div#${card_id}`);
-      const img = btn.children[0];
-      img.className =
-        img.className == "delbookmark" ? "bookmark" : "delbookmark";
-      // console.log(btn);
+      // 临时更改收藏 ICON
+      torrentInfo.collectState =
+        torrentInfo.collectState == "Unbookmarked"
+          ? "Bookmarked"
+          : "Unbookmarked";
+
       console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
     } catch (error) {
       // GUI 通知一下捏
@@ -244,10 +244,11 @@
             <div
               class="btnCollet cl-center"
               id="tI_{torrentInfo.torrentIndex}"
-              on:click={COLLET_AND_ICON_CHANGE(
-                torrentInfo.collectLink,
-                "tI_" + torrentInfo.torrentIndex,
-              )}
+              on:click={() =>
+                COLLET_AND_ICON_CHANGE(
+                  torrentInfo.collectLink,
+                  "tI_" + torrentInfo.torrentIndex,
+                )}
             >
               {@html torrentInfo.collectState == "Unbookmarked"
                 ? ICON.COLLET
@@ -341,10 +342,11 @@
               <div
                 class="btnCollet cl-center"
                 id="tI_{torrentInfo.torrentIndex}"
-                on:click={COLLET_AND_ICON_CHANGE(
-                  torrentInfo.collectLink,
-                  "tI_" + torrentInfo.torrentIndex,
-                )}
+                on:click={() =>
+                  COLLET_AND_ICON_CHANGE(
+                    torrentInfo.collectLink,
+                    "tI_" + torrentInfo.torrentIndex,
+                  )}
               >
                 {@html torrentInfo.collectState == "Unbookmarked"
                   ? ICON.COLLET
