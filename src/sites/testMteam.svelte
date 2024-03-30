@@ -24,7 +24,7 @@
       console.warn(`没有名为 ${api} 的 API 接口.`);
       return;
     }
-    const url = config.HOST + config.API[api].url;
+    const url = location.origin + config.API[api].url;
     const method = config.API[api].method;
 
     fetch(url, { method, body: payload })
@@ -156,7 +156,7 @@
       console.warn(`没有名为 ${api} 的 API 接口.`);
       return;
     }
-    const url = config.HOST + config.API[api].url;
+    const url = location.origin + config.API[api].url;
     const method = config.API[api].method;
 
     const res = await fetch(url, { method, body: payload });
@@ -408,7 +408,7 @@
                 </svg>
               </span>
               &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
-                2
+                2,
               ) + "G"}
             </div>
 
@@ -599,7 +599,7 @@
                   </svg>
                 </span>
                 &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
-                  2
+                  2,
                 ) + "G"}
               </div>
 
@@ -749,7 +749,9 @@
 
     /* cursor: pointer; */
 
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 0px, rgba(0, 0, 0, 0.1) -1px -1px 0px;
+    box-shadow:
+      rgba(0, 0, 0, 0.3) 0px 6px 0px,
+      rgba(0, 0, 0, 0.1) -1px -1px 0px;
     transition: box-shadow 0.2s;
   }
 

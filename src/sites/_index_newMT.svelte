@@ -51,8 +51,7 @@
   // 0. 变量声明 & 配置 ------------------------------------------------
 
   // search api
-  const searchApiURL =
-    location.protocol + "//" + location.host + config.API.search.url;
+  const searchApiURL = location.origin + config.API.search.url;
 
   // NOTE: 这里不能注释掉, 必须留着, 不然 MT 可能不加载 NEXUS_TOOLS
   // Nexus_Tools 绑定
@@ -286,7 +285,7 @@
     let url = path;
     // 以 /browse 开头的是非完整链接, 不能自动获取 searchParam, 需要补全
     if (path.indexOf("/browse") == 0) {
-      url = location.protocol + "//" + location.host + path;
+      url = location.origin + path;
     }
     console.log(`url 补全: ${url}`);
 
