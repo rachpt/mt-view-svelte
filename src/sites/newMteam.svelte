@@ -43,6 +43,7 @@
 
   /** 调用瀑布流整理*/
   function sort_masonry() {
+    // window.NEXUS_TOOLS();
     sortMasonry();
   }
 
@@ -208,15 +209,36 @@
 
   // bind:this
   let thisDom;
+
+  // ------------------------------------------------
+  // M-Team 特别处理: 对 Gay 区做图片处理
+  const static_gay_warn = "/static/cate/gayhd.gif";
+  const real_pic_normal = torrentInfo.imageList[0]
+    ? torrentInfo.imageList[0]
+    : "";
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-<div
+<!-- <div
   class="card"
   style="
     display:{torrentInfo.category == '440' && $_SITE_SETTING.mt.hide_gay
     ? 'none'
     : 'block'};
+    width: {cardWidth}px; 
+    z-index:{10000 - index}; 
+    border-color: {_categoryColor ?? _defaultColor};
+    background-color:{$_current_bgColor};
+    background: linear-gradient(
+      to bottom, 
+      {_categoryColor ?? _defaultColor} 18px,
+      {$_current_bgColor} 18px);
+    "
+  bind:this={thisDom}
+> -->
+<div
+  class="card"
+  style="
     width: {cardWidth}px; 
     z-index:{10000 - index}; 
     border-color: {_categoryColor ?? _defaultColor};
@@ -268,32 +290,57 @@
     <div class="card-image" on:click={showDetailIframe}>
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       {#if !_picError}
-        <!-- NOTE: 正常显示图片 -->
-        {#if torrentInfo.imageList[0]}
-          <img
-            class="nexus-lazy-load_Kesa"
-            src={config.LOADING_PIC}
-            data-src={torrentInfo.imageList[0] ? torrentInfo.imageList[0] : ""}
-            alt={torrentInfo.name}
-            on:load={sort_masonry}
-            on:error={() => {
-              // console.log(`________pic error: ${index}`);
-              _picError = true;
-            }}
-          />
-        {:else}
-          <!-- NOTE: 种子没有图片 -->
-          <div class="pic_error" style="">
+        <!-- NOTE: GAY -->
+        {#if torrentInfo.category == "440" && $_SITE_SETTING.mt.hide_gay == true}
+          <div
+            class="pic_error"
+            style="
+              height:auto;
+              padding:10px;
+              gap:10px;
+              line-height:24px;
+              background-color: {_categoryColor}"
+          >
             <div>
               <img
-                style="height: 100%;width: 100px;"
-                src={_PicNoLOGO}
-                alt="no pic"
+                style="height: 100%; width:60px; border-radius:20px;"
+                src={static_gay_warn}
+                alt="pic error"
                 on:load={sort_masonry}
               />
             </div>
-            <div>本种没有图片</div>
+            <div style="color: white; font-weight:600; font-size:16px;">
+              GAY WARNING<br />同志警告
+            </div>
           </div>
+        {:else}
+          <!-- NOTE: 正常显示图片 -->
+          {#if torrentInfo.imageList[0]}
+            <img
+              class="nexus-lazy-load_Kesa"
+              src={config.LOADING_PIC}
+              data-src={real_pic_normal}
+              alt={torrentInfo.name}
+              on:load={sort_masonry}
+              on:error={() => {
+                // console.log(`________pic error: ${index}`);
+                _picError = true;
+              }}
+            />
+          {:else}
+            <!-- NOTE: 种子没有图片 -->
+            <div class="pic_error" style="">
+              <div>
+                <img
+                  style="height: 100%;width: 100px;"
+                  src={_PicNoLOGO}
+                  alt="no pic"
+                  on:load={sort_masonry}
+                />
+              </div>
+              <div>本种没有图片</div>
+            </div>
+          {/if}
         {/if}
       {:else}
         <!-- NOTE: 图片加载失败 -> 缺省 svg 图片 -->
@@ -315,8 +362,9 @@
         {index + 1}
       </div>
 
-      {#if $_trigger_nexus_pic}
-        <!-- 索引标号 -->
+      <!-- 局部悬浮预览 -->
+      <!-- NOTE: 正常图片才行, 有状态都不显示 -->
+      {#if $_trigger_nexus_pic && !_picError && !(torrentInfo.category == "440" && $_SITE_SETTING.mt.hide_gay == true) && torrentInfo.imageList[0]}
         <div class="hover-trigger">
           <!-- {torrentInfo.torrentIndex + 1} -->
           <img
@@ -518,7 +566,7 @@
     {/if}
 
     <!-- NOTE: 可选外部显示 -->
-    {#if !($_CARD_SHOW.all || _hover)}
+    {#if !($_CARD_SHOW.all || _hover) && !(torrentInfo.category == "440" && $_SITE_SETTING.mt.hide_gay == true)}
       <!-- TODO: 置顶 && 免费类型&剩余时间 -->
       <!-- 置顶 && 免费类型&剩余时间 -->
       {#if $_CARD_SHOW.free && (torrentInfo.status.discount || torrentInfo.status.toppingLevel)}

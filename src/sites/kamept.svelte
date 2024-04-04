@@ -171,8 +171,8 @@
         {torrentInfo.torrentIndex + 1}
       </div>
 
+      <!-- 局部悬浮预览 -->
       {#if $_trigger_nexus_pic}
-        <!-- 索引标号 -->
         <div class="hover-trigger">
           <!-- {torrentInfo.torrentIndex + 1} -->
           <img style="pointer-events: none;" src={ICON.PREVIEW} alt="PREVIEW" />

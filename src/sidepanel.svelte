@@ -349,6 +349,9 @@
               title_green="隐藏(默认)"
               title_red="显示(狠人)"
               bind:checked={$_SITE_SETTING.mt.hide_gay}
+              func={() => {
+                window.NEXUS_TOOLS();
+              }}
             />
           </div>
         </div>
