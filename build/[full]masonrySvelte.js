@@ -2,7 +2,7 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.7
+// @version         1.1.8
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
@@ -23,7 +23,7 @@
 // @grant           none
 // ==/UserScript==
 
-(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-4b9kml.svelte-4b9kml{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-4b9kml.svelte-4b9kml:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-4b9kml.svelte-4b9kml{padding:2px 0}.card-holder.svelte-4b9kml.svelte-4b9kml{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-4b9kml.svelte-4b9kml{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-4b9kml.svelte-4b9kml{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-4b9kml.svelte-4b9kml{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-4b9kml.svelte-4b9kml:hover{-webkit-line-clamp:100}.cl-center.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-4b9kml.svelte-4b9kml:has(span){padding-top:2px}.card-details.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-4b9kml.svelte-4b9kml{height:100%;position:relative}.card-image.svelte-4b9kml img.svelte-4b9kml{width:100%;object-fit:cover}.card-alter.svelte-4b9kml.svelte-4b9kml{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-4b9kml.svelte-4b9kml{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-4b9kml.svelte-4b9kml{color:#00f}._2XFree.svelte-4b9kml.svelte-4b9kml{color:green}.card-description.svelte-4b9kml.svelte-4b9kml{padding-left:4px;padding-right:4px}.card-index.svelte-4b9kml.svelte-4b9kml{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-4b9kml.svelte-4b9kml{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-4b9kml.svelte-4b9kml:hover{opacity:1}.btnCollet.svelte-4b9kml.svelte-4b9kml{padding:1px 2px;cursor:pointer}.hot.svelte-4b9kml.svelte-4b9kml,.new.svelte-4b9kml.svelte-4b9kml{padding:0 2px;border-radius:8px;background:white;margin:2px}.card-category.svelte-1fw75v2.svelte-1fw75v2{height:24px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-1fw75v2.svelte-1fw75v2{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-1fw75v2.svelte-1fw75v2{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1fw75v2.svelte-1fw75v2:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1fw75v2.svelte-1fw75v2{padding:2px 0}.card-holder.svelte-1fw75v2.svelte-1fw75v2{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-line.svelte-1fw75v2.svelte-1fw75v2{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1fw75v2.svelte-1fw75v2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1fw75v2.svelte-1fw75v2:hover{-webkit-line-clamp:100}.cl-center.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:2px}.cl-tags.svelte-1fw75v2.svelte-1fw75v2:has(span){padding-top:2px}.card-details.svelte-1fw75v2.svelte-1fw75v2{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1fw75v2.svelte-1fw75v2{height:100%;position:relative}.card-image.svelte-1fw75v2 img.svelte-1fw75v2{width:100%;object-fit:cover}.card-alter.svelte-1fw75v2.svelte-1fw75v2{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1fw75v2.svelte-1fw75v2{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1fw75v2.svelte-1fw75v2{color:#00f}._2XFree.svelte-1fw75v2.svelte-1fw75v2{color:green}.card-description.svelte-1fw75v2.svelte-1fw75v2{padding-left:4px;padding-right:4px}.card-index.svelte-1fw75v2.svelte-1fw75v2{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.btnCollet.svelte-1fw75v2.svelte-1fw75v2{padding:1px 2px;cursor:pointer}.tempTags.svelte-1fw75v2.svelte-1fw75v2{background-color:#fff;margin-left:2px;padding-left:2px;padding-right:2px;border-radius:4px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-rhfb99.svelte-rhfb99{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-rhfb99.svelte-rhfb99{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-rhfb99.svelte-rhfb99{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-rhfb99.svelte-rhfb99{padding:2px 0}.card-holder.svelte-rhfb99.svelte-rhfb99{background-color:#ffffff80}.card-line.svelte-rhfb99.svelte-rhfb99{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-rhfb99.svelte-rhfb99{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-rhfb99.svelte-rhfb99:hover{-webkit-line-clamp:100}.cl-center.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-rhfb99.svelte-rhfb99{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-rhfb99.svelte-rhfb99{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5abd48}._tag_dub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5a3b14}._tag_sub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-rhfb99.svelte-rhfb99{background-color:#f50;color:#fff}._tag_discount_free.svelte-rhfb99.svelte-rhfb99{background-color:#108ee9;color:#fff}.card-details.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-rhfb99.svelte-rhfb99{height:100%;position:relative}.card-image.svelte-rhfb99 img.svelte-rhfb99{width:100%;object-fit:cover}.card-description.svelte-rhfb99.svelte-rhfb99{padding:2px 4px}.card-description.svelte-rhfb99 a.svelte-rhfb99,.card-description.svelte-rhfb99 a.svelte-rhfb99:hover{color:#000}.card-index.svelte-rhfb99.svelte-rhfb99{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-rhfb99.svelte-rhfb99{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-rhfb99.svelte-rhfb99:hover{opacity:1}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
+(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-4b9kml.svelte-4b9kml{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-4b9kml.svelte-4b9kml:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-4b9kml.svelte-4b9kml{padding:2px 0}.card-holder.svelte-4b9kml.svelte-4b9kml{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-4b9kml.svelte-4b9kml{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-4b9kml.svelte-4b9kml{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-4b9kml.svelte-4b9kml{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-4b9kml.svelte-4b9kml:hover{-webkit-line-clamp:100}.cl-center.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-4b9kml.svelte-4b9kml:has(span){padding-top:2px}.card-details.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-4b9kml.svelte-4b9kml{height:100%;position:relative}.card-image.svelte-4b9kml img.svelte-4b9kml{width:100%;object-fit:cover}.card-alter.svelte-4b9kml.svelte-4b9kml{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-4b9kml.svelte-4b9kml{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-4b9kml.svelte-4b9kml{color:#00f}._2XFree.svelte-4b9kml.svelte-4b9kml{color:green}.card-description.svelte-4b9kml.svelte-4b9kml{padding-left:4px;padding-right:4px}.card-index.svelte-4b9kml.svelte-4b9kml{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-4b9kml.svelte-4b9kml{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-4b9kml.svelte-4b9kml:hover{opacity:1}.btnCollet.svelte-4b9kml.svelte-4b9kml{padding:1px 2px;cursor:pointer}.hot.svelte-4b9kml.svelte-4b9kml,.new.svelte-4b9kml.svelte-4b9kml{padding:0 2px;border-radius:8px;background:white;margin:2px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-rhfb99.svelte-rhfb99{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-rhfb99.svelte-rhfb99{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-rhfb99.svelte-rhfb99{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-rhfb99.svelte-rhfb99{padding:2px 0}.card-holder.svelte-rhfb99.svelte-rhfb99{background-color:#ffffff80}.card-line.svelte-rhfb99.svelte-rhfb99{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-rhfb99.svelte-rhfb99{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-rhfb99.svelte-rhfb99:hover{-webkit-line-clamp:100}.cl-center.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-rhfb99.svelte-rhfb99{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-rhfb99.svelte-rhfb99{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5abd48}._tag_dub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5a3b14}._tag_sub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-rhfb99.svelte-rhfb99{background-color:#f50;color:#fff}._tag_discount_free.svelte-rhfb99.svelte-rhfb99{background-color:#108ee9;color:#fff}.card-details.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-rhfb99.svelte-rhfb99{height:100%;position:relative}.card-image.svelte-rhfb99 img.svelte-rhfb99{width:100%;object-fit:cover}.card-description.svelte-rhfb99.svelte-rhfb99{padding:2px 4px}.card-description.svelte-rhfb99 a.svelte-rhfb99,.card-description.svelte-rhfb99 a.svelte-rhfb99:hover{color:#000}.card-index.svelte-rhfb99.svelte-rhfb99{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-rhfb99.svelte-rhfb99{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-rhfb99.svelte-rhfb99:hover{opacity:1}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
 
 (function () {
   'use strict';
@@ -862,7 +862,7 @@
       }
     }
   }
-  function create_fragment$a(ctx) {
+  function create_fragment$9(ctx) {
     let div;
     let button;
     let t0;
@@ -914,7 +914,7 @@
   function Reload() {
     location.reload();
   }
-  function instance$a($$self, $$props, $$invalidate) {
+  function instance$9($$self, $$props, $$invalidate) {
     let firstLinkBrowse;
     let currentLinkBrowse;
     let first = true;
@@ -935,7 +935,7 @@
   class BtnReload extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$a, create_fragment$a, safe_not_equal, {});
+      init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
     }
   }
   /*!
@@ -2856,7 +2856,7 @@
       sortMasonry();
     }
   });
-  function create_if_block_6$3(ctx) {
+  function create_if_block_6$2(ctx) {
     let svg;
     let path;
     let circle;
@@ -2922,7 +2922,7 @@
       }
     };
   }
-  function create_if_block_2$5(ctx) {
+  function create_if_block_2$4(ctx) {
     let t;
     let if_block_anchor;
     function select_block_type(ctx2, dirty) {
@@ -2930,12 +2930,12 @@
         /*green_state*/
         ctx2[7]
       )
-        return create_if_block_3$5;
+        return create_if_block_3$3;
       if (
         /*checked*/
         ctx2[0]
       )
-        return create_if_block_5$3;
+        return create_if_block_5$2;
       return create_else_block_1$2;
     }
     let current_block_type = select_block_type(ctx);
@@ -3003,7 +3003,7 @@
       }
     };
   }
-  function create_if_block_5$3(ctx) {
+  function create_if_block_5$2(ctx) {
     let span;
     let t;
     return {
@@ -3034,15 +3034,15 @@
       }
     };
   }
-  function create_if_block_3$5(ctx) {
+  function create_if_block_3$3(ctx) {
     let if_block_anchor;
     function select_block_type_1(ctx2, dirty) {
       if (
         /*checked*/
         ctx2[0]
       )
-        return create_if_block_4$4;
-      return create_else_block$6;
+        return create_if_block_4$3;
+      return create_else_block$5;
     }
     let current_block_type = select_block_type_1(ctx);
     let if_block = current_block_type(ctx);
@@ -3074,7 +3074,7 @@
       }
     };
   }
-  function create_else_block$6(ctx) {
+  function create_else_block$5(ctx) {
     let span;
     let t;
     return {
@@ -3105,7 +3105,7 @@
       }
     };
   }
-  function create_if_block_4$4(ctx) {
+  function create_if_block_4$3(ctx) {
     let span;
     let t;
     return {
@@ -3136,7 +3136,7 @@
       }
     };
   }
-  function create_if_block_1$6(ctx) {
+  function create_if_block_1$5(ctx) {
     let div;
     let input;
     let t;
@@ -3198,7 +3198,7 @@
       }
     };
   }
-  function create_if_block$9(ctx) {
+  function create_if_block$8(ctx) {
     let current;
     const default_slot_template = (
       /*#slots*/
@@ -3263,7 +3263,7 @@
       }
     };
   }
-  function create_fragment$9(ctx) {
+  function create_fragment$8(ctx) {
     let div1;
     let div0;
     let t0;
@@ -3274,20 +3274,20 @@
     let current;
     let if_block0 = (
       /*label*/
-      ctx[5] && create_if_block_6$3(ctx)
+      ctx[5] && create_if_block_6$2(ctx)
     );
     let if_block1 = (
       /*title_green*/
       (ctx[3] || /*title_red*/
-      ctx[4]) && create_if_block_2$5(ctx)
+      ctx[4]) && create_if_block_2$4(ctx)
     );
     let if_block2 = (
       /*type*/
-      ctx[1] == "switch" && create_if_block_1$6(ctx)
+      ctx[1] == "switch" && create_if_block_1$5(ctx)
     );
     let if_block3 = (
       /*type*/
-      ctx[1] == "range" && create_if_block$9(ctx)
+      ctx[1] == "range" && create_if_block$8(ctx)
     );
     return {
       c() {
@@ -3344,7 +3344,7 @@
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_6$3(ctx2);
+            if_block0 = create_if_block_6$2(ctx2);
             if_block0.c();
             if_block0.m(div0, t0);
           }
@@ -3367,7 +3367,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_2$5(ctx2);
+            if_block1 = create_if_block_2$4(ctx2);
             if_block1.c();
             if_block1.m(div0, null);
           }
@@ -3391,7 +3391,7 @@
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_1$6(ctx2);
+            if_block2 = create_if_block_1$5(ctx2);
             if_block2.c();
             if_block2.m(div1, t4);
           }
@@ -3410,7 +3410,7 @@
               transition_in(if_block3, 1);
             }
           } else {
-            if_block3 = create_if_block$9(ctx2);
+            if_block3 = create_if_block$8(ctx2);
             if_block3.c();
             transition_in(if_block3, 1);
             if_block3.m(div1, null);
@@ -3447,7 +3447,7 @@
       }
     };
   }
-  function instance$9($$self, $$props, $$invalidate) {
+  function instance$8($$self, $$props, $$invalidate) {
     let { $$slots: slots = {}, $$scope } = $$props;
     let { type = "switch" } = $$props;
     let { title_fixed = "" } = $$props;
@@ -3506,7 +3506,7 @@
   class Switch extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$9, create_fragment$9, safe_not_equal, {
+      init(this, options, instance$8, create_fragment$8, safe_not_equal, {
         type: 1,
         title_fixed: 2,
         title_green: 3,
@@ -3518,7 +3518,7 @@
       });
     }
   }
-  function create_else_block$5(ctx) {
+  function create_else_block$4(ctx) {
     let div0;
     let t1;
     let div1;
@@ -3552,7 +3552,7 @@
       }
     };
   }
-  function create_if_block_4$3(ctx) {
+  function create_if_block_4$2(ctx) {
     let div0;
     let t0;
     let div1;
@@ -3579,7 +3579,7 @@
       }
     };
   }
-  function create_if_block_3$4(ctx) {
+  function create_if_block_3$2(ctx) {
     let button0;
     let t1;
     let button1;
@@ -3664,7 +3664,7 @@
       }
     };
   }
-  function create_if_block$8(ctx) {
+  function create_if_block$7(ctx) {
     let div10;
     let div9;
     let div0;
@@ -3751,9 +3751,9 @@
     let current;
     let mounted;
     let dispose;
-    let if_block0 = show_if && create_if_block_2$4(ctx);
+    let if_block0 = show_if && create_if_block_2$3(ctx);
     function switch0_checked_binding(value) {
-      ctx[27](value);
+      ctx[28](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
@@ -3764,8 +3764,8 @@
         ctx[9].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
       ),
       func: (
-        /*func*/
-        ctx[26]
+        /*func_1*/
+        ctx[27]
       )
     };
     if (
@@ -3778,7 +3778,7 @@
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[28](value);
+      ctx[29](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3797,7 +3797,7 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[29](value);
+      ctx[30](value);
     }
     let switch2_props = {
       title_fixed: "卡片移动动画",
@@ -3816,7 +3816,7 @@
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[30](value);
+      ctx[31](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3833,7 +3833,7 @@
     switch3 = new Switch({ props: switch3_props });
     binding_callbacks.push(() => bind(switch3, "checked", switch3_checked_binding));
     function switch4_checked_binding(value) {
-      ctx[31](value);
+      ctx[32](value);
     }
     let switch4_props = {
       title_fixed: "预览大图方式",
@@ -3852,10 +3852,10 @@
     binding_callbacks.push(() => bind(switch4, "checked", switch4_checked_binding));
     let if_block1 = (
       /*$_show_nexus_pic*/
-      ctx[12] && create_if_block_1$5(ctx)
+      ctx[12] && create_if_block_1$4(ctx)
     );
     function switch5_checked_binding(value) {
-      ctx[33](value);
+      ctx[34](value);
     }
     let switch5_props = {
       title_fixed: "侧边栏debug按钮",
@@ -3893,7 +3893,7 @@
       }
     });
     function switch8_checked_binding(value) {
-      ctx[36](value);
+      ctx[37](value);
     }
     let switch8_props = {
       title_fixed: "卡片信息",
@@ -3912,7 +3912,7 @@
     switch8 = new Switch({ props: switch8_props });
     binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
     function switch9_checked_binding(value) {
-      ctx[37](value);
+      ctx[38](value);
     }
     let switch9_props = { title_fixed: "显示种子名称", func: sortMasonry };
     if (
@@ -3925,7 +3925,7 @@
     switch9 = new Switch({ props: switch9_props });
     binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
     function switch10_checked_binding(value) {
-      ctx[38](value);
+      ctx[39](value);
     }
     let switch10_props = {
       title_fixed: "显示置顶和免费",
@@ -3941,7 +3941,7 @@
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
-      ctx[39](value);
+      ctx[40](value);
     }
     let switch11_props = { title_fixed: "显示副标题", func: sortMasonry };
     if (
@@ -3954,7 +3954,7 @@
     switch11 = new Switch({ props: switch11_props });
     binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
     function switch12_checked_binding(value) {
-      ctx[40](value);
+      ctx[41](value);
     }
     let switch12_props = { title_fixed: "显示标签", func: sortMasonry };
     if (
@@ -3967,7 +3967,7 @@
     switch12 = new Switch({ props: switch12_props });
     binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
     function switch13_checked_binding(value) {
-      ctx[41](value);
+      ctx[42](value);
     }
     let switch13_props = {
       title_fixed: "显示 [大小/下载/收藏]",
@@ -3983,7 +3983,7 @@
     switch13 = new Switch({ props: switch13_props });
     binding_callbacks.push(() => bind(switch13, "checked", switch13_checked_binding));
     function switch14_checked_binding(value) {
-      ctx[42](value);
+      ctx[43](value);
     }
     let switch14_props = { title_fixed: "显示上传时间", func: sortMasonry };
     if (
@@ -3996,7 +3996,7 @@
     switch14 = new Switch({ props: switch14_props });
     binding_callbacks.push(() => bind(switch14, "checked", switch14_checked_binding));
     function switch15_checked_binding(value) {
-      ctx[43](value);
+      ctx[44](value);
     }
     let switch15_props = {
       title_fixed: "显示 [评论/上传/下载/完成]",
@@ -4184,7 +4184,7 @@
             ),
             listen(div10, "click", self(
               /*click_handler_2*/
-              ctx[44]
+              ctx[45]
             ))
           ];
           mounted = true;
@@ -4203,7 +4203,7 @@
               transition_in(if_block0, 1);
             }
           } else {
-            if_block0 = create_if_block_2$4(ctx2);
+            if_block0 = create_if_block_2$3(ctx2);
             if_block0.c();
             transition_in(if_block0, 1);
             if_block0.m(div9, t3);
@@ -4275,7 +4275,7 @@
               transition_in(if_block1, 1);
             }
           } else {
-            if_block1 = create_if_block_1$5(ctx2);
+            if_block1 = create_if_block_1$4(ctx2);
             if_block1.c();
             transition_in(if_block1, 1);
             if_block1.m(div1, t14);
@@ -4303,7 +4303,7 @@
         ctx2[15].column}`;
         if (dirty[0] & /*$_card_layout*/
         32768 | dirty[1] & /*$$scope*/
-        4194304) {
+        8388608) {
           switch6_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch6.$set(switch6_changes);
@@ -4314,7 +4314,7 @@
         ctx2[15].gap}px`;
         if (dirty[0] & /*$_card_layout*/
         32768 | dirty[1] & /*$$scope*/
-        4194304) {
+        8388608) {
           switch7_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch7.$set(switch7_changes);
@@ -4475,7 +4475,7 @@
       }
     };
   }
-  function create_if_block_2$4(ctx) {
+  function create_if_block_2$3(ctx) {
     let div1;
     let h1;
     let t1;
@@ -4484,12 +4484,16 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[25](value);
+      ctx[26](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
       title_green: "隐藏(默认)",
-      title_red: "显示(狠人)"
+      title_red: "显示(狠人)",
+      func: (
+        /*func*/
+        ctx[25]
+      )
     };
     if (
       /*$_SITE_SETTING*/
@@ -4548,7 +4552,7 @@
       }
     };
   }
-  function create_if_block_1$5(ctx) {
+  function create_if_block_1$4(ctx) {
     let switch_1;
     let current;
     switch_1 = new Switch({
@@ -4585,7 +4589,7 @@
         ctx2[14] ? "" : "无延迟"}`;
         if (dirty[0] & /*$_delay_nexus_pic*/
         16384 | dirty[1] & /*$$scope*/
-        4194304) {
+        8388608) {
           switch_1_changes.$$scope = { dirty, ctx: ctx2 };
         }
         switch_1.$set(switch_1_changes);
@@ -4631,13 +4635,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[32]
+              ctx[33]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[32]
+              ctx[33]
             )
           ];
           mounted = true;
@@ -4687,13 +4691,13 @@
               input,
               "change",
               /*input_change_input_handler_1*/
-              ctx[34]
+              ctx[35]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler_1*/
-              ctx[34]
+              ctx[35]
             ),
             listen(input, "change", window.CHANGE_CARD_LAYOUT)
           ];
@@ -4744,13 +4748,13 @@
               input,
               "change",
               /*input_change_input_handler_2*/
-              ctx[35]
+              ctx[36]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler_2*/
-              ctx[35]
+              ctx[36]
             ),
             listen(input, "change", window.CHANGE_CARD_LAYOUT)
           ];
@@ -4775,7 +4779,7 @@
       }
     };
   }
-  function create_fragment$8(ctx) {
+  function create_fragment$7(ctx) {
     let div4;
     let div0;
     let t0;
@@ -4795,18 +4799,18 @@
         /*$_list_viewMode*/
         ctx2[4]
       )
-        return create_if_block_4$3;
-      return create_else_block$5;
+        return create_if_block_4$2;
+      return create_else_block$4;
     }
     let current_block_type = select_block_type(ctx);
     let if_block0 = current_block_type(ctx);
     let if_block1 = (
       /*$_show_debug_btn*/
-      ctx[8] && create_if_block_3$4(ctx)
+      ctx[8] && create_if_block_3$2(ctx)
     );
     let if_block2 = (
       /*$_show_configPanel*/
-      ctx[7] && create_if_block$8(ctx)
+      ctx[7] && create_if_block$7(ctx)
     );
     return {
       c() {
@@ -4927,7 +4931,7 @@
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_3$4(ctx2);
+            if_block1 = create_if_block_3$2(ctx2);
             if_block1.c();
             if_block1.m(div3, null);
           }
@@ -4973,7 +4977,7 @@
               transition_in(if_block2, 1);
             }
           } else {
-            if_block2 = create_if_block$8(ctx2);
+            if_block2 = create_if_block$7(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
             if_block2.m(t7.parentNode, t7);
@@ -5023,7 +5027,7 @@
       target = max;
     return target;
   }
-  function instance$8($$self, $$props, $$invalidate) {
+  function instance$7($$self, $$props, $$invalidate) {
     let $_iframe_switch;
     let $_turnPage;
     let $_CARD_SHOW;
@@ -5039,10 +5043,10 @@
     let $_trigger_nexus_pic;
     let $_delay_nexus_pic;
     let $_card_layout;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(48, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(49, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(49, $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(50, $$value));
     component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(4, $_list_viewMode = $$value));
     component_subscribe($$self, _panelPos, ($$value) => $$invalidate(5, $_panelPos = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
@@ -5120,13 +5124,16 @@
       });
     }
     const click_handler_1 = () => set_store_value(_show_configPanel, $_show_configPanel = false, $_show_configPanel);
+    const func2 = () => {
+      window.NEXUS_TOOLS();
+    };
     function switch_1_checked_binding(value) {
       if ($$self.$$.not_equal($_SITE_SETTING.mt.hide_gay, value)) {
         $_SITE_SETTING.mt.hide_gay = value;
         _SITE_SETTING.set($_SITE_SETTING);
       }
     }
-    const func2 = () => {
+    const func_12 = () => {
       window.CHANGE_CARD_LAYOUT();
     };
     function switch0_checked_binding(value) {
@@ -5240,8 +5247,9 @@
       click_handler,
       div4_binding,
       click_handler_1,
-      switch_1_checked_binding,
       func2,
+      switch_1_checked_binding,
+      func_12,
       switch0_checked_binding,
       switch1_checked_binding,
       switch2_checked_binding,
@@ -5265,14 +5273,14 @@
   class Sidepanel extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$8, create_fragment$8, safe_not_equal, {}, null, [-1, -1]);
+      init(this, options, instance$7, create_fragment$7, safe_not_equal, {}, null, [-1, -1]);
     }
   }
-  const CONFIG$2 = {
+  const CONFIG$1 = {
     /** 默认的种子表格 dom selector */
     torrentListTable: "table.torrents",
     /** 将 种子列表dom 的信息变为 json对象列表 */
-    TORRENT_LIST_TO_JSON: TORRENT_LIST_TO_JSON$1,
+    TORRENT_LIST_TO_JSON,
     /** 加载图片等待时的默认图片 */
     LOADING_PIC: "pic/logo2_100.png",
     /** 如果站点有自定义的icon, 可以用自定义的 */
@@ -5319,17 +5327,17 @@
       let np = document.querySelector("img#nexus-preview");
       if (np)
         np.style.zIndex = 12e3;
-      table_Iframe_Set$1();
+      table_Iframe_Set();
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
       var script = document.createElement("script");
       script.src = "https://kamept.com/js/nexus.js";
       document.head.appendChild(script);
-      table_Iframe_Set$1();
+      table_Iframe_Set();
     }
   };
-  function table_Iframe_Set$1() {
+  function table_Iframe_Set() {
     const lists = Array.from(document.querySelectorAll(".torrentname"));
     lists.forEach((el) => el.addEventListener("click", function(event) {
       event.preventDefault();
@@ -5337,7 +5345,7 @@
       _iframe_url.set(el.children[0].children[0].children[1].querySelector("a").href + "#kdescr");
     }));
   }
-  function TORRENT_LIST_TO_JSON$1(torrent_list_Dom) {
+  function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
     const rows = torrent_list_Dom.querySelectorAll("tbody tr");
     const data = [];
     rows.forEach((row) => {
@@ -5350,7 +5358,7 @@
       const categoryNumber = categoryLink.slice(-3);
       const _categoryImg = categoryImg.cloneNode(true);
       _categoryImg.className = "card-category-img";
-      const torrentIndex = CONFIG$2.INDEX++;
+      const torrentIndex = CONFIG$1.INDEX++;
       const torrentNameLink = row.querySelector(".torrentname a");
       const torrentName = torrentNameLink ? torrentNameLink.textContent.trim() : "";
       const torrentLink = torrentNameLink.href;
@@ -5418,206 +5426,6 @@
         description,
         upload_date: uploadDate,
         comments,
-        size,
-        seeders,
-        leechers,
-        snatched
-      };
-      data.push(rowData);
-    });
-    return data;
-  }
-  const CONFIG$1 = {
-    /** 默认的种子表格 dom selector */
-    torrentListTable: "table.torrents",
-    /** 将 种子列表dom 的信息变为 json对象列表 */
-    TORRENT_LIST_TO_JSON,
-    /** 加载图片等待时的默认图片 */
-    LOADING_PIC: "logo.png",
-    /**如果站点有自定义的icon, 可以用自定义的 */
-    ICON: {},
-    /**如果站点有必要设置分类颜色, 可以用自定义的 */
-    CATEGORY: {
-      // 成人分类
-      410: "#f52bcb",
-      // 有码 HD
-      429: "#f52bcb",
-      // 无码 HD
-      424: "#db55a9",
-      // 有码 Xvid
-      430: "#db55a9",
-      // 无码 Xvid
-      437: "#f77afa",
-      // 有码 DVD
-      426: "#f77afa",
-      // 无码 DVD
-      431: "#19a7ec",
-      // 有码 BluRay
-      432: "#19a7ec",
-      // 无码 BluRay
-      440: "#f52bcb",
-      // GAY
-      436: "#bb1e9a",
-      // 0 day
-      425: "#bb1e9a",
-      // 写真 video
-      433: "#bb1e9a",
-      // 写真 pic
-      411: "#f49800",
-      // H-Game
-      412: "#f49800",
-      // H-Anime
-      413: "#f49800",
-      // H-Comic
-      // 综合分类
-      401: "#c74854",
-      // Movie SD
-      419: "#c01a20",
-      // Movie HD
-      420: "#c74854",
-      // Movie DVD    
-      421: "#00a0e9",
-      // Movie BluRay
-      439: "#1b2a51",
-      // Movie Remux
-      403: "#c74854",
-      // TV SD
-      402: "#276fb8",
-      // TV HD
-      435: "#4dbebd ",
-      // TV DVD
-      438: "#1897d6",
-      // TV BluRay
-      404: "#23ac38",
-      // 纪录教育
-      405: "#996c34",
-      // Anime
-      407: "#23ac38",
-      // Sport
-      422: "#f39800",
-      // Software
-      423: "#f39800",
-      // Game
-      427: "#f39800",
-      // EBook
-      409: "#996c34",
-      // Other
-      // 音乐分类
-      406: "#8a57a1",
-      // MV
-      408: "#8a57a1",
-      // Music AAC/ALAC
-      434: "#8a57a1"
-      // Music 无损
-    },
-    /** 索引 */
-    INDEX: 0,
-    /** iframe 宽度 */
-    Iframe_Width: 1260,
-    /**获取背景颜色*/
-    get_bg_color: function() {
-      const mainOuterDOM = document.querySelector("table.mainouter");
-      return window.getComputedStyle(mainOuterDOM)["background-color"];
-    },
-    /** NOTE: 站点特殊操作 */
-    special: function() {
-      table_Iframe_Set();
-    },
-    /** NOTE: 站点下一页加载后操作 */
-    pageLoaded: function() {
-      table_Iframe_Set();
-    }
-  };
-  function table_Iframe_Set() {
-    const lists = Array.from(document.querySelectorAll("td.torrentimg a"));
-    lists.forEach((el) => el.addEventListener("click", function(event) {
-      event.preventDefault();
-      _iframe_switch.set(1);
-      _iframe_url.set(el.href + "#kdescr");
-    }));
-  }
-  function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
-    const rows = torrent_list_Dom.querySelectorAll("tbody tr");
-    const data = [];
-    rows.forEach((row) => {
-      const categoryImg = row.querySelector("td:nth-child(1) > a > img");
-      const category = categoryImg ? categoryImg.title : "";
-      if (!category)
-        return;
-      const categoryLinkDOM = categoryImg.parentNode;
-      const categoryLink = categoryLinkDOM.href;
-      const categoryNumber = categoryLink.slice(-3);
-      const str = categoryImg.style.backgroundImage;
-      const regex = /url\("(.*)"\)/;
-      const result = str.match(regex);
-      const _categoryImg = result && result.length > 1 ? result[1] : null;
-      const torrentIndex = CONFIG$1.INDEX++;
-      const torrentNameLink = row.querySelector(".torrentname a");
-      const torrentName = torrentNameLink ? torrentNameLink.title.trim() : "";
-      const torrentLink = torrentNameLink.href;
-      const pattern = /id=(\d+)&hit/;
-      const match = torrentLink.match(pattern);
-      const torrentId = match ? parseInt(match[1]) : null;
-      const imgDom = row.querySelector(".torrentname img");
-      const _mouseOver = imgDom.getAttribute("onmouseover");
-      const raw1 = _mouseOver ? _mouseOver.split(",")[2].toString() : "";
-      const picLink = raw1 ? raw1.slice(raw1.indexOf("'") + 1, raw1.lastIndexOf("'")) : "/pic/nopic.jpg";
-      const desCell = row.querySelector(".torrentname td:nth-child(2)");
-      const length = desCell.childNodes.length - 1;
-      const desDom = desCell.childNodes[length];
-      const description = desDom.nodeName == "#text" ? desDom.textContent.trim() : "";
-      const place_at_the_top = row.querySelectorAll(".torrentname img.sticky");
-      const pattMsg = place_at_the_top[0] ? place_at_the_top[0].title : "";
-      const tempTagDom = row.querySelectorAll(".torrentname font");
-      const freeTypeImg = row.querySelector('img[class^="pro_"]');
-      const freeType = freeTypeImg ? "_" + freeTypeImg.alt.replace(/\s+/g, "") : "";
-      const freeRemainingTimeSpan = row.querySelector(".torrentname td:nth-child(2) span");
-      const freeRemainingTime = freeRemainingTimeSpan ? freeRemainingTimeSpan.innerText : "";
-      const tagSpans = row.querySelectorAll(".torrentname img[class^='label_']");
-      const tagsDOM = Array.from(tagSpans);
-      let tags = tagSpans ? tagsDOM.map((el) => el.title.trim()) : [];
-      const raw_tags = tagsDOM.map((el) => el.outerHTML).join("&nbsp;");
-      const downloadLink = `download.php?id=${torrentId}`;
-      const collectLink = `javascript: bookmark(${torrentId},${torrentIndex});`;
-      const collectDOM = row.querySelector(".torrentname a[id^='bookmark']");
-      const collectState = collectDOM.children[0].alt;
-      const commentsLink = row.querySelector("td.rowfollow:nth-child(3) a");
-      const comments = commentsLink ? parseInt(commentsLink.textContent) : 0;
-      const uploadDateSpan = row.querySelector("td:nth-child(4) span");
-      const uploadDate = uploadDateSpan ? uploadDateSpan.title : "";
-      const sizeCell = row.querySelector("td:nth-child(5)");
-      const size = sizeCell ? sizeCell.textContent.trim() : "";
-      const seedersLink = row.querySelector("td:nth-child(6) a");
-      const seeders = seedersLink ? parseInt(seedersLink.textContent) : 0;
-      const leechersCell = row.querySelector("td:nth-child(7)");
-      const leechers = leechersCell ? parseInt(leechersCell.textContent) : 0;
-      const snatchedLink = row.querySelector("td:nth-child(8) a");
-      const snatched = snatchedLink ? parseInt(snatchedLink.textContent) : 0;
-      const rowData = {
-        torrentIndex,
-        _categoryImg,
-        category,
-        categoryLink,
-        categoryNumber,
-        torrent_name: torrentName,
-        torrentLink,
-        torrentId,
-        picLink,
-        place_at_the_top,
-        pattMsg,
-        downloadLink,
-        collectLink,
-        collectState,
-        tempTagDom,
-        freeTypeImg,
-        free_type: freeType,
-        free_remaining_time: freeRemainingTime,
-        raw_tags,
-        tagsDOM,
-        tags,
-        description,
-        comments,
-        upload_date: uploadDate,
         size,
         seeders,
         leechers,
@@ -5825,7 +5633,7 @@
     }
   };
   const SITE = {
-    "kamept.com": CONFIG$2,
+    "kamept.com": CONFIG$1,
     // 旧 M-Team
     // "kp.m-team.cc": config_Mteam,
     // 新 M-Team
@@ -5936,7 +5744,7 @@
     PREVIEW: SVG_Preview
   };
   const _PicErrorLOGO = "data:image/svg+xml;base64,PHN2ZwogIHdpZHRoPSIyNTZweCIKICBoZWlnaHQ9IjI1NnB4IgogIHZpZXdCb3g9IjAgMCAyNC4wMCAyNC4wMCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAwLCAwKSIKPgogIDxnCiAgICBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiCiAgICBzdHJva2Utd2lkdGg9IjAiCiAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLDApLCBzY2FsZSgxKSIKICAvPgogIDxnCiAgICBpZD0iU1ZHUmVwb190cmFjZXJDYXJyaWVyIgogICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIgogICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIHN0cm9rZT0iI0NDQ0NDQyIKICAgIHN0cm9rZS13aWR0aD0iMC4wNDgiCiAgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTMgM0wxMy43MDcxIDIuMjkyODlDMTMuNTE5NiAyLjEwNTM2IDEzLjI2NTIgMiAxMyAyVjNaTTE0IDIyQzE0LjU1MjMgMjIgMTUgMjEuNTUyMyAxNSAyMUMxNSAyMC40NDc3IDE0LjU1MjMgMjAgMTQgMjBWMjJaTTE5IDlIMjBDMjAgOC43MzQ3OCAxOS44OTQ2IDguNDgwNDMgMTkuNzA3MSA4LjI5Mjg5TDE5IDlaTTE4IDEwQzE4IDEwLjU1MjMgMTguNDQ3NyAxMSAxOSAxMUMxOS41NTIzIDExIDIwIDEwLjU1MjMgMjAgMTBIMThaTTUuMjE3OTkgMTkuOTA4TDQuMzI2OTggMjAuMzYySDQuMzI2OThMNS4yMTc5OSAxOS45MDhaTTYuMDkyMDIgMjAuNzgyTDYuNTQ2MDEgMTkuODkxTDYuNTQ2MDEgMTkuODkxTDYuMDkyMDIgMjAuNzgyWk02LjA5MjAyIDMuMjE3OTlMNS42MzgwMyAyLjMyNjk4TDUuNjM4MDMgMi4zMjY5OEw2LjA5MjAyIDMuMjE3OTlaTTUuMjE3OTkgNC4wOTIwMkw0LjMyNjk4IDMuNjM4MDNMNC4zMjY5OCAzLjYzODAzTDUuMjE3OTkgNC4wOTIwMlpNMTMuMTA5IDguNDUzOTlMMTQgOFY4TDEzLjEwOSA4LjQ1Mzk5Wk0xMy41NDYgOC44OTEwMUwxNCA4TDEzLjU0NiA4Ljg5MTAxWk0xNy4yMjk5IDE3Ljc5MjlDMTYuODM5NCAxOC4xODM0IDE2LjgzOTQgMTguODE2NiAxNy4yMjk5IDE5LjIwNzFDMTcuNjIwNCAxOS41OTc2IDE4LjI1MzYgMTkuNTk3NiAxOC42NDQxIDE5LjIwNzFMMTcuMjI5OSAxNy43OTI5Wk0xNS4wMzE2IDE1LjI1MDdDMTQuODkzOSAxNS43ODU2IDE1LjIxNTkgMTYuMzMwOCAxNS43NTA3IDE2LjQ2ODRDMTYuMjg1NiAxNi42MDYxIDE2LjgzMDggMTYuMjg0MSAxNi45Njg0IDE1Ljc0OTNMMTUuMDMxNiAxNS4yNTA3Wk0xNy45Mzc1IDIwQzE3LjM4NTIgMjAgMTYuOTM3NSAyMC40NDc3IDE2LjkzNzUgMjFDMTYuOTM3NSAyMS41NTIzIDE3LjM4NTIgMjIgMTcuOTM3NSAyMlYyMFpNMTcuOTQ3NSAyMkMxOC40OTk4IDIyIDE4Ljk0NzUgMjEuNTUyMyAxOC45NDc1IDIxQzE4Ljk0NzUgMjAuNDQ3NyAxOC40OTk4IDIwIDE3Ljk0NzUgMjBWMjJaTTEzIDJIOC4yVjRIMTNWMlpNNCA2LjJWMTcuOEg2VjYuMkg0Wk04LjIgMjJIMTRWMjBIOC4yVjIyWk0xOS43MDcxIDguMjkyODlMMTMuNzA3MSAyLjI5Mjg5TDEyLjI5MjkgMy43MDcxMUwxOC4yOTI5IDkuNzA3MTFMMTkuNzA3MSA4LjI5Mjg5Wk0yMCAxMFY5SDE4VjEwSDIwWk00IDE3LjhDNCAxOC4zNDM2IDMuOTk5MjIgMTguODExNCA0LjAzMDU3IDE5LjE5NUM0LjA2Mjg3IDE5LjU5MDQgNC4xMzQxOSAxOS45ODM2IDQuMzI2OTggMjAuMzYyTDYuMTA4OTkgMTkuNDU0QzYuMDgzOCAxOS40MDQ1IDYuMDQ2MTIgMTkuMzAzOCA2LjAyMzkzIDE5LjAzMjJDNi4wMDA3OCAxOC43NDg4IDYgMTguMzc2NiA2IDE3LjhINFpNOC4yIDIwQzcuNjIzNDUgMjAgNy4yNTExNyAxOS45OTkyIDYuOTY3ODQgMTkuOTc2MUM2LjY5NjE3IDE5Ljk1MzkgNi41OTU0NSAxOS45MTYyIDYuNTQ2MDEgMTkuODkxTDUuNjM4MDMgMjEuNjczQzYuMDE2NDEgMjEuODY1OCA2LjQwOTYzIDIxLjkzNzEgNi44MDQ5NyAyMS45Njk0QzcuMTg4NjQgMjIuMDAwOCA3LjY1NjQ1IDIyIDguMiAyMlYyMFpNNC4zMjY5OCAyMC4zNjJDNC42MTQ2IDIwLjkyNjUgNS4wNzM1NCAyMS4zODU0IDUuNjM4MDMgMjEuNjczTDYuNTQ2MDEgMTkuODkxQzYuMzU3ODUgMTkuNzk1MSA2LjIwNDg3IDE5LjY0MjIgNi4xMDg5OSAxOS40NTRMNC4zMjY5OCAyMC4zNjJaTTguMiAyQzcuNjU2NDUgMiA3LjE4ODY0IDEuOTk5MjIgNi44MDQ5NyAyLjAzMDU3QzYuNDA5NjMgMi4wNjI4NyA2LjAxNjQxIDIuMTM0MTkgNS42MzgwMyAyLjMyNjk4TDYuNTQ2MDEgNC4xMDg5OUM2LjU5NTQ1IDQuMDgzOCA2LjY5NjE3IDQuMDQ2MTIgNi45Njc4NCA0LjAyMzkzQzcuMjUxMTcgNC4wMDA3OCA3LjYyMzQ1IDQgOC4yIDRWMlpNNiA2LjJDNiA1LjYyMzQ1IDYuMDAwNzggNS4yNTExNyA2LjAyMzkzIDQuOTY3ODRDNi4wNDYxMiA0LjY5NjE3IDYuMDgzOCA0LjU5NTQ1IDYuMTA4OTkgNC41NDYwMUw0LjMyNjk4IDMuNjM4MDNDNC4xMzQxOSA0LjAxNjQxIDQuMDYyODcgNC40MDk2MyA0LjAzMDU3IDQuODA0OTdDMy45OTkyMiA1LjE4ODY0IDQgNS42NTY0NSA0IDYuMkg2Wk01LjYzODAzIDIuMzI2OThDNS4wNzM1NCAyLjYxNDYgNC42MTQ2IDMuMDczNTQgNC4zMjY5OCAzLjYzODAzTDYuMTA4OTkgNC41NDYwMUM2LjIwNDg3IDQuMzU3ODUgNi4zNTc4NSA0LjIwNDg3IDYuNTQ2MDEgNC4xMDg5OUw1LjYzODAzIDIuMzI2OThaTTEyIDNWNy40SDE0VjNIMTJaTTE0LjYgMTBIMTlWOEgxNC42VjEwWk0xMiA3LjRDMTIgNy42NjM1MyAxMS45OTkyIDcuOTIxMzEgMTIuMDE2OSA4LjEzODIzQzEyLjAzNTYgOC4zNjY4MiAxMi4wNzk3IDguNjM2NTYgMTIuMjE4IDguOTA3OThMMTQgOEMxNC4wMjkzIDguMDU3NTEgMTQuMDE4OSA4LjA4MDI4IDE0LjAxMDMgNy45NzUzN0MxNC4wMDA4IDcuODU4NzggMTQgNy42OTY1MyAxNCA3LjRIMTJaTTE0LjYgOEMxNC4zMDM1IDggMTQuMTQxMiA3Ljk5OTIyIDE0LjAyNDYgNy45ODk3QzEzLjkxOTcgNy45ODExMyAxMy45NDI1IDcuOTcwNyAxNCA4TDEzLjA5MiA5Ljc4MjAxQzEzLjM2MzQgOS45MjAzMSAxMy42MzMyIDkuOTY0MzggMTMuODYxOCA5Ljk4MzA1QzE0LjA3ODcgMTAuMDAwOCAxNC4zMzY1IDEwIDE0LjYgMTBWOFpNMTIuMjE4IDguOTA3OThDMTIuNDA5NyA5LjI4NDMgMTIuNzE1NyA5LjU5MDI3IDEzLjA5MiA5Ljc4MjAxTDE0IDhWOEwxMi4yMTggOC45MDc5OFpNMTguOTM3IDE2QzE4LjkzNyAxNi4xNzMyIDE4Ljg5MTUgMTYuMzA1MyAxOC42MTc1IDE2LjU2OTdDMTguNDYzOCAxNi43MTggMTguMjgyOCAxNi44NjUzIDE4LjAzMTkgMTcuMDc0QzE3Ljc5MzYgMTcuMjcyMyAxNy41MTQxIDE3LjUwODcgMTcuMjI5OSAxNy43OTI5TDE4LjY0NDEgMTkuMjA3MUMxOC44NiAxOC45OTEzIDE5LjA4MDUgMTguODAzMyAxOS4zMTA5IDE4LjYxMTZDMTkuNTI4NyAxOC40MzA1IDE5Ljc4NTIgMTguMjIyMyAyMC4wMDY1IDE4LjAwODdDMjAuNDgyNSAxNy41NDkzIDIwLjkzNyAxNi45MzE0IDIwLjkzNyAxNkgxOC45MzdaTTE3LjkzNyAxNUMxOC40ODkzIDE1IDE4LjkzNyAxNS40NDc3IDE4LjkzNyAxNkgyMC45MzdDMjAuOTM3IDE0LjM0MzEgMTkuNTkzOCAxMyAxNy45MzcgMTNWMTVaTTE2Ljk2ODQgMTUuNzQ5M0MxNy4wNzk1IDE1LjMxNzcgMTcuNDcyNCAxNSAxNy45MzcgMTVWMTNDMTYuNTM3NyAxMyAxNS4zNjQ1IDEzLjk1NyAxNS4wMzE2IDE1LjI1MDdMMTYuOTY4NCAxNS43NDkzWk0xNy45Mzc1IDIySDE3Ljk0NzVWMjBIMTcuOTM3NVYyMloiCiAgICAgIGZpbGw9IiNjMDAwMDAiCiAgICAvPgogIDwvZz4KPC9zdmc+";
-  function create_if_block_18$2(ctx) {
+  function create_if_block_18$1(ctx) {
     let div;
     let a;
     let html_tag;
@@ -5944,7 +5752,7 @@
       /*torrentInfo*/
       (ctx[0].tempTagDom ? (
         /*torrentInfo*/
-        ctx[0].tempTagDom.map(func$1).join("&nbsp;")
+        ctx[0].tempTagDom.map(func).join("&nbsp;")
       ) : "") + ""
     );
     let t0;
@@ -5983,7 +5791,7 @@
         1 && raw_value !== (raw_value = /*torrentInfo*/
         (ctx2[0].tempTagDom ? (
           /*torrentInfo*/
-          ctx2[0].tempTagDom.map(func$1).join("&nbsp;")
+          ctx2[0].tempTagDom.map(func).join("&nbsp;")
         ) : "") + ""))
           html_tag.p(raw_value);
         if (dirty & /*torrentInfo*/
@@ -6002,7 +5810,7 @@
       }
     };
   }
-  function create_else_block$4(ctx) {
+  function create_else_block$3(ctx) {
     let div2;
     let div0;
     let img;
@@ -6053,7 +5861,7 @@
       }
     };
   }
-  function create_if_block_17$2(ctx) {
+  function create_if_block_17$1(ctx) {
     let img;
     let img_src_value;
     let img_data_src_value;
@@ -6064,7 +5872,7 @@
       c() {
         img = element("img");
         attr(img, "class", "nexus-lazy-load_Kesa svelte-4b9kml");
-        if (!src_url_equal(img.src, img_src_value = CONFIG$2.LOADING_PIC))
+        if (!src_url_equal(img.src, img_src_value = CONFIG$1.LOADING_PIC))
           attr(img, "src", img_src_value);
         attr(img, "data-src", img_data_src_value = /*torrentInfo*/
         ctx[0].picLink);
@@ -6111,7 +5919,7 @@
       }
     };
   }
-  function create_if_block_16$2(ctx) {
+  function create_if_block_16$1(ctx) {
     let div;
     let img;
     let img_src_value;
@@ -6144,2063 +5952,6 @@
       }
     };
   }
-  function create_if_block_10$2(ctx) {
-    let t0;
-    let t1;
-    let div0;
-    let raw0_value = (
-      /*torrentInfo*/
-      ctx[0].tagsDOM.map(
-        /*func_2*/
-        ctx[14]
-      ).join("") + ""
-    );
-    let t2;
-    let div8;
-    let div5;
-    let div1;
-    let html_tag;
-    let raw1_value = (
-      /*ICON*/
-      ctx[2].SIZE + ""
-    );
-    let t3;
-    let t4_value = (
-      /*torrentInfo*/
-      ctx[0].size + ""
-    );
-    let t4;
-    let t5;
-    let div2;
-    let html_tag_1;
-    let raw2_value = (
-      /*ICON*/
-      ctx[2].DOWNLOAD + ""
-    );
-    let t6;
-    let b0;
-    let a;
-    let t7;
-    let a_href_value;
-    let t8;
-    let div4;
-    let div3;
-    let html_tag_2;
-    let raw3_value = (
-      /*torrentInfo*/
-      (ctx[0].collectState == "Unbookmarked" ? (
-        /*ICON*/
-        ctx[2].COLLET
-      ) : (
-        /*ICON*/
-        ctx[2].COLLETED
-      )) + ""
-    );
-    let t9;
-    let b1;
-    let div3_id_value;
-    let t11;
-    let div6;
-    let b2;
-    let t13;
-    let t14_value = (
-      /*torrentInfo*/
-      ctx[0].upload_date + ""
-    );
-    let t14;
-    let t15;
-    let div7;
-    let html_tag_3;
-    let raw4_value = (
-      /*ICON*/
-      ctx[2].COMMENT + ""
-    );
-    let t16;
-    let b3;
-    let t17_value = (
-      /*torrentInfo*/
-      ctx[0].comments + ""
-    );
-    let t17;
-    let t18;
-    let html_tag_4;
-    let raw5_value = (
-      /*ICON*/
-      ctx[2].SEEDERS + ""
-    );
-    let t19;
-    let b4;
-    let t20_value = (
-      /*torrentInfo*/
-      ctx[0].seeders + ""
-    );
-    let t20;
-    let t21;
-    let html_tag_5;
-    let raw6_value = (
-      /*ICON*/
-      ctx[2].LEECHERS + ""
-    );
-    let t22;
-    let b5;
-    let t23_value = (
-      /*torrentInfo*/
-      ctx[0].leechers + ""
-    );
-    let t23;
-    let t24;
-    let html_tag_6;
-    let raw7_value = (
-      /*ICON*/
-      ctx[2].SNATCHED + ""
-    );
-    let t25;
-    let b6;
-    let t26_value = (
-      /*torrentInfo*/
-      ctx[0].snatched + ""
-    );
-    let t26;
-    let mounted;
-    let dispose;
-    let if_block0 = (
-      /*torrentInfo*/
-      (ctx[0].free_type || /*torrentInfo*/
-      ctx[0].pattMsg) && create_if_block_12$2(ctx)
-    );
-    let if_block1 = (
-      /*torrentInfo*/
-      ctx[0].description && create_if_block_11$2(ctx)
-    );
-    return {
-      c() {
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        div0 = element("div");
-        t2 = space();
-        div8 = element("div");
-        div5 = element("div");
-        div1 = element("div");
-        html_tag = new HtmlTag(false);
-        t3 = text(" ");
-        t4 = text(t4_value);
-        t5 = text("\n\n          \n            \n          ");
-        div2 = element("div");
-        html_tag_1 = new HtmlTag(false);
-        t6 = text(" \n            ");
-        b0 = element("b");
-        a = element("a");
-        t7 = text("下载");
-        t8 = text("\n\n          \n            \n          ");
-        div4 = element("div");
-        div3 = element("div");
-        html_tag_2 = new HtmlTag(false);
-        t9 = text("\n               ");
-        b1 = element("b");
-        b1.textContent = "收藏";
-        t11 = space();
-        div6 = element("div");
-        b2 = element("b");
-        b2.textContent = "上传时间:";
-        t13 = space();
-        t14 = text(t14_value);
-        t15 = space();
-        div7 = element("div");
-        html_tag_3 = new HtmlTag(false);
-        t16 = text(" ");
-        b3 = element("b");
-        t17 = text(t17_value);
-        t18 = text("  \n          ");
-        html_tag_4 = new HtmlTag(false);
-        t19 = text(" ");
-        b4 = element("b");
-        t20 = text(t20_value);
-        t21 = text("  \n          ");
-        html_tag_5 = new HtmlTag(false);
-        t22 = text(" ");
-        b5 = element("b");
-        t23 = text(t23_value);
-        t24 = text("  \n          ");
-        html_tag_6 = new HtmlTag(false);
-        t25 = text(" ");
-        b6 = element("b");
-        t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-4b9kml");
-        html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-4b9kml");
-        html_tag_1.a = t6;
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-4b9kml");
-        html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-4b9kml");
-        attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-4b9kml");
-        attr(div5, "class", "card-line svelte-4b9kml");
-        attr(div6, "class", "card-line svelte-4b9kml");
-        html_tag_3.a = t16;
-        html_tag_4.a = t19;
-        html_tag_5.a = t22;
-        html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-4b9kml");
-        attr(div8, "class", "card-details svelte-4b9kml");
-      },
-      m(target, anchor) {
-        if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t0, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t1, anchor);
-        insert(target, div0, anchor);
-        div0.innerHTML = raw0_value;
-        insert(target, t2, anchor);
-        insert(target, div8, anchor);
-        append(div8, div5);
-        append(div5, div1);
-        html_tag.m(raw1_value, div1);
-        append(div1, t3);
-        append(div1, t4);
-        append(div5, t5);
-        append(div5, div2);
-        html_tag_1.m(raw2_value, div2);
-        append(div2, t6);
-        append(div2, b0);
-        append(b0, a);
-        append(a, t7);
-        append(div5, t8);
-        append(div5, div4);
-        append(div4, div3);
-        html_tag_2.m(raw3_value, div3);
-        append(div3, t9);
-        append(div3, b1);
-        append(div8, t11);
-        append(div8, div6);
-        append(div6, b2);
-        append(div6, t13);
-        append(div6, t14);
-        append(div8, t15);
-        append(div8, div7);
-        html_tag_3.m(raw4_value, div7);
-        append(div7, t16);
-        append(div7, b3);
-        append(b3, t17);
-        append(div7, t18);
-        html_tag_4.m(raw5_value, div7);
-        append(div7, t19);
-        append(div7, b4);
-        append(b4, t20);
-        append(div7, t21);
-        html_tag_5.m(raw6_value, div7);
-        append(div7, t22);
-        append(div7, b5);
-        append(b5, t23);
-        append(div7, t24);
-        html_tag_6.m(raw7_value, div7);
-        append(div7, t25);
-        append(div7, b6);
-        append(b6, t26);
-        if (!mounted) {
-          dispose = listen(
-            div3,
-            "click",
-            /*click_handler*/
-            ctx[15]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].free_type || /*torrentInfo*/
-          ctx2[0].pattMsg
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_12$2(ctx2);
-            if_block0.c();
-            if_block0.m(t0.parentNode, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].description
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_11$2(ctx2);
-            if_block1.c();
-            if_block1.m(t1.parentNode, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && raw0_value !== (raw0_value = /*torrentInfo*/
-        ctx2[0].tagsDOM.map(
-          /*func_2*/
-          ctx2[14]
-        ).join("") + ""))
-          div0.innerHTML = raw0_value;
-        if (dirty & /*ICON*/
-        4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx2[2].SIZE + ""))
-          html_tag.p(raw1_value);
-        if (dirty & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx2[0].size + ""))
-          set_data(t4, t4_value);
-        if (dirty & /*ICON*/
-        4 && raw2_value !== (raw2_value = /*ICON*/
-        ctx2[2].DOWNLOAD + ""))
-          html_tag_1.p(raw2_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].downloadLink)) {
-          attr(a, "href", a_href_value);
-        }
-        if (dirty & /*torrentInfo, ICON*/
-        5 && raw3_value !== (raw3_value = /*torrentInfo*/
-        (ctx2[0].collectState == "Unbookmarked" ? (
-          /*ICON*/
-          ctx2[2].COLLET
-        ) : (
-          /*ICON*/
-          ctx2[2].COLLETED
-        )) + ""))
-          html_tag_2.p(raw3_value);
-        if (dirty & /*torrentInfo*/
-        1 && div3_id_value !== (div3_id_value = "tI_" + /*torrentInfo*/
-        ctx2[0].torrentIndex)) {
-          attr(div3, "id", div3_id_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t14_value !== (t14_value = /*torrentInfo*/
-        ctx2[0].upload_date + ""))
-          set_data(t14, t14_value);
-        if (dirty & /*ICON*/
-        4 && raw4_value !== (raw4_value = /*ICON*/
-        ctx2[2].COMMENT + ""))
-          html_tag_3.p(raw4_value);
-        if (dirty & /*torrentInfo*/
-        1 && t17_value !== (t17_value = /*torrentInfo*/
-        ctx2[0].comments + ""))
-          set_data(t17, t17_value);
-        if (dirty & /*ICON*/
-        4 && raw5_value !== (raw5_value = /*ICON*/
-        ctx2[2].SEEDERS + ""))
-          html_tag_4.p(raw5_value);
-        if (dirty & /*torrentInfo*/
-        1 && t20_value !== (t20_value = /*torrentInfo*/
-        ctx2[0].seeders + ""))
-          set_data(t20, t20_value);
-        if (dirty & /*ICON*/
-        4 && raw6_value !== (raw6_value = /*ICON*/
-        ctx2[2].LEECHERS + ""))
-          html_tag_5.p(raw6_value);
-        if (dirty & /*torrentInfo*/
-        1 && t23_value !== (t23_value = /*torrentInfo*/
-        ctx2[0].leechers + ""))
-          set_data(t23, t23_value);
-        if (dirty & /*ICON*/
-        4 && raw7_value !== (raw7_value = /*ICON*/
-        ctx2[2].SNATCHED + ""))
-          html_tag_6.p(raw7_value);
-        if (dirty & /*torrentInfo*/
-        1 && t26_value !== (t26_value = /*torrentInfo*/
-        ctx2[0].snatched + ""))
-          set_data(t26, t26_value);
-      },
-      d(detaching) {
-        if (if_block0)
-          if_block0.d(detaching);
-        if (detaching)
-          detach(t0);
-        if (if_block1)
-          if_block1.d(detaching);
-        if (detaching)
-          detach(t1);
-        if (detaching)
-          detach(div0);
-        if (detaching)
-          detach(t2);
-        if (detaching)
-          detach(div8);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_12$2(ctx) {
-    let div1;
-    let div0;
-    let t0;
-    let t1;
-    let div0_class_value;
-    let if_block0 = (
-      /*torrentInfo*/
-      ctx[0].place_at_the_top.length != 0 && create_if_block_15$2(ctx)
-    );
-    let if_block1 = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg && create_if_block_14$2(ctx)
-    );
-    let if_block2 = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time && create_if_block_13$2(ctx)
-    );
-    return {
-      c() {
-        div1 = element("div");
-        div0 = element("div");
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        if (if_block2)
-          if_block2.c();
-        attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-4b9kml");
-        attr(div1, "class", "card-alter svelte-4b9kml");
-      },
-      m(target, anchor) {
-        insert(target, div1, anchor);
-        append(div1, div0);
-        if (if_block0)
-          if_block0.m(div0, null);
-        append(div0, t0);
-        if (if_block1)
-          if_block1.m(div0, null);
-        append(div0, t1);
-        if (if_block2)
-          if_block2.m(div0, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top.length != 0
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_15$2(ctx2);
-            if_block0.c();
-            if_block0.m(div0, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].freeTypeImg
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_14$2(ctx2);
-            if_block1.c();
-            if_block1.m(div0, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].free_remaining_time
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_13$2(ctx2);
-            if_block2.c();
-            if_block2.m(div0, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-4b9kml")) {
-          attr(div0, "class", div0_class_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div1);
-        if (if_block0)
-          if_block0.d();
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-      }
-    };
-  }
-  function create_if_block_15$2(ctx) {
-    let html_tag;
-    let raw_value = Array.from(
-      /*torrentInfo*/
-      ctx[0].place_at_the_top
-    ).map(func_1$1) + "&nbsp;";
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = Array.from(
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top
-        ).map(func_1$1) + "&nbsp;"))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_14$2(ctx) {
-    let html_tag;
-    let raw_value = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg.outerHTML + ""
-    );
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = /*torrentInfo*/
-        ctx2[0].freeTypeImg.outerHTML + ""))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_13$2(ctx) {
-    let t0;
-    let b;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time + ""
-    );
-    let t1;
-    return {
-      c() {
-        t0 = text(" ");
-        b = element("b");
-        t1 = text(t1_value);
-      },
-      m(target, anchor) {
-        insert(target, t0, anchor);
-        insert(target, b, anchor);
-        append(b, t1);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].free_remaining_time + ""))
-          set_data(t1, t1_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(t0);
-        if (detaching)
-          detach(b);
-      }
-    };
-  }
-  function create_if_block_11$2(ctx) {
-    let a;
-    let t_value = (
-      /*torrentInfo*/
-      ctx[0].description + ""
-    );
-    let t;
-    let a_href_value;
-    return {
-      c() {
-        a = element("a");
-        t = text(t_value);
-        attr(a, "class", "card-description svelte-4b9kml");
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].torrentLink);
-      },
-      m(target, anchor) {
-        insert(target, a, anchor);
-        append(a, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[0].description + ""))
-          set_data(t, t_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].torrentLink)) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(a);
-      }
-    };
-  }
-  function create_if_block$7(ctx) {
-    let t0;
-    let t1;
-    let t2;
-    let div;
-    let t3;
-    let t4;
-    let if_block0 = (
-      /*$_CARD_SHOW*/
-      ctx[6].free && /*torrentInfo*/
-      (ctx[0].free_type || /*torrentInfo*/
-      ctx[0].pattMsg) && create_if_block_6$2(ctx)
-    );
-    let if_block1 = (
-      /*$_CARD_SHOW*/
-      ctx[6].sub_title && /*torrentInfo*/
-      ctx[0].description && create_if_block_5$2(ctx)
-    );
-    let if_block2 = (
-      /*$_CARD_SHOW*/
-      ctx[6].tags && create_if_block_4$2(ctx)
-    );
-    let if_block3 = (
-      /*$_CARD_SHOW*/
-      ctx[6].size_download_collect && create_if_block_3$3(ctx)
-    );
-    let if_block4 = (
-      /*$_CARD_SHOW*/
-      ctx[6].upload_time && create_if_block_2$3(ctx)
-    );
-    let if_block5 = (
-      /*$_CARD_SHOW*/
-      ctx[6].statistics && create_if_block_1$4(ctx)
-    );
-    return {
-      c() {
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        if (if_block2)
-          if_block2.c();
-        t2 = space();
-        div = element("div");
-        if (if_block3)
-          if_block3.c();
-        t3 = space();
-        if (if_block4)
-          if_block4.c();
-        t4 = space();
-        if (if_block5)
-          if_block5.c();
-        attr(div, "class", "card-details svelte-4b9kml");
-      },
-      m(target, anchor) {
-        if (if_block0)
-          if_block0.m(target, anchor);
-        insert(target, t0, anchor);
-        if (if_block1)
-          if_block1.m(target, anchor);
-        insert(target, t1, anchor);
-        if (if_block2)
-          if_block2.m(target, anchor);
-        insert(target, t2, anchor);
-        insert(target, div, anchor);
-        if (if_block3)
-          if_block3.m(div, null);
-        append(div, t3);
-        if (if_block4)
-          if_block4.m(div, null);
-        append(div, t4);
-        if (if_block5)
-          if_block5.m(div, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].free && /*torrentInfo*/
-          (ctx2[0].free_type || /*torrentInfo*/
-          ctx2[0].pattMsg)
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_6$2(ctx2);
-            if_block0.c();
-            if_block0.m(t0.parentNode, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].sub_title && /*torrentInfo*/
-          ctx2[0].description
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_5$2(ctx2);
-            if_block1.c();
-            if_block1.m(t1.parentNode, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].tags
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_4$2(ctx2);
-            if_block2.c();
-            if_block2.m(t2.parentNode, t2);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].size_download_collect
-        ) {
-          if (if_block3) {
-            if_block3.p(ctx2, dirty);
-          } else {
-            if_block3 = create_if_block_3$3(ctx2);
-            if_block3.c();
-            if_block3.m(div, t3);
-          }
-        } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].upload_time
-        ) {
-          if (if_block4) {
-            if_block4.p(ctx2, dirty);
-          } else {
-            if_block4 = create_if_block_2$3(ctx2);
-            if_block4.c();
-            if_block4.m(div, t4);
-          }
-        } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].statistics
-        ) {
-          if (if_block5) {
-            if_block5.p(ctx2, dirty);
-          } else {
-            if_block5 = create_if_block_1$4(ctx2);
-            if_block5.c();
-            if_block5.m(div, null);
-          }
-        } else if (if_block5) {
-          if_block5.d(1);
-          if_block5 = null;
-        }
-      },
-      d(detaching) {
-        if (if_block0)
-          if_block0.d(detaching);
-        if (detaching)
-          detach(t0);
-        if (if_block1)
-          if_block1.d(detaching);
-        if (detaching)
-          detach(t1);
-        if (if_block2)
-          if_block2.d(detaching);
-        if (detaching)
-          detach(t2);
-        if (detaching)
-          detach(div);
-        if (if_block3)
-          if_block3.d();
-        if (if_block4)
-          if_block4.d();
-        if (if_block5)
-          if_block5.d();
-      }
-    };
-  }
-  function create_if_block_6$2(ctx) {
-    let div1;
-    let div0;
-    let t0;
-    let t1;
-    let div0_class_value;
-    let if_block0 = (
-      /*torrentInfo*/
-      ctx[0].place_at_the_top.length != 0 && create_if_block_9$2(ctx)
-    );
-    let if_block1 = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg && create_if_block_8$2(ctx)
-    );
-    let if_block2 = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time && create_if_block_7$2(ctx)
-    );
-    return {
-      c() {
-        div1 = element("div");
-        div0 = element("div");
-        if (if_block0)
-          if_block0.c();
-        t0 = space();
-        if (if_block1)
-          if_block1.c();
-        t1 = space();
-        if (if_block2)
-          if_block2.c();
-        attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-4b9kml");
-        attr(div1, "class", "card-alter svelte-4b9kml");
-      },
-      m(target, anchor) {
-        insert(target, div1, anchor);
-        append(div1, div0);
-        if (if_block0)
-          if_block0.m(div0, null);
-        append(div0, t0);
-        if (if_block1)
-          if_block1.m(div0, null);
-        append(div0, t1);
-        if (if_block2)
-          if_block2.m(div0, null);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top.length != 0
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_9$2(ctx2);
-            if_block0.c();
-            if_block0.m(div0, t0);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].freeTypeImg
-        ) {
-          if (if_block1) {
-            if_block1.p(ctx2, dirty);
-          } else {
-            if_block1 = create_if_block_8$2(ctx2);
-            if_block1.c();
-            if_block1.m(div0, t1);
-          }
-        } else if (if_block1) {
-          if_block1.d(1);
-          if_block1 = null;
-        }
-        if (
-          /*torrentInfo*/
-          ctx2[0].free_remaining_time
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_7$2(ctx2);
-            if_block2.c();
-            if_block2.m(div0, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-4b9kml")) {
-          attr(div0, "class", div0_class_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div1);
-        if (if_block0)
-          if_block0.d();
-        if (if_block1)
-          if_block1.d();
-        if (if_block2)
-          if_block2.d();
-      }
-    };
-  }
-  function create_if_block_9$2(ctx) {
-    let html_tag;
-    let raw_value = Array.from(
-      /*torrentInfo*/
-      ctx[0].place_at_the_top
-    ).map(func_3$1) + "&nbsp;";
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = Array.from(
-          /*torrentInfo*/
-          ctx2[0].place_at_the_top
-        ).map(func_3$1) + "&nbsp;"))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_8$2(ctx) {
-    let html_tag;
-    let raw_value = (
-      /*torrentInfo*/
-      ctx[0].freeTypeImg.outerHTML + ""
-    );
-    let html_anchor;
-    return {
-      c() {
-        html_tag = new HtmlTag(false);
-        html_anchor = empty();
-        html_tag.a = html_anchor;
-      },
-      m(target, anchor) {
-        html_tag.m(raw_value, target, anchor);
-        insert(target, html_anchor, anchor);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = /*torrentInfo*/
-        ctx2[0].freeTypeImg.outerHTML + ""))
-          html_tag.p(raw_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(html_anchor);
-        if (detaching)
-          html_tag.d();
-      }
-    };
-  }
-  function create_if_block_7$2(ctx) {
-    let t0;
-    let b;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].free_remaining_time + ""
-    );
-    let t1;
-    return {
-      c() {
-        t0 = text(" ");
-        b = element("b");
-        t1 = text(t1_value);
-      },
-      m(target, anchor) {
-        insert(target, t0, anchor);
-        insert(target, b, anchor);
-        append(b, t1);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].free_remaining_time + ""))
-          set_data(t1, t1_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(t0);
-        if (detaching)
-          detach(b);
-      }
-    };
-  }
-  function create_if_block_5$2(ctx) {
-    let a;
-    let t_value = (
-      /*torrentInfo*/
-      ctx[0].description + ""
-    );
-    let t;
-    let a_href_value;
-    return {
-      c() {
-        a = element("a");
-        t = text(t_value);
-        attr(a, "class", "card-description svelte-4b9kml");
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].torrentLink);
-      },
-      m(target, anchor) {
-        insert(target, a, anchor);
-        append(a, t);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[0].description + ""))
-          set_data(t, t_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].torrentLink)) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(a);
-      }
-    };
-  }
-  function create_if_block_4$2(ctx) {
-    let div;
-    let raw_value = (
-      /*torrentInfo*/
-      ctx[0].tagsDOM.map(
-        /*func_4*/
-        ctx[16]
-      ).join("") + ""
-    );
-    return {
-      c() {
-        div = element("div");
-        attr(div, "class", "cl-tags svelte-4b9kml");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        div.innerHTML = raw_value;
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = /*torrentInfo*/
-        ctx2[0].tagsDOM.map(
-          /*func_4*/
-          ctx2[16]
-        ).join("") + ""))
-          div.innerHTML = raw_value;
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function create_if_block_3$3(ctx) {
-    let div4;
-    let div0;
-    let html_tag;
-    let raw0_value = (
-      /*ICON*/
-      ctx[2].SIZE + ""
-    );
-    let t0;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].size + ""
-    );
-    let t1;
-    let t2;
-    let div1;
-    let html_tag_1;
-    let raw1_value = (
-      /*ICON*/
-      ctx[2].DOWNLOAD + ""
-    );
-    let t3;
-    let b0;
-    let a;
-    let t4;
-    let a_href_value;
-    let t5;
-    let div3;
-    let div2;
-    let html_tag_2;
-    let raw2_value = (
-      /*torrentInfo*/
-      (ctx[0].collectState == "Unbookmarked" ? (
-        /*ICON*/
-        ctx[2].COLLET
-      ) : (
-        /*ICON*/
-        ctx[2].COLLETED
-      )) + ""
-    );
-    let t6;
-    let b1;
-    let div2_id_value;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div4 = element("div");
-        div0 = element("div");
-        html_tag = new HtmlTag(false);
-        t0 = text(" ");
-        t1 = text(t1_value);
-        t2 = text("\n\n            \n              \n            ");
-        div1 = element("div");
-        html_tag_1 = new HtmlTag(false);
-        t3 = text(" \n              ");
-        b0 = element("b");
-        a = element("a");
-        t4 = text("下载");
-        t5 = text("\n\n            \n              \n            ");
-        div3 = element("div");
-        div2 = element("div");
-        html_tag_2 = new HtmlTag(false);
-        t6 = text("\n                 ");
-        b1 = element("b");
-        b1.textContent = "收藏";
-        html_tag.a = t0;
-        attr(div0, "class", "cl-center svelte-4b9kml");
-        html_tag_1.a = t3;
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink);
-        attr(div1, "class", "cl-center svelte-4b9kml");
-        html_tag_2.a = t6;
-        attr(div2, "class", "btnCollet cl-center svelte-4b9kml");
-        attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex);
-        attr(div3, "class", "cl-center svelte-4b9kml");
-        attr(div4, "class", "card-line svelte-4b9kml");
-      },
-      m(target, anchor) {
-        insert(target, div4, anchor);
-        append(div4, div0);
-        html_tag.m(raw0_value, div0);
-        append(div0, t0);
-        append(div0, t1);
-        append(div4, t2);
-        append(div4, div1);
-        html_tag_1.m(raw1_value, div1);
-        append(div1, t3);
-        append(div1, b0);
-        append(b0, a);
-        append(a, t4);
-        append(div4, t5);
-        append(div4, div3);
-        append(div3, div2);
-        html_tag_2.m(raw2_value, div2);
-        append(div2, t6);
-        append(div2, b1);
-        if (!mounted) {
-          dispose = listen(
-            div2,
-            "click",
-            /*click_handler_1*/
-            ctx[17]
-          );
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*ICON*/
-        4 && raw0_value !== (raw0_value = /*ICON*/
-        ctx2[2].SIZE + ""))
-          html_tag.p(raw0_value);
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].size + ""))
-          set_data(t1, t1_value);
-        if (dirty & /*ICON*/
-        4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx2[2].DOWNLOAD + ""))
-          html_tag_1.p(raw1_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].downloadLink)) {
-          attr(a, "href", a_href_value);
-        }
-        if (dirty & /*torrentInfo, ICON*/
-        5 && raw2_value !== (raw2_value = /*torrentInfo*/
-        (ctx2[0].collectState == "Unbookmarked" ? (
-          /*ICON*/
-          ctx2[2].COLLET
-        ) : (
-          /*ICON*/
-          ctx2[2].COLLETED
-        )) + ""))
-          html_tag_2.p(raw2_value);
-        if (dirty & /*torrentInfo*/
-        1 && div2_id_value !== (div2_id_value = "tI_" + /*torrentInfo*/
-        ctx2[0].torrentIndex)) {
-          attr(div2, "id", div2_id_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div4);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_2$3(ctx) {
-    let div;
-    let b;
-    let t1;
-    let t2_value = (
-      /*torrentInfo*/
-      ctx[0].upload_date + ""
-    );
-    let t2;
-    return {
-      c() {
-        div = element("div");
-        b = element("b");
-        b.textContent = "上传时间:";
-        t1 = space();
-        t2 = text(t2_value);
-        attr(div, "class", "card-line svelte-4b9kml");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, b);
-        append(div, t1);
-        append(div, t2);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && t2_value !== (t2_value = /*torrentInfo*/
-        ctx2[0].upload_date + ""))
-          set_data(t2, t2_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function create_if_block_1$4(ctx) {
-    let div;
-    let html_tag;
-    let raw0_value = (
-      /*ICON*/
-      ctx[2].COMMENT + ""
-    );
-    let t0;
-    let b0;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].comments + ""
-    );
-    let t1;
-    let t2;
-    let html_tag_1;
-    let raw1_value = (
-      /*ICON*/
-      ctx[2].SEEDERS + ""
-    );
-    let t3;
-    let b1;
-    let t4_value = (
-      /*torrentInfo*/
-      ctx[0].seeders + ""
-    );
-    let t4;
-    let t5;
-    let html_tag_2;
-    let raw2_value = (
-      /*ICON*/
-      ctx[2].LEECHERS + ""
-    );
-    let t6;
-    let b2;
-    let t7_value = (
-      /*torrentInfo*/
-      ctx[0].leechers + ""
-    );
-    let t7;
-    let t8;
-    let html_tag_3;
-    let raw3_value = (
-      /*ICON*/
-      ctx[2].SNATCHED + ""
-    );
-    let t9;
-    let b3;
-    let t10_value = (
-      /*torrentInfo*/
-      ctx[0].snatched + ""
-    );
-    let t10;
-    return {
-      c() {
-        div = element("div");
-        html_tag = new HtmlTag(false);
-        t0 = text(" ");
-        b0 = element("b");
-        t1 = text(t1_value);
-        t2 = text("  \n            ");
-        html_tag_1 = new HtmlTag(false);
-        t3 = text(" ");
-        b1 = element("b");
-        t4 = text(t4_value);
-        t5 = text("  \n            ");
-        html_tag_2 = new HtmlTag(false);
-        t6 = text(" ");
-        b2 = element("b");
-        t7 = text(t7_value);
-        t8 = text("  \n            ");
-        html_tag_3 = new HtmlTag(false);
-        t9 = text(" ");
-        b3 = element("b");
-        t10 = text(t10_value);
-        html_tag.a = t0;
-        html_tag_1.a = t3;
-        html_tag_2.a = t6;
-        html_tag_3.a = t9;
-        attr(div, "class", "card-line svelte-4b9kml");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        html_tag.m(raw0_value, div);
-        append(div, t0);
-        append(div, b0);
-        append(b0, t1);
-        append(div, t2);
-        html_tag_1.m(raw1_value, div);
-        append(div, t3);
-        append(div, b1);
-        append(b1, t4);
-        append(div, t5);
-        html_tag_2.m(raw2_value, div);
-        append(div, t6);
-        append(div, b2);
-        append(b2, t7);
-        append(div, t8);
-        html_tag_3.m(raw3_value, div);
-        append(div, t9);
-        append(div, b3);
-        append(b3, t10);
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*ICON*/
-        4 && raw0_value !== (raw0_value = /*ICON*/
-        ctx2[2].COMMENT + ""))
-          html_tag.p(raw0_value);
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].comments + ""))
-          set_data(t1, t1_value);
-        if (dirty & /*ICON*/
-        4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx2[2].SEEDERS + ""))
-          html_tag_1.p(raw1_value);
-        if (dirty & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx2[0].seeders + ""))
-          set_data(t4, t4_value);
-        if (dirty & /*ICON*/
-        4 && raw2_value !== (raw2_value = /*ICON*/
-        ctx2[2].LEECHERS + ""))
-          html_tag_2.p(raw2_value);
-        if (dirty & /*torrentInfo*/
-        1 && t7_value !== (t7_value = /*torrentInfo*/
-        ctx2[0].leechers + ""))
-          set_data(t7, t7_value);
-        if (dirty & /*ICON*/
-        4 && raw3_value !== (raw3_value = /*ICON*/
-        ctx2[2].SNATCHED + ""))
-          html_tag_3.p(raw3_value);
-        if (dirty & /*torrentInfo*/
-        1 && t10_value !== (t10_value = /*torrentInfo*/
-        ctx2[0].snatched + ""))
-          set_data(t10, t10_value);
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-      }
-    };
-  }
-  function create_fragment$7(ctx) {
-    let div4;
-    let div3;
-    let div0;
-    let t0_value = (
-      /*torrentInfo*/
-      ctx[0].category + ""
-    );
-    let t0;
-    let div0_data_href_value;
-    let t1;
-    let t2;
-    let div2;
-    let t3;
-    let div1;
-    let t4_value = (
-      /*torrentInfo*/
-      ctx[0].torrentIndex + 1 + ""
-    );
-    let t4;
-    let t5;
-    let t6;
-    let t7;
-    let mounted;
-    let dispose;
-    let if_block0 = (
-      /*$_CARD_SHOW*/
-      (ctx[6].title || /*_hover*/
-      ctx[3]) && create_if_block_18$2(ctx)
-    );
-    function select_block_type(ctx2, dirty) {
-      if (!/*_picError*/
-      ctx2[4])
-        return create_if_block_17$2;
-      return create_else_block$4;
-    }
-    let current_block_type = select_block_type(ctx);
-    let if_block1 = current_block_type(ctx);
-    let if_block2 = (
-      /*$_trigger_nexus_pic*/
-      ctx[7] && create_if_block_16$2(ctx)
-    );
-    let if_block3 = (
-      /*$_CARD_SHOW*/
-      (ctx[6].all || /*_hover*/
-      ctx[3]) && create_if_block_10$2(ctx)
-    );
-    let if_block4 = !/*$_CARD_SHOW*/
-    (ctx[6].all || /*_hover*/
-    ctx[3]) && create_if_block$7(ctx);
-    return {
-      c() {
-        div4 = element("div");
-        div3 = element("div");
-        div0 = element("div");
-        t0 = text(t0_value);
-        t1 = space();
-        if (if_block0)
-          if_block0.c();
-        t2 = space();
-        div2 = element("div");
-        if_block1.c();
-        t3 = space();
-        div1 = element("div");
-        t4 = text(t4_value);
-        t5 = space();
-        if (if_block2)
-          if_block2.c();
-        t6 = space();
-        if (if_block3)
-          if_block3.c();
-        t7 = space();
-        if (if_block4)
-          if_block4.c();
-        attr(div0, "class", "card-category svelte-4b9kml");
-        attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
-        ctx[0].categoryLink);
-        set_style(div0, "background-color", CONFIG$2.CATEGORY[
-          /*torrentInfo*/
-          ctx[0].categoryNumber
-        ] ?? "transparent");
-        set_style(div0, "color", CONFIG$2.CATEGORY[
-          /*torrentInfo*/
-          ctx[0].categoryNumber
-        ] ? getTextColor$2(CONFIG$2.CATEGORY[
-          /*torrentInfo*/
-          ctx[0].categoryNumber
-        ]) : "black");
-        attr(div1, "class", "card-index svelte-4b9kml");
-        attr(div2, "class", "card-image svelte-4b9kml");
-        attr(div3, "class", "card-holder svelte-4b9kml");
-        attr(div4, "class", "card svelte-4b9kml");
-        set_style(
-          div4,
-          "width",
-          /*cardWidth*/
-          ctx[1] + "px"
-        );
-        set_style(div4, "z-index", 1e4 - /*torrentInfo*/
-        ctx[0].torrentIndex);
-        set_style(
-          div4,
-          "background-color",
-          /*$_current_bgColor*/
-          ctx[5]
-        );
-      },
-      m(target, anchor) {
-        insert(target, div4, anchor);
-        append(div4, div3);
-        append(div3, div0);
-        append(div0, t0);
-        append(div3, t1);
-        if (if_block0)
-          if_block0.m(div3, null);
-        append(div3, t2);
-        append(div3, div2);
-        if_block1.m(div2, null);
-        append(div2, t3);
-        append(div2, div1);
-        append(div1, t4);
-        append(div2, t5);
-        if (if_block2)
-          if_block2.m(div2, null);
-        append(div3, t6);
-        if (if_block3)
-          if_block3.m(div3, null);
-        append(div3, t7);
-        if (if_block4)
-          if_block4.m(div3, null);
-        if (!mounted) {
-          dispose = [
-            listen(
-              div2,
-              "click",
-              /*showDetailIframe*/
-              ctx[10]
-            ),
-            listen(
-              div3,
-              "mouseenter",
-              /*card_show_detail*/
-              ctx[11]
-            ),
-            listen(
-              div3,
-              "mouseleave",
-              /*card_hide_detail*/
-              ctx[12]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, [dirty]) {
-        if (dirty & /*torrentInfo*/
-        1 && t0_value !== (t0_value = /*torrentInfo*/
-        ctx2[0].category + ""))
-          set_data(t0, t0_value);
-        if (dirty & /*torrentInfo*/
-        1 && div0_data_href_value !== (div0_data_href_value = /*torrentInfo*/
-        ctx2[0].categoryLink)) {
-          attr(div0, "data-href", div0_data_href_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1) {
-          set_style(div0, "background-color", CONFIG$2.CATEGORY[
-            /*torrentInfo*/
-            ctx2[0].categoryNumber
-          ] ?? "transparent");
-        }
-        if (dirty & /*torrentInfo*/
-        1) {
-          set_style(div0, "color", CONFIG$2.CATEGORY[
-            /*torrentInfo*/
-            ctx2[0].categoryNumber
-          ] ? getTextColor$2(CONFIG$2.CATEGORY[
-            /*torrentInfo*/
-            ctx2[0].categoryNumber
-          ]) : "black");
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].title || /*_hover*/
-          ctx2[3]
-        ) {
-          if (if_block0) {
-            if_block0.p(ctx2, dirty);
-          } else {
-            if_block0 = create_if_block_18$2(ctx2);
-            if_block0.c();
-            if_block0.m(div3, t2);
-          }
-        } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
-        }
-        if (current_block_type === (current_block_type = select_block_type(ctx2)) && if_block1) {
-          if_block1.p(ctx2, dirty);
-        } else {
-          if_block1.d(1);
-          if_block1 = current_block_type(ctx2);
-          if (if_block1) {
-            if_block1.c();
-            if_block1.m(div2, t3);
-          }
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx2[0].torrentIndex + 1 + ""))
-          set_data(t4, t4_value);
-        if (
-          /*$_trigger_nexus_pic*/
-          ctx2[7]
-        ) {
-          if (if_block2) {
-            if_block2.p(ctx2, dirty);
-          } else {
-            if_block2 = create_if_block_16$2(ctx2);
-            if_block2.c();
-            if_block2.m(div2, null);
-          }
-        } else if (if_block2) {
-          if_block2.d(1);
-          if_block2 = null;
-        }
-        if (
-          /*$_CARD_SHOW*/
-          ctx2[6].all || /*_hover*/
-          ctx2[3]
-        ) {
-          if (if_block3) {
-            if_block3.p(ctx2, dirty);
-          } else {
-            if_block3 = create_if_block_10$2(ctx2);
-            if_block3.c();
-            if_block3.m(div3, t7);
-          }
-        } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
-        }
-        if (!/*$_CARD_SHOW*/
-        (ctx2[6].all || /*_hover*/
-        ctx2[3])) {
-          if (if_block4) {
-            if_block4.p(ctx2, dirty);
-          } else {
-            if_block4 = create_if_block$7(ctx2);
-            if_block4.c();
-            if_block4.m(div3, null);
-          }
-        } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
-        }
-        if (dirty & /*cardWidth*/
-        2) {
-          set_style(
-            div4,
-            "width",
-            /*cardWidth*/
-            ctx2[1] + "px"
-          );
-        }
-        if (dirty & /*torrentInfo*/
-        1) {
-          set_style(div4, "z-index", 1e4 - /*torrentInfo*/
-          ctx2[0].torrentIndex);
-        }
-        if (dirty & /*$_current_bgColor*/
-        32) {
-          set_style(
-            div4,
-            "background-color",
-            /*$_current_bgColor*/
-            ctx2[5]
-          );
-        }
-      },
-      i: noop,
-      o: noop,
-      d(detaching) {
-        if (detaching)
-          detach(div4);
-        if (if_block0)
-          if_block0.d();
-        if_block1.d();
-        if (if_block2)
-          if_block2.d();
-        if (if_block3)
-          if_block3.d();
-        if (if_block4)
-          if_block4.d();
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
-  function getTextColor$2(background) {
-    const color = background.replace("#", "");
-    const red = parseInt(color.substr(0, 2), 16);
-    const green = parseInt(color.substr(2, 2), 16);
-    const blue = parseInt(color.substr(4, 2), 16);
-    const brightness = (red * 299 + green * 587 + blue * 114) / 1e3;
-    return brightness < 128 ? "white" : "black";
-  }
-  const func$1 = (e) => e.outerHTML;
-  const func_1$1 = (e) => e.outerHTML;
-  const func_3$1 = (e) => e.outerHTML;
-  function instance$7($$self, $$props, $$invalidate) {
-    let $_iframe_url;
-    let $_iframe_switch;
-    let $_current_bgColor;
-    let $_CARD_SHOW;
-    let $_trigger_nexus_pic;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(18, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(19, $_iframe_switch = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(5, $_current_bgColor = $$value));
-    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(6, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(7, $_trigger_nexus_pic = $$value));
-    function sort_masonry() {
-      sortMasonry();
-    }
-    function COLLET_AND_ICON_CHANGE2(jsCodeLink, card_id) {
-      try {
-        window.location.href = jsCodeLink;
-        $$invalidate(
-          0,
-          torrentInfo.collectState = torrentInfo.collectState == "Unbookmarked" ? "Bookmarked" : "Unbookmarked",
-          torrentInfo
-        );
-        console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    function showDetailIframe() {
-      set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
-      set_store_value(_iframe_url, $_iframe_url = torrentInfo.torrentLink + "#kdescr", $_iframe_url);
-    }
-    let { torrentInfo } = $$props;
-    let { cardWidth } = $$props;
-    let { ICON: ICON2 } = $$props;
-    let _hover = false;
-    function card_show_detail() {
-      $$invalidate(3, _hover = true);
-    }
-    function card_hide_detail() {
-      $$invalidate(3, _hover = false);
-    }
-    let _picError = false;
-    const error_handler = () => {
-      $$invalidate(4, _picError = true);
-    };
-    const func_2 = (el) => {
-      const _tag = document.createElement("div");
-      _tag.innerHTML = el.outerHTML;
-      return _tag.outerHTML;
-    };
-    const click_handler = () => COLLET_AND_ICON_CHANGE2(torrentInfo.collectLink, "tI_" + torrentInfo.torrentIndex);
-    const func_4 = (el) => {
-      const _tag = document.createElement("div");
-      _tag.innerHTML = el.outerHTML;
-      return _tag.outerHTML;
-    };
-    const click_handler_1 = () => COLLET_AND_ICON_CHANGE2(torrentInfo.collectLink, "tI_" + torrentInfo.torrentIndex);
-    $$self.$$set = ($$props2) => {
-      if ("torrentInfo" in $$props2)
-        $$invalidate(0, torrentInfo = $$props2.torrentInfo);
-      if ("cardWidth" in $$props2)
-        $$invalidate(1, cardWidth = $$props2.cardWidth);
-      if ("ICON" in $$props2)
-        $$invalidate(2, ICON2 = $$props2.ICON);
-    };
-    return [
-      torrentInfo,
-      cardWidth,
-      ICON2,
-      _hover,
-      _picError,
-      $_current_bgColor,
-      $_CARD_SHOW,
-      $_trigger_nexus_pic,
-      sort_masonry,
-      COLLET_AND_ICON_CHANGE2,
-      showDetailIframe,
-      card_show_detail,
-      card_hide_detail,
-      error_handler,
-      func_2,
-      click_handler,
-      func_4,
-      click_handler_1
-    ];
-  }
-  class Kamept extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance$7, create_fragment$7, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
-    }
-  }
-  function create_if_block_17$1(ctx) {
-    let div;
-    let a;
-    let t0;
-    let b;
-    let t1_value = (
-      /*torrentInfo*/
-      ctx[0].torrent_name + ""
-    );
-    let t1;
-    let a_href_value;
-    let if_block = (
-      /*torrentInfo*/
-      ctx[0].tempTagDom.length != 0 && create_if_block_18$1(ctx)
-    );
-    return {
-      c() {
-        div = element("div");
-        a = element("a");
-        if (if_block)
-          if_block.c();
-        t0 = space();
-        b = element("b");
-        t1 = text(t1_value);
-        attr(a, "class", "two-lines svelte-1fw75v2");
-        attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[0].torrentLink);
-        attr(a, "target", "_blank");
-        attr(div, "class", "card-title svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, a);
-        if (if_block)
-          if_block.m(a, null);
-        append(a, t0);
-        append(a, b);
-        append(b, t1);
-      },
-      p(ctx2, dirty) {
-        if (
-          /*torrentInfo*/
-          ctx2[0].tempTagDom.length != 0
-        ) {
-          if (if_block) {
-            if_block.p(ctx2, dirty);
-          } else {
-            if_block = create_if_block_18$1(ctx2);
-            if_block.c();
-            if_block.m(a, t0);
-          }
-        } else if (if_block) {
-          if_block.d(1);
-          if_block = null;
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[0].torrent_name + ""))
-          set_data(t1, t1_value);
-        if (dirty & /*torrentInfo*/
-        1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[0].torrentLink)) {
-          attr(a, "href", a_href_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(div);
-        if (if_block)
-          if_block.d();
-      }
-    };
-  }
-  function create_if_block_18$1(ctx) {
-    let span;
-    let raw_value = Array.from(
-      /*torrentInfo*/
-      ctx[0].tempTagDom
-    ).map(func) + "";
-    return {
-      c() {
-        span = element("span");
-        attr(span, "class", "tempTags svelte-1fw75v2");
-      },
-      m(target, anchor) {
-        insert(target, span, anchor);
-        span.innerHTML = raw_value;
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && raw_value !== (raw_value = Array.from(
-          /*torrentInfo*/
-          ctx2[0].tempTagDom
-        ).map(func) + ""))
-          span.innerHTML = raw_value;
-      },
-      d(detaching) {
-        if (detaching)
-          detach(span);
-      }
-    };
-  }
-  function create_else_block$3(ctx) {
-    let div2;
-    let div0;
-    let img;
-    let img_src_value;
-    let t0;
-    let div1;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div2 = element("div");
-        div0 = element("div");
-        img = element("img");
-        t0 = space();
-        div1 = element("div");
-        div1.textContent = "图片加载失败";
-        set_style(img, "height", "100%");
-        set_style(img, "width", "100px");
-        if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
-          attr(img, "src", img_src_value);
-        attr(img, "alt", "pic error");
-        attr(img, "class", "svelte-1fw75v2");
-        attr(div2, "class", "pic_error");
-        attr(div2, "style", "");
-      },
-      m(target, anchor) {
-        insert(target, div2, anchor);
-        append(div2, div0);
-        append(div0, img);
-        append(div2, t0);
-        append(div2, div1);
-        if (!mounted) {
-          dispose = listen(
-            img,
-            "load",
-            /*sort_masonry*/
-            ctx[8]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      d(detaching) {
-        if (detaching)
-          detach(div2);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function create_if_block_16$1(ctx) {
-    let img;
-    let img_src_value;
-    let img_data_src_value;
-    let img_alt_value;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        img = element("img");
-        attr(img, "class", "card-image--img nexus-lazy-load_Kesa svelte-1fw75v2");
-        if (!src_url_equal(img.src, img_src_value = CONFIG$1.LOADING_PIC))
-          attr(img, "src", img_src_value);
-        attr(img, "data-src", img_data_src_value = /*torrentInfo*/
-        ctx[0].picLink);
-        attr(img, "alt", img_alt_value = /*torrentInfo*/
-        ctx[0].torrentName);
-      },
-      m(target, anchor) {
-        insert(target, img, anchor);
-        if (!mounted) {
-          dispose = [
-            listen(
-              img,
-              "load",
-              /*sort_masonry*/
-              ctx[8]
-            ),
-            listen(
-              img,
-              "error",
-              /*error_handler*/
-              ctx[12]
-            )
-          ];
-          mounted = true;
-        }
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*torrentInfo*/
-        1 && img_data_src_value !== (img_data_src_value = /*torrentInfo*/
-        ctx2[0].picLink)) {
-          attr(img, "data-src", img_data_src_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && img_alt_value !== (img_alt_value = /*torrentInfo*/
-        ctx2[0].torrentName)) {
-          attr(img, "alt", img_alt_value);
-        }
-      },
-      d(detaching) {
-        if (detaching)
-          detach(img);
-        mounted = false;
-        run_all(dispose);
-      }
-    };
-  }
   function create_if_block_10$1(ctx) {
     let t0;
     let t1;
@@ -8209,7 +5960,7 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_2*/
-        ctx[13]
+        ctx[14]
       ).join("") + ""
     );
     let t2;
@@ -8386,26 +6137,26 @@
         t25 = text(" ");
         b6 = element("b");
         t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-1fw75v2");
+        attr(div0, "class", "cl-tags svelte-4b9kml");
         html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-1fw75v2");
+        attr(div1, "class", "cl-center svelte-4b9kml");
         html_tag_1.a = t6;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-1fw75v2");
+        attr(div2, "class", "cl-center svelte-4b9kml");
         html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-1fw75v2");
+        attr(div3, "class", "btnCollet cl-center svelte-4b9kml");
         attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-1fw75v2");
-        attr(div5, "class", "card-line svelte-1fw75v2");
-        attr(div6, "class", "card-line svelte-1fw75v2");
+        attr(div4, "class", "cl-center svelte-4b9kml");
+        attr(div5, "class", "card-line svelte-4b9kml");
+        attr(div6, "class", "card-line svelte-4b9kml");
         html_tag_3.a = t16;
         html_tag_4.a = t19;
         html_tag_5.a = t22;
         html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-1fw75v2");
-        attr(div8, "class", "card-details svelte-1fw75v2");
+        attr(div7, "class", "card-line svelte-4b9kml");
+        attr(div8, "class", "card-details svelte-4b9kml");
       },
       m(target, anchor) {
         if (if_block0)
@@ -8463,34 +6214,25 @@
         append(div7, b6);
         append(b6, t26);
         if (!mounted) {
-          dispose = listen(div3, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE(
-              /*torrentInfo*/
-              ctx[0].collectLink,
-              "tI_" + /*torrentInfo*/
-              ctx[0].torrentIndex
-            )))
-              COLLET_AND_ICON_CHANGE(
-                /*torrentInfo*/
-                ctx[0].collectLink,
-                "tI_" + /*torrentInfo*/
-                ctx[0].torrentIndex
-              ).apply(this, arguments);
-          });
+          dispose = listen(
+            div3,
+            "click",
+            /*click_handler*/
+            ctx[15]
+          );
           mounted = true;
         }
       },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
+      p(ctx2, dirty) {
         if (
           /*torrentInfo*/
-          ctx[0].free_type || /*torrentInfo*/
-          ctx[0].pattMsg
+          ctx2[0].free_type || /*torrentInfo*/
+          ctx2[0].pattMsg
         ) {
           if (if_block0) {
-            if_block0.p(ctx, dirty);
+            if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_12$1(ctx);
+            if_block0 = create_if_block_12$1(ctx2);
             if_block0.c();
             if_block0.m(t0.parentNode, t0);
           }
@@ -8500,12 +6242,12 @@
         }
         if (
           /*torrentInfo*/
-          ctx[0].description
+          ctx2[0].description
         ) {
           if (if_block1) {
-            if_block1.p(ctx, dirty);
+            if_block1.p(ctx2, dirty);
           } else {
-            if_block1 = create_if_block_11$1(ctx);
+            if_block1 = create_if_block_11$1(ctx2);
             if_block1.c();
             if_block1.m(t1.parentNode, t1);
           }
@@ -8515,78 +6257,78 @@
         }
         if (dirty & /*torrentInfo*/
         1 && raw0_value !== (raw0_value = /*torrentInfo*/
-        ctx[0].tagsDOM.map(
+        ctx2[0].tagsDOM.map(
           /*func_2*/
-          ctx[13]
+          ctx2[14]
         ).join("") + ""))
           div0.innerHTML = raw0_value;
         if (dirty & /*ICON*/
         4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx[2].SIZE + ""))
+        ctx2[2].SIZE + ""))
           html_tag.p(raw1_value);
         if (dirty & /*torrentInfo*/
         1 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx[0].size + ""))
+        ctx2[0].size + ""))
           set_data(t4, t4_value);
         if (dirty & /*ICON*/
         4 && raw2_value !== (raw2_value = /*ICON*/
-        ctx[2].DOWNLOAD + ""))
+        ctx2[2].DOWNLOAD + ""))
           html_tag_1.p(raw2_value);
         if (dirty & /*torrentInfo*/
         1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink)) {
+        ctx2[0].downloadLink)) {
           attr(a, "href", a_href_value);
         }
         if (dirty & /*torrentInfo, ICON*/
         5 && raw3_value !== (raw3_value = /*torrentInfo*/
-        (ctx[0].collectState == "Unbookmarked" ? (
+        (ctx2[0].collectState == "Unbookmarked" ? (
           /*ICON*/
-          ctx[2].COLLET
+          ctx2[2].COLLET
         ) : (
           /*ICON*/
-          ctx[2].COLLETED
+          ctx2[2].COLLETED
         )) + ""))
           html_tag_2.p(raw3_value);
         if (dirty & /*torrentInfo*/
         1 && div3_id_value !== (div3_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex)) {
+        ctx2[0].torrentIndex)) {
           attr(div3, "id", div3_id_value);
         }
         if (dirty & /*torrentInfo*/
         1 && t14_value !== (t14_value = /*torrentInfo*/
-        ctx[0].upload_date + ""))
+        ctx2[0].upload_date + ""))
           set_data(t14, t14_value);
         if (dirty & /*ICON*/
         4 && raw4_value !== (raw4_value = /*ICON*/
-        ctx[2].COMMENT + ""))
+        ctx2[2].COMMENT + ""))
           html_tag_3.p(raw4_value);
         if (dirty & /*torrentInfo*/
         1 && t17_value !== (t17_value = /*torrentInfo*/
-        ctx[0].comments + ""))
+        ctx2[0].comments + ""))
           set_data(t17, t17_value);
         if (dirty & /*ICON*/
         4 && raw5_value !== (raw5_value = /*ICON*/
-        ctx[2].SEEDERS + ""))
+        ctx2[2].SEEDERS + ""))
           html_tag_4.p(raw5_value);
         if (dirty & /*torrentInfo*/
         1 && t20_value !== (t20_value = /*torrentInfo*/
-        ctx[0].seeders + ""))
+        ctx2[0].seeders + ""))
           set_data(t20, t20_value);
         if (dirty & /*ICON*/
         4 && raw6_value !== (raw6_value = /*ICON*/
-        ctx[2].LEECHERS + ""))
+        ctx2[2].LEECHERS + ""))
           html_tag_5.p(raw6_value);
         if (dirty & /*torrentInfo*/
         1 && t23_value !== (t23_value = /*torrentInfo*/
-        ctx[0].leechers + ""))
+        ctx2[0].leechers + ""))
           set_data(t23, t23_value);
         if (dirty & /*ICON*/
         4 && raw7_value !== (raw7_value = /*ICON*/
-        ctx[2].SNATCHED + ""))
+        ctx2[2].SNATCHED + ""))
           html_tag_6.p(raw7_value);
         if (dirty & /*torrentInfo*/
         1 && t26_value !== (t26_value = /*torrentInfo*/
-        ctx[0].snatched + ""))
+        ctx2[0].snatched + ""))
           set_data(t26, t26_value);
       },
       d(detaching) {
@@ -8640,8 +6382,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-1fw75v2");
-        attr(div1, "class", "card-alter svelte-1fw75v2");
+        ctx[0].free_type + " svelte-4b9kml");
+        attr(div1, "class", "card-alter svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -8703,7 +6445,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-1fw75v2")) {
+        ctx2[0].free_type + " svelte-4b9kml")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -8828,7 +6570,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-1fw75v2");
+        attr(a, "class", "card-description svelte-4b9kml");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -8862,31 +6604,30 @@
     let t4;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      ctx[7].free && /*torrentInfo*/
+      ctx[6].free && /*torrentInfo*/
       (ctx[0].free_type || /*torrentInfo*/
       ctx[0].pattMsg) && create_if_block_6$1(ctx)
     );
     let if_block1 = (
       /*$_CARD_SHOW*/
-      ctx[7].sub_title && /*torrentInfo*/
+      ctx[6].sub_title && /*torrentInfo*/
       ctx[0].description && create_if_block_5$1(ctx)
     );
     let if_block2 = (
       /*$_CARD_SHOW*/
-      ctx[7].tags && /*torrentInfo*/
-      ctx[0].tagsDOM.length != 0 && create_if_block_4$1(ctx)
+      ctx[6].tags && create_if_block_4$1(ctx)
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
-      ctx[7].size_download_collect && create_if_block_3$2(ctx)
+      ctx[6].size_download_collect && create_if_block_3$1(ctx)
     );
     let if_block4 = (
       /*$_CARD_SHOW*/
-      ctx[7].upload_time && create_if_block_2$2(ctx)
+      ctx[6].upload_time && create_if_block_2$2(ctx)
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[7].statistics && create_if_block_1$3(ctx)
+      ctx[6].statistics && create_if_block_1$3(ctx)
     );
     return {
       c() {
@@ -8908,7 +6649,7 @@
         t4 = space();
         if (if_block5)
           if_block5.c();
-        attr(div, "class", "card-details svelte-1fw75v2");
+        attr(div, "class", "card-details svelte-4b9kml");
       },
       m(target, anchor) {
         if (if_block0)
@@ -8933,7 +6674,7 @@
       p(ctx2, dirty) {
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].free && /*torrentInfo*/
+          ctx2[6].free && /*torrentInfo*/
           (ctx2[0].free_type || /*torrentInfo*/
           ctx2[0].pattMsg)
         ) {
@@ -8950,7 +6691,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].sub_title && /*torrentInfo*/
+          ctx2[6].sub_title && /*torrentInfo*/
           ctx2[0].description
         ) {
           if (if_block1) {
@@ -8966,8 +6707,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].tags && /*torrentInfo*/
-          ctx2[0].tagsDOM.length != 0
+          ctx2[6].tags
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
@@ -8982,12 +6722,12 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].size_download_collect
+          ctx2[6].size_download_collect
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block_3$2(ctx2);
+            if_block3 = create_if_block_3$1(ctx2);
             if_block3.c();
             if_block3.m(div, t3);
           }
@@ -8997,7 +6737,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].upload_time
+          ctx2[6].upload_time
         ) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
@@ -9012,7 +6752,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].statistics
+          ctx2[6].statistics
         ) {
           if (if_block5) {
             if_block5.p(ctx2, dirty);
@@ -9081,8 +6821,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-1fw75v2");
-        attr(div1, "class", "card-alter svelte-1fw75v2");
+        ctx[0].free_type + " svelte-4b9kml");
+        attr(div1, "class", "card-alter svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -9144,7 +6884,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-1fw75v2")) {
+        ctx2[0].free_type + " svelte-4b9kml")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -9269,7 +7009,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-1fw75v2");
+        attr(a, "class", "card-description svelte-4b9kml");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -9300,13 +7040,13 @@
       /*torrentInfo*/
       ctx[0].tagsDOM.map(
         /*func_4*/
-        ctx[14]
+        ctx[16]
       ).join("") + ""
     );
     return {
       c() {
         div = element("div");
-        attr(div, "class", "cl-tags svelte-1fw75v2");
+        attr(div, "class", "cl-tags svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -9317,7 +7057,7 @@
         1 && raw_value !== (raw_value = /*torrentInfo*/
         ctx2[0].tagsDOM.map(
           /*func_4*/
-          ctx2[14]
+          ctx2[16]
         ).join("") + ""))
           div.innerHTML = raw_value;
       },
@@ -9327,7 +7067,7 @@
       }
     };
   }
-  function create_if_block_3$2(ctx) {
+  function create_if_block_3$1(ctx) {
     let div4;
     let div0;
     let html_tag;
@@ -9394,17 +7134,17 @@
         b1 = element("b");
         b1.textContent = "收藏";
         html_tag.a = t0;
-        attr(div0, "class", "cl-center svelte-1fw75v2");
+        attr(div0, "class", "cl-center svelte-4b9kml");
         html_tag_1.a = t3;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div1, "class", "cl-center svelte-1fw75v2");
+        attr(div1, "class", "cl-center svelte-4b9kml");
         html_tag_2.a = t6;
-        attr(div2, "class", "btnCollet cl-center svelte-1fw75v2");
+        attr(div2, "class", "btnCollet cl-center svelte-4b9kml");
         attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div3, "class", "cl-center svelte-1fw75v2");
-        attr(div4, "class", "card-line svelte-1fw75v2");
+        attr(div3, "class", "cl-center svelte-4b9kml");
+        attr(div4, "class", "card-line svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -9426,55 +7166,46 @@
         append(div2, t6);
         append(div2, b1);
         if (!mounted) {
-          dispose = listen(div2, "click", function() {
-            if (is_function(COLLET_AND_ICON_CHANGE(
-              /*torrentInfo*/
-              ctx[0].collectLink,
-              "tI_" + /*torrentInfo*/
-              ctx[0].torrentIndex
-            )))
-              COLLET_AND_ICON_CHANGE(
-                /*torrentInfo*/
-                ctx[0].collectLink,
-                "tI_" + /*torrentInfo*/
-                ctx[0].torrentIndex
-              ).apply(this, arguments);
-          });
+          dispose = listen(
+            div2,
+            "click",
+            /*click_handler_1*/
+            ctx[17]
+          );
           mounted = true;
         }
       },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
+      p(ctx2, dirty) {
         if (dirty & /*ICON*/
         4 && raw0_value !== (raw0_value = /*ICON*/
-        ctx[2].SIZE + ""))
+        ctx2[2].SIZE + ""))
           html_tag.p(raw0_value);
         if (dirty & /*torrentInfo*/
         1 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx[0].size + ""))
+        ctx2[0].size + ""))
           set_data(t1, t1_value);
         if (dirty & /*ICON*/
         4 && raw1_value !== (raw1_value = /*ICON*/
-        ctx[2].DOWNLOAD + ""))
+        ctx2[2].DOWNLOAD + ""))
           html_tag_1.p(raw1_value);
         if (dirty & /*torrentInfo*/
         1 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx[0].downloadLink)) {
+        ctx2[0].downloadLink)) {
           attr(a, "href", a_href_value);
         }
         if (dirty & /*torrentInfo, ICON*/
         5 && raw2_value !== (raw2_value = /*torrentInfo*/
-        (ctx[0].collectState == "Unbookmarked" ? (
+        (ctx2[0].collectState == "Unbookmarked" ? (
           /*ICON*/
-          ctx[2].COLLET
+          ctx2[2].COLLET
         ) : (
           /*ICON*/
-          ctx[2].COLLETED
+          ctx2[2].COLLETED
         )) + ""))
           html_tag_2.p(raw2_value);
         if (dirty & /*torrentInfo*/
         1 && div2_id_value !== (div2_id_value = "tI_" + /*torrentInfo*/
-        ctx[0].torrentIndex)) {
+        ctx2[0].torrentIndex)) {
           attr(div2, "id", div2_id_value);
         }
       },
@@ -9502,7 +7233,7 @@
         b.textContent = "上传时间:";
         t1 = space();
         t2 = text(t2_value);
-        attr(div, "class", "card-line svelte-1fw75v2");
+        attr(div, "class", "card-line svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -9601,7 +7332,7 @@
         html_tag_1.a = t3;
         html_tag_2.a = t6;
         html_tag_3.a = t9;
-        attr(div, "class", "card-line svelte-1fw75v2");
+        attr(div, "class", "card-line svelte-4b9kml");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -9669,24 +7400,22 @@
     let div4;
     let div3;
     let div0;
-    let img;
-    let img_src_value;
-    let t0;
-    let t1_value = (
+    let t0_value = (
       /*torrentInfo*/
       ctx[0].category + ""
     );
-    let t1;
+    let t0;
     let div0_data_href_value;
+    let t1;
     let t2;
-    let t3;
     let div2;
-    let t4;
+    let t3;
     let div1;
-    let t5_value = (
+    let t4_value = (
       /*torrentInfo*/
       ctx[0].torrentIndex + 1 + ""
     );
+    let t4;
     let t5;
     let t6;
     let t7;
@@ -9694,54 +7423,54 @@
     let dispose;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      (ctx[7].title || /*_hover*/
-      ctx[3]) && create_if_block_17$1(ctx)
+      (ctx[6].title || /*_hover*/
+      ctx[3]) && create_if_block_18$1(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (!/*_picError*/
       ctx2[4])
-        return create_if_block_16$1;
+        return create_if_block_17$1;
       return create_else_block$3;
     }
     let current_block_type = select_block_type(ctx);
     let if_block1 = current_block_type(ctx);
     let if_block2 = (
+      /*$_trigger_nexus_pic*/
+      ctx[7] && create_if_block_16$1(ctx)
+    );
+    let if_block3 = (
       /*$_CARD_SHOW*/
-      (ctx[7].all || /*_hover*/
+      (ctx[6].all || /*_hover*/
       ctx[3]) && create_if_block_10$1(ctx)
     );
-    let if_block3 = !/*$_CARD_SHOW*/
-    (ctx[7].all || /*_hover*/
+    let if_block4 = !/*$_CARD_SHOW*/
+    (ctx[6].all || /*_hover*/
     ctx[3]) && create_if_block$6(ctx);
     return {
       c() {
         div4 = element("div");
         div3 = element("div");
         div0 = element("div");
-        img = element("img");
-        t0 = space();
-        t1 = text(t1_value);
-        t2 = space();
+        t0 = text(t0_value);
+        t1 = space();
         if (if_block0)
           if_block0.c();
-        t3 = space();
+        t2 = space();
         div2 = element("div");
         if_block1.c();
-        t4 = space();
+        t3 = space();
         div1 = element("div");
-        t5 = text(t5_value);
-        t6 = space();
+        t4 = text(t4_value);
+        t5 = space();
         if (if_block2)
           if_block2.c();
-        t7 = space();
+        t6 = space();
         if (if_block3)
           if_block3.c();
-        attr(img, "class", "card_category-img svelte-1fw75v2");
-        if (!src_url_equal(img.src, img_src_value = /*torrentInfo*/
-        ctx[0]._categoryImg))
-          attr(img, "src", img_src_value);
-        attr(img, "alt", "");
-        attr(div0, "class", "card-category svelte-1fw75v2");
+        t7 = space();
+        if (if_block4)
+          if_block4.c();
+        attr(div0, "class", "card-category svelte-4b9kml");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
         set_style(div0, "background-color", CONFIG$1.CATEGORY[
@@ -9755,17 +7484,10 @@
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
-        attr(div1, "class", "card-index svelte-1fw75v2");
-        attr(div2, "class", "card-image svelte-1fw75v2");
-        attr(div3, "class", "card-holder svelte-1fw75v2");
-        attr(div4, "class", "card svelte-1fw75v2");
-        set_style(
-          div4,
-          "display",
-          /*torrentInfo*/
-          ctx[0].categoryNumber == "440" && /*$_SITE_SETTING*/
-          ctx[5].mt.hide_gay ? "none" : "block"
-        );
+        attr(div1, "class", "card-index svelte-4b9kml");
+        attr(div2, "class", "card-image svelte-4b9kml");
+        attr(div3, "class", "card-holder svelte-4b9kml");
+        attr(div4, "class", "card svelte-4b9kml");
         set_style(
           div4,
           "width",
@@ -9778,50 +7500,51 @@
           div4,
           "background-color",
           /*$_current_bgColor*/
-          ctx[6]
+          ctx[5]
         );
       },
       m(target, anchor) {
         insert(target, div4, anchor);
         append(div4, div3);
         append(div3, div0);
-        append(div0, img);
         append(div0, t0);
-        append(div0, t1);
-        append(div3, t2);
+        append(div3, t1);
         if (if_block0)
           if_block0.m(div3, null);
-        append(div3, t3);
+        append(div3, t2);
         append(div3, div2);
         if_block1.m(div2, null);
-        append(div2, t4);
+        append(div2, t3);
         append(div2, div1);
-        append(div1, t5);
-        append(div3, t6);
+        append(div1, t4);
+        append(div2, t5);
         if (if_block2)
-          if_block2.m(div3, null);
-        append(div3, t7);
+          if_block2.m(div2, null);
+        append(div3, t6);
         if (if_block3)
           if_block3.m(div3, null);
+        append(div3, t7);
+        if (if_block4)
+          if_block4.m(div3, null);
         if (!mounted) {
           dispose = [
             listen(
               div2,
               "click",
               /*showDetailIframe*/
-              ctx[9]
+              ctx[10]
             ),
             listen(
               div3,
               "mouseenter",
               /*card_show_detail*/
-              ctx[10]
+              ctx[11]
             ),
             listen(
               div3,
               "mouseleave",
               /*card_hide_detail*/
-              ctx[11]
+              ctx[12]
             )
           ];
           mounted = true;
@@ -9829,14 +7552,9 @@
       },
       p(ctx2, [dirty]) {
         if (dirty & /*torrentInfo*/
-        1 && !src_url_equal(img.src, img_src_value = /*torrentInfo*/
-        ctx2[0]._categoryImg)) {
-          attr(img, "src", img_src_value);
-        }
-        if (dirty & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
+        1 && t0_value !== (t0_value = /*torrentInfo*/
         ctx2[0].category + ""))
-          set_data(t1, t1_value);
+          set_data(t0, t0_value);
         if (dirty & /*torrentInfo*/
         1 && div0_data_href_value !== (div0_data_href_value = /*torrentInfo*/
         ctx2[0].categoryLink)) {
@@ -9861,15 +7579,15 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[7].title || /*_hover*/
+          ctx2[6].title || /*_hover*/
           ctx2[3]
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_17$1(ctx2);
+            if_block0 = create_if_block_18$1(ctx2);
             if_block0.c();
-            if_block0.m(div3, t3);
+            if_block0.m(div3, t2);
           }
         } else if (if_block0) {
           if_block0.d(1);
@@ -9882,52 +7600,57 @@
           if_block1 = current_block_type(ctx2);
           if (if_block1) {
             if_block1.c();
-            if_block1.m(div2, t4);
+            if_block1.m(div2, t3);
           }
         }
         if (dirty & /*torrentInfo*/
-        1 && t5_value !== (t5_value = /*torrentInfo*/
+        1 && t4_value !== (t4_value = /*torrentInfo*/
         ctx2[0].torrentIndex + 1 + ""))
-          set_data(t5, t5_value);
+          set_data(t4, t4_value);
         if (
-          /*$_CARD_SHOW*/
-          ctx2[7].all || /*_hover*/
-          ctx2[3]
+          /*$_trigger_nexus_pic*/
+          ctx2[7]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
           } else {
-            if_block2 = create_if_block_10$1(ctx2);
+            if_block2 = create_if_block_16$1(ctx2);
             if_block2.c();
-            if_block2.m(div3, t7);
+            if_block2.m(div2, null);
           }
         } else if (if_block2) {
           if_block2.d(1);
           if_block2 = null;
         }
-        if (!/*$_CARD_SHOW*/
-        (ctx2[7].all || /*_hover*/
-        ctx2[3])) {
+        if (
+          /*$_CARD_SHOW*/
+          ctx2[6].all || /*_hover*/
+          ctx2[3]
+        ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
           } else {
-            if_block3 = create_if_block$6(ctx2);
+            if_block3 = create_if_block_10$1(ctx2);
             if_block3.c();
-            if_block3.m(div3, null);
+            if_block3.m(div3, t7);
           }
         } else if (if_block3) {
           if_block3.d(1);
           if_block3 = null;
         }
-        if (dirty & /*torrentInfo, $_SITE_SETTING*/
-        33) {
-          set_style(
-            div4,
-            "display",
-            /*torrentInfo*/
-            ctx2[0].categoryNumber == "440" && /*$_SITE_SETTING*/
-            ctx2[5].mt.hide_gay ? "none" : "block"
-          );
+        if (!/*$_CARD_SHOW*/
+        (ctx2[6].all || /*_hover*/
+        ctx2[3])) {
+          if (if_block4) {
+            if_block4.p(ctx2, dirty);
+          } else {
+            if_block4 = create_if_block$6(ctx2);
+            if_block4.c();
+            if_block4.m(div3, null);
+          }
+        } else if (if_block4) {
+          if_block4.d(1);
+          if_block4 = null;
         }
         if (dirty & /*cardWidth*/
         2) {
@@ -9944,12 +7667,12 @@
           ctx2[0].torrentIndex);
         }
         if (dirty & /*$_current_bgColor*/
-        64) {
+        32) {
           set_style(
             div4,
             "background-color",
             /*$_current_bgColor*/
-            ctx2[6]
+            ctx2[5]
           );
         }
       },
@@ -9965,21 +7688,12 @@
           if_block2.d();
         if (if_block3)
           if_block3.d();
+        if (if_block4)
+          if_block4.d();
         mounted = false;
         run_all(dispose);
       }
     };
-  }
-  function COLLET_AND_ICON_CHANGE(jsCodeLink, card_id) {
-    try {
-      window.location.href = jsCodeLink;
-      const btn = document.querySelector(`div#${card_id}`);
-      const img = btn.children[0];
-      img.className = img.className == "delbookmark" ? "bookmark" : "delbookmark";
-      console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
-    } catch (error) {
-      console.error(error);
-    }
   }
   function getTextColor$1(background) {
     const color = background.replace("#", "");
@@ -9995,16 +7709,29 @@
   function instance$6($$self, $$props, $$invalidate) {
     let $_iframe_url;
     let $_iframe_switch;
-    let $_SITE_SETTING;
     let $_current_bgColor;
     let $_CARD_SHOW;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(15, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(16, $_iframe_switch = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(5, $_SITE_SETTING = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
-    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(7, $_CARD_SHOW = $$value));
+    let $_trigger_nexus_pic;
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(18, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(19, $_iframe_switch = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(5, $_current_bgColor = $$value));
+    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(6, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(7, $_trigger_nexus_pic = $$value));
     function sort_masonry() {
       sortMasonry();
+    }
+    function COLLET_AND_ICON_CHANGE(jsCodeLink, card_id) {
+      try {
+        window.location.href = jsCodeLink;
+        $$invalidate(
+          0,
+          torrentInfo.collectState = torrentInfo.collectState == "Unbookmarked" ? "Bookmarked" : "Unbookmarked",
+          torrentInfo
+        );
+        console.log(`执行脚本${jsCodeLink}成功, 已经收藏或者取消~`);
+      } catch (error) {
+        console.error(error);
+      }
     }
     function showDetailIframe() {
       set_store_value(_iframe_switch, $_iframe_switch = 1, $_iframe_switch);
@@ -10029,11 +7756,13 @@
       _tag.innerHTML = el.outerHTML;
       return _tag.outerHTML;
     };
+    const click_handler = () => COLLET_AND_ICON_CHANGE(torrentInfo.collectLink, "tI_" + torrentInfo.torrentIndex);
     const func_4 = (el) => {
       const _tag = document.createElement("div");
       _tag.innerHTML = el.outerHTML;
       return _tag.outerHTML;
     };
+    const click_handler_1 = () => COLLET_AND_ICON_CHANGE(torrentInfo.collectLink, "tI_" + torrentInfo.torrentIndex);
     $$self.$$set = ($$props2) => {
       if ("torrentInfo" in $$props2)
         $$invalidate(0, torrentInfo = $$props2.torrentInfo);
@@ -10048,28 +7777,26 @@
       ICON2,
       _hover,
       _picError,
-      $_SITE_SETTING,
       $_current_bgColor,
       $_CARD_SHOW,
+      $_trigger_nexus_pic,
       sort_masonry,
+      COLLET_AND_ICON_CHANGE,
       showDetailIframe,
       card_show_detail,
       card_hide_detail,
       error_handler,
       func_2,
-      func_4
+      click_handler,
+      func_4,
+      click_handler_1
     ];
   }
-  class Mteam extends SvelteComponent {
+  class Kamept extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance$6, create_fragment$6, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
     }
-  }
-  function get_each_context_1(ctx, list, i) {
-    const child_ctx = ctx.slice();
-    child_ctx[23] = list[i];
-    return child_ctx;
   }
   function get_each_context$1(ctx, list, i) {
     const child_ctx = ctx.slice();
@@ -10092,73 +7819,6 @@
       d(detaching) {
         if (detaching)
           detach(div);
-      }
-    };
-  }
-  function create_if_block_3$1(ctx) {
-    let each_blocks = [];
-    let each_1_lookup = /* @__PURE__ */ new Map();
-    let each_1_anchor;
-    let current;
-    let each_value_1 = (
-      /*infoList*/
-      ctx[2]
-    );
-    const get_key = (ctx2) => (
-      /*info*/
-      ctx2[23].torrentIndex
-    );
-    for (let i = 0; i < each_value_1.length; i += 1) {
-      let child_ctx = get_each_context_1(ctx, each_value_1, i);
-      let key = get_key(child_ctx);
-      each_1_lookup.set(key, each_blocks[i] = create_each_block_1(key, child_ctx));
-    }
-    return {
-      c() {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].c();
-        }
-        each_1_anchor = empty();
-      },
-      m(target, anchor) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          if (each_blocks[i]) {
-            each_blocks[i].m(target, anchor);
-          }
-        }
-        insert(target, each_1_anchor, anchor);
-        current = true;
-      },
-      p(ctx2, dirty) {
-        if (dirty & /*infoList, CARD, ICON*/
-        5) {
-          each_value_1 = /*infoList*/
-          ctx2[2];
-          group_outros();
-          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value_1, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block_1, each_1_anchor, get_each_context_1);
-          check_outros();
-        }
-      },
-      i(local) {
-        if (current)
-          return;
-        for (let i = 0; i < each_value_1.length; i += 1) {
-          transition_in(each_blocks[i]);
-        }
-        current = true;
-      },
-      o(local) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          transition_out(each_blocks[i]);
-        }
-        current = false;
-      },
-      d(detaching) {
-        for (let i = 0; i < each_blocks.length; i += 1) {
-          each_blocks[i].d(detaching);
-        }
-        if (detaching)
-          detach(each_1_anchor);
       }
     };
   }
@@ -10226,66 +7886,6 @@
         }
         if (detaching)
           detach(each_1_anchor);
-      }
-    };
-  }
-  function create_each_block_1(key_1, ctx) {
-    let first;
-    let mteam;
-    let current;
-    mteam = new Mteam({
-      props: {
-        torrentInfo: (
-          /*info*/
-          ctx[23]
-        ),
-        cardWidth: (
-          /*CARD*/
-          ctx[0].CARD_WIDTH
-        ),
-        ICON
-      }
-    });
-    return {
-      key: key_1,
-      first: null,
-      c() {
-        first = empty();
-        create_component(mteam.$$.fragment);
-        this.first = first;
-      },
-      m(target, anchor) {
-        insert(target, first, anchor);
-        mount_component(mteam, target, anchor);
-        current = true;
-      },
-      p(new_ctx, dirty) {
-        ctx = new_ctx;
-        const mteam_changes = {};
-        if (dirty & /*infoList*/
-        4)
-          mteam_changes.torrentInfo = /*info*/
-          ctx[23];
-        if (dirty & /*CARD*/
-        1)
-          mteam_changes.cardWidth = /*CARD*/
-          ctx[0].CARD_WIDTH;
-        mteam.$set(mteam_changes);
-      },
-      i(local) {
-        if (current)
-          return;
-        transition_in(mteam.$$.fragment, local);
-        current = true;
-      },
-      o(local) {
-        transition_out(mteam.$$.fragment, local);
-        current = false;
-      },
-      d(detaching) {
-        if (detaching)
-          detach(first);
-        destroy_component(mteam, detaching);
       }
     };
   }
@@ -10419,7 +8019,7 @@
     let current;
     let mounted;
     let dispose;
-    const if_block_creators = [create_if_block_2$1, create_if_block_3$1, create_else_block_1$1];
+    const if_block_creators = [create_if_block_2$1, create_else_block_1$1];
     const if_blocks = [];
     function select_block_type(ctx2, dirty) {
       if (
@@ -10427,12 +8027,7 @@
         ctx2[3] == "kamept.com"
       )
         return 0;
-      if (
-        /*$_current_domain*/
-        ctx2[3] == "kp.m-team.cc"
-      )
-        return 1;
-      return 2;
+      return 1;
     }
     current_block_type_index = select_block_type(ctx);
     if_block0 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
@@ -11170,7 +8765,7 @@
     }
   }
   const _PicNoLOGO = "data:image/svg+xml;base64,PHN2ZwogIHZpZXdCb3g9Ii0yLjQgLTIuNCAyOC44MCAyOC44MCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICBzdHJva2U9IiMwMDAwMDAiCj4KICA8ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTUuNiAxNS42QzE1LjYgMTUuNiAxNC4yNSAxMy44IDEyIDEzLjhDOS43NSAxMy44IDguNCAxNS42IDguNCAxNS42TTE0LjcgOS4zSDE0LjcwOU05LjMgOS4zSDkuMzA5TTIxIDEyQzIxIDE2Ljk3MDYgMTYuOTcwNiAyMSAxMiAyMUM3LjAyOTQ0IDIxIDMgMTYuOTcwNiAzIDEyQzMgNy4wMjk0NCA3LjAyOTQ0IDMgMTIgM0MxNi45NzA2IDMgMjEgNy4wMjk0NCAyMSAxMlpNMTUuMTUgOS4zQzE1LjE1IDkuNTQ4NTMgMTQuOTQ4NSA5Ljc1IDE0LjcgOS43NUMxNC40NTE1IDkuNzUgMTQuMjUgOS41NDg1MyAxNC4yNSA5LjNDMTQuMjUgOS4wNTE0NyAxNC40NTE1IDguODUgMTQuNyA4Ljg1QzE0Ljk0ODUgOC44NSAxNS4xNSA5LjA1MTQ3IDE1LjE1IDkuM1pNOS43NSA5LjNDOS43NSA5LjU0ODUzIDkuNTQ4NTMgOS43NSA5LjMgOS43NUM5LjA1MTQ3IDkuNzUgOC44NSA5LjU0ODUzIDguODUgOS4zQzguODUgOS4wNTE0NyA5LjA1MTQ3IDguODUgOS4zIDguODVDOS41NDg1MyA4Ljg1IDkuNzUgOS4wNTE0NyA5Ljc1IDkuM1oiCiAgICAgIHN0cm9rZT0iIzAwMDAwMCIKICAgICAgc3Ryb2tlLXdpZHRoPSIxLjgiCiAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIC8+CiAgPC9nPgo8L3N2Zz4=";
-  function create_if_block_24(ctx) {
+  function create_if_block_25(ctx) {
     let div;
     let a;
     let b;
@@ -11215,7 +8810,7 @@
       }
     };
   }
-  function create_else_block_1(ctx) {
+  function create_else_block_2(ctx) {
     let div2;
     let div0;
     let img;
@@ -11271,7 +8866,8 @@
     function select_block_type_1(ctx2, dirty) {
       if (
         /*torrentInfo*/
-        ctx2[1].imageList[0]
+        ctx2[1].category == "440" && /*$_SITE_SETTING*/
+        ctx2[10].mt.hide_gay == true
       )
         return create_if_block_23;
       return create_else_block;
@@ -11307,6 +8903,110 @@
     };
   }
   function create_else_block(ctx) {
+    let if_block_anchor;
+    function select_block_type_2(ctx2, dirty) {
+      if (
+        /*torrentInfo*/
+        ctx2[1].imageList[0]
+      )
+        return create_if_block_24;
+      return create_else_block_1;
+    }
+    let current_block_type = select_block_type_2(ctx);
+    let if_block = current_block_type(ctx);
+    return {
+      c() {
+        if_block.c();
+        if_block_anchor = empty();
+      },
+      m(target, anchor) {
+        if_block.m(target, anchor);
+        insert(target, if_block_anchor, anchor);
+      },
+      p(ctx2, dirty) {
+        if (current_block_type === (current_block_type = select_block_type_2(ctx2)) && if_block) {
+          if_block.p(ctx2, dirty);
+        } else {
+          if_block.d(1);
+          if_block = current_block_type(ctx2);
+          if (if_block) {
+            if_block.c();
+            if_block.m(if_block_anchor.parentNode, if_block_anchor);
+          }
+        }
+      },
+      d(detaching) {
+        if_block.d(detaching);
+        if (detaching)
+          detach(if_block_anchor);
+      }
+    };
+  }
+  function create_if_block_23(ctx) {
+    let div2;
+    let div0;
+    let img;
+    let img_src_value;
+    let t0;
+    let div1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div2 = element("div");
+        div0 = element("div");
+        img = element("img");
+        t0 = space();
+        div1 = element("div");
+        div1.innerHTML = `GAY WARNING<br/>同志警告`;
+        set_style(img, "height", "100%");
+        set_style(img, "width", "60px");
+        set_style(img, "border-radius", "20px");
+        if (!src_url_equal(img.src, img_src_value = static_gay_warn))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "pic error");
+        attr(img, "class", "svelte-rhfb99");
+        set_style(div1, "color", "white");
+        set_style(div1, "font-weight", "600");
+        set_style(div1, "font-size", "16px");
+        attr(div2, "class", "pic_error");
+        set_style(div2, "height", "auto");
+        set_style(div2, "padding", "10px");
+        set_style(div2, "gap", "10px");
+        set_style(div2, "line-height", "24px");
+        set_style(
+          div2,
+          "background-color",
+          /*_categoryColor*/
+          ctx[23]
+        );
+      },
+      m(target, anchor) {
+        insert(target, div2, anchor);
+        append(div2, div0);
+        append(div0, img);
+        append(div2, t0);
+        append(div2, div1);
+        if (!mounted) {
+          dispose = listen(
+            img,
+            "load",
+            /*sort_masonry*/
+            ctx[12]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      d(detaching) {
+        if (detaching)
+          detach(div2);
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function create_else_block_1(ctx) {
     let div2;
     let div0;
     let img;
@@ -11357,10 +9057,9 @@
       }
     };
   }
-  function create_if_block_23(ctx) {
+  function create_if_block_24(ctx) {
     let img;
     let img_src_value;
-    let img_data_src_value;
     let img_alt_value;
     let mounted;
     let dispose;
@@ -11370,11 +9069,12 @@
         attr(img, "class", "nexus-lazy-load_Kesa svelte-rhfb99");
         if (!src_url_equal(img.src, img_src_value = CONFIG.LOADING_PIC))
           attr(img, "src", img_src_value);
-        attr(img, "data-src", img_data_src_value = /*torrentInfo*/
-        ctx[1].imageList[0] ? (
-          /*torrentInfo*/
-          ctx[1].imageList[0]
-        ) : "");
+        attr(
+          img,
+          "data-src",
+          /*real_pic_normal*/
+          ctx[24]
+        );
         attr(img, "alt", img_alt_value = /*torrentInfo*/
         ctx[1].name);
       },
@@ -11392,21 +9092,13 @@
               img,
               "error",
               /*error_handler*/
-              ctx[24]
+              ctx[25]
             )
           ];
           mounted = true;
         }
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*torrentInfo*/
-        2 && img_data_src_value !== (img_data_src_value = /*torrentInfo*/
-        ctx2[1].imageList[0] ? (
-          /*torrentInfo*/
-          ctx2[1].imageList[0]
-        ) : "")) {
-          attr(img, "data-src", img_data_src_value);
-        }
         if (dirty[0] & /*torrentInfo*/
         2 && img_alt_value !== (img_alt_value = /*torrentInfo*/
         ctx2[1].name)) {
@@ -11537,8 +9229,8 @@
       pending: create_pending_block_1,
       then: create_then_block_1,
       catch: create_catch_block_1,
-      value: 34,
-      error: 35
+      value: 35,
+      error: 36
     };
     handle_promise(promise_1 = /*promise*/
     ctx[4], info);
@@ -12100,7 +9792,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[35].message + ""
+      ctx[36].message + ""
     );
     let t;
     return {
@@ -12116,7 +9808,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
         16 && t_value !== (t_value = /*error*/
-        ctx2[35].message + ""))
+        ctx2[36].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -12197,31 +9889,31 @@
     let t4;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      ctx[10].free && /*torrentInfo*/
+      ctx[9].free && /*torrentInfo*/
       (ctx[1].status.discount || /*torrentInfo*/
       ctx[1].status.toppingLevel) && create_if_block_9(ctx)
     );
     let if_block1 = (
       /*$_CARD_SHOW*/
-      ctx[10].sub_title && /*torrentInfo*/
+      ctx[9].sub_title && /*torrentInfo*/
       ctx[1].smallDescr && create_if_block_8(ctx)
     );
     let if_block2 = (
       /*$_CARD_SHOW*/
-      ctx[10].tags && /*torrentInfo*/
+      ctx[9].tags && /*torrentInfo*/
       ctx[1].labels != 0 && create_if_block_4(ctx)
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
-      ctx[10].size_download_collect && create_if_block_3(ctx)
+      ctx[9].size_download_collect && create_if_block_3(ctx)
     );
     let if_block4 = (
       /*$_CARD_SHOW*/
-      ctx[10].upload_time && create_if_block_2(ctx)
+      ctx[9].upload_time && create_if_block_2(ctx)
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[10].statistics && create_if_block_1(ctx)
+      ctx[9].statistics && create_if_block_1(ctx)
     );
     return {
       c() {
@@ -12268,7 +9960,7 @@
       p(ctx2, dirty) {
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].free && /*torrentInfo*/
+          ctx2[9].free && /*torrentInfo*/
           (ctx2[1].status.discount || /*torrentInfo*/
           ctx2[1].status.toppingLevel)
         ) {
@@ -12285,7 +9977,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].sub_title && /*torrentInfo*/
+          ctx2[9].sub_title && /*torrentInfo*/
           ctx2[1].smallDescr
         ) {
           if (if_block1) {
@@ -12301,7 +9993,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].tags && /*torrentInfo*/
+          ctx2[9].tags && /*torrentInfo*/
           ctx2[1].labels != 0
         ) {
           if (if_block2) {
@@ -12317,7 +10009,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].size_download_collect
+          ctx2[9].size_download_collect
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
@@ -12332,7 +10024,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].upload_time
+          ctx2[9].upload_time
         ) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
@@ -12347,7 +10039,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].statistics
+          ctx2[9].statistics
         ) {
           if (if_block5) {
             if_block5.p(ctx2, dirty);
@@ -12728,8 +10420,8 @@
       pending: create_pending_block,
       then: create_then_block,
       catch: create_catch_block,
-      value: 34,
-      error: 35
+      value: 35,
+      error: 36
     };
     handle_promise(promise_1 = /*promise*/
     ctx[4], info);
@@ -12824,7 +10516,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[35].message + ""
+      ctx[36].message + ""
     );
     let t;
     return {
@@ -12840,7 +10532,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
         16 && t_value !== (t_value = /*error*/
-        ctx2[35].message + ""))
+        ctx2[36].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -13081,29 +10773,35 @@
     let dispose;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      (ctx[10].title || /*_hover*/
-      ctx[5]) && create_if_block_24(ctx)
+      (ctx[9].title || /*_hover*/
+      ctx[5]) && create_if_block_25(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (!/*_picError*/
       ctx2[6])
         return create_if_block_22;
-      return create_else_block_1;
+      return create_else_block_2;
     }
     let current_block_type = select_block_type(ctx);
     let if_block1 = current_block_type(ctx);
     let if_block2 = (
       /*$_trigger_nexus_pic*/
-      ctx[11] && create_if_block_21()
+      ctx[11] && !/*_picError*/
+      ctx[6] && !/*torrentInfo*/
+      (ctx[1].category == "440" && /*$_SITE_SETTING*/
+      ctx[10].mt.hide_gay == true) && /*torrentInfo*/
+      ctx[1].imageList[0] && create_if_block_21()
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
-      (ctx[10].all || /*_hover*/
+      (ctx[9].all || /*_hover*/
       ctx[5]) && create_if_block_12(ctx)
     );
     let if_block4 = !/*$_CARD_SHOW*/
-    (ctx[10].all || /*_hover*/
-    ctx[5]) && create_if_block$2(ctx);
+    (ctx[9].all || /*_hover*/
+    ctx[5]) && !/*torrentInfo*/
+    (ctx[1].category == "440" && /*$_SITE_SETTING*/
+    ctx[10].mt.hide_gay == true) && create_if_block$2(ctx);
     return {
       c() {
         div4 = element("div");
@@ -13161,13 +10859,6 @@
         attr(div4, "class", "card svelte-rhfb99");
         set_style(
           div4,
-          "display",
-          /*torrentInfo*/
-          ctx[1].category == "440" && /*$_SITE_SETTING*/
-          ctx[8].mt.hide_gay ? "none" : "block"
-        );
-        set_style(
-          div4,
           "width",
           /*cardWidth*/
           ctx[2] + "px"
@@ -13184,11 +10875,11 @@
           div4,
           "background-color",
           /*$_current_bgColor*/
-          ctx[9]
+          ctx[8]
         );
         set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
         (ctx[23] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
-        ctx[9] + " 18px)");
+        ctx[8] + " 18px)");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -13215,7 +10906,7 @@
         append(div3, t8);
         if (if_block4)
           if_block4.m(div3, null);
-        ctx[25](div4);
+        ctx[26](div4);
         if (!mounted) {
           dispose = [
             listen(
@@ -13259,13 +10950,13 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].title || /*_hover*/
+          ctx2[9].title || /*_hover*/
           ctx2[5]
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_24(ctx2);
+            if_block0 = create_if_block_25(ctx2);
             if_block0.c();
             if_block0.m(div3, t3);
           }
@@ -13289,7 +10980,11 @@
           set_data(t5, t5_value);
         if (
           /*$_trigger_nexus_pic*/
-          ctx2[11]
+          ctx2[11] && !/*_picError*/
+          ctx2[6] && !/*torrentInfo*/
+          (ctx2[1].category == "440" && /*$_SITE_SETTING*/
+          ctx2[10].mt.hide_gay == true) && /*torrentInfo*/
+          ctx2[1].imageList[0]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
@@ -13304,7 +10999,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[10].all || /*_hover*/
+          ctx2[9].all || /*_hover*/
           ctx2[5]
         ) {
           if (if_block3) {
@@ -13319,8 +11014,10 @@
           if_block3 = null;
         }
         if (!/*$_CARD_SHOW*/
-        (ctx2[10].all || /*_hover*/
-        ctx2[5])) {
+        (ctx2[9].all || /*_hover*/
+        ctx2[5]) && !/*torrentInfo*/
+        (ctx2[1].category == "440" && /*$_SITE_SETTING*/
+        ctx2[10].mt.hide_gay == true)) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
           } else {
@@ -13331,16 +11028,6 @@
         } else if (if_block4) {
           if_block4.d(1);
           if_block4 = null;
-        }
-        if (dirty[0] & /*torrentInfo, $_SITE_SETTING*/
-        258) {
-          set_style(
-            div4,
-            "display",
-            /*torrentInfo*/
-            ctx2[1].category == "440" && /*$_SITE_SETTING*/
-            ctx2[8].mt.hide_gay ? "none" : "block"
-          );
         }
         if (dirty[0] & /*cardWidth*/
         4) {
@@ -13357,19 +11044,19 @@
           ctx2[0]);
         }
         if (dirty[0] & /*$_current_bgColor*/
-        512) {
+        256) {
           set_style(
             div4,
             "background-color",
             /*$_current_bgColor*/
-            ctx2[9]
+            ctx2[8]
           );
         }
         if (dirty[0] & /*$_current_bgColor*/
-        512) {
+        256) {
           set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
           (ctx2[23] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
-          ctx2[9] + " 18px)");
+          ctx2[8] + " 18px)");
         }
       },
       i: noop,
@@ -13386,13 +11073,14 @@
           if_block3.d();
         if (if_block4)
           if_block4.d();
-        ctx[25](null);
+        ctx[26](null);
         mounted = false;
         run_all(dispose);
       }
     };
   }
   const _defaultColor = "rgba(255, 255, 255, 0.5)";
+  const static_gay_warn = "/static/cate/gayhd.gif";
   function getTextColor(background) {
     const color = background.replace("#", "");
     const red = parseInt(color.substr(0, 2), 16);
@@ -13404,15 +11092,15 @@
   function instance$2($$self, $$props, $$invalidate) {
     let $_iframe_url;
     let $_iframe_switch;
-    let $_SITE_SETTING;
     let $_current_bgColor;
     let $_CARD_SHOW;
+    let $_SITE_SETTING;
     let $_trigger_nexus_pic;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(26, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(27, $_iframe_switch = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(8, $_SITE_SETTING = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(9, $_current_bgColor = $$value));
-    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(10, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(27, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(28, $_iframe_switch = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(8, $_current_bgColor = $$value));
+    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(9, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(10, $_SITE_SETTING = $$value));
     component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(11, $_trigger_nexus_pic = $$value));
     function fetchData(api, payload, func2) {
       if (!CONFIG.API[api]) {
@@ -13511,6 +11199,7 @@
     let _picError = false;
     const _categoryColor = CONFIG.CATEGORY_COLOR[torrentInfo.category];
     let thisDom;
+    const real_pic_normal = torrentInfo.imageList[0] ? torrentInfo.imageList[0] : "";
     const error_handler = () => {
       $$invalidate(6, _picError = true);
     };
@@ -13537,9 +11226,9 @@
       _hover,
       _picError,
       thisDom,
-      $_SITE_SETTING,
       $_current_bgColor,
       $_CARD_SHOW,
+      $_SITE_SETTING,
       $_trigger_nexus_pic,
       sort_masonry,
       showDetailIframe,
@@ -13553,11 +11242,12 @@
       card_show_detail,
       card_hide_detail,
       _categoryColor,
+      real_pic_normal,
       error_handler,
       div4_binding
     ];
   }
-  class TestMteam extends SvelteComponent {
+  class NewMteam extends SvelteComponent {
     constructor(options) {
       super();
       init(this, options, instance$2, create_fragment$2, safe_not_equal, { index: 0, torrentInfo: 1, cardWidth: 2 }, null, [-1, -1]);
@@ -13613,7 +11303,7 @@
     let first;
     let testmteam;
     let current;
-    testmteam = new TestMteam({
+    testmteam = new NewMteam({
       props: {
         index: (
           /*index*/
@@ -13690,7 +11380,8 @@
     );
     const get_key = (ctx2) => (
       /*info*/
-      ctx2[32].id
+      ctx2[32].id + /*index*/
+      ctx2[34]
     );
     for (let i = 0; i < each_value.length; i += 1) {
       let child_ctx = get_each_context(ctx, each_value, i);
