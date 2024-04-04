@@ -9,7 +9,7 @@
     _trigger_nexus_pic,
   } from "../stores";
   import { sortMasonry } from "../utils";
-  import { config } from "./testMteam";
+  import { config } from "./newMteam";
   import _PicErrorLOGO from "../assets/pic_error.svg";
   import _PicNoLOGO from "../assets/pic_no.svg";
 

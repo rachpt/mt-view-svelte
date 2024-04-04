@@ -32,8 +32,8 @@
     GET_SITE_BACKGROUND_COLOR,
   } from "./index";
   import "../utils/masonry.pkgd.Kesa";
-  import TestMteam from "./testMteam.svelte";
-  import { config } from "./testMteam";
+  import TestMteam from "./newMteam.svelte";
+  import { config } from "./newMteam";
   // 父子参数 ------------------------------------------------
 
   /** 父传值: 瀑布流dom*/

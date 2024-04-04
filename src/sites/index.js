@@ -1,6 +1,5 @@
 import { config as config_Kame } from "./kamept";
-import { config as config_Mteam } from "./mteam";
-import { config as config_testMteam } from "./testMteam";
+import { config as config_newMteam } from "./newMteam";
 
 /** 站点参数相关参数顶层对象 */
 const SITE = {
@@ -10,13 +9,13 @@ const SITE = {
   // "kp.m-team.cc": config_Mteam,
 
   // 新 M-Team
-  "kp.m-team.cc": config_testMteam,
-  "xp.m-team.io": config_testMteam,
-  "xp.m-team.cc": config_testMteam,
-  "ap.m-team.cc": config_testMteam,
+  "kp.m-team.cc": config_newMteam,
+  "xp.m-team.io": config_newMteam,
+  "xp.m-team.cc": config_newMteam,
+  "ap.m-team.cc": config_newMteam,
 
   // 新 M-Team 测试站
-  "test2.m-team.cc": config_testMteam,
+  "test2.m-team.cc": config_newMteam,
 };
 
 /** 获得当前PT站的名字 @returns 当前PT站名 */
