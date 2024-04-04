@@ -276,10 +276,10 @@
   }
 
   /** 获取 ls 里的 pageSize */
-  function getPageSize() {
+  function getPageSize(defaultNum = 100) {
     const sysinfo = parseLocalStorage("persist:persist").sysinfo;
-    if (!sysinfo.pageSize) return 50;
-    if (!sysinfo.pageSize.torrent) return 50;
+    if (!sysinfo.pageSize) return defaultNum;
+    if (!sysinfo.pageSize.torrent) return defaultNum;
     return Number(sysinfo.pageSize.torrent);
   }
 
@@ -305,16 +305,44 @@
     let mode = urlObject.pathname.split("/")[2];
     let categories = urlObject.searchParams.getAll("cat");
     let standards = urlObject.searchParams.getAll("stand");
+    let pageNumber = Number(urlObject.searchParams.get("pageNumber")) || 1;
+    let pageSize = getPageSize(100);
+    let sortParam = urlObject.searchParams.get("sort");
 
     let output = {};
 
-    if (mode !== undefined) output.mode = mode;
+    if (mode) output.mode = mode;
     else output.mode = "normal";
-    if (categories !== undefined) output.categories = categories;
-    if (standards !== undefined) output.standards = standards;
+    if (categories) output.categories = categories;
+    if (standards.length) output.standards = standards;
+    if (pageNumber) output.pageNumber = pageNumber;
+    if (pageSize) output.pageSize = pageSize;
 
+    // NOTE: 这里存在将来变更的隐患捏
+    if (sortParam) {
+      // console.log(sortParam);
+      let field = sortParam.split(":")[0].toUpperCase();
+      if (field.includes("DATE")) output.sortField = "CREATED_DATE";
+      if (field.includes("SIZE")) output.sortField = "SIZE";
+      if (field.includes("SEEDER")) output.sortField = "SEEDERS";
+      if (field.includes("LEECHER")) output.sortField = "LEECHERS";
+      if (field.includes("TIME")) output.sortField = "TIMES_COMPLETED";
+      // output.sortField;
+
+      let direction = sortParam.split(":")[1].toUpperCase();
+      if (direction.includes("ASC")) output.sortDirection = "ASC";
+      if (direction.includes("DESC")) output.sortDirection = "DESC";
+      // output.sortDirection;
+    }
+
+    // 设置当前页数
+    PAGE.$setPage(pageNumber);
+    // console.log('========------------===========');
+    // console.log(pageNumber);
+    // console.log('========------------===========');
+
+    // 输出
     console.log(output);
-
     return output;
   }
 
@@ -434,7 +462,11 @@
       // sortDirection: "DESC",
       // sortField: "CREATED_DATE",
     };
+    // console.log("++++++++++++++++++++++++");
+    // console.log(payload.pageNumber);
+    // console.log("++++++++++++++++++++++++");
     Object.assign(payload, UrlPath_2_ParamList());
+    Object.assign(payload, { pageNumber: PAGE.$getCurrentPage() + 1 });
 
     // -- 2. fetch payload, 并在获得后更新 List
     fetch(searchApiURL, {
