@@ -551,7 +551,7 @@
 
   <!-- 卡片渲染模版 -->
   <!-- {#if $_current_domain == "test2.m-team.cc"} -->
-  {#each infoList as info, index (info.id)}
+  {#each infoList as info, index (info.id + index)}
     <TestMteam {index} torrentInfo={info} cardWidth={CARD.CARD_WIDTH} />
   {/each}
   <!-- {/if} -->
