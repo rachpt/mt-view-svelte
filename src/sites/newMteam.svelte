@@ -140,6 +140,13 @@
   }
 
   // ------------------------------------------------
+  // 置顶相关
+  let toppingLevelArray;
+  if (torrentInfo.status.toppingLevel) {
+    toppingLevelArray = Array(torrentInfo.status.toppingLevel).fill();
+  }
+
+  // ------------------------------------------------
   // 收藏相关
 
   /**是否收藏的 Boolean*/
@@ -394,14 +401,16 @@
           <!-- 置顶 -->
           {#if torrentInfo.status.toppingLevel}
             <!-- <div class="_tag">{torrentInfo.status.toppingLevel}</div> -->
-            <img
-              style="
-              background: url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px;
-              height: 14px;
-              width: 14px;"
-              src={config.ICON.PIN}
-              alt="SVG_Comment"
-            />
+            {#each toppingLevelArray as _, index}
+              <img
+                style="
+                  background: url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px;
+                  height: 14px;
+                  width: 14px;"
+                src={config.ICON.PIN}
+                alt="PIN"
+              />
+            {/each}
             &nbsp;
           {/if}
 
@@ -574,14 +583,16 @@
           <!-- 置顶 -->
           {#if torrentInfo.status.toppingLevel}
             <!-- <div class="_tag">{torrentInfo.status.toppingLevel}</div> -->
-            <img
-              style="
-              background: url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px;
-              height: 14px;
-              width: 14px;"
-              src={config.ICON.PIN}
-              alt="SVG_Comment"
-            />
+            {#each toppingLevelArray as _, index}
+              <img
+                style="
+                  background: url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px;
+                  height: 14px;
+                  width: 14px;"
+                src={config.ICON.PIN}
+                alt="PIN"
+              />
+            {/each}
             &nbsp;
           {/if}
 
