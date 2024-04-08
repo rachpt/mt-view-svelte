@@ -2,7 +2,7 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.8
+// @version         1.1.9
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
@@ -185,6 +185,12 @@
       node.parentNode.removeChild(node);
     }
   }
+  function destroy_each(iterations, detaching) {
+    for (let i = 0; i < iterations.length; i += 1) {
+      if (iterations[i])
+        iterations[i].d(detaching);
+    }
+  }
   function element(name) {
     return document.createElement(name);
   }
@@ -360,6 +366,9 @@
   }
   function afterUpdate(fn) {
     get_current_component().$$.after_update.push(fn);
+  }
+  function onDestroy(fn) {
+    get_current_component().$$.on_destroy.push(fn);
   }
   const dirty_components = [];
   const binding_callbacks = [];
@@ -923,13 +932,16 @@
       firstLinkBrowse = location.pathname.includes("/browse");
       first = false;
     }
-    setInterval(
+    let interval2 = setInterval(
       () => {
         currentLinkBrowse = location.pathname.includes("/browse");
         $$invalidate(0, trigger = !firstLinkBrowse && currentLinkBrowse);
       },
       2e3
     );
+    onDestroy(() => {
+      clearInterval(interval2);
+    });
     return [trigger];
   }
   class BtnReload extends SvelteComponent {
@@ -963,20 +975,20 @@
     } : function(message) {
       console2.error(message);
     };
-    function jQueryBridget(namespace, PluginClass, $2) {
-      $2 = $2 || jQuery || window2.jQuery;
-      if (!$2) {
+    function jQueryBridget(namespace, PluginClass, $) {
+      $ = $ || jQuery || window2.jQuery;
+      if (!$) {
         return;
       }
       if (!PluginClass.prototype.option) {
         PluginClass.prototype.option = function(opts) {
-          if (!$2.isPlainObject(opts)) {
+          if (!$.isPlainObject(opts)) {
             return;
           }
-          this.options = $2.extend(true, this.options, opts);
+          this.options = $.extend(true, this.options, opts);
         };
       }
-      $2.fn[namespace] = function(arg0) {
+      $.fn[namespace] = function(arg0) {
         if (typeof arg0 == "string") {
           var args = arraySlice.call(arguments, 1);
           return methodCall(this, arg0, args);
@@ -988,7 +1000,7 @@
         var returnValue;
         var pluginMethodStr = "$()." + namespace + '("' + methodName + '")';
         $elems.each(function(i, elem) {
-          var instance2 = $2.data(elem, namespace);
+          var instance2 = $.data(elem, namespace);
           if (!instance2) {
             logError(namespace + " not initialized. Cannot call methods, i.e. " + pluginMethodStr);
             return;
@@ -1005,23 +1017,23 @@
       }
       function plainCall($elems, options) {
         $elems.each(function(i, elem) {
-          var instance2 = $2.data(elem, namespace);
+          var instance2 = $.data(elem, namespace);
           if (instance2) {
             instance2.option(options);
             instance2._init();
           } else {
             instance2 = new PluginClass(elem, options);
-            $2.data(elem, namespace, instance2);
+            $.data(elem, namespace, instance2);
           }
         });
       }
-      updateJQuery($2);
+      updateJQuery($);
     }
-    function updateJQuery($2) {
-      if (!$2 || $2 && $2.bridget) {
+    function updateJQuery($) {
+      if (!$ || $ && $.bridget) {
         return;
       }
-      $2.bridget = jQueryBridget;
+      $.bridget = jQueryBridget;
     }
     updateJQuery(jQuery || window2.jQuery);
     return jQueryBridget;
@@ -2689,7 +2701,6 @@
       kesa_preview.style.height = cssPos.height;
     }
     document.body.addEventListener("mouseover", function(e) {
-      console.log(get_store_value(_trigger_nexus_pic));
       if (get_store_value(_trigger_nexus_pic) == 0) {
         if (e.target.matches(selector)) {
           handleMouseOver(e);
@@ -5321,23 +5332,26 @@
     },
     /** NOTE: 站点特殊操作 */
     special: function() {
-      $("ksearchboxmain") ? $("ksearchboxmain").style.display = "none" : null;
+      function legacy$(id) {
+        return document.getElementById(id);
+      }
+      legacy$("ksearchboxmain") ? legacy$("ksearchboxmain").style.display = "none" : null;
       const link = document.querySelector('a[href="?sort=7&type=asc&seeders_begin=1"]');
       link ? link.childNodes[0].style.color = "black" : null;
       let np = document.querySelector("img#nexus-preview");
       if (np)
         np.style.zIndex = 12e3;
-      table_Iframe_Set();
+      table_Iframe_Set$1();
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
       var script = document.createElement("script");
       script.src = "https://kamept.com/js/nexus.js";
       document.head.appendChild(script);
-      table_Iframe_Set();
+      table_Iframe_Set$1();
     }
   };
-  function table_Iframe_Set() {
+  function table_Iframe_Set$1() {
     const lists = Array.from(document.querySelectorAll(".torrentname"));
     lists.forEach((el) => el.addEventListener("click", function(event) {
       event.preventDefault();
@@ -5627,11 +5641,43 @@
     },
     /** NOTE: 站点特殊操作 */
     special: function() {
+      console.log("======= M-Team 特殊操作 =======");
+      let count = 0;
+      let length;
+      interval = setInterval(() => {
+        length = table_Iframe_Set();
+        count++;
+        console.log(`[${count}]原表格点击标题显示 iframe List: ${length}`);
+        show_pic();
+        if (length) {
+          clearInterval(interval);
+        }
+      }, 750);
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
     }
   };
+  let interval;
+  function table_Iframe_Set() {
+    const lists = Array.from(document.querySelectorAll(".ant-table-row-level-0 .ant-col a[href]"));
+    lists.forEach(
+      function(el) {
+        el.addEventListener("click", function(event) {
+          event.preventDefault();
+          _iframe_switch.set(1);
+          _iframe_url.set(el.href);
+        });
+      }
+    );
+    return lists.length;
+  }
+  function show_pic() {
+    const lists = Array.from(document.querySelectorAll(".ant-image"));
+    lists.forEach((el) => {
+      el.classList += " preview_Origin";
+    });
+  }
   const SITE = {
     "kamept.com": CONFIG$1,
     // 旧 M-Team
@@ -7798,7 +7844,7 @@
       init(this, options, instance$6, create_fragment$6, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
     }
   }
-  function get_each_context$1(ctx, list, i) {
+  function get_each_context$2(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[23] = list[i];
     return child_ctx;
@@ -7836,9 +7882,9 @@
       ctx2[23].torrentIndex
     );
     for (let i = 0; i < each_value.length; i += 1) {
-      let child_ctx = get_each_context$1(ctx, each_value, i);
+      let child_ctx = get_each_context$2(ctx, each_value, i);
       let key = get_key(child_ctx);
-      each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
+      each_1_lookup.set(key, each_blocks[i] = create_each_block$2(key, child_ctx));
     }
     return {
       c() {
@@ -7862,7 +7908,7 @@
           each_value = /*infoList*/
           ctx2[2];
           group_outros();
-          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block$1, each_1_anchor, get_each_context$1);
+          each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx2, each_value, each_1_lookup, each_1_anchor.parentNode, outro_and_destroy_block, create_each_block$2, each_1_anchor, get_each_context$2);
           check_outros();
         }
       },
@@ -7889,7 +7935,7 @@
       }
     };
   }
-  function create_each_block$1(key_1, ctx) {
+  function create_each_block$2(key_1, ctx) {
     let first;
     let kamept;
     let current;
@@ -8765,13 +8811,25 @@
     }
   }
   const _PicNoLOGO = "data:image/svg+xml;base64,PHN2ZwogIHZpZXdCb3g9Ii0yLjQgLTIuNCAyOC44MCAyOC44MCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICBzdHJva2U9IiMwMDAwMDAiCj4KICA8ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTUuNiAxNS42QzE1LjYgMTUuNiAxNC4yNSAxMy44IDEyIDEzLjhDOS43NSAxMy44IDguNCAxNS42IDguNCAxNS42TTE0LjcgOS4zSDE0LjcwOU05LjMgOS4zSDkuMzA5TTIxIDEyQzIxIDE2Ljk3MDYgMTYuOTcwNiAyMSAxMiAyMUM3LjAyOTQ0IDIxIDMgMTYuOTcwNiAzIDEyQzMgNy4wMjk0NCA3LjAyOTQ0IDMgMTIgM0MxNi45NzA2IDMgMjEgNy4wMjk0NCAyMSAxMlpNMTUuMTUgOS4zQzE1LjE1IDkuNTQ4NTMgMTQuOTQ4NSA5Ljc1IDE0LjcgOS43NUMxNC40NTE1IDkuNzUgMTQuMjUgOS41NDg1MyAxNC4yNSA5LjNDMTQuMjUgOS4wNTE0NyAxNC40NTE1IDguODUgMTQuNyA4Ljg1QzE0Ljk0ODUgOC44NSAxNS4xNSA5LjA1MTQ3IDE1LjE1IDkuM1pNOS43NSA5LjNDOS43NSA5LjU0ODUzIDkuNTQ4NTMgOS43NSA5LjMgOS43NUM5LjA1MTQ3IDkuNzUgOC44NSA5LjU0ODUzIDguODUgOS4zQzguODUgOS4wNTE0NyA5LjA1MTQ3IDguODUgOS4zIDguODVDOS41NDg1MyA4Ljg1IDkuNzUgOS4wNTE0NyA5Ljc1IDkuM1oiCiAgICAgIHN0cm9rZT0iIzAwMDAwMCIKICAgICAgc3Ryb2tlLXdpZHRoPSIxLjgiCiAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIC8+CiAgPC9nPgo8L3N2Zz4=";
+  function get_each_context$1(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[38] = list[i];
+    child_ctx[2] = i;
+    return child_ctx;
+  }
+  function get_each_context_1(ctx, list, i) {
+    const child_ctx = ctx.slice();
+    child_ctx[38] = list[i];
+    child_ctx[2] = i;
+    return child_ctx;
+  }
   function create_if_block_25(ctx) {
     let div;
     let a;
     let b;
     let t_value = (
       /*torrentInfo*/
-      ctx[1].name + ""
+      ctx[0].name + ""
     );
     let t;
     let a_href_value;
@@ -8783,7 +8841,7 @@
         t = text(t_value);
         attr(a, "class", "two-lines svelte-rhfb99");
         attr(a, "href", a_href_value = "/detail/" + /*torrentInfo*/
-        ctx[1].id);
+        ctx[0].id);
         attr(a, "target", "_blank");
         attr(div, "class", "card-title svelte-rhfb99");
       },
@@ -8795,12 +8853,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*torrentInfo*/
-        2 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[1].name + ""))
+        1 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[0].name + ""))
           set_data(t, t_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && a_href_value !== (a_href_value = "/detail/" + /*torrentInfo*/
-        ctx2[1].id)) {
+        1 && a_href_value !== (a_href_value = "/detail/" + /*torrentInfo*/
+        ctx2[0].id)) {
           attr(a, "href", a_href_value);
         }
       },
@@ -8847,7 +8905,7 @@
             img,
             "load",
             /*sort_masonry*/
-            ctx[12]
+            ctx[13]
           );
           mounted = true;
         }
@@ -8866,8 +8924,8 @@
     function select_block_type_1(ctx2, dirty) {
       if (
         /*torrentInfo*/
-        ctx2[1].category == "440" && /*$_SITE_SETTING*/
-        ctx2[10].mt.hide_gay == true
+        ctx2[0].category == "440" && /*$_SITE_SETTING*/
+        ctx2[11].mt.hide_gay == true
       )
         return create_if_block_23;
       return create_else_block;
@@ -8907,7 +8965,7 @@
     function select_block_type_2(ctx2, dirty) {
       if (
         /*torrentInfo*/
-        ctx2[1].imageList[0]
+        ctx2[0].imageList[0]
       )
         return create_if_block_24;
       return create_else_block_1;
@@ -8978,7 +9036,7 @@
           div2,
           "background-color",
           /*_categoryColor*/
-          ctx[23]
+          ctx[24]
         );
       },
       m(target, anchor) {
@@ -8992,7 +9050,7 @@
             img,
             "load",
             /*sort_masonry*/
-            ctx[12]
+            ctx[13]
           );
           mounted = true;
         }
@@ -9043,7 +9101,7 @@
             img,
             "load",
             /*sort_masonry*/
-            ctx[12]
+            ctx[13]
           );
           mounted = true;
         }
@@ -9073,10 +9131,10 @@
           img,
           "data-src",
           /*real_pic_normal*/
-          ctx[24]
+          ctx[25]
         );
         attr(img, "alt", img_alt_value = /*torrentInfo*/
-        ctx[1].name);
+        ctx[0].name);
       },
       m(target, anchor) {
         insert(target, img, anchor);
@@ -9086,13 +9144,13 @@
               img,
               "load",
               /*sort_masonry*/
-              ctx[12]
+              ctx[13]
             ),
             listen(
               img,
               "error",
               /*error_handler*/
-              ctx[25]
+              ctx[26]
             )
           ];
           mounted = true;
@@ -9100,8 +9158,8 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*torrentInfo*/
-        2 && img_alt_value !== (img_alt_value = /*torrentInfo*/
-        ctx2[1].name)) {
+        1 && img_alt_value !== (img_alt_value = /*torrentInfo*/
+        ctx2[0].name)) {
           attr(img, "alt", img_alt_value);
         }
       },
@@ -9151,7 +9209,7 @@
     let t3;
     let t4_value = (Number(
       /*torrentInfo*/
-      ctx[1].size
+      ctx[0].size
     ) / 1024 / 1024 / 1024).toFixed(2) + "G";
     let t4;
     let t5;
@@ -9166,13 +9224,13 @@
     let img0_src_value;
     let t8;
     let t9_value = `${/*_CT*/
-  ctx[18].day} 日`;
+  ctx[19].day} 日`;
     let t9;
     let t10;
     let t11_value = (
       /*_CT*/
-      ctx[18].hour ? `${/*_CT*/
-    ctx[18].hour} 时` : ""
+      ctx[19].hour ? `${/*_CT*/
+    ctx[19].hour} 时` : ""
     );
     let t11;
     let t12;
@@ -9183,7 +9241,7 @@
     let b0;
     let t14_value = (
       /*torrentInfo*/
-      ctx[1].status.comments + ""
+      ctx[0].status.comments + ""
     );
     let t14;
     let t15;
@@ -9193,7 +9251,7 @@
     let b1;
     let t17_value = (
       /*torrentInfo*/
-      ctx[1].status.seeders + ""
+      ctx[0].status.seeders + ""
     );
     let t17;
     let t18;
@@ -9203,23 +9261,23 @@
     let b2;
     let t20_value = (
       /*torrentInfo*/
-      ctx[1].status.leechers + ""
+      ctx[0].status.leechers + ""
     );
     let t20;
     let mounted;
     let dispose;
     let if_block0 = (
       /*torrentInfo*/
-      ctx[1].smallDescr && create_if_block_20(ctx)
+      ctx[0].smallDescr && create_if_block_20(ctx)
     );
     let if_block1 = (
       /*torrentInfo*/
-      (ctx[1].status.discount || /*torrentInfo*/
-      ctx[1].status.toppingLevel) && create_if_block_17(ctx)
+      (ctx[0].status.discount || /*torrentInfo*/
+      ctx[0].status.toppingLevel) && create_if_block_17(ctx)
     );
     let if_block2 = (
       /*torrentInfo*/
-      ctx[1].labels != 0 && create_if_block_13(ctx)
+      ctx[0].labels != 0 && create_if_block_13(ctx)
     );
     let info = {
       ctx,
@@ -9229,11 +9287,11 @@
       pending: create_pending_block_1,
       then: create_then_block_1,
       catch: create_catch_block_1,
-      value: 35,
-      error: 36
+      value: 36,
+      error: 37
     };
     handle_promise(promise_1 = /*promise*/
-    ctx[4], info);
+    ctx[5], info);
     return {
       c() {
         if (if_block0)
@@ -9362,13 +9420,13 @@
               div1,
               "click",
               /*torrent_download*/
-              ctx[19]
+              ctx[20]
             ),
             listen(
               div2,
               "click",
               /*handleCollection*/
-              ctx[20]
+              ctx[21]
             )
           ];
           mounted = true;
@@ -9378,7 +9436,7 @@
         ctx = new_ctx;
         if (
           /*torrentInfo*/
-          ctx[1].smallDescr
+          ctx[0].smallDescr
         ) {
           if (if_block0) {
             if_block0.p(ctx, dirty);
@@ -9393,8 +9451,8 @@
         }
         if (
           /*torrentInfo*/
-          ctx[1].status.discount || /*torrentInfo*/
-          ctx[1].status.toppingLevel
+          ctx[0].status.discount || /*torrentInfo*/
+          ctx[0].status.toppingLevel
         ) {
           if (if_block1) {
             if_block1.p(ctx, dirty);
@@ -9409,7 +9467,7 @@
         }
         if (
           /*torrentInfo*/
-          ctx[1].labels != 0
+          ctx[0].labels != 0
         ) {
           if (if_block2) {
             if_block2.p(ctx, dirty);
@@ -9423,30 +9481,30 @@
           if_block2 = null;
         }
         if (dirty[0] & /*torrentInfo*/
-        2 && t4_value !== (t4_value = (Number(
+        1 && t4_value !== (t4_value = (Number(
           /*torrentInfo*/
-          ctx[1].size
+          ctx[0].size
         ) / 1024 / 1024 / 1024).toFixed(2) + "G"))
           set_data(t4, t4_value);
         info.ctx = ctx;
         if (dirty[0] & /*promise*/
-        16 && promise_1 !== (promise_1 = /*promise*/
-        ctx[4]) && handle_promise(promise_1, info))
+        32 && promise_1 !== (promise_1 = /*promise*/
+        ctx[5]) && handle_promise(promise_1, info))
           ;
         else {
           update_await_block_branch(info, ctx, dirty);
         }
         if (dirty[0] & /*torrentInfo*/
-        2 && t14_value !== (t14_value = /*torrentInfo*/
-        ctx[1].status.comments + ""))
+        1 && t14_value !== (t14_value = /*torrentInfo*/
+        ctx[0].status.comments + ""))
           set_data(t14, t14_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && t17_value !== (t17_value = /*torrentInfo*/
-        ctx[1].status.seeders + ""))
+        1 && t17_value !== (t17_value = /*torrentInfo*/
+        ctx[0].status.seeders + ""))
           set_data(t17, t17_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && t20_value !== (t20_value = /*torrentInfo*/
-        ctx[1].status.leechers + ""))
+        1 && t20_value !== (t20_value = /*torrentInfo*/
+        ctx[0].status.leechers + ""))
           set_data(t20, t20_value);
       },
       d(detaching) {
@@ -9477,7 +9535,7 @@
     let a;
     let t_value = (
       /*torrentInfo*/
-      ctx[1].smallDescr + ""
+      ctx[0].smallDescr + ""
     );
     let t;
     let a_href_value;
@@ -9487,7 +9545,7 @@
         a = element("a");
         t = text(t_value);
         attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[1].torrentLink);
+        ctx[0].torrentLink);
         attr(a, "class", "svelte-rhfb99");
         attr(div, "class", "card-description svelte-rhfb99");
       },
@@ -9498,12 +9556,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*torrentInfo*/
-        2 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[1].smallDescr + ""))
+        1 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[0].smallDescr + ""))
           set_data(t, t_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[1].torrentLink)) {
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[0].torrentLink)) {
           attr(a, "href", a_href_value);
         }
       },
@@ -9518,11 +9576,11 @@
     let t;
     let if_block0 = (
       /*torrentInfo*/
-      ctx[1].status.toppingLevel && create_if_block_19()
+      ctx[0].status.toppingLevel && create_if_block_19(ctx)
     );
     let if_block1 = (
       /*_discount*/
-      ctx[14] != "NORMAL" && create_if_block_18(ctx)
+      ctx[15] != "NORMAL" && create_if_block_18(ctx)
     );
     return {
       c() {
@@ -9545,12 +9603,12 @@
       p(ctx2, dirty) {
         if (
           /*torrentInfo*/
-          ctx2[1].status.toppingLevel
+          ctx2[0].status.toppingLevel
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_19();
+            if_block0 = create_if_block_19(ctx2);
             if_block0.c();
             if_block0.m(div, t);
           }
@@ -9560,7 +9618,7 @@
         }
         if (
           /*_discount*/
-          ctx2[14] != "NORMAL"
+          ctx2[15] != "NORMAL"
         )
           if_block1.p(ctx2, dirty);
       },
@@ -9575,30 +9633,79 @@
     };
   }
   function create_if_block_19(ctx) {
+    let t;
+    let each_value_1 = (
+      /*toppingLevelArray*/
+      ctx[3]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value_1.length; i += 1) {
+      each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        t = text("\n             ");
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*toppingLevelArray*/
+        8) {
+          each_value_1 = /*toppingLevelArray*/
+          ctx2[3];
+          let i;
+          for (i = 0; i < each_value_1.length; i += 1) {
+            const child_ctx = get_each_context_1(ctx2, each_value_1, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block_1();
+              each_blocks[i].c();
+              each_blocks[i].m(t.parentNode, t);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value_1.length;
+        }
+      },
+      d(detaching) {
+        destroy_each(each_blocks, detaching);
+        if (detaching)
+          detach(t);
+      }
+    };
+  }
+  function create_each_block_1(ctx) {
     let img;
     let img_src_value;
-    let t;
     return {
       c() {
         img = element("img");
-        t = text("\n             ");
         set_style(img, "background", "url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px");
         set_style(img, "height", "14px");
         set_style(img, "width", "14px");
         if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.PIN))
           attr(img, "src", img_src_value);
-        attr(img, "alt", "SVG_Comment");
+        attr(img, "alt", "PIN");
       },
       m(target, anchor) {
         insert(target, img, anchor);
-        insert(target, t, anchor);
       },
       p: noop,
       d(detaching) {
         if (detaching)
           detach(img);
-        if (detaching)
-          detach(t);
       }
     };
   }
@@ -9608,24 +9715,24 @@
       c() {
         div = element("div");
         div.textContent = `${/*_discountText*/
-      ctx[16][
+      ctx[17][
         /*_discount*/
-        ctx[14]
+        ctx[15]
       ]}${/*_discountEndTime*/
-      ctx[15] ? " : " + /*_discountCalcTime*/
-      ctx[17]() + " 小时" : ""}`;
+      ctx[16] ? " : " + /*_discountCalcTime*/
+      ctx[18]() + " 小时" : ""}`;
         attr(div, "class", "_tag svelte-rhfb99");
         toggle_class(
           div,
           "_tag_discount_free",
           /*_discount*/
-          ctx[14] == "FREE"
+          ctx[15] == "FREE"
         );
         toggle_class(
           div,
           "_tag_discount_50",
           /*_discount*/
-          ctx[14] == "PERCENT_50"
+          ctx[15] == "PERCENT_50"
         );
       },
       m(target, anchor) {
@@ -9644,15 +9751,15 @@
     let t1;
     let if_block0 = (
       /*torrentInfo*/
-      (ctx[1].labels & 1) === 1 && create_if_block_16()
+      (ctx[0].labels & 1) === 1 && create_if_block_16()
     );
     let if_block1 = (
       /*torrentInfo*/
-      (ctx[1].labels & 2) === 2 && create_if_block_15()
+      (ctx[0].labels & 2) === 2 && create_if_block_15()
     );
     let if_block2 = (
       /*torrentInfo*/
-      (ctx[1].labels & 4) === 4 && create_if_block_14()
+      (ctx[0].labels & 4) === 4 && create_if_block_14()
     );
     return {
       c() {
@@ -9681,7 +9788,7 @@
       p(ctx2, dirty) {
         if (
           /*torrentInfo*/
-          (ctx2[1].labels & 1) === 1
+          (ctx2[0].labels & 1) === 1
         ) {
           if (if_block0)
             ;
@@ -9696,7 +9803,7 @@
         }
         if (
           /*torrentInfo*/
-          (ctx2[1].labels & 2) === 2
+          (ctx2[0].labels & 2) === 2
         ) {
           if (if_block1)
             ;
@@ -9711,7 +9818,7 @@
         }
         if (
           /*torrentInfo*/
-          (ctx2[1].labels & 4) === 4
+          (ctx2[0].labels & 4) === 4
         ) {
           if (if_block2)
             ;
@@ -9792,7 +9899,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[36].message + ""
+      ctx[37].message + ""
     );
     let t;
     return {
@@ -9807,8 +9914,8 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
-        16 && t_value !== (t_value = /*error*/
-        ctx2[36].message + ""))
+        32 && t_value !== (t_value = /*error*/
+        ctx2[37].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -9836,7 +9943,7 @@
           svg,
           "color",
           /*collectionMark*/
-          ctx[3] ? "orange" : "black"
+          ctx[4] ? "orange" : "black"
         );
         attr(svg, "xmlns", "http://www.w3.org/2000/svg");
       },
@@ -9846,12 +9953,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*collectionMark*/
-        8) {
+        16) {
           set_style(
             svg,
             "color",
             /*collectionMark*/
-            ctx2[3] ? "orange" : "black"
+            ctx2[4] ? "orange" : "black"
           );
         }
       },
@@ -9889,31 +9996,31 @@
     let t4;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      ctx[9].free && /*torrentInfo*/
-      (ctx[1].status.discount || /*torrentInfo*/
-      ctx[1].status.toppingLevel) && create_if_block_9(ctx)
+      ctx[10].free && /*torrentInfo*/
+      (ctx[0].status.discount || /*torrentInfo*/
+      ctx[0].status.toppingLevel) && create_if_block_9(ctx)
     );
     let if_block1 = (
       /*$_CARD_SHOW*/
-      ctx[9].sub_title && /*torrentInfo*/
-      ctx[1].smallDescr && create_if_block_8(ctx)
+      ctx[10].sub_title && /*torrentInfo*/
+      ctx[0].smallDescr && create_if_block_8(ctx)
     );
     let if_block2 = (
       /*$_CARD_SHOW*/
-      ctx[9].tags && /*torrentInfo*/
-      ctx[1].labels != 0 && create_if_block_4(ctx)
+      ctx[10].tags && /*torrentInfo*/
+      ctx[0].labels != 0 && create_if_block_4(ctx)
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
-      ctx[9].size_download_collect && create_if_block_3(ctx)
+      ctx[10].size_download_collect && create_if_block_3(ctx)
     );
     let if_block4 = (
       /*$_CARD_SHOW*/
-      ctx[9].upload_time && create_if_block_2(ctx)
+      ctx[10].upload_time && create_if_block_2(ctx)
     );
     let if_block5 = (
       /*$_CARD_SHOW*/
-      ctx[9].statistics && create_if_block_1(ctx)
+      ctx[10].statistics && create_if_block_1(ctx)
     );
     return {
       c() {
@@ -9960,9 +10067,9 @@
       p(ctx2, dirty) {
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].free && /*torrentInfo*/
-          (ctx2[1].status.discount || /*torrentInfo*/
-          ctx2[1].status.toppingLevel)
+          ctx2[10].free && /*torrentInfo*/
+          (ctx2[0].status.discount || /*torrentInfo*/
+          ctx2[0].status.toppingLevel)
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
@@ -9977,8 +10084,8 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].sub_title && /*torrentInfo*/
-          ctx2[1].smallDescr
+          ctx2[10].sub_title && /*torrentInfo*/
+          ctx2[0].smallDescr
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
@@ -9993,8 +10100,8 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].tags && /*torrentInfo*/
-          ctx2[1].labels != 0
+          ctx2[10].tags && /*torrentInfo*/
+          ctx2[0].labels != 0
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
@@ -10009,7 +10116,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].size_download_collect
+          ctx2[10].size_download_collect
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
@@ -10024,7 +10131,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].upload_time
+          ctx2[10].upload_time
         ) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
@@ -10039,7 +10146,7 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].statistics
+          ctx2[10].statistics
         ) {
           if (if_block5) {
             if_block5.p(ctx2, dirty);
@@ -10082,11 +10189,11 @@
     let t;
     let if_block0 = (
       /*torrentInfo*/
-      ctx[1].status.toppingLevel && create_if_block_11()
+      ctx[0].status.toppingLevel && create_if_block_11(ctx)
     );
     let if_block1 = (
       /*_discount*/
-      ctx[14] != "NORMAL" && create_if_block_10(ctx)
+      ctx[15] != "NORMAL" && create_if_block_10(ctx)
     );
     return {
       c() {
@@ -10109,12 +10216,12 @@
       p(ctx2, dirty) {
         if (
           /*torrentInfo*/
-          ctx2[1].status.toppingLevel
+          ctx2[0].status.toppingLevel
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
           } else {
-            if_block0 = create_if_block_11();
+            if_block0 = create_if_block_11(ctx2);
             if_block0.c();
             if_block0.m(div, t);
           }
@@ -10124,7 +10231,7 @@
         }
         if (
           /*_discount*/
-          ctx2[14] != "NORMAL"
+          ctx2[15] != "NORMAL"
         )
           if_block1.p(ctx2, dirty);
       },
@@ -10139,30 +10246,79 @@
     };
   }
   function create_if_block_11(ctx) {
+    let t;
+    let each_value = (
+      /*toppingLevelArray*/
+      ctx[3]
+    );
+    let each_blocks = [];
+    for (let i = 0; i < each_value.length; i += 1) {
+      each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    }
+    return {
+      c() {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          each_blocks[i].c();
+        }
+        t = text("\n             ");
+      },
+      m(target, anchor) {
+        for (let i = 0; i < each_blocks.length; i += 1) {
+          if (each_blocks[i]) {
+            each_blocks[i].m(target, anchor);
+          }
+        }
+        insert(target, t, anchor);
+      },
+      p(ctx2, dirty) {
+        if (dirty[0] & /*toppingLevelArray*/
+        8) {
+          each_value = /*toppingLevelArray*/
+          ctx2[3];
+          let i;
+          for (i = 0; i < each_value.length; i += 1) {
+            const child_ctx = get_each_context$1(ctx2, each_value, i);
+            if (each_blocks[i]) {
+              each_blocks[i].p(child_ctx, dirty);
+            } else {
+              each_blocks[i] = create_each_block$1();
+              each_blocks[i].c();
+              each_blocks[i].m(t.parentNode, t);
+            }
+          }
+          for (; i < each_blocks.length; i += 1) {
+            each_blocks[i].d(1);
+          }
+          each_blocks.length = each_value.length;
+        }
+      },
+      d(detaching) {
+        destroy_each(each_blocks, detaching);
+        if (detaching)
+          detach(t);
+      }
+    };
+  }
+  function create_each_block$1(ctx) {
     let img;
     let img_src_value;
-    let t;
     return {
       c() {
         img = element("img");
-        t = text("\n             ");
         set_style(img, "background", "url(/static/media/icons.8bb5446ebbbd07050285.gif) 0 -202px");
         set_style(img, "height", "14px");
         set_style(img, "width", "14px");
         if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.PIN))
           attr(img, "src", img_src_value);
-        attr(img, "alt", "SVG_Comment");
+        attr(img, "alt", "PIN");
       },
       m(target, anchor) {
         insert(target, img, anchor);
-        insert(target, t, anchor);
       },
       p: noop,
       d(detaching) {
         if (detaching)
           detach(img);
-        if (detaching)
-          detach(t);
       }
     };
   }
@@ -10172,24 +10328,24 @@
       c() {
         div = element("div");
         div.textContent = `${/*_discountText*/
-      ctx[16][
+      ctx[17][
         /*_discount*/
-        ctx[14]
+        ctx[15]
       ]}${/*_discountEndTime*/
-      ctx[15] ? " : " + /*_discountCalcTime*/
-      ctx[17]() + " 小时" : ""}`;
+      ctx[16] ? " : " + /*_discountCalcTime*/
+      ctx[18]() + " 小时" : ""}`;
         attr(div, "class", "_tag svelte-rhfb99");
         toggle_class(
           div,
           "_tag_discount_free",
           /*_discount*/
-          ctx[14] == "FREE"
+          ctx[15] == "FREE"
         );
         toggle_class(
           div,
           "_tag_discount_50",
           /*_discount*/
-          ctx[14] == "PERCENT_50"
+          ctx[15] == "PERCENT_50"
         );
       },
       m(target, anchor) {
@@ -10207,7 +10363,7 @@
     let a;
     let t_value = (
       /*torrentInfo*/
-      ctx[1].smallDescr + ""
+      ctx[0].smallDescr + ""
     );
     let t;
     let a_href_value;
@@ -10217,7 +10373,7 @@
         a = element("a");
         t = text(t_value);
         attr(a, "href", a_href_value = /*torrentInfo*/
-        ctx[1].torrentLink);
+        ctx[0].torrentLink);
         attr(a, "class", "svelte-rhfb99");
         attr(div, "class", "card-description svelte-rhfb99");
       },
@@ -10228,12 +10384,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*torrentInfo*/
-        2 && t_value !== (t_value = /*torrentInfo*/
-        ctx2[1].smallDescr + ""))
+        1 && t_value !== (t_value = /*torrentInfo*/
+        ctx2[0].smallDescr + ""))
           set_data(t, t_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && a_href_value !== (a_href_value = /*torrentInfo*/
-        ctx2[1].torrentLink)) {
+        1 && a_href_value !== (a_href_value = /*torrentInfo*/
+        ctx2[0].torrentLink)) {
           attr(a, "href", a_href_value);
         }
       },
@@ -10249,15 +10405,15 @@
     let t1;
     let if_block0 = (
       /*torrentInfo*/
-      (ctx[1].labels & 1) === 1 && create_if_block_7()
+      (ctx[0].labels & 1) === 1 && create_if_block_7()
     );
     let if_block1 = (
       /*torrentInfo*/
-      (ctx[1].labels & 2) === 2 && create_if_block_6()
+      (ctx[0].labels & 2) === 2 && create_if_block_6()
     );
     let if_block2 = (
       /*torrentInfo*/
-      (ctx[1].labels & 4) === 4 && create_if_block_5()
+      (ctx[0].labels & 4) === 4 && create_if_block_5()
     );
     return {
       c() {
@@ -10286,7 +10442,7 @@
       p(ctx2, dirty) {
         if (
           /*torrentInfo*/
-          (ctx2[1].labels & 1) === 1
+          (ctx2[0].labels & 1) === 1
         ) {
           if (if_block0)
             ;
@@ -10301,7 +10457,7 @@
         }
         if (
           /*torrentInfo*/
-          (ctx2[1].labels & 2) === 2
+          (ctx2[0].labels & 2) === 2
         ) {
           if (if_block1)
             ;
@@ -10316,7 +10472,7 @@
         }
         if (
           /*torrentInfo*/
-          (ctx2[1].labels & 4) === 4
+          (ctx2[0].labels & 4) === 4
         ) {
           if (if_block2)
             ;
@@ -10401,7 +10557,7 @@
     let t0;
     let t1_value = (Number(
       /*torrentInfo*/
-      ctx[1].size
+      ctx[0].size
     ) / 1024 / 1024 / 1024).toFixed(2) + "G";
     let t1;
     let t2;
@@ -10420,11 +10576,11 @@
       pending: create_pending_block,
       then: create_then_block,
       catch: create_catch_block,
-      value: 35,
-      error: 36
+      value: 36,
+      error: 37
     };
     handle_promise(promise_1 = /*promise*/
-    ctx[4], info);
+    ctx[5], info);
     return {
       c() {
         div4 = element("div");
@@ -10472,13 +10628,13 @@
               div1,
               "click",
               /*torrent_download*/
-              ctx[19]
+              ctx[20]
             ),
             listen(
               div2,
               "click",
               /*handleCollection*/
-              ctx[20]
+              ctx[21]
             )
           ];
           mounted = true;
@@ -10487,15 +10643,15 @@
       p(new_ctx, dirty) {
         ctx = new_ctx;
         if (dirty[0] & /*torrentInfo*/
-        2 && t1_value !== (t1_value = (Number(
+        1 && t1_value !== (t1_value = (Number(
           /*torrentInfo*/
-          ctx[1].size
+          ctx[0].size
         ) / 1024 / 1024 / 1024).toFixed(2) + "G"))
           set_data(t1, t1_value);
         info.ctx = ctx;
         if (dirty[0] & /*promise*/
-        16 && promise_1 !== (promise_1 = /*promise*/
-        ctx[4]) && handle_promise(promise_1, info))
+        32 && promise_1 !== (promise_1 = /*promise*/
+        ctx[5]) && handle_promise(promise_1, info))
           ;
         else {
           update_await_block_branch(info, ctx, dirty);
@@ -10516,7 +10672,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[36].message + ""
+      ctx[37].message + ""
     );
     let t;
     return {
@@ -10531,8 +10687,8 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
-        16 && t_value !== (t_value = /*error*/
-        ctx2[36].message + ""))
+        32 && t_value !== (t_value = /*error*/
+        ctx2[37].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -10560,7 +10716,7 @@
           svg,
           "color",
           /*collectionMark*/
-          ctx[3] ? "orange" : "black"
+          ctx[4] ? "orange" : "black"
         );
         attr(svg, "xmlns", "http://www.w3.org/2000/svg");
       },
@@ -10570,12 +10726,12 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*collectionMark*/
-        8) {
+        16) {
           set_style(
             svg,
             "color",
             /*collectionMark*/
-            ctx2[3] ? "orange" : "black"
+            ctx2[4] ? "orange" : "black"
           );
         }
       },
@@ -10610,13 +10766,13 @@
     let img_src_value;
     let t0;
     let t1_value = `${/*_CT*/
-  ctx[18].day} 日`;
+  ctx[19].day} 日`;
     let t1;
     let t2;
     let t3_value = (
       /*_CT*/
-      ctx[18].hour ? `${/*_CT*/
-    ctx[18].hour} 时` : ""
+      ctx[19].hour ? `${/*_CT*/
+    ctx[19].hour} 时` : ""
     );
     let t3;
     return {
@@ -10655,7 +10811,7 @@
     let b0;
     let t1_value = (
       /*torrentInfo*/
-      ctx[1].status.comments + ""
+      ctx[0].status.comments + ""
     );
     let t1;
     let t2;
@@ -10665,7 +10821,7 @@
     let b1;
     let t4_value = (
       /*torrentInfo*/
-      ctx[1].status.seeders + ""
+      ctx[0].status.seeders + ""
     );
     let t4;
     let t5;
@@ -10675,7 +10831,7 @@
     let b2;
     let t7_value = (
       /*torrentInfo*/
-      ctx[1].status.leechers + ""
+      ctx[0].status.leechers + ""
     );
     let t7;
     return {
@@ -10725,16 +10881,16 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*torrentInfo*/
-        2 && t1_value !== (t1_value = /*torrentInfo*/
-        ctx2[1].status.comments + ""))
+        1 && t1_value !== (t1_value = /*torrentInfo*/
+        ctx2[0].status.comments + ""))
           set_data(t1, t1_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && t4_value !== (t4_value = /*torrentInfo*/
-        ctx2[1].status.seeders + ""))
+        1 && t4_value !== (t4_value = /*torrentInfo*/
+        ctx2[0].status.seeders + ""))
           set_data(t4, t4_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && t7_value !== (t7_value = /*torrentInfo*/
-        ctx2[1].status.leechers + ""))
+        1 && t7_value !== (t7_value = /*torrentInfo*/
+        ctx2[0].status.leechers + ""))
           set_data(t7, t7_value);
       },
       d(detaching) {
@@ -10752,7 +10908,7 @@
     let t0;
     let t1_value = CONFIG.CATEGORY_NAME[
       /*torrentInfo*/
-      ctx[1].category
+      ctx[0].category
     ] + "";
     let t1;
     let div0_data_href_value;
@@ -10763,7 +10919,7 @@
     let div1;
     let t5_value = (
       /*index*/
-      ctx[0] + 1 + ""
+      ctx[2] + 1 + ""
     );
     let t5;
     let t6;
@@ -10773,12 +10929,12 @@
     let dispose;
     let if_block0 = (
       /*$_CARD_SHOW*/
-      (ctx[9].title || /*_hover*/
-      ctx[5]) && create_if_block_25(ctx)
+      (ctx[10].title || /*_hover*/
+      ctx[6]) && create_if_block_25(ctx)
     );
     function select_block_type(ctx2, dirty) {
       if (!/*_picError*/
-      ctx2[6])
+      ctx2[7])
         return create_if_block_22;
       return create_else_block_2;
     }
@@ -10786,22 +10942,22 @@
     let if_block1 = current_block_type(ctx);
     let if_block2 = (
       /*$_trigger_nexus_pic*/
-      ctx[11] && !/*_picError*/
-      ctx[6] && !/*torrentInfo*/
-      (ctx[1].category == "440" && /*$_SITE_SETTING*/
-      ctx[10].mt.hide_gay == true) && /*torrentInfo*/
-      ctx[1].imageList[0] && create_if_block_21()
+      ctx[12] && !/*_picError*/
+      ctx[7] && !/*torrentInfo*/
+      (ctx[0].category == "440" && /*$_SITE_SETTING*/
+      ctx[11].mt.hide_gay == true) && /*torrentInfo*/
+      ctx[0].imageList[0] && create_if_block_21()
     );
     let if_block3 = (
       /*$_CARD_SHOW*/
-      (ctx[9].all || /*_hover*/
-      ctx[5]) && create_if_block_12(ctx)
+      (ctx[10].all || /*_hover*/
+      ctx[6]) && create_if_block_12(ctx)
     );
     let if_block4 = !/*$_CARD_SHOW*/
-    (ctx[9].all || /*_hover*/
-    ctx[5]) && !/*torrentInfo*/
-    (ctx[1].category == "440" && /*$_SITE_SETTING*/
-    ctx[10].mt.hide_gay == true) && create_if_block$2(ctx);
+    (ctx[10].all || /*_hover*/
+    ctx[6]) && !/*torrentInfo*/
+    (ctx[0].category == "440" && /*$_SITE_SETTING*/
+    ctx[11].mt.hide_gay == true) && create_if_block$2(ctx);
     return {
       c() {
         div4 = element("div");
@@ -10830,56 +10986,56 @@
           if_block4.c();
         attr(img, "class", "card_category-img svelte-rhfb99");
         if (!src_url_equal(img.src, img_src_value = /*torrentInfo*/
-        ctx[1]._categoryImg))
+        ctx[0]._categoryImg))
           attr(img, "src", img_src_value);
         attr(img, "alt", "");
         attr(div0, "class", "card-category svelte-rhfb99");
         attr(div0, "data-href", div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
-        ctx[1].category);
+        ctx[0].category);
         set_style(
           div0,
           "background-color",
           /*_categoryColor*/
-          ctx[23] ?? "transparent"
+          ctx[24] ?? "transparent"
         );
         set_style(
           div0,
           "color",
           /*_categoryColor*/
-          ctx[23] ? getTextColor(
+          ctx[24] ? getTextColor(
             /*_categoryColor*/
-            ctx[23]
+            ctx[24]
           ) : "black"
         );
         attr(div1, "class", "card-index svelte-rhfb99");
         attr(div2, "class", "card-image svelte-rhfb99");
         attr(div3, "class", "card-holder svelte-rhfb99");
         set_style(div3, "background", "linear-gradient (to bottom, " + /*_categoryColor*/
-        (ctx[23] ?? _defaultColor) + " 18px, rgba(255, 255, 255, 0.4) 18px, rgba(255, 255, 255, 0))");
+        (ctx[24] ?? _defaultColor) + " 18px, rgba(255, 255, 255, 0.4) 18px, rgba(255, 255, 255, 0))");
         attr(div4, "class", "card svelte-rhfb99");
         set_style(
           div4,
           "width",
           /*cardWidth*/
-          ctx[2] + "px"
+          ctx[1] + "px"
         );
         set_style(div4, "z-index", 1e4 - /*index*/
-        ctx[0]);
+        ctx[2]);
         set_style(
           div4,
           "border-color",
           /*_categoryColor*/
-          ctx[23] ?? _defaultColor
+          ctx[24] ?? _defaultColor
         );
         set_style(
           div4,
           "background-color",
           /*$_current_bgColor*/
-          ctx[8]
+          ctx[9]
         );
         set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
-        (ctx[23] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
-        ctx[8] + " 18px)");
+        (ctx[24] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
+        ctx[9] + " 18px)");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -10906,26 +11062,26 @@
         append(div3, t8);
         if (if_block4)
           if_block4.m(div3, null);
-        ctx[26](div4);
+        ctx[27](div4);
         if (!mounted) {
           dispose = [
             listen(
               div2,
               "click",
               /*showDetailIframe*/
-              ctx[13]
+              ctx[14]
             ),
             listen(
               div3,
               "mouseenter",
               /*card_show_detail*/
-              ctx[21]
+              ctx[22]
             ),
             listen(
               div3,
               "mouseleave",
               /*card_hide_detail*/
-              ctx[22]
+              ctx[23]
             )
           ];
           mounted = true;
@@ -10933,25 +11089,25 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*torrentInfo*/
-        2 && !src_url_equal(img.src, img_src_value = /*torrentInfo*/
-        ctx2[1]._categoryImg)) {
+        1 && !src_url_equal(img.src, img_src_value = /*torrentInfo*/
+        ctx2[0]._categoryImg)) {
           attr(img, "src", img_src_value);
         }
         if (dirty[0] & /*torrentInfo*/
-        2 && t1_value !== (t1_value = CONFIG.CATEGORY_NAME[
+        1 && t1_value !== (t1_value = CONFIG.CATEGORY_NAME[
           /*torrentInfo*/
-          ctx2[1].category
+          ctx2[0].category
         ] + ""))
           set_data(t1, t1_value);
         if (dirty[0] & /*torrentInfo*/
-        2 && div0_data_href_value !== (div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
-        ctx2[1].category)) {
+        1 && div0_data_href_value !== (div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
+        ctx2[0].category)) {
           attr(div0, "data-href", div0_data_href_value);
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].title || /*_hover*/
-          ctx2[5]
+          ctx2[10].title || /*_hover*/
+          ctx2[6]
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
@@ -10975,16 +11131,16 @@
           }
         }
         if (dirty[0] & /*index*/
-        1 && t5_value !== (t5_value = /*index*/
-        ctx2[0] + 1 + ""))
+        4 && t5_value !== (t5_value = /*index*/
+        ctx2[2] + 1 + ""))
           set_data(t5, t5_value);
         if (
           /*$_trigger_nexus_pic*/
-          ctx2[11] && !/*_picError*/
-          ctx2[6] && !/*torrentInfo*/
-          (ctx2[1].category == "440" && /*$_SITE_SETTING*/
-          ctx2[10].mt.hide_gay == true) && /*torrentInfo*/
-          ctx2[1].imageList[0]
+          ctx2[12] && !/*_picError*/
+          ctx2[7] && !/*torrentInfo*/
+          (ctx2[0].category == "440" && /*$_SITE_SETTING*/
+          ctx2[11].mt.hide_gay == true) && /*torrentInfo*/
+          ctx2[0].imageList[0]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
@@ -10999,8 +11155,8 @@
         }
         if (
           /*$_CARD_SHOW*/
-          ctx2[9].all || /*_hover*/
-          ctx2[5]
+          ctx2[10].all || /*_hover*/
+          ctx2[6]
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
@@ -11014,10 +11170,10 @@
           if_block3 = null;
         }
         if (!/*$_CARD_SHOW*/
-        (ctx2[9].all || /*_hover*/
-        ctx2[5]) && !/*torrentInfo*/
-        (ctx2[1].category == "440" && /*$_SITE_SETTING*/
-        ctx2[10].mt.hide_gay == true)) {
+        (ctx2[10].all || /*_hover*/
+        ctx2[6]) && !/*torrentInfo*/
+        (ctx2[0].category == "440" && /*$_SITE_SETTING*/
+        ctx2[11].mt.hide_gay == true)) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
           } else {
@@ -11030,33 +11186,33 @@
           if_block4 = null;
         }
         if (dirty[0] & /*cardWidth*/
-        4) {
+        2) {
           set_style(
             div4,
             "width",
             /*cardWidth*/
-            ctx2[2] + "px"
+            ctx2[1] + "px"
           );
         }
         if (dirty[0] & /*index*/
-        1) {
+        4) {
           set_style(div4, "z-index", 1e4 - /*index*/
-          ctx2[0]);
+          ctx2[2]);
         }
         if (dirty[0] & /*$_current_bgColor*/
-        256) {
+        512) {
           set_style(
             div4,
             "background-color",
             /*$_current_bgColor*/
-            ctx2[8]
+            ctx2[9]
           );
         }
         if (dirty[0] & /*$_current_bgColor*/
-        256) {
+        512) {
           set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
-          (ctx2[23] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
-          ctx2[8] + " 18px)");
+          (ctx2[24] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
+          ctx2[9] + " 18px)");
         }
       },
       i: noop,
@@ -11073,7 +11229,7 @@
           if_block3.d();
         if (if_block4)
           if_block4.d();
-        ctx[26](null);
+        ctx[27](null);
         mounted = false;
         run_all(dispose);
       }
@@ -11096,12 +11252,12 @@
     let $_CARD_SHOW;
     let $_SITE_SETTING;
     let $_trigger_nexus_pic;
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(27, $_iframe_url = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(28, $_iframe_switch = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(8, $_current_bgColor = $$value));
-    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(9, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(10, $_SITE_SETTING = $$value));
-    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(11, $_trigger_nexus_pic = $$value));
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(28, $_iframe_url = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(29, $_iframe_switch = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(9, $_current_bgColor = $$value));
+    component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(10, $_CARD_SHOW = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(11, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(12, $_trigger_nexus_pic = $$value));
     function fetchData(api, payload, func2) {
       if (!CONFIG.API[api]) {
         console.warn(`没有名为 ${api} 的 API 接口.`);
@@ -11153,6 +11309,10 @@
           window.open(data.data, "_blank");
       });
     }
+    let toppingLevelArray;
+    if (torrentInfo.status.toppingLevel) {
+      toppingLevelArray = Array(torrentInfo.status.toppingLevel).fill();
+    }
     let collectionMark = Boolean(torrentInfo.collection);
     const formdata = new FormData();
     formdata.append("id", torrentInfo.id);
@@ -11175,17 +11335,17 @@
       }
     }
     function handleCollection() {
-      $$invalidate(4, promise2 = torrent_collection("collection", formdata, collectionCallBack));
+      $$invalidate(5, promise2 = torrent_collection("collection", formdata, collectionCallBack));
     }
     function collectionCallBack(data) {
       console.log(data);
-      $$invalidate(3, collectionMark = !collectionMark);
+      $$invalidate(4, collectionMark = !collectionMark);
     }
     let _hover = false;
     function card_show_detail() {
-      $$invalidate(5, _hover = true);
+      $$invalidate(6, _hover = true);
       $$invalidate(
-        7,
+        8,
         thisDom.style.boxShadow = `
     ${_categoryColor ?? _defaultColor} 5px 5px 0px, 
     rgba(0, 0, 0, 0.1) -1px -1px 0px`,
@@ -11193,34 +11353,35 @@
       );
     }
     function card_hide_detail() {
-      $$invalidate(5, _hover = false);
-      $$invalidate(7, thisDom.style.boxShadow = "", thisDom);
+      $$invalidate(6, _hover = false);
+      $$invalidate(8, thisDom.style.boxShadow = "", thisDom);
     }
     let _picError = false;
     const _categoryColor = CONFIG.CATEGORY_COLOR[torrentInfo.category];
     let thisDom;
     const real_pic_normal = torrentInfo.imageList[0] ? torrentInfo.imageList[0] : "";
     const error_handler = () => {
-      $$invalidate(6, _picError = true);
+      $$invalidate(7, _picError = true);
     };
     function div4_binding($$value) {
       binding_callbacks[$$value ? "unshift" : "push"](() => {
         thisDom = $$value;
-        $$invalidate(7, thisDom);
+        $$invalidate(8, thisDom);
       });
     }
     $$self.$$set = ($$props2) => {
       if ("index" in $$props2)
-        $$invalidate(0, index = $$props2.index);
+        $$invalidate(2, index = $$props2.index);
       if ("torrentInfo" in $$props2)
-        $$invalidate(1, torrentInfo = $$props2.torrentInfo);
+        $$invalidate(0, torrentInfo = $$props2.torrentInfo);
       if ("cardWidth" in $$props2)
-        $$invalidate(2, cardWidth = $$props2.cardWidth);
+        $$invalidate(1, cardWidth = $$props2.cardWidth);
     };
     return [
-      index,
       torrentInfo,
       cardWidth,
+      index,
+      toppingLevelArray,
       collectionMark,
       promise2,
       _hover,
@@ -11250,13 +11411,13 @@
   class NewMteam extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$2, create_fragment$2, safe_not_equal, { index: 0, torrentInfo: 1, cardWidth: 2 }, null, [-1, -1]);
+      init(this, options, instance$2, create_fragment$2, safe_not_equal, { index: 2, torrentInfo: 0, cardWidth: 1 }, null, [-1, -1]);
     }
   }
   function get_each_context(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[32] = list[i];
-    child_ctx[34] = i;
+    child_ctx[33] = list[i];
+    child_ctx[35] = i;
     return child_ctx;
   }
   function create_if_block$1(ctx) {
@@ -11307,11 +11468,11 @@
       props: {
         index: (
           /*index*/
-          ctx[34]
+          ctx[35]
         ),
         torrentInfo: (
           /*info*/
-          ctx[32]
+          ctx[33]
         ),
         cardWidth: (
           /*CARD*/
@@ -11338,11 +11499,11 @@
         if (dirty[0] & /*infoList*/
         8)
           testmteam_changes.index = /*index*/
-          ctx[34];
+          ctx[35];
         if (dirty[0] & /*infoList*/
         8)
           testmteam_changes.torrentInfo = /*info*/
-          ctx[32];
+          ctx[33];
         if (dirty[0] & /*CARD*/
         1)
           testmteam_changes.cardWidth = /*CARD*/
@@ -11380,8 +11541,8 @@
     );
     const get_key = (ctx2) => (
       /*info*/
-      ctx2[32].id + /*index*/
-      ctx2[34]
+      ctx2[33].id + /*index*/
+      ctx2[35]
     );
     for (let i = 0; i < each_value.length; i += 1) {
       let child_ctx = get_each_context(ctx, each_value, i);
@@ -11520,43 +11681,21 @@
       }
     };
   }
-  function UrlPath_2_ParamList(path = location.href) {
-    let url = path;
-    if (path.indexOf("/browse") == 0) {
-      url = location.origin + path;
-    }
-    console.log(`url 补全: ${url}`);
-    let urlObject = new URL(url);
-    let mode = urlObject.pathname.split("/")[2];
-    let categories = urlObject.searchParams.getAll("cat");
-    let standards = urlObject.searchParams.getAll("stand");
-    let output = {};
-    if (mode !== void 0)
-      output.mode = mode;
-    else
-      output.mode = "normal";
-    if (categories !== void 0)
-      output.categories = categories;
-    if (standards !== void 0)
-      output.standards = standards;
-    console.log(output);
-    return output;
-  }
   function instance$1($$self, $$props, $$invalidate) {
+    let $_current_domain;
     let $_list_viewMode;
     let $_Global_Masonry;
     let $_card_layout;
     let $_animated;
     let $_turnPage;
     let $_current_bgColor;
-    let $_current_domain;
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(11, $_list_viewMode = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(12, $_Global_Masonry = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(11, $_current_domain = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(12, $_list_viewMode = $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(13, $_Global_Masonry = $$value));
     component_subscribe($$self, _card_layout, ($$value) => $$invalidate(8, $_card_layout = $$value));
     component_subscribe($$self, _animated, ($$value) => $$invalidate(9, $_animated = $$value));
-    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(13, $_turnPage = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(14, $_current_bgColor = $$value));
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(15, $_current_domain = $$value));
+    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(14, $_turnPage = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(15, $_current_bgColor = $$value));
     let { waterfallNode } = $$props;
     let { waterfallParentNode } = $$props;
     let { update_ORIGIN_TL_Node } = $$props;
@@ -11608,6 +11747,7 @@
       let pageSize = getPageSize();
       const payload = { pageNumber: 1, pageSize, visible: 1 };
       Object.assign(payload, UrlPath_2_ParamList());
+      console.log(payload);
       fetch(searchApiURL, {
         method: "POST",
         headers: {
@@ -11619,6 +11759,7 @@
         const list = data.data.data;
         $$invalidate(3, infoList = [...list]);
       }).then(() => {
+        PAGE.$setPage(payload.pageNumber);
         masonry2.reloadItems();
         $$invalidate(2, loading_first = false);
         $$invalidate(1, loading_hide = true);
@@ -11654,17 +11795,64 @@
         console.error("网络请求错误:", error);
       });
     }
-    function getPageSize() {
+    function getPageSize(defaultNum = 100) {
       const sysinfo = parseLocalStorage("persist:persist").sysinfo;
       if (!sysinfo.pageSize)
-        return 50;
+        return defaultNum;
       if (!sysinfo.pageSize.torrent)
-        return 50;
+        return defaultNum;
       return Number(sysinfo.pageSize.torrent);
+    }
+    function UrlPath_2_ParamList(path = location.href) {
+      let url = path;
+      if (path.indexOf("/browse") == 0) {
+        url = location.origin + path;
+      }
+      console.log(`url 补全: ${url}`);
+      let urlObject = new URL(url);
+      let mode = urlObject.pathname.split("/")[2];
+      let categories = urlObject.searchParams.getAll("cat");
+      let standards = urlObject.searchParams.getAll("stand");
+      let pageNumber = Number(urlObject.searchParams.get("pageNumber")) || 1;
+      let pageSize = getPageSize(100);
+      let sortParam = urlObject.searchParams.get("sort");
+      let output = {};
+      if (mode)
+        output.mode = mode;
+      else
+        output.mode = "normal";
+      if (categories)
+        output.categories = categories;
+      if (standards.length)
+        output.standards = standards;
+      if (pageNumber)
+        output.pageNumber = pageNumber;
+      if (pageSize)
+        output.pageSize = pageSize;
+      if (sortParam) {
+        let field = sortParam.split(":")[0].toUpperCase();
+        if (field.includes("DATE"))
+          output.sortField = "CREATED_DATE";
+        if (field.includes("SIZE"))
+          output.sortField = "SIZE";
+        if (field.includes("SEEDER"))
+          output.sortField = "SEEDERS";
+        if (field.includes("LEECHER"))
+          output.sortField = "LEECHERS";
+        if (field.includes("TIME"))
+          output.sortField = "TIMES_COMPLETED";
+        let direction = sortParam.split(":")[1].toUpperCase();
+        if (direction.includes("ASC"))
+          output.sortDirection = "ASC";
+        if (direction.includes("DESC"))
+          output.sortDirection = "DESC";
+      }
+      return output;
     }
     const originalPushState = history.pushState;
     function OverWritePushState() {
       history.pushState = function(state, title, path) {
+        var _a;
         $$invalidate(1, loading_hide = false);
         console.log(`%c ====> URL跳转劫持: %c${path}`, "color: cyan", "color: white");
         if (path.includes("/browse") || path == "/browse") {
@@ -11678,12 +11866,17 @@
             visible: 1
           };
           Object.assign(payload, searchApiList);
-          Request(payload, update_ORIGIN_TL_Node);
+          console.log(payload);
+          Request(payload, () => {
+            PAGE.$setPage(payload.pageNumber);
+            update_ORIGIN_TL_Node();
+          });
           ChangeShowMode();
         } else {
           $$invalidate(4, waterfallParentNode.style.display = "none", waterfallParentNode);
           document.querySelector(originSelector).style.display = "block";
         }
+        (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
         originalPushState.apply(history, arguments);
       };
     }
@@ -11711,6 +11904,8 @@
         visible: 1
       };
       Object.assign(payload, UrlPath_2_ParamList());
+      Object.assign(payload, { pageNumber: PAGE.$getCurrentPage() + 1 });
+      console.log(payload);
       fetch(searchApiURL, {
         method: "POST",
         headers: {
@@ -11737,6 +11932,7 @@
     }
     window.$$$turnPage = turnPage;
     onMount(() => {
+      var _a;
       $$invalidate(7, masonry2 = new Masonry(
         waterfallNode,
         {
@@ -11764,6 +11960,7 @@
           scan_and_launch();
       });
       RequestExample();
+      (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
       OverWritePushState();
     });
     $$self.$$set = ($$props2) => {
@@ -11844,16 +12041,16 @@
         div0 = element("div");
         div0.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"><circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle><path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path></g></svg>`;
         if (!src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
-        ctx[1]))
+        ctx[2]))
           attr(iframe, "src", iframe_src_value);
         attr(iframe, "frameborder", "0");
         attr(iframe, "title", "wow");
         set_style(iframe, "width", (SITE[
           /*$_current_domain*/
-          ctx[2]
+          ctx[3]
         ] ? SITE[
           /*$_current_domain*/
-          ctx[2]
+          ctx[3]
         ].Iframe_Width : 1e3) + "px");
         attr(iframe, "class", "svelte-12ghpfg");
         attr(div0, "class", "_iframeCloseBtn svelte-12ghpfg");
@@ -11865,22 +12062,29 @@
         insert(target, div2, anchor);
         append(div2, div1);
         append(div1, iframe);
+        ctx[7](iframe);
         append(div1, t);
         append(div1, div0);
         current = true;
         if (!mounted) {
           dispose = [
             listen(
+              iframe,
+              "load",
+              /*iframeJump2Info*/
+              ctx[5]
+            ),
+            listen(
               div0,
               "click",
               /*toggleIframe*/
-              ctx[3]
+              ctx[4]
             ),
             listen(
               div2,
               "click",
               /*toggleIframe*/
-              ctx[3]
+              ctx[4]
             )
           ];
           mounted = true;
@@ -11888,18 +12092,18 @@
       },
       p(ctx2, dirty) {
         if (!current || dirty & /*$_iframe_url*/
-        2 && !src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
-        ctx2[1])) {
+        4 && !src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
+        ctx2[2])) {
           attr(iframe, "src", iframe_src_value);
         }
         if (!current || dirty & /*$_current_domain*/
-        4) {
+        8) {
           set_style(iframe, "width", (SITE[
             /*$_current_domain*/
-            ctx2[2]
+            ctx2[3]
           ] ? SITE[
             /*$_current_domain*/
-            ctx2[2]
+            ctx2[3]
           ].Iframe_Width : 1e3) + "px");
         }
       },
@@ -11924,6 +12128,7 @@
       d(detaching) {
         if (detaching)
           detach(div2);
+        ctx[7](null);
         if (detaching && div2_transition)
           div2_transition.end();
         mounted = false;
@@ -11938,7 +12143,7 @@
     let dispose;
     let if_block = (
       /*$_iframe_switch*/
-      ctx[0] && create_if_block(ctx)
+      ctx[1] && create_if_block(ctx)
     );
     return {
       c() {
@@ -11956,7 +12161,7 @@
             window_1,
             "keydown",
             /*key_closePanels*/
-            ctx[4],
+            ctx[6],
             true
           );
           mounted = true;
@@ -11965,12 +12170,12 @@
       p(ctx2, [dirty]) {
         if (
           /*$_iframe_switch*/
-          ctx2[0]
+          ctx2[1]
         ) {
           if (if_block) {
             if_block.p(ctx2, dirty);
             if (dirty & /*$_iframe_switch*/
-            1) {
+            2) {
               transition_in(if_block, 1);
             }
           } else {
@@ -12007,7 +12212,7 @@
       }
     };
   }
-  function getDOMElement(selector, maxRetries = 5, interval = 200, func2 = (el) => {
+  function getDOMElement(selector, maxRetries = 5, interval2 = 200, func2 = (el) => {
   }) {
     const element2 = document.querySelector(selector);
     if (element2) {
@@ -12017,9 +12222,9 @@
     if (maxRetries > 0) {
       setTimeout(
         () => {
-          getDOMElement(selector, maxRetries - 1, interval, func2);
+          getDOMElement(selector, maxRetries - 1, interval2, func2);
         },
-        interval
+        interval2
       );
     } else {
       console.log(`无法找到元素: ${selector}`);
@@ -12031,11 +12236,11 @@
     let $_list_viewMode;
     let $_iframe_url;
     let $_current_domain;
-    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(9, $_show_configPanel = $$value));
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(0, $_iframe_switch = $$value));
-    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(10, $_list_viewMode = $$value));
-    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(1, $_iframe_url = $$value));
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(2, $_current_domain = $$value));
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(13, $_show_configPanel = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(1, $_iframe_switch = $$value));
+    component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(14, $_list_viewMode = $$value));
+    component_subscribe($$self, _iframe_url, ($$value) => $$invalidate(2, $_iframe_url = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(3, $_current_domain = $$value));
     console.log(`[${( new Date()).toLocaleTimeString()}]<----------------------HMR_NewMT---------------------->`);
     let _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
     window._ORIGIN_TL_Node = _ORIGIN_TL_Node;
@@ -12047,9 +12252,33 @@
         _ORIGIN_TL_Node.style.display = $_list_viewMode ? "none" : "block";
       }
     }
+    let iframeDom;
     function toggleIframe() {
       set_store_value(_iframe_switch, $_iframe_switch = 0, $_iframe_switch);
     }
+    function iframeJump2Info() {
+      let count = 0;
+      intervalID = setInterval(
+        () => {
+          var _a;
+          const dom = (_a = iframeDom == null ? void 0 : iframeDom.contentDocument) == null ? void 0 : _a.querySelector(".app-content__inner");
+          count += 1;
+          const dom_trigger = iframeDom.contentDocument.querySelector(".ant-descriptions-view .ant-descriptions-item-label span");
+          console.log(dom_trigger.textContent, dom_trigger.textContent.length);
+          if (dom) {
+            dom.scrollIntoView();
+          }
+          console.log(`[${count}] iframeJump2Info -----`);
+          if (dom_trigger.textContent.length)
+            clearInterval(intervalID);
+        },
+        500
+      );
+    }
+    let intervalID;
+    onDestroy(() => {
+      clearInterval(intervalID);
+    });
     function key_closePanels(event) {
       if (event.key === "Escape") {
         console.log(event);
@@ -12091,7 +12320,22 @@
       });
       new BtnTurnPage({ target: nextPageNode });
     });
-    return [$_iframe_switch, $_iframe_url, $_current_domain, toggleIframe, key_closePanels];
+    function iframe_binding($$value) {
+      binding_callbacks[$$value ? "unshift" : "push"](() => {
+        iframeDom = $$value;
+        $$invalidate(0, iframeDom);
+      });
+    }
+    return [
+      iframeDom,
+      $_iframe_switch,
+      $_iframe_url,
+      $_current_domain,
+      toggleIframe,
+      iframeJump2Info,
+      key_closePanels,
+      iframe_binding
+    ];
   }
   class Main_newMT extends SvelteComponent {
     constructor(options) {
