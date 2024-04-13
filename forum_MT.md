@@ -2,7 +2,9 @@
 
 <!-- ./video.mp4 -->
 
-https://github.com/KesaubeEire/PT_Masonry_View_Svelte/raw/newMT/readme/video.mp4
+<!-- https://github.com/KesaubeEire/PT_Masonry_View_Svelte/raw/newMT/readme/video.mp4 -->
+
+https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2586-4e2c-9f1d-daa24b809df8
 
 <!-- ![pic_cover](./readme/pic_cover.png) -->
 
