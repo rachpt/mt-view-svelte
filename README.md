@@ -2,6 +2,8 @@
 
 <!-- ./video.mp4 -->
 
+https://github.com/KesaubeEire/PT_Masonry_View_Svelte/raw/newMT/readme/video.mp4
+
 ![pic_cover](./readme/pic_cover.png)
 
 <s style="color:gray;">(虽然 M-Team 也自带了,但我纠结很久还是不放弃了捏 🤡)</s>  
@@ -66,7 +68,7 @@
 
 ## 其他信息
 
-- [Full Readme(含TODO)](./README.md) <!-- TODO: 改成 git 链接 -->
+- [Full Readme(含 TODO)](https://github.com/KesaubeEire/PT_Masonry_View_Svelte/blob/newMT/README.md)
 - [Github 地址](https://github.com/KesaubeEire/PT_Masonry_View_Svelte)
 - [油猴 地址](https://greasyfork.org/zh-CN/scripts/470821)
 - [旧版 Readme(24.4.14)](./readme/readme_old.md)
