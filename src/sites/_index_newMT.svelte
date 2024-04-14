@@ -210,6 +210,9 @@
           NEXUS_TOOLS();
         });
         // setTimeout(NEXUS_TOOLS, 600);
+
+        // NOTE: 如果站点有特殊操作, 这里执行
+        GLOBAL_SITE[$_current_domain]?.special();
       })
       .catch((error) => {
         // 处理错误
@@ -420,12 +423,14 @@
         document.querySelector(originSelector).style.display = "block";
       }
 
+      // 在这里可以执行额外的操作，例如触发自定义事件等
+      // NOTE: [可选]重新加载 Waterfall 内容
+      // NOTE: 如果站点有特殊操作, 这里执行
+      // GLOBAL_SITE[$_current_domain]?.special();
+
       // FIXME: 别动这个就行
       // 调用原始的 pushState 方法
       originalPushState.apply(history, arguments);
-
-      // 在这里可以执行额外的操作，例如触发自定义事件等
-      // NOTE: [可选]重新加载 Waterfall 内容
     };
   }
 
@@ -531,7 +536,63 @@
     if (masonry) masonry.options.transitionDuration = $_animated ? "0.4s" : "0";
   }
 
-  // 6. onMount 启动 ------------------------------------------------
+  // 6. 原表格悬浮预览图片 ------------------------------------------------
+
+  /** 监视原表格是否有 DOM 变化 */
+  function observerDomChange() {
+    console.log("------------------OB START------------------");
+    // 要监视的目标元素
+    const targetElement = document.querySelector(".ant-spin-nested-loading");
+
+    // 创建一个 Mutation Observer 实例
+    const observer = new MutationObserver((mutationsList, observer) => {
+      // 遍历每一个变化
+      mutationsList.forEach((mutation) => {
+        // 检查变化类型
+        if (mutation.type === "childList" || mutation.type === "attributes") {
+          console.log("<-- 原表格 DOM 发生了变化 -->");
+          // 在这里可以执行你的操作，比如重新渲染、更新状态等
+
+          // NOTE: 如果站点有特殊操作, 这里执行
+          GLOBAL_SITE[$_current_domain]?.special();
+
+          // // 原表格悬浮预览图片
+          // old_form_show_pic();
+        }
+      });
+    });
+
+    // 配置 Mutation Observer 监视的选项
+    const config = { attributes: true, childList: true, subtree: false };
+
+    // 开始监视目标元素
+    observer.observe(targetElement, config);
+
+    // 在不需要时停止监视
+    // observer.disconnect();
+  }
+
+  /** 原图片悬浮显示大图 */
+  function old_form_show_pic() {
+    // 获取所有具有类名 .ant-image-mask 的元素
+    const elementsToRemove = document.querySelectorAll(".ant-image-mask");
+    // 遍历并删除这些元素
+    elementsToRemove.forEach((element) => {
+      element.remove();
+    });
+
+    // 添加指定的
+    const lists = Array.from(
+      document.querySelectorAll(".torrent-list__thumbnail"),
+    );
+    lists.forEach((el) => {
+      el.classList += " preview_Origin";
+    });
+
+    // return lists.length
+  }
+
+  // 7. onMount 启动 ------------------------------------------------
   /** onMount, 启动!!!!!!!!!!!!!!!!*/
   onMount(() => {
     // 生成瀑布流
@@ -575,6 +636,9 @@
 
     // 劫持 path 变化 => 页面内主循环函数
     OverWritePushState();
+
+    // 原表格悬浮预览大图
+    observerDomChange();
   });
 </script>
 
