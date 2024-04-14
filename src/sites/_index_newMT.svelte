@@ -175,6 +175,8 @@
     };
     Object.assign(payload, UrlPath_2_ParamList());
 
+    console.log(payload);
+
     fetch(searchApiURL, {
       method: "POST",
       headers: {
@@ -192,6 +194,9 @@
         infoList = [...list];
       })
       .then(() => {
+        // 设置页数
+        PAGE.$setPage(payload.pageNumber);
+
         // 这里专用
         masonry.reloadItems();
 
@@ -336,13 +341,13 @@
     }
 
     // 设置当前页数
-    PAGE.$setPage(pageNumber);
+    // PAGE.$setPage(pageNumber);
     // console.log('========------------===========');
     // console.log(pageNumber);
     // console.log('========------------===========');
 
     // 输出
-    console.log(output);
+    // console.log(output);
     return output;
   }
 
@@ -395,9 +400,15 @@
         };
 
         Object.assign(payload, searchApiList);
+        console.log(payload);
 
-        // 默认每次切换页面重置 ORIGIN_TL_Node
-        Request(payload, update_ORIGIN_TL_Node);
+        Request(payload, () => {
+          // 设置页数
+          PAGE.$setPage(payload.pageNumber);
+
+          // 默认每次切换页面重置 ORIGIN_TL_Node
+          update_ORIGIN_TL_Node();
+        });
 
         // 按时调整显示模式
         ChangeShowMode();
@@ -467,6 +478,7 @@
     // console.log("++++++++++++++++++++++++");
     Object.assign(payload, UrlPath_2_ParamList());
     Object.assign(payload, { pageNumber: PAGE.$getCurrentPage() + 1 });
+    console.log(payload);
 
     // -- 2. fetch payload, 并在获得后更新 List
     fetch(searchApiURL, {
