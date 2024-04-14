@@ -1,4 +1,6 @@
 <script>
+  import { onDestroy } from "svelte";
+
   function Reload() {
     location.reload();
   }
@@ -17,11 +19,15 @@
     first = false;
   }
 
-  setInterval(() => {
+  let interval = setInterval(() => {
     currentLinkBrowse = location.pathname.includes("/browse");
     // console.log("first:\t", firstLinkBrowse, "current:\t", currentLinkBrowse);
     trigger = !firstLinkBrowse && currentLinkBrowse;
   }, 2000);
+
+  onDestroy(() => {
+    clearInterval(interval);
+  });
 </script>
 
 <div>

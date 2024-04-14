@@ -1,7 +1,7 @@
 <script>
   import "./app.css";
   import "./utils/masonry.pkgd.Kesa";
-  import { onMount } from "svelte";
+  import { onDestroy } from "svelte";
   import Sidepanel from "./sidepanel.svelte";
   import NEW_MT_Waterfall from "./sites/_index_newMT.svelte";
   import {
@@ -48,10 +48,69 @@
 
   // 面板相关 ------------------------------------------------
 
+  /** iframe Svelte 绑定 Dom */
+  let iframeDom;
+
   /** 关闭 iframe */
   function toggleIframe() {
     $_iframe_switch = 0;
   }
+
+  /**iframe 跳转到种子信息
+   * 使用 setInterval 进行轮询查询是否 details 信息被渲染, 如果被渲染就聚焦过去
+   */
+  function iframeJump2Info() {
+    // console.log(iframeDom);
+
+    let count = 0;
+    let error_count = 0;
+    let dom_trigger;
+    // intervalID = setInterval(() => {
+    // TODO: clearInterval 不能在 iframe 销毁时启用
+
+    intervalID = setInterval(() => {
+      try {
+        // 获取容器
+        const dom = iframeDom?.contentDocument?.querySelector(
+          ".app-content__inner",
+        );
+        count += 1;
+
+        // 获取一个内容, 证明 details 里的东西被渲染出来, 被渲染出来就聚焦过去
+        // 应该是 "下载" 那行 dom 判断文字的长度
+        dom_trigger = iframeDom.contentDocument.querySelector(
+          ".ant-descriptions-view .ant-descriptions-item-label span",
+        );
+        // console.log(dom_trigger.textContent, dom_trigger.textContent.length);
+        if (dom) {
+          dom.scrollIntoView();
+          // dom.scrollIntoViewIfNeeded();
+        }
+        console.log(
+          ` iframeJump2Info ==> 轮询次数: [${count}] 轮询文本: [${dom_trigger.textContent}] 轮询长度: [${dom_trigger.textContent.length}] -----`,
+        );
+      } catch (error) {
+        // 轮询次数太多找不到渲染出来的结果直接取消 setInterval
+        error_count++;
+        console.warn(`DOM丢失: ${error_count}`);
+        if (error_count >= 5) {
+          clearInterval(intervalID);
+          console.log(
+            "------> setInterval 已取消, 请忽略 DOM 丢失的 Errors & Warns. <------",
+          );
+        }
+      }
+
+      // 有了结果就取消轮询
+      // if (count > 3) clearInterval(intervalID);
+      if (dom_trigger.textContent.length) clearInterval(intervalID);
+    }, 500);
+  }
+
+  let intervalID;
+  onDestroy(() => {
+    clearInterval(intervalID);
+  });
 
   /** esc 控制关闭所有面板 */
   function key_closePanels(event) {
@@ -191,10 +250,12 @@
         src={$_iframe_url}
         frameborder="0"
         title="wow"
-        style="width:
-      {GLOBAL_SITE[$_current_domain]
+        style="
+          width: {GLOBAL_SITE[$_current_domain]
           ? GLOBAL_SITE[$_current_domain].Iframe_Width
           : 1000}px"
+        on:load={iframeJump2Info}
+        bind:this={iframeDom}
       />
       <div class="_iframeCloseBtn" on:click={toggleIframe}>
         <!-- svg 关闭 icon -->
