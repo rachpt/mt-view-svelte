@@ -394,7 +394,6 @@
         </div>
       {/if}
 
-      <!-- TODO: 置顶 && 免费类型&剩余时间 -->
       <!-- 置顶 && 免费类型&剩余时间 -->
       {#if torrentInfo.status.discount || torrentInfo.status.toppingLevel}
         <div class="cl-tags">
@@ -576,7 +575,6 @@
 
     <!-- NOTE: 可选外部显示 -->
     {#if !($_CARD_SHOW.all || _hover) && !(torrentInfo.category == "440" && $_SITE_SETTING.mt.hide_gay == true)}
-      <!-- TODO: 置顶 && 免费类型&剩余时间 -->
       <!-- 置顶 && 免费类型&剩余时间 -->
       {#if $_CARD_SHOW.free && (torrentInfo.status.discount || torrentInfo.status.toppingLevel)}
         <div class="cl-tags">

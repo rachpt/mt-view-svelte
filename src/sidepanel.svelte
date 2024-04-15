@@ -144,7 +144,6 @@
   "
 >
   <!-- 侧边栏拖拽条 -->
-  <!-- TODO: 仿照 PTPP 插件做拖拽效果, 优先度低 -->
   <div class="sideP__title" on:mousedown={onMouseDown} />
 
   <!-- 按钮列表 -->

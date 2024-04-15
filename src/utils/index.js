@@ -370,7 +370,7 @@ function NEXUS_TOOLS() {
   document.body.addEventListener("mouseover", function (e) {
 
     // 全图触发
-    console.log(get(_trigger_nexus_pic));
+    // console.log(get(_trigger_nexus_pic));
     if (get(_trigger_nexus_pic) == 0) {
       // @ts-ignore
       if (e.target.matches(selector)) {

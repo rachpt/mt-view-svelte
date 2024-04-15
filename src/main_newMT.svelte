@@ -66,7 +66,6 @@
     let error_count = 0;
     let dom_trigger;
     // intervalID = setInterval(() => {
-    // TODO: clearInterval 不能在 iframe 销毁时启用
 
     intervalID = setInterval(() => {
       try {
