@@ -49,6 +49,9 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
 
     ![pic_flowPanel](https://raw.githubusercontent.com/KesaubeEire/PT_Masonry_View_Svelte/newMT/readme/pic_flowPanel.png)
 
+- 如果页面上的浮动快捷面板(见上图)丢失,   
+  请拉到页面最下方的 <重置瀑布流配置边栏位置> 按钮,  
+  会重置到页面左上角  
 ---
 
 ## 其他特色
@@ -70,14 +73,20 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
 
 - 重要功能
   - [ ] 劫持 XMLHttpRequest 重构瀑布流
-  - [ ] 悬浮预览重构 (pic,trigger_dom,exit_dom)
   - [ ] 适配 mnk?
+  - [ ] 悬浮预览重构 (pic,trigger_dom,exit_dom)
+  - [x] 还原旧版图片预览 -> 原生表格图片悬浮预览 [2024.4.16 v1.2.0]
+  - [x] 原生表格点击内置窗口显示 [2024.4.16 v1.2.0]
 - 次要
   - [ ] 配置栏的配色固定起来, 防止本站 CSS 污染
   - [ ] 内置说明里标记同步 user.config 的版本号
   - [ ] 更新 M-Team 的电子书分区
 - 体验
-  - [x] 做一个全新的 readme [2024.4.14]
+  - [x] 做一个全新的 readme [2024.4.14 v1.2.0]
   - [ ] 优化滚动模式体验: 翻页条显示加载中之类的状态
   - [ ] 搞个内置的使用说明
   - [ ] 在 M-Team 的论坛好好优化一下介绍
+
+
+## FIX HISTORY
+- iframe 聚焦轮询丢失对象报错 [2024.4.14 v1.2.0]

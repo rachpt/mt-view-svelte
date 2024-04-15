@@ -11,7 +11,7 @@
     _animated,
     _card_layout,
   } from "../stores";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { fade } from "svelte/transition";
   import {
     sortMasonry,
@@ -212,6 +212,7 @@
         // setTimeout(NEXUS_TOOLS, 600);
 
         // NOTE: 如果站点有特殊操作, 这里执行
+        // console.log("[Special]<MTeam> ===> First Request");
         GLOBAL_SITE[$_current_domain]?.special();
       })
       .catch((error) => {
@@ -411,6 +412,35 @@
 
           // 默认每次切换页面重置 ORIGIN_TL_Node
           update_ORIGIN_TL_Node();
+
+          // NOTE:在这里可以执行额外的操作，例如触发自定义事件等
+          // MTeam站点特殊操作 => 原表格的 悬浮预览 和 iframe内置窗口预览种子详情
+          // console.log("[Special]<MTeam> ===> OverWritePushState");
+          let res = GLOBAL_SITE[$_current_domain]?.special();
+          // console.log(res);
+
+          let count = 0;
+          intervalID = setInterval(() => {
+            if (res) {
+              clearInterval(intervalID);
+              console.log(`触发特殊次数: [${count}]`);
+            }
+            count += 1;
+            res = GLOBAL_SITE[$_current_domain]?.special();
+            if (res) {
+              clearInterval(intervalID);
+              console.log(`触发特殊次数: [${count}]`);
+            }
+
+            if (count >= 5) {
+              clearInterval(intervalID);
+              console.log(
+                "======> 触发特殊次数: [${count}] setInterval 已取消. <======",
+              );
+            }
+          }, 1000);
+
+          // NOTE:在这里可以执行额外的操作，例如触发自定义事件等
         });
 
         // 按时调整显示模式
@@ -422,11 +452,6 @@
         // 显示主表
         document.querySelector(originSelector).style.display = "block";
       }
-
-      // 在这里可以执行额外的操作，例如触发自定义事件等
-      // NOTE: [可选]重新加载 Waterfall 内容
-      // NOTE: 如果站点有特殊操作, 这里执行
-      // GLOBAL_SITE[$_current_domain]?.special();
 
       // FIXME: 别动这个就行
       // 调用原始的 pushState 方法
@@ -538,11 +563,14 @@
 
   // 6. 原表格悬浮预览图片 ------------------------------------------------
 
+  // interval
+  let intervalID;
+
   /** 监视原表格是否有 DOM 变化 */
   function observerDomChange() {
     console.log("------------------OB START------------------");
     // 要监视的目标元素
-    const targetElement = document.querySelector(".ant-spin-nested-loading");
+    const targetElement = document.querySelector(".ant-spin-container");
 
     // 创建一个 Mutation Observer 实例
     const observer = new MutationObserver((mutationsList, observer) => {
@@ -554,10 +582,11 @@
           // 在这里可以执行你的操作，比如重新渲染、更新状态等
 
           // NOTE: 如果站点有特殊操作, 这里执行
+          // console.log(`[Special]<MTeam> ===> Mutation | target: ${mutation.target}<${mutation.type}>`);
+          // console.log(`target:`);
+          // console.log(mutation.target);
+          // console.log(`type: <${mutation.type}>`);
           GLOBAL_SITE[$_current_domain]?.special();
-
-          // // 原表格悬浮预览图片
-          // old_form_show_pic();
         }
       });
     });
@@ -570,26 +599,6 @@
 
     // 在不需要时停止监视
     // observer.disconnect();
-  }
-
-  /** 原图片悬浮显示大图 */
-  function old_form_show_pic() {
-    // 获取所有具有类名 .ant-image-mask 的元素
-    const elementsToRemove = document.querySelectorAll(".ant-image-mask");
-    // 遍历并删除这些元素
-    elementsToRemove.forEach((element) => {
-      element.remove();
-    });
-
-    // 添加指定的
-    const lists = Array.from(
-      document.querySelectorAll(".torrent-list__thumbnail"),
-    );
-    lists.forEach((el) => {
-      el.classList += " preview_Origin";
-    });
-
-    // return lists.length
   }
 
   // 7. onMount 启动 ------------------------------------------------
@@ -639,6 +648,10 @@
 
     // 原表格悬浮预览大图
     observerDomChange();
+  });
+
+  onDestroy(() => {
+    if (intervalID) clearInterval(intervalID);
   });
 </script>
 

@@ -177,12 +177,14 @@ const CONFIG = {
 
   /** NOTE: 站点特殊操作 */
   special: function () {
-    console.log('======= M-Team 特殊操作 =======');
+    // console.log('======= M-Team 特殊操作 =======');
     // 原表格点击标题显示 iframe
-    table_Iframe_Set();
+    let len1 = table_Iframe_Set();
 
     // 原图片悬浮显示大图 
-    old_form_show_pic();
+    let len2 = old_form_show_pic();
+
+    return len1 && len2;
   },
 
   /** NOTE: 站点下一页加载后操作 */
@@ -228,7 +230,7 @@ function old_form_show_pic() {
     el.classList += ' preview_Origin'
   })
 
-  // return lists.length
+  return lists.length
 }
 
 // TODO: 和原来的 NEXUS TOOLS 合并一下.
