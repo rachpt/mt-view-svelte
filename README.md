@@ -89,4 +89,5 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
 
 
 ## FIX HISTORY
+- NEXUS_TOOL imgEle 变量丢失报错 [2024.4.16 v1.2.0]
 - iframe 聚焦轮询丢失对象报错 [2024.4.14 v1.2.0]
