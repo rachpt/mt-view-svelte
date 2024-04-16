@@ -175,7 +175,7 @@ function NEXUS_TOOLS() {
   document.body.addEventListener("mouseout", function (e) {
     // @ts-ignore
     if (e.target.matches(selector)) {
-      handleMouseOut(e);
+      handleMouseOut();
     }
   });
 
@@ -382,6 +382,7 @@ function createKesaPreview(color) {
   parent.style.zIndex = '20000';
   parent.style.pointerEvents = 'none';
   parent.style.transition = 'all .3s';
+  parent.style.display = 'none';
 
   const img1 = document.createElement('img');
   img1.className = 'kp_img';
@@ -405,6 +406,13 @@ function createKesaPreview(color) {
   parent.appendChild(img2);
 
   return parent;
+}
+
+/**清除预览大图上的 src 避免串图*/
+function clearKesaPreview() {
+  kesa_preview.childNodes.forEach(kpImg => {
+    kpImg.setAttribute('src', '');
+  })
 }
 
 /**悬浮大图: 跟随 => 鼠标移动触发 */
@@ -435,7 +443,10 @@ function handleMouseOver(e, imgEle) {
 
 /**悬浮大图: 关闭 => 鼠标移出触发 */
 function handleMouseOut() {
+  // 关闭悬浮大图的 display
   kesa_preview.style.display = 'none';
+  // 清除 kp_img 内部大图的 src 避免串图
+  clearKesaPreview();
   if (buffer) clearTimeout(buffer);
 }
 
