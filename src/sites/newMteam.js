@@ -81,6 +81,9 @@ const CONFIG = {
   /**如果站点有必要设置分类颜色, 可以用自定义的 */
   CATEGORY_COLOR: {
     // 成人分类
+    115: '#f52bcb', // AV(有码) 父
+    120: '#f52bcb', // AV(无码) 父
+    
     410: '#f52bcb', // 有码 HD
     429: '#f52bcb', // 无码 HD
     424: '#db55a9', // 有码 Xvid
@@ -98,24 +101,35 @@ const CONFIG = {
     413: '#f49800', // H-Comic
 
     // 综合分类
+    100: '#c74854', // Movie 父
     401: '#c74854', // Movie SD
     419: '#c01a20', // Movie HD
     420: '#c74854', // Movie DVD    
     421: '#00a0e9', // Movie BluRay
     439: '#1b2a51', // Movie Remux
-    403: '#c74854', // TV SD
-    402: '#276fb8', // TV HD
-    435: '#4dbebd ', // TV DVD
-    438: '#1897d6', // TV BluRay
-    404: '#23ac38', // 纪录教育
+    105: '#276fb8', // TV影剧综艺 父
+    403: '#c74854', // TV影剧综艺 SD
+    402: '#276fb8', // TV影剧综艺 HD
+    435: '#4dbebd', // TV影剧综艺 DVD
+    438: '#1897d6', // TV影剧综艺 BluRay
+    444: '#23ac38', // 纪录片 父
+    404: '#23ac38', // 纪录片
+    449: '#996c34', // Anime 父
     405: '#996c34', // Anime
+    443: '#7FC269', // 教育 父
+    427: '#7FC269', // 教育文档
+    441: '#7FC269', // 教育影片
+    442: '#7FC269', // 教育音频
+    447: '#f39800', // Game 父
+    423: '#f39800', // Game
+    448: '#f39800', // TV Game
+    450: '#996c34', // Other 父
     407: '#23ac38', // Sport
     422: '#f39800', // Software
-    423: '#f39800', // Game
-    427: '#f39800', // EBook
     409: '#996c34', // Other
-
+    
     // 音乐分类
+    110: '#8a57a1', // 音乐 父
     406: '#8a57a1', // MV
     408: '#8a57a1', // Music AAC/ALAC
     434: '#8a57a1', // Music 无损
@@ -123,41 +137,56 @@ const CONFIG = {
 
   CATEGORY_NAME: {
     // 成人分类
-    410: ' 有码 HD',
-    429: ' 无码 HD',
-    424: ' 有码 Xvid',
-    430: ' 无码 Xvid',
-    437: ' 有码 DVD',
-    426: ' 无码 DVD',
-    431: ' 有码 BluRay',
-    432: ' 无码 BluRay',
-    440: ' GAY',
-    436: ' 0 day',
-    425: ' 写真 video',
-    433: ' 写真 pic',
-    411: ' H-Game',
-    412: ' H-Anime',
-    413: ' H-Comic',
+
+    115: 'AV(有码)', // AV(有码)
+    120: 'AV(无码)', // AV(无码)
+
+    410: '有码 HD',
+    429: '无码 HD',
+    424: '有码 Xvid',
+    430: '无码 Xvid',
+    437: '有码 DVD',
+    426: '无码 DVD',
+    431: '有码 BluRay',
+    432: '无码 BluRay',
+    440: 'GAY',
+    436: '0 day',
+    425: '写真 video',
+    433: '写真 pic',
+    411: 'H-Game',
+    412: 'H-Anime',
+    413: 'H-Comic',
 
     // 综合分类
+    100: 'Movie', // Movie 父
     401: 'Movie SD',
     419: 'Movie HD',
-    420: 'Movie DVD    ',
+    420: 'Movie DVD',
     421: 'Movie BluRay',
     439: 'Movie Remux',
+    105: 'TV', // 影剧综艺 父
     403: 'TV SD',
     402: 'TV HD',
-    435: ' TV DVD',
+    435: 'TV DVDiSo',
     438: 'TV BluRay',
-    404: '纪录教育',
+    444: 'Documentary', // 纪录片 父
+    404: 'Documentary',
+    449: 'Anime',  // 动漫 父
     405: 'Anime',
-    407: 'Sport',
-    422: 'Software',
+    443: '教育', // 父
+    427: '教育文档',
+    441: '教育影片',
+    442: '教育音频',
+    447: 'Game', // 父
     423: 'Game',
-    427: 'EBook',
+    448: 'TV Game',
+    450: '其他', // 父
+    407: 'Sport',
+    422: '软件',
     409: 'Other',
 
     // 音乐分类
+    110: 'Music', // 音乐 父
     406: 'MV',
     408: 'Music AAC/ALAC',
     434: 'Music 无损',

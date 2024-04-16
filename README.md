@@ -80,7 +80,7 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
 - 次要
   - [ ] 配置栏的配色固定起来, 防止本站 CSS 污染
   - [ ] 内置说明里标记同步 user.config 的版本号
-  - [ ] 更新 M-Team 的电子书分区
+  - [x] 更新 M-Team 的电子书分区 [2024.4.16 v1.2.0]
 - 体验
   - [x] 做一个全新的 readme [2024.4.14 v1.2.0]
   - [ ] 优化滚动模式体验: 翻页条显示加载中之类的状态
