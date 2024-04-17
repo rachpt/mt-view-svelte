@@ -100,7 +100,10 @@ export const _card_layout = persistStore('_card_layout', {
 const site_setting = {
   mt: {
     // 隐藏gay卡片: 默认为true
-    hide_gay: true
+    hide_gay: true,
+
+    // 路径是否在 browse 里
+    path_in_browse: false,
   }
 }
 export const _SITE_SETTING = persistStore('_SITE_SETTING', site_setting);

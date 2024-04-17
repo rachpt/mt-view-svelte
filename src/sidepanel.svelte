@@ -133,7 +133,7 @@
   });
 </script>
 
-<!-- --------------------------------NOTE:侧边栏-------------------------------- -->
+<!-- ---------- NOTE:侧边栏  ---------- -->
 <div
   class="sideP"
   bind:this={sideDom}
@@ -141,6 +141,12 @@
   top:{$_panelPos.y}px;
   left:{$_panelPos.x}px;
   background-color:{$_current_bgColor};
+  display:
+    {$_current_domain.includes('m-team')
+    ? $_SITE_SETTING.mt.path_in_browse
+      ? 'block'
+      : 'none'
+    : 'block'};
   "
 >
   <!-- 侧边栏拖拽条 -->
@@ -296,7 +302,7 @@
   </div>
 </div>
 
-<!-- 详细配置面板 -->
+<!-- ---------- NOTE:详细配置面板  ---------- -->
 {#if $_show_configPanel}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div

@@ -86,6 +86,7 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
   - [ ] 优化滚动模式体验: 翻页条显示加载中之类的状态
   - [ ] 搞个内置的使用说明
   - [ ] 在 M-Team 的论坛好好优化一下介绍
+  - [x] 无需刷新即可直接从非 /browse 跳入后显示瀑布流 [2024.4.18 v1.2.0]
 
 
 ## FIX HISTORY
