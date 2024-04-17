@@ -333,6 +333,7 @@
             stroke-linejoin="round"
             stroke-width="2"
             viewBox="0 0 24 24"
+            style="color: black;"
           >
             <line x1="20" x2="6" y1="6" y2="20" />
             <line x1="6" x2="20" y1="6" y2="20" />
@@ -598,6 +599,9 @@
   }
 
   .sideP__btn {
+    width: 72px;
+    font-size: 14px;
+
     background-color: gray;
     color: white;
 
@@ -628,6 +632,7 @@
 
     z-index: 50000;
 
+    color: black;
     background-color: rgba(0, 0, 0, 0.2);
   }
 
@@ -721,6 +726,10 @@
       font-size: 14px;
       display: flex;
       align-items: center;
+    }
+
+    & h1{
+      font-size: 14pt;
     }
   }
 
