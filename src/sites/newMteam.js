@@ -2,12 +2,12 @@ import { _iframe_switch, _iframe_url } from '../stores'
 import { handleMouseMove, handleMouseOut, handleMouseOver } from '../utils'
 // -------------------------------
 import SVG_Size from "@/assets/icon_size.svg";
-import SVG_Comment from "@/assets/icon_comment.svg";
+// import SVG_Comment from "@/assets/icon_comment.svg";
 import SVG_Seeders from "@/assets/icon_seeders.svg";
 import SVG_Leechers from "@/assets/icon_leechers.svg";
 import SVG_Download from "@/assets/icon_download.svg";
 import SVG_Collection from "@/assets/icon_collection.svg";
-import SVG_Time from "@/assets/icon_time.svg";
+// import SVG_Time from "@/assets/icon_time.svg";
 import SVG_Preview from "@/assets/icon_preview.svg";
 // -------------------------------
 export { CONFIG as config };
@@ -61,7 +61,7 @@ const CONFIG = {
     /** 大小图标 */
     SIZE: SVG_Size,
     /** 评论图标 */
-    COMMENT: SVG_Comment,
+    // COMMENT: SVG_Comment,
     /** 上传人数图标 */
     SEEDERS: SVG_Seeders,
     /** 下载人数图标 */
@@ -73,7 +73,7 @@ const CONFIG = {
     /** 置顶图标 (没用, 看的是 css URL) */
     PIN: '/static/trans.gif',
     /** 时间图标 */
-    TIME: SVG_Time,
+    // TIME: SVG_Time,
     /** 预览图标 */
     PREVIEW: SVG_Preview
   },

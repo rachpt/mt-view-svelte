@@ -23,6 +23,13 @@
   import { sortMasonry } from "./utils";
   import Switch from "./component/switch.svelte";
 
+  // ------------------------------------------------
+
+  import SVG_CONFIG from "./assets/icon_config.svg";
+  import SVG_MASONRY from "./assets/icon_masonry.svg";
+  import SVG_LIST from "./assets/icon_list.svg";
+  import IconCross from "./assets/icon_cross.svelte";
+
   // 配置拖拽侧边栏 ------------------------------------------------
   /** 侧边栏的 dom 对象 */
   let sideDom;
@@ -158,80 +165,13 @@
     <button class="sideP__btn" on:click={__show_originTable}>
       {#if $_list_viewMode}
         <div>
-          <svg
-            enable-background="new 0 0 64 64"
-            width="20"
-            height="20"
-            id="Layer_1"
-            version="1.1"
-            viewBox="0 0 64 64"
-          >
-            <path
-              d="M19,2.875H3.5c-0.829,0-1.5,0.671-1.5,1.5v19.979c0,0.829,0.671,1.5,1.5,1.5H19c0.829,0,1.5-0.671,1.5-1.5V4.375  C20.5,3.546,19.829,2.875,19,2.875z M17.5,22.854H5V5.875h12.5V22.854z"
-              fill="white"
-            />
-            <path
-              d="M19,28.773H3.5c-0.829,0-1.5,0.671-1.5,1.5v6.166c0,0.828,0.671,1.5,1.5,1.5H19c0.829,0,1.5-0.672,1.5-1.5v-6.166  C20.5,29.445,19.829,28.773,19,28.773z M17.5,34.939H5v-3.166h12.5V34.939z"
-              fill="white"
-            />
-            <path
-              d="M19,40.859H3.5c-0.829,0-1.5,0.672-1.5,1.5v17.266c0,0.828,0.671,1.5,1.5,1.5H19c0.829,0,1.5-0.672,1.5-1.5V42.359  C20.5,41.531,19.829,40.859,19,40.859z M17.5,58.125H5V43.859h12.5V58.125z"
-              fill="white"
-            />
-            <path
-              d="M40,2.875H24.5c-0.829,0-1.5,0.671-1.5,1.5v14.25c0,0.829,0.671,1.5,1.5,1.5H40c0.828,0,1.5-0.671,1.5-1.5V4.375  C41.5,3.546,40.828,2.875,40,2.875z M38.5,17.125H26V5.875h12.5V17.125z"
-              fill="white"
-            />
-            <path
-              d="M40,23.125H24.5c-0.829,0-1.5,0.671-1.5,1.5V46.5c0,0.828,0.671,1.5,1.5,1.5H40c0.828,0,1.5-0.672,1.5-1.5V24.625  C41.5,23.796,40.828,23.125,40,23.125z M38.5,45H26V26.125h12.5V45z"
-              fill="white"
-            />
-            <path
-              d="M40,51H24.5c-0.829,0-1.5,0.672-1.5,1.5v7.125c0,0.828,0.671,1.5,1.5,1.5H40c0.828,0,1.5-0.672,1.5-1.5V52.5  C41.5,51.672,40.828,51,40,51z M38.5,58.125H26V54h12.5V58.125z"
-              fill="white"
-            />
-            <path
-              d="M60.5,2.875H45c-0.828,0-1.5,0.671-1.5,1.5v35.171c0,0.828,0.672,1.5,1.5,1.5h15.5c0.828,0,1.5-0.672,1.5-1.5V4.375  C62,3.546,61.328,2.875,60.5,2.875z M59,38.046H46.5V5.875H59V38.046z"
-              fill="white"
-            />
-            <path
-              d="M60.5,44.346H45c-0.828,0-1.5,0.672-1.5,1.5v13.779c0,0.828,0.672,1.5,1.5,1.5h15.5c0.828,0,1.5-0.672,1.5-1.5V45.846  C62,45.018,61.328,44.346,60.5,44.346z M59,58.125H46.5V47.346H59V58.125z"
-              fill="white"
-            />
-          </svg>
+          <img src={SVG_MASONRY} alt="SVG_MASONRY" />
         </div>
         <div>瀑布</div>
       {:else}
         <div>
           <!-- svg 列表图标 -->
-          <svg
-            viewBox="0 0 32 32"
-            width="20"
-            height="20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <style>
-                .cls-1 {
-                  fill: none;
-                  stroke: #000;
-                  stroke-linecap: round;
-                  stroke-linejoin: round;
-                  stroke-width: 2px;
-                }
-              </style>
-            </defs>
-            <title />
-            <g data-name="43-browser" id="_43-browser">
-              <rect class="cls-1" height="30" width="30" x="1" y="1" />
-              <line class="cls-1" x1="1" x2="31" y1="9" y2="9" />
-              <line class="cls-1" x1="5" x2="7" y1="5" y2="5" />
-              <line class="cls-1" x1="11" x2="13" y1="5" y2="5" />
-              <line class="cls-1" x1="9" x2="25" y1="16" y2="16" />
-              <line class="cls-1" x1="7" x2="25" y1="20" y2="20" />
-              <line class="cls-1" x1="7" x2="25" y1="24" y2="24" />
-            </g>
-          </svg>
+          <img src={SVG_LIST} alt="SVG_LIST" />
         </div>
         <div>列表</div>
       {/if}
@@ -271,36 +211,7 @@
     >
       <div>
         <!-- svg 设置图标 -->
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <style>
-              .cls-1 {
-                fill: none;
-                stroke: #fff;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-width: 2px;
-              }
-            </style>
-          </defs>
-          <title />
-          <g data-name="80-setting" id="_80-setting">
-            <circle class="cls-1" cx="10" cy="6" r="3" />
-            <circle class="cls-1" cx="22" cy="16" r="3" />
-            <circle class="cls-1" cx="10" cy="26" r="3" />
-            <line class="cls-1" x1="7" x2="1" y1="6" y2="6" />
-            <line class="cls-1" x1="15" x2="1" y1="16" y2="16" />
-            <line class="cls-1" x1="7" x2="1" y1="26" y2="26" />
-            <line class="cls-1" x1="31" x2="17" y1="26" y2="26" />
-            <line class="cls-1" x1="31" x2="25" y1="16" y2="16" />
-            <line class="cls-1" x1="31" x2="17" y1="6" y2="6" />
-          </g>
-        </svg>
+        <img src={SVG_CONFIG} alt="SVG_CONFIG" />
       </div>
       <div>配置</div>
     </button>
@@ -338,28 +249,7 @@
         <p style="margin: auto 0">详细配置面板</p>
         <!-- ---------------- 返回按钮 ---------------- -->
         <button on:click={() => ($_show_configPanel = false)}>
-          <!-- <svg height="28" width="28" viewBox="0 0 48 48">
-            <path
-              d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"
-              fill="red"
-            />
-            <path d="M0 0h48v48h-48z" fill="none" />
-          </svg> -->
-          <svg
-            class="feather feather-x"
-            fill="none"
-            height="28"
-            width="28"
-            stroke="black"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            style="color: black;"
-          >
-            <line x1="20" x2="6" y1="6" y2="20" />
-            <line x1="6" x2="20" y1="6" y2="20" />
-          </svg>
+          <IconCross></IconCross>
         </button>
       </div>
 
@@ -750,7 +640,7 @@
       align-items: center;
     }
 
-    & h1{
+    & h1 {
       font-size: 14pt;
     }
   }

@@ -12,6 +12,8 @@
   import { config } from "./newMteam";
   import _PicErrorLOGO from "../assets/pic_error.svg";
   import _PicNoLOGO from "../assets/pic_no.svg";
+  import IconComment from "../assets/icon_comment.svelte";
+  import IconTime from "../assets/icon_time.svelte";
 
   // ------------------------------------------------
 
@@ -530,7 +532,7 @@
                     height="1em"
                     fill="currentColor"
                     aria-hidden="true"
-                    style="color: {collectionMark ? 'orange' : 'black'}"
+                    style={collectionMark ? "color:orange" : ""}
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -551,14 +553,14 @@
         <!-- 上传时间 -->
         <div class="card-line cl-btn">
           <!-- <b>上传时间:</b> -->
-          <img src={config.ICON.TIME} alt="SVG_Time" />
+          <IconTime></IconTime>
           &nbsp;{`${_CT.day} 日`}
           {_CT.hour ? `${_CT.hour} 时` : ""}
         </div>
 
         <!-- 各种数据: 评论/上传/下载/完成 -->
         <div class="card-line">
-          <img src={config.ICON.COMMENT} alt="SVG_Comment" />
+          <IconComment></IconComment>
           &nbsp;
           <b>{torrentInfo.status.comments}</b>
           &nbsp;&nbsp;
@@ -745,7 +747,7 @@
         {#if $_CARD_SHOW.upload_time}
           <div class="card-line cl-btn">
             <!-- <b>上传时间:</b> -->
-            <img src={config.ICON.TIME} alt="SVG_Time" />
+            <IconTime></IconTime>
             &nbsp;{`${_CT.day} 日`}
             {_CT.hour ? `${_CT.hour} 时` : ""}
           </div>
@@ -754,7 +756,7 @@
         <!-- 各种数据: 评论/上传/下载/完成 -->
         {#if $_CARD_SHOW.statistics}
           <div class="card-line">
-            <img src={config.ICON.COMMENT} alt="SVG_Comment" />
+            <IconComment></IconComment>
             &nbsp;
             <b>{torrentInfo.status.comments}</b>
             &nbsp;&nbsp;
