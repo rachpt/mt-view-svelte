@@ -12,7 +12,7 @@ export const config = {
   author: "Kesa",
   match: [
     "https://kamept.com/*",
-    "https://pterclub.com/*",
+    // "https://pterclub.com/*",
 
     // M-Team 全系列域名
     "https://kp.m-team.cc/*",
