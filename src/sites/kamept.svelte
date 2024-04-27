@@ -509,6 +509,9 @@
   .card-image img {
     width: 100%;
     object-fit: cover;
+    
+    /* NOTE: 这个是 Kame 专用, 不知道为什么图片的底边会多出来 3px */
+    margin-bottom: -3px;
   }
 
   /* 卡片可选信息 */
