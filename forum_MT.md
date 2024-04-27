@@ -34,9 +34,17 @@
 
 <!-- TODO: 这里要调整 -->
 
-- 点击卡片之间的缝隙可以手动整理卡片
-- 双击切换按钮可以重置瀑布流布局
+- 手动整理卡片: 
+  1. 可以点击卡片之间的缝隙  
+  2. 可以点击侧边栏的整理按钮  
+- 双击切换按钮可以重置瀑布流布局  
+  <span style="color:orange;">改变浏览器宽度的话布局会乱</span>
 
+    ![pic_flowPanel](https://raw.githubusercontent.com/KesaubeEire/PT_Masonry_View_Svelte/newMT/readme/pic_flowPanel.png)
+
+- 如果页面上的浮动快捷面板(也就是侧边栏,见上图)丢失,   
+  请拉到页面最下方的 <重置瀑布流配置边栏位置> 按钮,  
+  会重置到页面左上角  
 ---
 
 ## 其他特色
@@ -48,8 +56,16 @@
 ## 其他信息
 
 - [Full Readme(含 TODO)](https://github.com/KesaubeEire/PT_Masonry_View_Svelte/blob/newMT/README.md)
-- [Github 地址](https://github.com/KesaubeEire/PT_Masonry_View_Svelte)
+- [Github 地址](https://github.com/KesaubeEire/PT_Masonry_View_Svelte/tree/newMT)
 - [油猴 地址](https://greasyfork.org/zh-CN/scripts/470821)
 - [旧版 Readme(24.4.14)](./readme/readme_old.md)
 - [旧版 Github 地址](https://github.com/KesaubeEire/PT_TorrentList_Masonry)
 - [旧版 油猴 地址](https://greasyfork.org/zh-CN/scripts/465249-pt种子列表无限下拉瀑布流视图)
+
+## 问题反馈
+
+有些渠道和平台可能平常不会关注  
+如果有遇到 bug 或者有什么其他功能的需求或者建议  
+欢迎来 TG 群组反馈: [PT_Masonry](https://t.me/+wLPO7JyNz_o1YWRl)
+
+# 最新版本: 1.1.10(2024.4.27)

@@ -2,14 +2,13 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.9
+// @version         1.1.10
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
 // @license         MIT
 // @icon            https://avatars.githubusercontent.com/u/23617963
 // @match           https://kamept.com/*
-// @match           https://pterclub.com/*
 // @match           https://kp.m-team.cc/*
 // @match           https://xp.m-team.io/*
 // @match           https://xp.m-team.cc/*
@@ -23,7 +22,7 @@
 // @grant           none
 // ==/UserScript==
 
-(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-kk96f3.svelte-kk96f3{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-kk96f3.svelte-kk96f3:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-kk96f3.svelte-kk96f3{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-kk96f3.svelte-kk96f3:hover{cursor:move}.sideP__out.svelte-kk96f3.svelte-kk96f3{display:flex;flex-direction:column}.sideP__btn.svelte-kk96f3.svelte-kk96f3{background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-kk96f3.svelte-kk96f3:hover{background-color:#6531ff}.configP.svelte-kk96f3.svelte-kk96f3{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;background-color:#0003}.configP_holder.svelte-kk96f3.svelte-kk96f3{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-kk96f3.svelte-kk96f3::-webkit-scrollbar{display:none}.configP_title.svelte-kk96f3.svelte-kk96f3{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-kk96f3.svelte-kk96f3 p{font-size:18px;font-weight:500}.configP_title.svelte-kk96f3.svelte-kk96f3 button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-kk96f3.svelte-kk96f3{margin:16px 18px}.section.svelte-kk96f3.svelte-kk96f3 button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-kk96f3.svelte-kk96f3 .s_title{text-align:center}.section.svelte-kk96f3.svelte-kk96f3 .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-kk96f3.svelte-kk96f3 .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.configP_holder.svelte-kk96f3 .section.svelte-kk96f3:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-kk96f3.svelte-kk96f3{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-4b9kml.svelte-4b9kml{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-4b9kml.svelte-4b9kml:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-4b9kml.svelte-4b9kml{padding:2px 0}.card-holder.svelte-4b9kml.svelte-4b9kml{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-4b9kml.svelte-4b9kml{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-4b9kml.svelte-4b9kml{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-4b9kml.svelte-4b9kml{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-4b9kml.svelte-4b9kml:hover{-webkit-line-clamp:100}.cl-center.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-4b9kml.svelte-4b9kml:has(span){padding-top:2px}.card-details.svelte-4b9kml.svelte-4b9kml{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-4b9kml.svelte-4b9kml{height:100%;position:relative}.card-image.svelte-4b9kml img.svelte-4b9kml{width:100%;object-fit:cover}.card-alter.svelte-4b9kml.svelte-4b9kml{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-4b9kml.svelte-4b9kml{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-4b9kml.svelte-4b9kml{color:#00f}._2XFree.svelte-4b9kml.svelte-4b9kml{color:green}.card-description.svelte-4b9kml.svelte-4b9kml{padding-left:4px;padding-right:4px}.card-index.svelte-4b9kml.svelte-4b9kml{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-4b9kml.svelte-4b9kml{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-4b9kml.svelte-4b9kml:hover{opacity:1}.btnCollet.svelte-4b9kml.svelte-4b9kml{padding:1px 2px;cursor:pointer}.hot.svelte-4b9kml.svelte-4b9kml,.new.svelte-4b9kml.svelte-4b9kml{padding:0 2px;border-radius:8px;background:white;margin:2px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-rhfb99.svelte-rhfb99{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-rhfb99.svelte-rhfb99{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-rhfb99.svelte-rhfb99{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-rhfb99.svelte-rhfb99{padding:2px 0}.card-holder.svelte-rhfb99.svelte-rhfb99{background-color:#ffffff80}.card-line.svelte-rhfb99.svelte-rhfb99{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-rhfb99.svelte-rhfb99{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-rhfb99.svelte-rhfb99:hover{-webkit-line-clamp:100}.cl-center.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-rhfb99.svelte-rhfb99{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-rhfb99.svelte-rhfb99{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5abd48}._tag_dub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5a3b14}._tag_sub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-rhfb99.svelte-rhfb99{background-color:#f50;color:#fff}._tag_discount_free.svelte-rhfb99.svelte-rhfb99{background-color:#108ee9;color:#fff}.card-details.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-rhfb99.svelte-rhfb99{height:100%;position:relative}.card-image.svelte-rhfb99 img.svelte-rhfb99{width:100%;object-fit:cover}.card-description.svelte-rhfb99.svelte-rhfb99{padding:2px 4px}.card-description.svelte-rhfb99 a.svelte-rhfb99,.card-description.svelte-rhfb99 a.svelte-rhfb99:hover{color:#000}.card-index.svelte-rhfb99.svelte-rhfb99{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-rhfb99.svelte-rhfb99{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-rhfb99.svelte-rhfb99:hover{opacity:1}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-12ghpfg.svelte-12ghpfg{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-12ghpfg.svelte-12ghpfg{height:96%;margin:auto;position:relative}div._iframe.svelte-12ghpfg iframe.svelte-12ghpfg{height:100%;border-radius:20px}._iframeCloseBtn.svelte-12ghpfg.svelte-12ghpfg{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px} ');
+(t=>{const e=document.createElement("style");e.dataset.source="vite-plugin-monkey",e.textContent=t,document.head.append(e)})(' #_Reload.svelte-1me98ya{position:fixed;top:0;left:0}div.waterfall{width:100%;padding-top:20px;padding-bottom:60px;border-radius:20px;height:100%;margin:20px auto;transition:height .3s}div.waterfall_newMT{padding-top:0;padding-bottom:0;margin:10px auto}button.debug{position:fixed;top:10px;right:10px;padding:4px;background-color:#333;color:#fff;border:none;border-radius:5px;cursor:pointer}button#toggle_oldTable{top:10px}button#btnReLayout{top:40px}button#btnSwitchMode{top:70px}button#sort_masonry{top:100px}.pic_error{height:100px;display:flex;justify-content:center;align-items:center}.ant-menu-submenu-popup{z-index:12000}.svelte-zt6zlx.svelte-zt6zlx,.svelte-zt6zlx.svelte-zt6zlx:after,.svelte-zt6zlx.svelte-zt6zlx:before{box-sizing:content-box}.switch.svelte-zt6zlx.svelte-zt6zlx{width:100%;height:30px;display:flex;align-items:center;justify-content:space-between}.s_title.svelte-zt6zlx.svelte-zt6zlx{display:flex;align-items:center;font-size:14px;position:relative}.title_green.svelte-zt6zlx.svelte-zt6zlx{color:green;font-weight:800}.title_red.svelte-zt6zlx.svelte-zt6zlx{color:red;font-weight:800}.s_title.svelte-zt6zlx:has(.hint):hover ._hint.svelte-zt6zlx{display:block}._hint.svelte-zt6zlx.svelte-zt6zlx{display:none;position:absolute;bottom:28px;left:0;width:max-content;height:auto;background-color:#fff;border:1px solid black;border-radius:8px;padding:4px 8px;box-sizing:content-box;z-index:1}input[type=checkbox].svelte-zt6zlx.svelte-zt6zlx{width:0px;height:0px;display:none;visibility:hidden}label.svelte-zt6zlx.svelte-zt6zlx{width:48px;height:12px;display:inline-block;position:relative;background-color:#777;border:2px solid #555;border-radius:30px;transition:all .2s}label.svelte-zt6zlx.svelte-zt6zlx:after{content:"";display:block;width:24px;height:24px;background-color:#555;position:absolute;border-radius:50%;left:-2px;top:-6px;transition:transform .2s}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx{background-color:#00a0fc;border-color:#006dc9}input[type=checkbox].svelte-zt6zlx:checked~label.svelte-zt6zlx:after{background-color:#0054b0;transform:translate(28px)}.sideP.svelte-gqty0r.svelte-gqty0r{position:fixed;opacity:.4;margin:4px 2px;border-radius:8px;overflow:hidden;z-index:40000;border:2px solid transparent}.sideP.svelte-gqty0r.svelte-gqty0r:hover{opacity:1;border:2px solid yellow}.sideP__title.svelte-gqty0r.svelte-gqty0r{width:100%;height:8px;background-color:#ff0}.sideP__title.svelte-gqty0r.svelte-gqty0r:hover{cursor:move}.sideP__out.svelte-gqty0r.svelte-gqty0r{display:flex;flex-direction:column}.sideP__btn.svelte-gqty0r.svelte-gqty0r{width:72px;font-size:14px;background-color:gray;color:#fff;padding:4px 8px;margin:4px;border-radius:8px;cursor:pointer;border:none}.sideP__btn.svelte-gqty0r.svelte-gqty0r:hover{background-color:#6531ff}.configP.svelte-gqty0r.svelte-gqty0r{position:fixed;left:0;top:0;width:100vw;height:100vh;padding:0;margin:0;z-index:50000;color:#000;background-color:#0003}.configP_holder.svelte-gqty0r.svelte-gqty0r{box-sizing:content-box;position:absolute;right:20px;top:20px;overflow-y:scroll;width:360px;max-height:calc(100vh - 40px);padding:0;margin:0;border-radius:24px;border:2px solid black;background-color:#d4e7ff}.configP_holder.svelte-gqty0r.svelte-gqty0r::-webkit-scrollbar{display:none}.configP_title.svelte-gqty0r.svelte-gqty0r{position:fixed;box-sizing:border-box;width:inherit;display:flex;justify-content:space-between;align-items:center;height:40px;padding:0 10px;border-top-left-radius:24px;border-top-right-radius:24px;border-bottom:2px solid black;background-color:#9ac6ff;z-index:2}.configP_title.svelte-gqty0r.svelte-gqty0r p{font-size:18px;font-weight:500}.configP_title.svelte-gqty0r.svelte-gqty0r button{border:none;padding:0;margin:0;background-color:transparent}.section.svelte-gqty0r.svelte-gqty0r{margin:16px 18px}.section.svelte-gqty0r.svelte-gqty0r button{border-radius:10px;margin:4px;padding:12px 16px}.section.svelte-gqty0r.svelte-gqty0r .s_title{text-align:center}.section.svelte-gqty0r.svelte-gqty0r .s_panel{display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}.section.svelte-gqty0r.svelte-gqty0r .s_checkbox{padding:12px;margin:4px;border-radius:10px;border:1px solid black;font-size:14px;display:flex;align-items:center}.section.svelte-gqty0r.svelte-gqty0r h1{font-size:14pt}.configP_holder.svelte-gqty0r .section.svelte-gqty0r:nth-child(2){margin-top:48px}#reset_panel_pos.svelte-gqty0r.svelte-gqty0r{width:100%;text-align:center;border:1px solid black;border-radius:16px}.card.svelte-1d0ss3t.svelte-1d0ss3t{border:1px solid rgba(255,255,255,.5);border-radius:16px;margin:6px 0;overflow:hidden;cursor:pointer;box-shadow:#0000004d 3px 3px,#0000001a -1px -1px;transition:box-shadow .2s}.card.svelte-1d0ss3t.svelte-1d0ss3t:hover{box-shadow:#7300ff4d 5px 5px,#0000001a -1px -1px}.card-title.svelte-1d0ss3t.svelte-1d0ss3t{padding:2px 0}.card-holder.svelte-1d0ss3t.svelte-1d0ss3t{background-color:#ffffff80;background:linear-gradient(to bottom,rgba(255,255,255,.4),rgba(255,255,255,0))}.card-category.svelte-1d0ss3t.svelte-1d0ss3t{text-align:center;letter-spacing:2px;font-weight:700}.card-line.svelte-1d0ss3t.svelte-1d0ss3t{margin-top:1px;margin-bottom:1px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-1d0ss3t.svelte-1d0ss3t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}.two-lines.svelte-1d0ss3t.svelte-1d0ss3t:hover{-webkit-line-clamp:100}.cl-center.svelte-1d0ss3t.svelte-1d0ss3t{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-1d0ss3t.svelte-1d0ss3t{display:flex;justify-content:left;align-items:center;flex-wrap:wrap;gap:2px;transform:translate(4px)}.cl-tags.svelte-1d0ss3t.svelte-1d0ss3t:has(span){padding-top:2px}.card-details.svelte-1d0ss3t.svelte-1d0ss3t{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-1d0ss3t.svelte-1d0ss3t{height:100%;position:relative}.card-image.svelte-1d0ss3t img.svelte-1d0ss3t{width:100%;object-fit:cover;margin-bottom:-3px}.card-alter.svelte-1d0ss3t.svelte-1d0ss3t{text-align:center;height:20px;display:flex;justify-content:center;align-items:center}.top_and_free.svelte-1d0ss3t.svelte-1d0ss3t{padding:2px;border-radius:4px;margin-bottom:2px;display:flex;justify-content:center;align-items:center;line-height:11px;height:11px;font-size:10px}._Free.svelte-1d0ss3t.svelte-1d0ss3t{color:#00f}._2XFree.svelte-1d0ss3t.svelte-1d0ss3t{color:green}.card-description.svelte-1d0ss3t.svelte-1d0ss3t{padding-left:4px;padding-right:4px}.card-index.svelte-1d0ss3t.svelte-1d0ss3t{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-1d0ss3t.svelte-1d0ss3t{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-1d0ss3t.svelte-1d0ss3t:hover{opacity:1}.btnCollet.svelte-1d0ss3t.svelte-1d0ss3t{padding:1px 2px;cursor:pointer}.hot.svelte-1d0ss3t.svelte-1d0ss3t,.new.svelte-1d0ss3t.svelte-1d0ss3t{padding:0 2px;border-radius:8px;background:white;margin:2px}#turnPage.svelte-kydsmq{width:100%;height:32px;border-radius:16px;line-height:20px;font-size:14px;position:absolute;bottom:0px}#_turnPage.svelte-1gtc1kh{width:100%;height:34px;border-radius:12px;line-height:20px;font-size:16px;margin:0;padding:0 10px}.card-category.svelte-rhfb99.svelte-rhfb99{height:18px;padding:0 2px;border:1px;background:black;color:#fff;font-weight:900;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;align-items:center;justify-content:center}.card_category-img.svelte-rhfb99.svelte-rhfb99{height:32px;background-size:100% 141%;background-position:center top;padding-top:6px}.card.svelte-rhfb99.svelte-rhfb99{border:2px solid;border-radius:16px;margin:6px 0;overflow:hidden;box-shadow:#0000004d 0 6px,#0000001a -1px -1px;transition:box-shadow .2s}.card-title.svelte-rhfb99.svelte-rhfb99{padding:2px 0}.card-holder.svelte-rhfb99.svelte-rhfb99{background-color:#ffffff80}.card-line.svelte-rhfb99.svelte-rhfb99{margin-top:1px;margin-bottom:2px;display:flex;justify-content:space-evenly;align-items:center;height:20px}.two-lines.svelte-rhfb99.svelte-rhfb99{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s;color:#000}.two-lines.svelte-rhfb99.svelte-rhfb99:hover{-webkit-line-clamp:100}.cl-center.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:space-evenly;align-items:center}.cl-tags.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:2px;padding-top:4px;padding-bottom:4px}.icon_holder.svelte-rhfb99.svelte-rhfb99{border-color:#2f4879;border-radius:100px;height:20px;width:20px;display:inline-flex;align-items:center;justify-content:center}.cl-btn.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;padding:1px 6px;border-radius:8px;background-color:#edf3ff}._tag.svelte-rhfb99.svelte-rhfb99{height:1.3em;line-height:1.3em;padding:0 .5em;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"}._tag_diy.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5abd48}._tag_dub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#5a3b14}._tag_sub.svelte-rhfb99.svelte-rhfb99{color:#fff;background-color:#3b4a7f}._tag_discount_50.svelte-rhfb99.svelte-rhfb99{background-color:#f50;color:#fff}._tag_discount_free.svelte-rhfb99.svelte-rhfb99{background-color:#108ee9;color:#fff}.card-details.svelte-rhfb99.svelte-rhfb99{display:flex;justify-content:center;align-items:center;flex-direction:column}.card-image.svelte-rhfb99.svelte-rhfb99{height:100%;position:relative}.card-image.svelte-rhfb99 img.svelte-rhfb99{width:100%;object-fit:cover}.card-description.svelte-rhfb99.svelte-rhfb99{padding:2px 4px}.card-description.svelte-rhfb99 a.svelte-rhfb99,.card-description.svelte-rhfb99 a.svelte-rhfb99:hover{color:#000}.card-index.svelte-rhfb99.svelte-rhfb99{position:absolute;top:0;left:0;padding-right:9px;padding-left:2px;margin:0;height:20px;line-height:16px;font-size:16px;background-color:#000;color:#ff0;border-top-right-radius:100px;border-bottom-right-radius:100px;display:flex;align-items:center;pointer-events:none}.hover-trigger.svelte-rhfb99.svelte-rhfb99{position:absolute;top:8px;right:8px;padding:0;width:42px;margin:0;height:40px;line-height:16px;font-size:16px;opacity:.75;border-radius:9999px;display:flex;align-items:center}.hover-trigger.svelte-rhfb99.svelte-rhfb99:hover{opacity:1}.masonry_Holder_unload_1st.svelte-11rmzun{height:96px;background:grey;position:relative}.masonry_Holder_loaded_1st.svelte-11rmzun{position:unset;background:transparent;padding:0}.masonry_Holder_unloaded.svelte-11rmzun{position:unset;background:transparent}.masonry_Holder_loaded.svelte-11rmzun{position:relative;background:transparent}.loading_Holder.svelte-11rmzun{background-color:#bccad6;position:absolute;width:100%;height:100%;z-index:10001;border-radius:8px;display:flex;justify-content:center}.loading_SubHolder.svelte-11rmzun{position:relative;padding:40px 0}.loading_Text.svelte-11rmzun{position:sticky;top:40px}div#_iframe.svelte-1exar3b.svelte-1exar3b{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0026269b;z-index:30000;display:flex}div._iframe.svelte-1exar3b.svelte-1exar3b{height:96%;margin:auto;position:relative}div._iframe.svelte-1exar3b iframe.svelte-1exar3b{height:100%;border-radius:20px}._iframeCloseBtn.svelte-1exar3b.svelte-1exar3b{width:40px;height:40px;background:white;position:absolute;top:10px;right:10px;border-radius:40px;transition:all .5s}._iframeCloseBtn.svelte-1exar3b.svelte-1exar3b:hover{opacity:.7;transform:scale(1.2)}._iframeCloseBtn.svelte-1exar3b.svelte-1exar3b:active{opacity:.9;transform:scale(1.9)} ');
 
 (function () {
   'use strict';
@@ -871,85 +870,6 @@
       }
     }
   }
-  function create_fragment$9(ctx) {
-    let div;
-    let button;
-    let t0;
-    let br;
-    let t1;
-    let button_style_value;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div = element("div");
-        button = element("button");
-        t0 = text("检测到种子列表");
-        br = element("br");
-        t1 = text("刷新以显示瀑布流");
-        attr(button, "style", button_style_value = /*trigger*/
-        ctx[0] ? "display: block" : "display:none");
-        attr(button, "id", "_Reload");
-        attr(button, "class", "svelte-1me98ya");
-      },
-      m(target, anchor) {
-        insert(target, div, anchor);
-        append(div, button);
-        append(button, t0);
-        append(button, br);
-        append(button, t1);
-        if (!mounted) {
-          dispose = listen(button, "click", Reload);
-          mounted = true;
-        }
-      },
-      p(ctx2, [dirty]) {
-        if (dirty & /*trigger*/
-        1 && button_style_value !== (button_style_value = /*trigger*/
-        ctx2[0] ? "display: block" : "display:none")) {
-          attr(button, "style", button_style_value);
-        }
-      },
-      i: noop,
-      o: noop,
-      d(detaching) {
-        if (detaching)
-          detach(div);
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function Reload() {
-    location.reload();
-  }
-  function instance$9($$self, $$props, $$invalidate) {
-    let firstLinkBrowse;
-    let currentLinkBrowse;
-    let first = true;
-    let trigger = false;
-    if (first) {
-      firstLinkBrowse = location.pathname.includes("/browse");
-      first = false;
-    }
-    let interval2 = setInterval(
-      () => {
-        currentLinkBrowse = location.pathname.includes("/browse");
-        $$invalidate(0, trigger = !firstLinkBrowse && currentLinkBrowse);
-      },
-      2e3
-    );
-    onDestroy(() => {
-      clearInterval(interval2);
-    });
-    return [trigger];
-  }
-  class BtnReload extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
-    }
-  }
   /*!
    * Masonry PACKAGED v4.2.2
    * Cascading grid layout library
@@ -1255,8 +1175,8 @@
         }
       }
     }();
-    return function matchesSelector(elem, selector) {
-      return elem[matchesMethod](selector);
+    return function matchesSelector(elem, selector2) {
+      return elem[matchesMethod](selector2);
     };
   });
   (function(window2, factory8) {
@@ -1303,10 +1223,10 @@
         ary.splice(index, 1);
       }
     };
-    utils.getParent = function(elem, selector) {
+    utils.getParent = function(elem, selector2) {
       while (elem.parentNode && elem != document.body) {
         elem = elem.parentNode;
-        if (matchesSelector(elem, selector)) {
+        if (matchesSelector(elem, selector2)) {
           return elem;
         }
       }
@@ -1323,21 +1243,21 @@
         this[method](event);
       }
     };
-    utils.filterFindElements = function(elems, selector) {
+    utils.filterFindElements = function(elems, selector2) {
       elems = utils.makeArray(elems);
       var ffElems = [];
       elems.forEach(function(elem) {
         if (!(elem instanceof HTMLElement)) {
           return;
         }
-        if (!selector) {
+        if (!selector2) {
           ffElems.push(elem);
           return;
         }
-        if (matchesSelector(elem, selector)) {
+        if (matchesSelector(elem, selector2)) {
           ffElems.push(elem);
         }
-        var childElems = elem.querySelectorAll(selector);
+        var childElems = elem.querySelectorAll(selector2);
         for (var i = 0; i < childElems.length; i++) {
           ffElems.push(childElems[i]);
         }
@@ -2546,180 +2466,38 @@
         doSortMasonry();
     }
   }
+  const existingContainer = document.getElementById("kp_container");
+  const kesa_preview = existingContainer ? existingContainer : createKesaPreview("");
+  document.body.appendChild(kesa_preview);
+  const selector$1 = "img.preview_Kesa";
+  let buffer = null;
   function NEXUS_TOOLS() {
     console.log("------------------------ NEXUS TOOLS Without jQuery ------------------------");
-    function getMinRatio(pic, container) {
-      return Math.min(container.width / pic.width, container.height / pic.height);
-    }
-    function previewPosition(event, imgEle2) {
-      let imgWidth = imgEle2.naturalWidth ?? 0;
-      let imgHeight = imgEle2.naturalHeight ?? 0;
-      const mouseX = event.clientX;
-      const mouseY = event.clientY;
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      const distanceToTop = mouseY;
-      const distanceToBottom = viewportHeight - mouseY;
-      const distanceToLeft = mouseX;
-      const distanceToRight = viewportWidth - mouseX;
-      const picSize = {
-        width: imgWidth,
-        height: imgHeight
-      };
-      const containerSize = {
-        bot: {
-          width: viewportWidth,
-          height: distanceToBottom
-        },
-        top: {
-          width: viewportWidth,
-          height: distanceToTop
-        },
-        right: {
-          width: distanceToRight,
-          height: viewportHeight
-        },
-        left: {
-          width: distanceToLeft,
-          height: viewportHeight
-        }
-      };
-      let maxRatio = 0;
-      let maxPosition = "";
-      for (const key in containerSize) {
-        if (Object.hasOwnProperty.call(containerSize, key)) {
-          const element2 = containerSize[key];
-          if (getMinRatio(picSize, element2) > maxRatio) {
-            maxRatio = getMinRatio(picSize, element2);
-            maxPosition = key;
-          }
-        }
-      }
-      const result = {
-        top: {
-          left: 0,
-          top: 0,
-          width: viewportWidth + "px",
-          height: distanceToTop + "px"
-        },
-        bot: {
-          left: 0,
-          top: distanceToTop + "px",
-          width: viewportWidth + "px",
-          height: distanceToBottom + "px"
-        },
-        left: {
-          left: 0,
-          top: 0,
-          width: distanceToLeft + "px",
-          height: viewportHeight + "px"
-        },
-        right: {
-          left: distanceToLeft + "px",
-          top: 0,
-          width: distanceToRight + "px",
-          height: viewportHeight + "px"
-        },
-        default: {
-          left: 0,
-          top: 0,
-          width: 0,
-          height: 0
-        }
-      };
-      const container = maxPosition != "" ? result[maxPosition] : result["default"];
-      return container;
-    }
-    function createKesaPreview(color) {
-      const parent = document.createElement("div");
-      parent.id = "kp_container";
-      parent.style.backgroundColor = color;
-      parent.style.opacity = "1";
-      parent.style.position = "Fixed";
-      parent.style.zIndex = "20000";
-      parent.style.pointerEvents = "none";
-      parent.style.transition = "all .3s";
-      const img1 = document.createElement("img");
-      img1.className = "kp_img";
-      img1.style.position = "absolute";
-      img1.style.zIndex = "20002";
-      img1.style.pointerEvents = "none";
-      img1.style.width = "100%";
-      img1.style.height = "100%";
-      img1.style.objectFit = "contain";
-      parent.appendChild(img1);
-      const img2 = document.createElement("img");
-      img2.className = "kp_img";
-      img2.style.position = "absolute";
-      img2.style.zIndex = "20001";
-      img2.style.pointerEvents = "none";
-      img2.style.width = "100%";
-      img2.style.height = "100%";
-      img2.style.objectFit = "cover";
-      img2.style.filter = "blur(8px)";
-      parent.appendChild(img2);
-      return parent;
-    }
-    let imgEle;
-    const existingContainer = document.getElementById("kp_container");
-    const kesa_preview = existingContainer ? existingContainer : createKesaPreview("");
-    document.body.appendChild(kesa_preview);
-    const selector = "img.preview_Kesa";
-    let buffer = null;
-    function handleMouseOver(e) {
-      imgEle = get_store_value(_trigger_nexus_pic) == 0 ? e.target : e.relatedTarget;
-      buffer = setTimeout(() => {
-        if (get_store_value(_show_nexus_pic)) {
-          let src = imgEle.getAttribute("src");
-          if (src) {
-            if (kesa_preview) {
-              const kpImgElements = kesa_preview.querySelectorAll(".kp_img");
-              kpImgElements.forEach((kpImg) => {
-                kpImg.setAttribute("src", src);
-              });
-            }
-          }
-          const cssPos = previewPosition(e, imgEle);
-          kesa_preview.style.left = cssPos.left;
-          kesa_preview.style.top = cssPos.top;
-          kesa_preview.style.width = cssPos.width;
-          kesa_preview.style.height = cssPos.height;
-          kesa_preview.style.display = "block";
-        }
-      }, get_store_value(_delay_nexus_pic));
-    }
-    function handleMouseOut() {
-      kesa_preview.style.display = "none";
-      if (buffer)
-        clearTimeout(buffer);
-    }
-    function handleMouseMove(e) {
-      const cssPos = previewPosition(e, imgEle);
-      kesa_preview.style.left = cssPos.left;
-      kesa_preview.style.top = cssPos.top;
-      kesa_preview.style.width = cssPos.width;
-      kesa_preview.style.height = cssPos.height;
-    }
     document.body.addEventListener("mouseover", function(e) {
+      const imgEle = get_store_value(_trigger_nexus_pic) == 0 ? e.target : e.relatedTarget;
       if (get_store_value(_trigger_nexus_pic) == 0) {
-        if (e.target.matches(selector)) {
-          handleMouseOver(e);
+        if (e.target.matches(selector$1)) {
+          handleMouseOver(e, imgEle);
         }
       }
       if (get_store_value(_trigger_nexus_pic) == 1) {
         if (e.target.matches("div.hover-trigger")) {
-          handleMouseOver(e);
+          handleMouseOver(e, imgEle);
         }
       }
     });
     document.body.addEventListener("mouseout", function(e) {
-      if (e.target.matches(selector)) {
+      if (e.target.matches(selector$1)) {
         handleMouseOut();
       }
     });
     document.body.addEventListener("mousemove", function(e) {
-      if (e.target.matches(selector)) {
-        handleMouseMove(e);
+      const imgEle = e.target;
+      if (get_store_value(_trigger_nexus_pic) == 0) {
+        handleMouseMove(e, imgEle);
+      }
+      if (get_store_value(_trigger_nexus_pic) == 1 && e.target.matches(selector$1)) {
+        handleMouseMove(e, imgEle);
       }
     });
     if ("IntersectionObserver" in window) {
@@ -2738,6 +2516,164 @@
       });
       imgList.forEach((img) => io.observe(img));
     }
+  }
+  function getMinRatio(pic, container) {
+    return Math.min(container.width / pic.width, container.height / pic.height);
+  }
+  function previewPosition(event, imgEle) {
+    let imgWidth = 0;
+    let imgHeight = 0;
+    try {
+      imgWidth = imgEle.naturalWidth;
+      imgHeight = imgEle.naturalHeight;
+    } catch (error) {
+      console.log(imgEle);
+    }
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const distanceToTop = mouseY;
+    const distanceToBottom = viewportHeight - mouseY;
+    const distanceToLeft = mouseX;
+    const distanceToRight = viewportWidth - mouseX;
+    const picSize = {
+      width: imgWidth,
+      height: imgHeight
+    };
+    const containerSize = {
+      bot: {
+        width: viewportWidth,
+        height: distanceToBottom
+      },
+      top: {
+        width: viewportWidth,
+        height: distanceToTop
+      },
+      right: {
+        width: distanceToRight,
+        height: viewportHeight
+      },
+      left: {
+        width: distanceToLeft,
+        height: viewportHeight
+      }
+    };
+    let maxRatio = 0;
+    let maxPosition = "";
+    for (const key in containerSize) {
+      if (Object.hasOwnProperty.call(containerSize, key)) {
+        const element2 = containerSize[key];
+        if (getMinRatio(picSize, element2) > maxRatio) {
+          maxRatio = getMinRatio(picSize, element2);
+          maxPosition = key;
+        }
+      }
+    }
+    const result = {
+      top: {
+        left: 0,
+        top: 0,
+        width: viewportWidth + "px",
+        height: distanceToTop + "px"
+      },
+      bot: {
+        left: 0,
+        top: distanceToTop + "px",
+        width: viewportWidth + "px",
+        height: distanceToBottom + "px"
+      },
+      left: {
+        left: 0,
+        top: 0,
+        width: distanceToLeft + "px",
+        height: viewportHeight + "px"
+      },
+      right: {
+        left: distanceToLeft + "px",
+        top: 0,
+        width: distanceToRight + "px",
+        height: viewportHeight + "px"
+      },
+      default: {
+        left: 0,
+        top: 0,
+        width: 0,
+        height: 0
+      }
+    };
+    const container = maxPosition != "" ? result[maxPosition] : result["default"];
+    return container;
+  }
+  function createKesaPreview(color) {
+    const parent = document.createElement("div");
+    parent.id = "kp_container";
+    parent.style.backgroundColor = color;
+    parent.style.opacity = "1";
+    parent.style.position = "Fixed";
+    parent.style.zIndex = "20000";
+    parent.style.pointerEvents = "none";
+    parent.style.transition = "all .3s";
+    parent.style.display = "none";
+    const img1 = document.createElement("img");
+    img1.className = "kp_img";
+    img1.style.position = "absolute";
+    img1.style.zIndex = "20002";
+    img1.style.pointerEvents = "none";
+    img1.style.width = "100%";
+    img1.style.height = "100%";
+    img1.style.objectFit = "contain";
+    parent.appendChild(img1);
+    const img2 = document.createElement("img");
+    img2.className = "kp_img";
+    img2.style.position = "absolute";
+    img2.style.zIndex = "20001";
+    img2.style.pointerEvents = "none";
+    img2.style.width = "100%";
+    img2.style.height = "100%";
+    img2.style.objectFit = "cover";
+    img2.style.filter = "blur(8px)";
+    parent.appendChild(img2);
+    return parent;
+  }
+  function clearKesaPreview() {
+    kesa_preview.childNodes.forEach((kpImg) => {
+      kpImg.setAttribute("src", "");
+    });
+  }
+  function handleMouseOver(e, imgEle) {
+    buffer = setTimeout(() => {
+      if (get_store_value(_show_nexus_pic)) {
+        let src = imgEle.getAttribute("src");
+        if (src) {
+          if (kesa_preview) {
+            const kpImgElements = kesa_preview.querySelectorAll(".kp_img");
+            kpImgElements.forEach((kpImg) => {
+              kpImg.setAttribute("src", src);
+            });
+          }
+        }
+        const cssPos = previewPosition(e, imgEle);
+        kesa_preview.style.left = cssPos.left;
+        kesa_preview.style.top = cssPos.top;
+        kesa_preview.style.width = cssPos.width;
+        kesa_preview.style.height = cssPos.height;
+        kesa_preview.style.display = "block";
+      }
+    }, get_store_value(_delay_nexus_pic));
+  }
+  function handleMouseOut() {
+    kesa_preview.style.display = "none";
+    clearKesaPreview();
+    if (buffer)
+      clearTimeout(buffer);
+  }
+  function handleMouseMove(e, imgEle) {
+    const cssPos = previewPosition(e, imgEle);
+    kesa_preview.style.left = cssPos.left;
+    kesa_preview.style.top = cssPos.top;
+    kesa_preview.style.width = cssPos.width;
+    kesa_preview.style.height = cssPos.height;
   }
   const ls_test_list = {};
   function parseLocalStorage(key) {
@@ -2822,7 +2758,9 @@
   const site_setting = {
     mt: {
       // 隐藏gay卡片: 默认为true
-      hide_gay: true
+      hide_gay: true,
+      // 路径是否在 browse 里
+      path_in_browse: false
     }
   };
   const _SITE_SETTING = persistStore("_SITE_SETTING", site_setting);
@@ -2867,19 +2805,15 @@
       sortMasonry();
     }
   });
-  function create_if_block_6$2(ctx) {
+  function create_fragment$g(ctx) {
     let svg;
     let path;
     let circle;
-    let t;
-    let div;
     return {
       c() {
         svg = svg_element("svg");
         path = svg_element("path");
         circle = svg_element("circle");
-        t = space();
-        div = element("div");
         attr(path, "d", "M102.6476822,65.245285l-40.2463036,40.1161652c-3.1256676,3.1155624-8.1839256,3.1114655-11.3045425-0.0091476  l-26.7890854-26.789093c-3.1289177-3.1289139-3.1234951-8.2035599,0.0121021-11.3257828l40.077301-39.9063568  C65.8964539,25.8381672,67.9261017,25,70.0419083,25H97c4.4182816,0,8,3.5817223,8,8v26.5792809  C105,61.7055016,104.1535873,63.7442589,102.6476822,65.245285z");
         attr(path, "fill", "yellow");
         attr(path, "stroke", "#000000");
@@ -2887,7 +2821,6 @@
         attr(path, "stroke-linejoin", "round");
         attr(path, "stroke-miterlimit", "10");
         attr(path, "stroke-width", "4");
-        attr(path, "class", "svelte-zt6zlx");
         attr(circle, "cx", "85");
         attr(circle, "cy", "45");
         attr(circle, "fill", "red");
@@ -2897,7 +2830,6 @@
         attr(circle, "stroke-linejoin", "round");
         attr(circle, "stroke-miterlimit", "10");
         attr(circle, "stroke-width", "4");
-        attr(circle, "class", "svelte-zt6zlx");
         attr(svg, "enable-background", "new 0 0 128 128");
         attr(svg, "id", "Layer_1");
         attr(svg, "version", "1.1");
@@ -2905,27 +2837,67 @@
         attr(svg, "xml:space", "preserve");
         attr(svg, "width", "28");
         attr(svg, "height", "28");
-        attr(svg, "class", "hint svelte-zt6zlx");
-        attr(div, "class", "_hint svelte-zt6zlx");
+        attr(svg, "class", "hint");
       },
       m(target, anchor) {
         insert(target, svg, anchor);
         append(svg, path);
         append(svg, circle);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_label extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$g, safe_not_equal, {});
+    }
+  }
+  function create_if_block_6$2(ctx) {
+    let iconlabel;
+    let t;
+    let div;
+    let current;
+    iconlabel = new Icon_label({});
+    return {
+      c() {
+        create_component(iconlabel.$$.fragment);
+        t = space();
+        div = element("div");
+        attr(div, "class", "_hint svelte-zt6zlx");
+      },
+      m(target, anchor) {
+        mount_component(iconlabel, target, anchor);
         insert(target, t, anchor);
         insert(target, div, anchor);
         div.innerHTML = /*label*/
         ctx[5];
+        current = true;
       },
       p(ctx2, dirty) {
-        if (dirty & /*label*/
+        if (!current || dirty & /*label*/
         32)
           div.innerHTML = /*label*/
           ctx2[5];
       },
+      i(local) {
+        if (current)
+          return;
+        transition_in(iconlabel.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(iconlabel.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
-        if (detaching)
-          detach(svg);
+        destroy_component(iconlabel, detaching);
         if (detaching)
           detach(t);
         if (detaching)
@@ -3274,7 +3246,7 @@
       }
     };
   }
-  function create_fragment$8(ctx) {
+  function create_fragment$f(ctx) {
     let div1;
     let div0;
     let t0;
@@ -3354,14 +3326,22 @@
         ) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
+            if (dirty & /*label*/
+            32) {
+              transition_in(if_block0, 1);
+            }
           } else {
             if_block0 = create_if_block_6$2(ctx2);
             if_block0.c();
+            transition_in(if_block0, 1);
             if_block0.m(div0, t0);
           }
         } else if (if_block0) {
-          if_block0.d(1);
-          if_block0 = null;
+          group_outros();
+          transition_out(if_block0, 1, 1, () => {
+            if_block0 = null;
+          });
+          check_outros();
         }
         if (!current || dirty & /*title_fixed*/
         4)
@@ -3437,10 +3417,12 @@
       i(local) {
         if (current)
           return;
+        transition_in(if_block0);
         transition_in(if_block3);
         current = true;
       },
       o(local) {
+        transition_out(if_block0);
         transition_out(if_block3);
         current = false;
       },
@@ -3517,7 +3499,7 @@
   class Switch extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$8, create_fragment$8, safe_not_equal, {
+      init(this, options, instance$8, create_fragment$f, safe_not_equal, {
         type: 1,
         title_fixed: 2,
         title_green: 3,
@@ -3529,35 +3511,130 @@
       });
     }
   }
+  const SVG_CONFIG = "data:image/svg+xml;base64,PHN2ZwogIHdpZHRoPSIyMCIKICBoZWlnaHQ9IjIwIgogIHZpZXdCb3g9IjAgMCAzMiAzMiIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiBub25lOwogICAgICAgIHN0cm9rZTogI2ZmZjsKICAgICAgICBzdHJva2UtbGluZWNhcDogcm91bmQ7CiAgICAgICAgc3Ryb2tlLWxpbmVqb2luOiByb3VuZDsKICAgICAgICBzdHJva2Utd2lkdGg6IDJweDsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHRpdGxlIC8+CiAgPGcgZGF0YS1uYW1lPSI4MC1zZXR0aW5nIiBpZD0iXzgwLXNldHRpbmciPgogICAgPGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIxMCIgY3k9IjYiIHI9IjMiIC8+CiAgICA8Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjIyIiBjeT0iMTYiIHI9IjMiIC8+CiAgICA8Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjEwIiBjeT0iMjYiIHI9IjMiIC8+CiAgICA8bGluZSBjbGFzcz0iY2xzLTEiIHgxPSI3IiB4Mj0iMSIgeTE9IjYiIHkyPSI2IiAvPgogICAgPGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iMTUiIHgyPSIxIiB5MT0iMTYiIHkyPSIxNiIgLz4KICAgIDxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjciIHgyPSIxIiB5MT0iMjYiIHkyPSIyNiIgLz4KICAgIDxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjMxIiB4Mj0iMTciIHkxPSIyNiIgeTI9IjI2IiAvPgogICAgPGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iMzEiIHgyPSIyNSIgeTE9IjE2IiB5Mj0iMTYiIC8+CiAgICA8bGluZSBjbGFzcz0iY2xzLTEiIHgxPSIzMSIgeDI9IjE3IiB5MT0iNiIgeTI9IjYiIC8+CiAgPC9nPgo8L3N2Zz4=";
+  const SVG_MASONRY = "data:image/svg+xml;base64,PHN2ZwogIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDY0IDY0IgogIHdpZHRoPSIyMCIKICBoZWlnaHQ9IjIwIgogIGlkPSJMYXllcl8xIgogIHZlcnNpb249IjEuMSIKICB2aWV3Qm94PSIwIDAgNjQgNjQiCiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgo+CiAgPHBhdGgKICAgIGQ9Ik0xOSwyLjg3NUgzLjVjLTAuODI5LDAtMS41LDAuNjcxLTEuNSwxLjV2MTkuOTc5YzAsMC44MjksMC42NzEsMS41LDEuNSwxLjVIMTljMC44MjksMCwxLjUtMC42NzEsMS41LTEuNVY0LjM3NSAgQzIwLjUsMy41NDYsMTkuODI5LDIuODc1LDE5LDIuODc1eiBNMTcuNSwyMi44NTRINVY1Ljg3NWgxMi41VjIyLjg1NHoiCiAgICBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoCiAgICBkPSJNMTksMjguNzczSDMuNWMtMC44MjksMC0xLjUsMC42NzEtMS41LDEuNXY2LjE2NmMwLDAuODI4LDAuNjcxLDEuNSwxLjUsMS41SDE5YzAuODI5LDAsMS41LTAuNjcyLDEuNS0xLjV2LTYuMTY2ICBDMjAuNSwyOS40NDUsMTkuODI5LDI4Ljc3MywxOSwyOC43NzN6IE0xNy41LDM0LjkzOUg1di0zLjE2NmgxMi41VjM0LjkzOXoiCiAgICBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoCiAgICBkPSJNMTksNDAuODU5SDMuNWMtMC44MjksMC0xLjUsMC42NzItMS41LDEuNXYxNy4yNjZjMCwwLjgyOCwwLjY3MSwxLjUsMS41LDEuNUgxOWMwLjgyOSwwLDEuNS0wLjY3MiwxLjUtMS41VjQyLjM1OSAgQzIwLjUsNDEuNTMxLDE5LjgyOSw0MC44NTksMTksNDAuODU5eiBNMTcuNSw1OC4xMjVINVY0My44NTloMTIuNVY1OC4xMjV6IgogICAgZmlsbD0id2hpdGUiLz4KICA8cGF0aAogICAgZD0iTTQwLDIuODc1SDI0LjVjLTAuODI5LDAtMS41LDAuNjcxLTEuNSwxLjV2MTQuMjVjMCwwLjgyOSwwLjY3MSwxLjUsMS41LDEuNUg0MGMwLjgyOCwwLDEuNS0wLjY3MSwxLjUtMS41VjQuMzc1ICBDNDEuNSwzLjU0Niw0MC44MjgsMi44NzUsNDAsMi44NzV6IE0zOC41LDE3LjEyNUgyNlY1Ljg3NWgxMi41VjE3LjEyNXoiCiAgICBmaWxsPSJ3aGl0ZSIvPgogIDxwYXRoCiAgICBkPSJNNDAsMjMuMTI1SDI0LjVjLTAuODI5LDAtMS41LDAuNjcxLTEuNSwxLjVWNDYuNWMwLDAuODI4LDAuNjcxLDEuNSwxLjUsMS41SDQwYzAuODI4LDAsMS41LTAuNjcyLDEuNS0xLjVWMjQuNjI1ICBDNDEuNSwyMy43OTYsNDAuODI4LDIzLjEyNSw0MCwyMy4xMjV6IE0zOC41LDQ1SDI2VjI2LjEyNWgxMi41VjQ1eiIKICAgIGZpbGw9IndoaXRlIi8+CiAgPHBhdGgKICAgIGQ9Ik00MCw1MUgyNC41Yy0wLjgyOSwwLTEuNSwwLjY3Mi0xLjUsMS41djcuMTI1YzAsMC44MjgsMC42NzEsMS41LDEuNSwxLjVINDBjMC44MjgsMCwxLjUtMC42NzIsMS41LTEuNVY1Mi41ICBDNDEuNSw1MS42NzIsNDAuODI4LDUxLDQwLDUxeiBNMzguNSw1OC4xMjVIMjZWNTRoMTIuNVY1OC4xMjV6IgogICAgZmlsbD0id2hpdGUiLz4KICA8cGF0aAogICAgZD0iTTYwLjUsMi44NzVINDVjLTAuODI4LDAtMS41LDAuNjcxLTEuNSwxLjV2MzUuMTcxYzAsMC44MjgsMC42NzIsMS41LDEuNSwxLjVoMTUuNWMwLjgyOCwwLDEuNS0wLjY3MiwxLjUtMS41VjQuMzc1ICBDNjIsMy41NDYsNjEuMzI4LDIuODc1LDYwLjUsMi44NzV6IE01OSwzOC4wNDZINDYuNVY1Ljg3NUg1OVYzOC4wNDZ6IgogICAgZmlsbD0id2hpdGUiLz4KICA8cGF0aAogICAgZD0iTTYwLjUsNDQuMzQ2SDQ1Yy0wLjgyOCwwLTEuNSwwLjY3Mi0xLjUsMS41djEzLjc3OWMwLDAuODI4LDAuNjcyLDEuNSwxLjUsMS41aDE1LjVjMC44MjgsMCwxLjUtMC42NzIsMS41LTEuNVY0NS44NDYgIEM2Miw0NS4wMTgsNjEuMzI4LDQ0LjM0Niw2MC41LDQ0LjM0NnogTTU5LDU4LjEyNUg0Ni41VjQ3LjM0Nkg1OVY1OC4xMjV6IgogICAgZmlsbD0id2hpdGUiLz4KPC9zdmc+";
+  const SVG_LIST = "data:image/svg+xml;base64,PHN2ZwogIHZpZXdCb3g9IjAgMCAzMiAzMiIKICB3aWR0aD0iMjAiCiAgaGVpZ2h0PSIyMCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiBub25lOwogICAgICAgIHN0cm9rZTogI2ZmZjsKICAgICAgICBzdHJva2UtbGluZWNhcDogcm91bmQ7CiAgICAgICAgc3Ryb2tlLWxpbmVqb2luOiByb3VuZDsKICAgICAgICBzdHJva2Utd2lkdGg6IDJweDsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHRpdGxlIC8+CiAgPGcgZGF0YS1uYW1lPSI0My1icm93c2VyIiBpZD0iXzQzLWJyb3dzZXIiPgogICAgPHJlY3QgY2xhc3M9ImNscy0xIiBoZWlnaHQ9IjMwIiB3aWR0aD0iMzAiIHg9IjEiIHk9IjEiIC8+CiAgICA8bGluZSBjbGFzcz0iY2xzLTEiIHgxPSIxIiB4Mj0iMzEiIHkxPSI5IiB5Mj0iOSIgLz4KICAgIDxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjUiIHgyPSI3IiB5MT0iNSIgeTI9IjUiIC8+CiAgICA8bGluZSBjbGFzcz0iY2xzLTEiIHgxPSIxMSIgeDI9IjEzIiB5MT0iNSIgeTI9IjUiIC8+CiAgICA8bGluZSBjbGFzcz0iY2xzLTEiIHgxPSI5IiB4Mj0iMjUiIHkxPSIxNiIgeTI9IjE2IiAvPgogICAgPGxpbmUgY2xhc3M9ImNscy0xIiB4MT0iNyIgeDI9IjI1IiB5MT0iMjAiIHkyPSIyMCIgLz4KICAgIDxsaW5lIGNsYXNzPSJjbHMtMSIgeDE9IjciIHgyPSIyNSIgeTE9IjI0IiB5Mj0iMjQiIC8+CiAgPC9nPgo8L3N2Zz4=";
+  function create_fragment$e(ctx) {
+    let svg;
+    let line0;
+    let line1;
+    return {
+      c() {
+        svg = svg_element("svg");
+        line0 = svg_element("line");
+        line1 = svg_element("line");
+        attr(line0, "x1", "20");
+        attr(line0, "x2", "6");
+        attr(line0, "y1", "6");
+        attr(line0, "y2", "20");
+        attr(line1, "x1", "6");
+        attr(line1, "x2", "20");
+        attr(line1, "y1", "6");
+        attr(line1, "y2", "20");
+        attr(svg, "class", "feather feather-x");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "height", "28");
+        attr(svg, "width", "28");
+        attr(svg, "stroke", "currentColor");
+        attr(svg, "stroke-linecap", "round");
+        attr(svg, "stroke-linejoin", "round");
+        attr(svg, "stroke-width", "2");
+        attr(svg, "viewBox", "0 0 24 24");
+        set_style(svg, "color", "black");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, line0);
+        append(svg, line1);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_cross extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$e, safe_not_equal, {});
+    }
+  }
+  function create_fragment$d(ctx) {
+    let svg;
+    let path0;
+    let path1;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path0 = svg_element("path");
+        path1 = svg_element("path");
+        attr(path0, "d", "M19.334,1.298c-0.005-0.037-0.005-0.074-0.013-0.109c-0.01-0.047-0.029-0.092-0.043-0.139  c-0.015-0.046-0.025-0.095-0.044-0.139c-0.016-0.037-0.039-0.071-0.058-0.107c-0.026-0.049-0.049-0.1-0.08-0.146  c-0.023-0.034-0.053-0.063-0.079-0.095c-0.035-0.043-0.068-0.089-0.107-0.128c-0.024-0.024-0.053-0.043-0.079-0.065  c-0.049-0.042-0.099-0.086-0.153-0.122c-0.004-0.002-0.007-0.006-0.011-0.009c-0.027-0.018-0.058-0.028-0.086-0.043  c-0.054-0.03-0.107-0.062-0.166-0.085c-0.043-0.017-0.087-0.027-0.131-0.041c-0.05-0.015-0.099-0.032-0.15-0.042  c-0.055-0.011-0.109-0.013-0.165-0.017C17.931,0.009,17.894,0,17.855,0c-0.006,0-0.011,0.001-0.017,0.002  c-0.054,0-0.106,0.009-0.16,0.016c-0.046,0.006-0.093,0.007-0.138,0.017c-0.027,0.005-0.052,0.017-0.078,0.024  c-0.068,0.018-0.135,0.036-0.199,0.063c-0.007,0.003-0.013,0.008-0.02,0.011c-0.081,0.036-0.159,0.078-0.232,0.127  c-0.023,0.016-0.043,0.037-0.066,0.055c-0.054,0.042-0.109,0.083-0.157,0.131c-0.021,0.022-0.039,0.049-0.06,0.072  c-0.045,0.051-0.089,0.103-0.127,0.159c-0.002,0.004-0.006,0.007-0.009,0.011L0.239,26.081c-0.448,0.696-0.248,1.625,0.449,2.073  c0.251,0.162,0.532,0.239,0.811,0.239c0.493,0,0.976-0.243,1.263-0.688L16.355,6.599v51.067c0,0.828,0.671,1.5,1.5,1.5  s1.5-0.672,1.5-1.5V1.5c0-0.005-0.001-0.01-0.001-0.015C19.353,1.422,19.343,1.36,19.334,1.298z");
+        attr(path0, "fill", "white");
+        attr(path1, "d", "M58.693,31.013c-0.697-0.449-1.625-0.248-2.073,0.448L43.026,52.567V1.5c0-0.829-0.672-1.5-1.5-1.5s-1.5,0.671-1.5,1.5  v56.166c0,0.005,0.001,0.009,0.001,0.014c0.001,0.067,0.011,0.133,0.021,0.199c0.005,0.032,0.005,0.065,0.012,0.098  c0.012,0.058,0.033,0.112,0.053,0.169c0.012,0.036,0.02,0.073,0.034,0.108c0.025,0.06,0.061,0.116,0.094,0.173  c0.016,0.025,0.026,0.055,0.044,0.079c0.03,0.045,0.068,0.085,0.104,0.126c0.027,0.033,0.052,0.068,0.082,0.098  c0.027,0.027,0.061,0.049,0.09,0.074c0.046,0.039,0.092,0.08,0.143,0.114c0.004,0.002,0.008,0.006,0.012,0.009  c0.011,0.007,0.022,0.009,0.033,0.016c0.098,0.06,0.202,0.105,0.313,0.143c0.03,0.01,0.061,0.021,0.092,0.028  c0.119,0.03,0.242,0.052,0.37,0.053c0.001,0,0.002,0,0.003,0l0,0c0.001,0,0.001,0,0.001,0c0.117,0,0.229-0.017,0.338-0.042  c0.031-0.007,0.061-0.019,0.091-0.027c0.078-0.023,0.154-0.052,0.227-0.088c0.035-0.017,0.068-0.035,0.102-0.055  c0.069-0.041,0.133-0.087,0.194-0.137c0.027-0.022,0.055-0.043,0.081-0.067c0.083-0.079,0.157-0.166,0.221-0.262  c0.002-0.004,0.006-0.006,0.008-0.01l16.354-25.393C59.591,32.39,59.39,31.461,58.693,31.013z");
+        attr(path1, "fill", "white");
+        attr(svg, "enable-background", "new 0 0 59.381 59.166");
+        attr(svg, "height", "20");
+        attr(svg, "id", "Layer_1");
+        attr(svg, "version", "1.1");
+        attr(svg, "viewBox", "0 0 59.381 59.166");
+        attr(svg, "width", "20");
+        attr(svg, "xml:space", "preserve");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+        attr(svg, "xmlns:xlink", "http://www.w3.org/1999/xlink");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path0);
+        append(svg, path1);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_sort extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$d, safe_not_equal, {});
+    }
+  }
   function create_else_block$4(ctx) {
     let div0;
-    let t1;
+    let img;
+    let img_src_value;
+    let t0;
     let div1;
     return {
       c() {
         div0 = element("div");
-        div0.innerHTML = `<svg viewBox="0 0 32 32" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {
-                  fill: none;
-                  stroke: #000;
-                  stroke-linecap: round;
-                  stroke-linejoin: round;
-                  stroke-width: 2px;
-                }
-              </style></defs><title></title><g data-name="43-browser" id="_43-browser"><rect class="cls-1" height="30" width="30" x="1" y="1"></rect><line class="cls-1" x1="1" x2="31" y1="9" y2="9"></line><line class="cls-1" x1="5" x2="7" y1="5" y2="5"></line><line class="cls-1" x1="11" x2="13" y1="5" y2="5"></line><line class="cls-1" x1="9" x2="25" y1="16" y2="16"></line><line class="cls-1" x1="7" x2="25" y1="20" y2="20"></line><line class="cls-1" x1="7" x2="25" y1="24" y2="24"></line></g></svg>`;
-        t1 = space();
+        img = element("img");
+        t0 = space();
         div1 = element("div");
-        div1.textContent = "原有列表";
+        div1.textContent = "列表";
+        if (!src_url_equal(img.src, img_src_value = SVG_LIST))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "SVG_LIST");
       },
       m(target, anchor) {
         insert(target, div0, anchor);
-        insert(target, t1, anchor);
+        append(div0, img);
+        insert(target, t0, anchor);
         insert(target, div1, anchor);
       },
+      p: noop,
       d(detaching) {
         if (detaching)
           detach(div0);
         if (detaching)
-          detach(t1);
+          detach(t0);
         if (detaching)
           detach(div1);
       }
@@ -3565,21 +3642,28 @@
   }
   function create_if_block_4$2(ctx) {
     let div0;
+    let img;
+    let img_src_value;
     let t0;
     let div1;
     return {
       c() {
         div0 = element("div");
-        div0.innerHTML = `<svg enable-background="new 0 0 64 64" width="24" height="24" id="Layer_1" version="1.1" viewBox="0 0 64 64"><path d="M19,2.875H3.5c-0.829,0-1.5,0.671-1.5,1.5v19.979c0,0.829,0.671,1.5,1.5,1.5H19c0.829,0,1.5-0.671,1.5-1.5V4.375  C20.5,3.546,19.829,2.875,19,2.875z M17.5,22.854H5V5.875h12.5V22.854z" fill="white"></path><path d="M19,28.773H3.5c-0.829,0-1.5,0.671-1.5,1.5v6.166c0,0.828,0.671,1.5,1.5,1.5H19c0.829,0,1.5-0.672,1.5-1.5v-6.166  C20.5,29.445,19.829,28.773,19,28.773z M17.5,34.939H5v-3.166h12.5V34.939z" fill="white"></path><path d="M19,40.859H3.5c-0.829,0-1.5,0.672-1.5,1.5v17.266c0,0.828,0.671,1.5,1.5,1.5H19c0.829,0,1.5-0.672,1.5-1.5V42.359  C20.5,41.531,19.829,40.859,19,40.859z M17.5,58.125H5V43.859h12.5V58.125z" fill="white"></path><path d="M40,2.875H24.5c-0.829,0-1.5,0.671-1.5,1.5v14.25c0,0.829,0.671,1.5,1.5,1.5H40c0.828,0,1.5-0.671,1.5-1.5V4.375  C41.5,3.546,40.828,2.875,40,2.875z M38.5,17.125H26V5.875h12.5V17.125z" fill="white"></path><path d="M40,23.125H24.5c-0.829,0-1.5,0.671-1.5,1.5V46.5c0,0.828,0.671,1.5,1.5,1.5H40c0.828,0,1.5-0.672,1.5-1.5V24.625  C41.5,23.796,40.828,23.125,40,23.125z M38.5,45H26V26.125h12.5V45z" fill="white"></path><path d="M40,51H24.5c-0.829,0-1.5,0.672-1.5,1.5v7.125c0,0.828,0.671,1.5,1.5,1.5H40c0.828,0,1.5-0.672,1.5-1.5V52.5  C41.5,51.672,40.828,51,40,51z M38.5,58.125H26V54h12.5V58.125z" fill="white"></path><path d="M60.5,2.875H45c-0.828,0-1.5,0.671-1.5,1.5v35.171c0,0.828,0.672,1.5,1.5,1.5h15.5c0.828,0,1.5-0.672,1.5-1.5V4.375  C62,3.546,61.328,2.875,60.5,2.875z M59,38.046H46.5V5.875H59V38.046z" fill="white"></path><path d="M60.5,44.346H45c-0.828,0-1.5,0.672-1.5,1.5v13.779c0,0.828,0.672,1.5,1.5,1.5h15.5c0.828,0,1.5-0.672,1.5-1.5V45.846  C62,45.018,61.328,44.346,60.5,44.346z M59,58.125H46.5V47.346H59V58.125z" fill="white"></path></svg>`;
+        img = element("img");
         t0 = space();
         div1 = element("div");
-        div1.textContent = "瀑布流";
+        div1.textContent = "瀑布";
+        if (!src_url_equal(img.src, img_src_value = SVG_MASONRY))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "SVG_MASONRY");
       },
       m(target, anchor) {
         insert(target, div0, anchor);
+        append(div0, img);
         insert(target, t0, anchor);
         insert(target, div1, anchor);
       },
+      p: noop,
       d(detaching) {
         if (detaching)
           detach(div0);
@@ -3596,35 +3680,32 @@
     let button1;
     let t2;
     let t3;
-    let t4;
     let button2;
     let mounted;
     let dispose;
     return {
       c() {
         button0 = element("button");
-        button0.textContent = "[d]显示详情";
+        button0.textContent = "显示详情";
         t1 = space();
         button1 = element("button");
-        t2 = text("[d]");
-        t3 = text(
+        t2 = text(
           /*label_switchMode*/
           ctx[1]
         );
-        t4 = space();
+        t3 = space();
         button2 = element("button");
-        button2.textContent = "[d]iframe";
-        attr(button0, "class", "sideP__btn svelte-kk96f3");
-        attr(button1, "class", "sideP__btn svelte-kk96f3");
-        attr(button2, "class", "sideP__btn svelte-kk96f3");
+        button2.textContent = "iframe";
+        attr(button0, "class", "sideP__btn svelte-gqty0r");
+        attr(button1, "class", "sideP__btn svelte-gqty0r");
+        attr(button2, "class", "sideP__btn svelte-gqty0r");
       },
       m(target, anchor) {
         insert(target, button0, anchor);
         insert(target, t1, anchor);
         insert(target, button1, anchor);
         append(button1, t2);
-        append(button1, t3);
-        insert(target, t4, anchor);
+        insert(target, t3, anchor);
         insert(target, button2, anchor);
         if (!mounted) {
           dispose = [
@@ -3632,19 +3713,19 @@
               button0,
               "click",
               /*config_showAllDetails*/
-              ctx[19]
+              ctx[20]
             ),
             listen(
               button1,
               "click",
               /*config_switchMode*/
-              ctx[20]
+              ctx[21]
             ),
             listen(
               button2,
               "click",
               /*config_changeLoadMode*/
-              ctx[21]
+              ctx[22]
             )
           ];
           mounted = true;
@@ -3654,7 +3735,7 @@
         if (dirty[0] & /*label_switchMode*/
         2)
           set_data(
-            t3,
+            t2,
             /*label_switchMode*/
             ctx2[1]
           );
@@ -3667,7 +3748,7 @@
         if (detaching)
           detach(button1);
         if (detaching)
-          detach(t4);
+          detach(t3);
         if (detaching)
           detach(button2);
         mounted = false;
@@ -3682,10 +3763,11 @@
     let p;
     let t1;
     let button;
+    let iconcross;
     let t2;
     let show_if = (
       /*$_current_domain*/
-      ctx[9].includes("m-team")
+      ctx[7].includes("m-team")
     );
     let t3;
     let div2;
@@ -3762,9 +3844,10 @@
     let current;
     let mounted;
     let dispose;
+    iconcross = new Icon_cross({});
     let if_block0 = show_if && create_if_block_2$3(ctx);
     function switch0_checked_binding(value) {
-      ctx[28](value);
+      ctx[29](value);
     }
     let switch0_props = {
       title_fixed: "显示模式",
@@ -3772,11 +3855,11 @@
       title_red: "原始表格",
       label: (
         /*$_current_domain*/
-        ctx[9].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
+        ctx[7].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页"
       ),
       func: (
         /*func_1*/
-        ctx[27]
+        ctx[28]
       )
     };
     if (
@@ -3789,7 +3872,7 @@
     switch0 = new Switch({ props: switch0_props });
     binding_callbacks.push(() => bind(switch0, "checked", switch0_checked_binding));
     function switch1_checked_binding(value) {
-      ctx[29](value);
+      ctx[30](value);
     }
     let switch1_props = {
       title_fixed: "加载下一页方式",
@@ -3808,7 +3891,7 @@
     switch1 = new Switch({ props: switch1_props });
     binding_callbacks.push(() => bind(switch1, "checked", switch1_checked_binding));
     function switch2_checked_binding(value) {
-      ctx[30](value);
+      ctx[31](value);
     }
     let switch2_props = {
       title_fixed: "卡片移动动画",
@@ -3827,7 +3910,7 @@
     switch2 = new Switch({ props: switch2_props });
     binding_callbacks.push(() => bind(switch2, "checked", switch2_checked_binding));
     function switch3_checked_binding(value) {
-      ctx[31](value);
+      ctx[32](value);
     }
     let switch3_props = {
       title_fixed: "悬浮预览大图",
@@ -3844,7 +3927,7 @@
     switch3 = new Switch({ props: switch3_props });
     binding_callbacks.push(() => bind(switch3, "checked", switch3_checked_binding));
     function switch4_checked_binding(value) {
-      ctx[32](value);
+      ctx[33](value);
     }
     let switch4_props = {
       title_fixed: "预览大图方式",
@@ -3866,7 +3949,7 @@
       ctx[12] && create_if_block_1$4(ctx)
     );
     function switch5_checked_binding(value) {
-      ctx[34](value);
+      ctx[35](value);
     }
     let switch5_props = {
       title_fixed: "侧边栏debug按钮",
@@ -3876,10 +3959,10 @@
     };
     if (
       /*$_show_debug_btn*/
-      ctx[8] !== void 0
+      ctx[10] !== void 0
     ) {
       switch5_props.checked = /*$_show_debug_btn*/
-      ctx[8];
+      ctx[10];
     }
     switch5 = new Switch({ props: switch5_props });
     binding_callbacks.push(() => bind(switch5, "checked", switch5_checked_binding));
@@ -3904,7 +3987,7 @@
       }
     });
     function switch8_checked_binding(value) {
-      ctx[37](value);
+      ctx[38](value);
     }
     let switch8_props = {
       title_fixed: "卡片信息",
@@ -3923,7 +4006,7 @@
     switch8 = new Switch({ props: switch8_props });
     binding_callbacks.push(() => bind(switch8, "checked", switch8_checked_binding));
     function switch9_checked_binding(value) {
-      ctx[38](value);
+      ctx[39](value);
     }
     let switch9_props = { title_fixed: "显示种子名称", func: sortMasonry };
     if (
@@ -3936,7 +4019,7 @@
     switch9 = new Switch({ props: switch9_props });
     binding_callbacks.push(() => bind(switch9, "checked", switch9_checked_binding));
     function switch10_checked_binding(value) {
-      ctx[39](value);
+      ctx[40](value);
     }
     let switch10_props = {
       title_fixed: "显示置顶和免费",
@@ -3952,7 +4035,7 @@
     switch10 = new Switch({ props: switch10_props });
     binding_callbacks.push(() => bind(switch10, "checked", switch10_checked_binding));
     function switch11_checked_binding(value) {
-      ctx[40](value);
+      ctx[41](value);
     }
     let switch11_props = { title_fixed: "显示副标题", func: sortMasonry };
     if (
@@ -3965,7 +4048,7 @@
     switch11 = new Switch({ props: switch11_props });
     binding_callbacks.push(() => bind(switch11, "checked", switch11_checked_binding));
     function switch12_checked_binding(value) {
-      ctx[41](value);
+      ctx[42](value);
     }
     let switch12_props = { title_fixed: "显示标签", func: sortMasonry };
     if (
@@ -3978,7 +4061,7 @@
     switch12 = new Switch({ props: switch12_props });
     binding_callbacks.push(() => bind(switch12, "checked", switch12_checked_binding));
     function switch13_checked_binding(value) {
-      ctx[42](value);
+      ctx[43](value);
     }
     let switch13_props = {
       title_fixed: "显示 [大小/下载/收藏]",
@@ -3994,7 +4077,7 @@
     switch13 = new Switch({ props: switch13_props });
     binding_callbacks.push(() => bind(switch13, "checked", switch13_checked_binding));
     function switch14_checked_binding(value) {
-      ctx[43](value);
+      ctx[44](value);
     }
     let switch14_props = { title_fixed: "显示上传时间", func: sortMasonry };
     if (
@@ -4007,7 +4090,7 @@
     switch14 = new Switch({ props: switch14_props });
     binding_callbacks.push(() => bind(switch14, "checked", switch14_checked_binding));
     function switch15_checked_binding(value) {
-      ctx[44](value);
+      ctx[45](value);
     }
     let switch15_props = {
       title_fixed: "显示 [评论/上传/下载/完成]",
@@ -4031,7 +4114,7 @@
         p.textContent = "详细配置面板";
         t1 = space();
         button = element("button");
-        button.innerHTML = `<svg class="feather feather-x" fill="none" height="28" width="28" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><line x1="20" x2="6" y1="6" y2="20"></line><line x1="6" x2="20" y1="6" y2="20"></line></svg>`;
+        create_component(iconcross.$$.fragment);
         t2 = space();
         if (if_block0)
           if_block0.c();
@@ -4099,21 +4182,21 @@
         t31 = space();
         create_component(switch15.$$.fragment);
         set_style(p, "margin", "auto 0");
-        attr(div0, "class", "configP_title svelte-kk96f3");
+        attr(div0, "class", "configP_title svelte-gqty0r");
         attr(h10, "class", "s_title");
         attr(div1, "class", "s_panel");
-        attr(div2, "class", "section svelte-kk96f3");
+        attr(div2, "class", "section svelte-gqty0r");
         attr(h11, "class", "s_title");
         attr(div3, "class", "s_panel");
-        attr(div4, "class", "section svelte-kk96f3");
+        attr(div4, "class", "section svelte-gqty0r");
         attr(h12, "class", "s_title");
         attr(div5, "class", "s_panel");
         attr(h3, "class", "s_title");
         attr(div6, "class", "s_panel");
-        attr(div7, "class", "section svelte-kk96f3");
-        attr(div8, "class", "section svelte-kk96f3");
-        attr(div9, "class", "configP_holder svelte-kk96f3");
-        attr(div10, "class", "configP svelte-kk96f3");
+        attr(div7, "class", "section svelte-gqty0r");
+        attr(div8, "class", "section svelte-gqty0r");
+        attr(div9, "class", "configP_holder svelte-gqty0r");
+        attr(div10, "class", "configP svelte-gqty0r");
       },
       m(target, anchor) {
         insert(target, div10, anchor);
@@ -4122,6 +4205,7 @@
         append(div0, p);
         append(div0, t1);
         append(div0, button);
+        mount_component(iconcross, button, null);
         append(div9, t2);
         if (if_block0)
           if_block0.m(div9, null);
@@ -4191,11 +4275,11 @@
               button,
               "click",
               /*click_handler_1*/
-              ctx[24]
+              ctx[25]
             ),
             listen(div10, "click", self(
               /*click_handler_2*/
-              ctx[45]
+              ctx[46]
             ))
           ];
           mounted = true;
@@ -4203,14 +4287,14 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*$_current_domain*/
-        512)
+        128)
           show_if = /*$_current_domain*/
-          ctx2[9].includes("m-team");
+          ctx2[7].includes("m-team");
         if (show_if) {
           if (if_block0) {
             if_block0.p(ctx2, dirty);
             if (dirty[0] & /*$_current_domain*/
-            512) {
+            128) {
               transition_in(if_block0, 1);
             }
           } else {
@@ -4228,9 +4312,9 @@
         }
         const switch0_changes = {};
         if (dirty[0] & /*$_current_domain*/
-        512)
+        128)
           switch0_changes.label = /*$_current_domain*/
-          ctx2[9].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
+          ctx2[7].includes("m-team") ? "" : "原始表格模式仅支持点击图片显示iframe和加载下一页";
         if (!updating_checked && dirty[0] & /*$_list_viewMode*/
         16) {
           updating_checked = true;
@@ -4300,10 +4384,10 @@
         }
         const switch5_changes = {};
         if (!updating_checked_5 && dirty[0] & /*$_show_debug_btn*/
-        256) {
+        1024) {
           updating_checked_5 = true;
           switch5_changes.checked = /*$_show_debug_btn*/
-          ctx2[8];
+          ctx2[10];
           add_flush_callback(() => updating_checked_5 = false);
         }
         switch5.$set(switch5_changes);
@@ -4405,6 +4489,7 @@
       i(local) {
         if (current)
           return;
+        transition_in(iconcross.$$.fragment, local);
         transition_in(if_block0);
         transition_in(switch0.$$.fragment, local);
         transition_in(switch1.$$.fragment, local);
@@ -4433,6 +4518,7 @@
         current = true;
       },
       o(local) {
+        transition_out(iconcross.$$.fragment, local);
         transition_out(if_block0);
         transition_out(switch0.$$.fragment, local);
         transition_out(switch1.$$.fragment, local);
@@ -4459,6 +4545,7 @@
       d(detaching) {
         if (detaching)
           detach(div10);
+        destroy_component(iconcross);
         if (if_block0)
           if_block0.d();
         destroy_component(switch0);
@@ -4495,7 +4582,7 @@
     let updating_checked;
     let current;
     function switch_1_checked_binding(value) {
-      ctx[26](value);
+      ctx[27](value);
     }
     let switch_1_props = {
       title_fixed: "隐藏Gay分区卡片",
@@ -4503,15 +4590,15 @@
       title_red: "显示(狠人)",
       func: (
         /*func*/
-        ctx[25]
+        ctx[26]
       )
     };
     if (
       /*$_SITE_SETTING*/
-      ctx[10].mt.hide_gay !== void 0
+      ctx[8].mt.hide_gay !== void 0
     ) {
       switch_1_props.checked = /*$_SITE_SETTING*/
-      ctx[10].mt.hide_gay;
+      ctx[8].mt.hide_gay;
     }
     switch_1 = new Switch({ props: switch_1_props });
     binding_callbacks.push(() => bind(switch_1, "checked", switch_1_checked_binding));
@@ -4525,7 +4612,7 @@
         create_component(switch_1.$$.fragment);
         attr(h1, "class", "s_title");
         attr(div0, "class", "s_panel");
-        attr(div1, "class", "section svelte-kk96f3");
+        attr(div1, "class", "section svelte-gqty0r");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -4538,10 +4625,10 @@
       p(ctx2, dirty) {
         const switch_1_changes = {};
         if (!updating_checked && dirty[0] & /*$_SITE_SETTING*/
-        1024) {
+        256) {
           updating_checked = true;
           switch_1_changes.checked = /*$_SITE_SETTING*/
-          ctx2[10].mt.hide_gay;
+          ctx2[8].mt.hide_gay;
           add_flush_callback(() => updating_checked = false);
         }
         switch_1.$set(switch_1_changes);
@@ -4646,13 +4733,13 @@
               input,
               "change",
               /*input_change_input_handler*/
-              ctx[33]
+              ctx[34]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler*/
-              ctx[33]
+              ctx[34]
             )
           ];
           mounted = true;
@@ -4702,13 +4789,13 @@
               input,
               "change",
               /*input_change_input_handler_1*/
-              ctx[35]
+              ctx[36]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler_1*/
-              ctx[35]
+              ctx[36]
             ),
             listen(input, "change", window.CHANGE_CARD_LAYOUT)
           ];
@@ -4759,13 +4846,13 @@
               input,
               "change",
               /*input_change_input_handler_2*/
-              ctx[36]
+              ctx[37]
             ),
             listen(
               input,
               "input",
               /*input_change_input_handler_2*/
-              ctx[36]
+              ctx[37]
             ),
             listen(input, "change", window.CHANGE_CARD_LAYOUT)
           ];
@@ -4790,18 +4877,28 @@
       }
     };
   }
-  function create_fragment$7(ctx) {
-    let div4;
+  function create_fragment$c(ctx) {
+    let div5;
     let div0;
     let t0;
-    let div3;
+    let div4;
     let button0;
     let t1;
     let button1;
+    let iconsort;
+    let t2;
+    let div1;
+    let t4;
+    let button2;
+    let div2;
+    let img;
+    let img_src_value;
     let t5;
-    let t6;
+    let div3;
     let t7;
-    let div5;
+    let t8;
+    let t9;
+    let div6;
     let current;
     let mounted;
     let dispose;
@@ -4815,86 +4912,111 @@
     }
     let current_block_type = select_block_type(ctx);
     let if_block0 = current_block_type(ctx);
+    iconsort = new Icon_sort({});
     let if_block1 = (
       /*$_show_debug_btn*/
-      ctx[8] && create_if_block_3$2(ctx)
+      ctx[10] && create_if_block_3$2(ctx)
     );
     let if_block2 = (
       /*$_show_configPanel*/
-      ctx[7] && create_if_block$7(ctx)
+      ctx[9] && create_if_block$7(ctx)
     );
     return {
       c() {
-        div4 = element("div");
+        div5 = element("div");
         div0 = element("div");
         t0 = space();
-        div3 = element("div");
+        div4 = element("div");
         button0 = element("button");
         if_block0.c();
         t1 = space();
         button1 = element("button");
-        button1.innerHTML = `<div><svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1 {
-                fill: none;
-                stroke: #fff;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke-width: 2px;
-              }
-            </style></defs><title></title><g data-name="80-setting" id="_80-setting"><circle class="cls-1" cx="10" cy="6" r="3"></circle><circle class="cls-1" cx="22" cy="16" r="3"></circle><circle class="cls-1" cx="10" cy="26" r="3"></circle><line class="cls-1" x1="7" x2="1" y1="6" y2="6"></line><line class="cls-1" x1="15" x2="1" y1="16" y2="16"></line><line class="cls-1" x1="7" x2="1" y1="26" y2="26"></line><line class="cls-1" x1="31" x2="17" y1="26" y2="26"></line><line class="cls-1" x1="31" x2="25" y1="16" y2="16"></line><line class="cls-1" x1="31" x2="17" y1="6" y2="6"></line></g></svg></div> 
-      <div>详细配置</div>`;
+        create_component(iconsort.$$.fragment);
+        t2 = space();
+        div1 = element("div");
+        div1.textContent = "整理";
+        t4 = space();
+        button2 = element("button");
+        div2 = element("div");
+        img = element("img");
         t5 = space();
+        div3 = element("div");
+        div3.textContent = "配置";
+        t7 = space();
         if (if_block1)
           if_block1.c();
-        t6 = space();
+        t8 = space();
         if (if_block2)
           if_block2.c();
-        t7 = space();
-        div5 = element("div");
-        div5.textContent = "重置瀑布流配置边栏位置";
-        attr(div0, "class", "sideP__title svelte-kk96f3");
-        attr(button0, "class", "sideP__btn svelte-kk96f3");
-        attr(button1, "class", "sideP__btn svelte-kk96f3");
-        attr(div3, "class", "sideP__out svelte-kk96f3");
-        attr(div4, "class", "sideP svelte-kk96f3");
+        t9 = space();
+        div6 = element("div");
+        div6.textContent = "重置瀑布流配置边栏位置";
+        attr(div0, "class", "sideP__title svelte-gqty0r");
+        attr(button0, "class", "sideP__btn svelte-gqty0r");
+        attr(button1, "class", "sideP__btn svelte-gqty0r");
+        if (!src_url_equal(img.src, img_src_value = SVG_CONFIG))
+          attr(img, "src", img_src_value);
+        attr(img, "alt", "SVG_CONFIG");
+        attr(button2, "class", "sideP__btn svelte-gqty0r");
+        attr(div4, "class", "sideP__out svelte-gqty0r");
+        attr(div5, "class", "sideP svelte-gqty0r");
         set_style(
-          div4,
+          div5,
           "top",
           /*$_panelPos*/
           ctx[5].y + "px"
         );
         set_style(
-          div4,
+          div5,
           "left",
           /*$_panelPos*/
           ctx[5].x + "px"
         );
         set_style(
-          div4,
+          div5,
           "background-color",
           /*$_current_bgColor*/
           ctx[6]
         );
-        attr(div5, "id", "reset_panel_pos");
-        attr(div5, "class", "svelte-kk96f3");
+        set_style(
+          div5,
+          "display",
+          /*$_current_domain*/
+          ctx[7].includes("m-team") ? (
+            /*$_SITE_SETTING*/
+            ctx[8].mt.path_in_browse ? "block" : "none"
+          ) : "block"
+        );
+        attr(div6, "id", "reset_panel_pos");
+        attr(div6, "class", "svelte-gqty0r");
       },
       m(target, anchor) {
-        insert(target, div4, anchor);
-        append(div4, div0);
-        append(div4, t0);
-        append(div4, div3);
-        append(div3, button0);
+        insert(target, div5, anchor);
+        append(div5, div0);
+        append(div5, t0);
+        append(div5, div4);
+        append(div4, button0);
         if_block0.m(button0, null);
-        append(div3, t1);
-        append(div3, button1);
-        append(div3, t5);
+        append(div4, t1);
+        append(div4, button1);
+        mount_component(iconsort, button1, null);
+        append(button1, t2);
+        append(button1, div1);
+        append(div4, t4);
+        append(div4, button2);
+        append(button2, div2);
+        append(div2, img);
+        append(button2, t5);
+        append(button2, div3);
+        append(div4, t7);
         if (if_block1)
-          if_block1.m(div3, null);
-        ctx[23](div4);
-        insert(target, t6, anchor);
+          if_block1.m(div4, null);
+        ctx[24](div5);
+        insert(target, t8, anchor);
         if (if_block2)
           if_block2.m(target, anchor);
-        insert(target, t7, anchor);
-        insert(target, div5, anchor);
+        insert(target, t9, anchor);
+        insert(target, div6, anchor);
         current = true;
         if (!mounted) {
           dispose = [
@@ -4913,11 +5035,17 @@
             listen(
               button1,
               "click",
-              /*click_handler*/
-              ctx[22]
+              /*__sort_masonry*/
+              ctx[19]
             ),
             listen(
-              div5,
+              button2,
+              "click",
+              /*click_handler*/
+              ctx[23]
+            ),
+            listen(
+              div6,
               "click",
               /*resetPanelPos*/
               ctx[17]
@@ -4927,7 +5055,9 @@
         }
       },
       p(ctx2, dirty) {
-        if (current_block_type !== (current_block_type = select_block_type(ctx2))) {
+        if (current_block_type === (current_block_type = select_block_type(ctx2)) && if_block0) {
+          if_block0.p(ctx2, dirty);
+        } else {
           if_block0.d(1);
           if_block0 = current_block_type(ctx2);
           if (if_block0) {
@@ -4937,14 +5067,14 @@
         }
         if (
           /*$_show_debug_btn*/
-          ctx2[8]
+          ctx2[10]
         ) {
           if (if_block1) {
             if_block1.p(ctx2, dirty);
           } else {
             if_block1 = create_if_block_3$2(ctx2);
             if_block1.c();
-            if_block1.m(div3, null);
+            if_block1.m(div4, null);
           }
         } else if (if_block1) {
           if_block1.d(1);
@@ -4953,7 +5083,7 @@
         if (!current || dirty[0] & /*$_panelPos*/
         32) {
           set_style(
-            div4,
+            div5,
             "top",
             /*$_panelPos*/
             ctx2[5].y + "px"
@@ -4962,7 +5092,7 @@
         if (!current || dirty[0] & /*$_panelPos*/
         32) {
           set_style(
-            div4,
+            div5,
             "left",
             /*$_panelPos*/
             ctx2[5].x + "px"
@@ -4971,27 +5101,39 @@
         if (!current || dirty[0] & /*$_current_bgColor*/
         64) {
           set_style(
-            div4,
+            div5,
             "background-color",
             /*$_current_bgColor*/
             ctx2[6]
           );
         }
+        if (!current || dirty[0] & /*$_current_domain, $_SITE_SETTING*/
+        384) {
+          set_style(
+            div5,
+            "display",
+            /*$_current_domain*/
+            ctx2[7].includes("m-team") ? (
+              /*$_SITE_SETTING*/
+              ctx2[8].mt.path_in_browse ? "block" : "none"
+            ) : "block"
+          );
+        }
         if (
           /*$_show_configPanel*/
-          ctx2[7]
+          ctx2[9]
         ) {
           if (if_block2) {
             if_block2.p(ctx2, dirty);
             if (dirty[0] & /*$_show_configPanel*/
-            128) {
+            512) {
               transition_in(if_block2, 1);
             }
           } else {
             if_block2 = create_if_block$7(ctx2);
             if_block2.c();
             transition_in(if_block2, 1);
-            if_block2.m(t7.parentNode, t7);
+            if_block2.m(t9.parentNode, t9);
           }
         } else if (if_block2) {
           group_outros();
@@ -5004,28 +5146,31 @@
       i(local) {
         if (current)
           return;
+        transition_in(iconsort.$$.fragment, local);
         transition_in(if_block2);
         current = true;
       },
       o(local) {
+        transition_out(iconsort.$$.fragment, local);
         transition_out(if_block2);
         current = false;
       },
       d(detaching) {
         if (detaching)
-          detach(div4);
+          detach(div5);
         if_block0.d();
+        destroy_component(iconsort);
         if (if_block1)
           if_block1.d();
-        ctx[23](null);
+        ctx[24](null);
         if (detaching)
-          detach(t6);
+          detach(t8);
         if (if_block2)
           if_block2.d(detaching);
         if (detaching)
-          detach(t7);
+          detach(t9);
         if (detaching)
-          detach(div5);
+          detach(div6);
         mounted = false;
         run_all(dispose);
       }
@@ -5042,29 +5187,30 @@
     let $_iframe_switch;
     let $_turnPage;
     let $_CARD_SHOW;
+    let $_Global_Masonry;
     let $_list_viewMode;
     let $_panelPos;
     let $_current_bgColor;
-    let $_show_configPanel;
-    let $_show_debug_btn;
     let $_current_domain;
     let $_SITE_SETTING;
+    let $_show_configPanel;
+    let $_show_debug_btn;
     let $_animated;
     let $_show_nexus_pic;
     let $_trigger_nexus_pic;
     let $_delay_nexus_pic;
     let $_card_layout;
-    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(49, $_iframe_switch = $$value));
+    component_subscribe($$self, _iframe_switch, ($$value) => $$invalidate(50, $_iframe_switch = $$value));
     component_subscribe($$self, _turnPage, ($$value) => $$invalidate(2, $_turnPage = $$value));
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(3, $_CARD_SHOW = $$value));
-    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(50, $$value));
+    component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(51, $_Global_Masonry = $$value));
     component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(4, $_list_viewMode = $$value));
     component_subscribe($$self, _panelPos, ($$value) => $$invalidate(5, $_panelPos = $$value));
     component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(6, $_current_bgColor = $$value));
-    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(7, $_show_configPanel = $$value));
-    component_subscribe($$self, _show_debug_btn, ($$value) => $$invalidate(8, $_show_debug_btn = $$value));
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(9, $_current_domain = $$value));
-    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(10, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(7, $_current_domain = $$value));
+    component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(8, $_SITE_SETTING = $$value));
+    component_subscribe($$self, _show_configPanel, ($$value) => $$invalidate(9, $_show_configPanel = $$value));
+    component_subscribe($$self, _show_debug_btn, ($$value) => $$invalidate(10, $_show_debug_btn = $$value));
     component_subscribe($$self, _animated, ($$value) => $$invalidate(11, $_animated = $$value));
     component_subscribe($$self, _show_nexus_pic, ($$value) => $$invalidate(12, $_show_nexus_pic = $$value));
     component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(13, $_trigger_nexus_pic = $$value));
@@ -5100,6 +5246,9 @@
       if (window.CHANGE_CARD_LAYOUT)
         window.CHANGE_CARD_LAYOUT();
     }
+    function __sort_masonry() {
+      $_Global_Masonry.layout();
+    }
     function config_showAllDetails() {
       set_store_value(_CARD_SHOW, $_CARD_SHOW.all = !$_CARD_SHOW.all, $_CARD_SHOW);
       setTimeout(
@@ -5128,7 +5277,7 @@
     const click_handler = () => {
       set_store_value(_show_configPanel, $_show_configPanel = !$_show_configPanel, $_show_configPanel);
     };
-    function div4_binding($$value) {
+    function div5_binding($$value) {
       binding_callbacks[$$value ? "unshift" : "push"](() => {
         sideDom = $$value;
         $$invalidate(0, sideDom);
@@ -5240,10 +5389,10 @@
       $_list_viewMode,
       $_panelPos,
       $_current_bgColor,
-      $_show_configPanel,
-      $_show_debug_btn,
       $_current_domain,
       $_SITE_SETTING,
+      $_show_configPanel,
+      $_show_debug_btn,
       $_animated,
       $_show_nexus_pic,
       $_trigger_nexus_pic,
@@ -5252,11 +5401,12 @@
       onMouseDown,
       resetPanelPos,
       __show_originTable,
+      __sort_masonry,
       config_showAllDetails,
       config_switchMode,
       config_changeLoadMode,
       click_handler,
-      div4_binding,
+      div5_binding,
       click_handler_1,
       func2,
       switch_1_checked_binding,
@@ -5284,7 +5434,7 @@
   class Sidepanel extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$7, create_fragment$7, safe_not_equal, {}, null, [-1, -1]);
+      init(this, options, instance$7, create_fragment$c, safe_not_equal, {}, null, [-1, -1]);
     }
   }
   const CONFIG$1 = {
@@ -5450,12 +5600,10 @@
     return data;
   }
   const SVG_Size = "data:image/svg+xml;base64,PHN2ZyAKICBzdHJva2U9ImN1cnJlbnRDb2xvciIKICBmaWxsPSJjdXJyZW50Q29sb3IiCiAgc3Ryb2tlLXdpZHRoPSIwIgogIHZpZXdCb3g9IjAgMCAyNCAyNCIKICBoZWlnaHQ9IjI1IgogIHdpZHRoPSIyNSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgc3R5bGU9IgogICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTsgCiAgICAtLWRhcmtyZWFkZXItaW5saW5lLWZpbGw6IGN1cnJlbnRDb2xvcjsgCiAgICAtLWRhcmtyZWFkZXItaW5saW5lLXN0cm9rZTogY3VycmVudENvbG9yOyIKPgogIDxwYXRoIAogICAgZD0iTTEyIDVjLTMuODU5IDAtNyAzLjE0MS03IDdzMy4xNDEgNyA3IDcgNy0zLjE0MSA3LTctMy4xNDEtNy03LTd6bTAgMTJjLTIuNzU3IDAtNS0yLjI0My01LTVzMi4yNDMtNSA1LTUgNSAyLjI0MyA1IDUtMi4yNDMgNS01IDV6Ij4KICA8L3BhdGg+CiAgPHBhdGggCiAgICBkPSJNMTIgOWMtMS42MjcgMC0zIDEuMzczLTMgM3MxLjM3MyAzIDMgMyAzLTEuMzczIDMtMy0xLjM3My0zLTMtM3oiPgogIDwvcGF0aD4KPC9zdmc+";
-  const SVG_Comment = "data:image/svg+xml;base64,PHN2ZyAKICBzdHJva2U9ImN1cnJlbnRDb2xvciIgCiAgZmlsbD0iY3VycmVudENvbG9yIiAKICBzdHJva2Utd2lkdGg9IjAiIAogIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgaGVpZ2h0PSIxOCIgCiAgd2lkdGg9IjE4IiAKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogIHN0eWxlPSJ2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOyIKPgogIDxwYXRoIAogICAgZD0iTTcgN2gxMHYySDd6bTAgNGg3djJIN3oiPgogIDwvcGF0aD4KICA8cGF0aCAKICAgIGQ9Ik0yMCAySDRjLTEuMTAzIDAtMiAuODk3LTIgMnYxOGw1LjMzMy00SDIwYzEuMTAzIDAgMi0uODk3IDItMlY0YzAtMS4xMDMtLjg5Ny0yLTItMnptMCAxNEg2LjY2N0w0IDE4VjRoMTZ2MTJ6Ij4KICA8L3BhdGg+Cjwvc3ZnPg==";
   const SVG_Seeders = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249ImFycm93LXVwIiAKICB3aWR0aD0iMWVtIiAKICBoZWlnaHQ9IjFlbSIgCiAgZmlsbD0iZ3JlZW4iIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPgogIDxwYXRoIGQ9Ik04NjggNTQ1LjVMNTM2LjEgMTYzYTMxLjk2IDMxLjk2IDAgMDAtNDguMyAwTDE1NiA1NDUuNWE3Ljk3IDcuOTcgMCAwMDYgMTMuMmg4MWM0LjYgMCA5LTIgMTIuMS01LjVMNDc0IDMwMC45Vjg2NGMwIDQuNCAzLjYgOCA4IDhoNjBjNC40IDAgOC0zLjYgOC04VjMwMC45bDIxOC45IDI1Mi4zYzMgMy41IDcuNCA1LjUgMTIuMSA1LjVoODFjNi44IDAgMTAuNS04IDYtMTMuMnoiPgogIDwvcGF0aD4KPC9zdmc+";
   const SVG_Leechers = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249ImFycm93LWRvd24iIAogIHdpZHRoPSIxZW0iIAogIGhlaWdodD0iMWVtIiAKICBmaWxsPSJyZWQiIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKPgogIDxwYXRoIGQ9Ik04NjIgNDY1LjNoLTgxYy00LjYgMC05IDItMTIuMSA1LjVMNTUwIDcyMy4xVjE2MGMwLTQuNC0zLjYtOC04LThoLTYwYy00LjQgMC04IDMuNi04IDh2NTYzLjFMMjU1LjEgNDcwLjhjLTMtMy41LTcuNC01LjUtMTIuMS01LjVoLTgxYy02LjggMC0xMC41IDguMS02IDEzLjJMNDg3LjkgODYxYTMxLjk2IDMxLjk2IDAgMDA0OC4zIDBMODY4IDQ3OC41YzQuNS01LjIuOC0xMy4yLTYtMTMuMnoiPgogIDwvcGF0aD4KPC9zdmc+";
   const SVG_Download = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IgogIGZvY3VzYWJsZT0iZmFsc2UiCiAgZGF0YS1pY29uPSJkb3dubG9hZCIKICB3aWR0aD0iMWVtIgogIGhlaWdodD0iMWVtIgogIGZpbGw9ImN1cnJlbnRDb2xvciIKICBhcmlhLWhpZGRlbj0idHJ1ZSIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogID4KICA8cGF0aCAKICAgIGQ9Ik01MDUuNyA2NjFhOCA4IDAgMDAxMi42IDBsMTEyLTE0MS43YzQuMS01LjIuNC0xMi45LTYuMy0xMi45aC03NC4xVjE2OGMwLTQuNC0zLjYtOC04LThoLTYwYy00LjQgMC04IDMuNi04IDh2MzM4LjNINDAwYy02LjcgMC0xMC40IDcuNy02LjMgMTIuOWwxMTIgMTQxLjh6TTg3OCA2MjZoLTYwYy00LjQgMC04IDMuNi04IDh2MTU0SDIxNFY2MzRjMC00LjQtMy42LTgtOC04aC02MGMtNC40IDAtOCAzLjYtOCA4djE5OGMwIDE3LjcgMTQuMyAzMiAzMiAzMmg2ODRjMTcuNyAwIDMyLTE0LjMgMzItMzJWNjM0YzAtNC40LTMuNi04LTgtOHoiPgogIDwvcGF0aD4KPC9zdmc+";
   const SVG_Collection = "data:image/svg+xml;base64,PHN2ZyAKICB2aWV3Qm94PSI2NCA2NCA4OTYgODk2IiAKICBmb2N1c2FibGU9ImZhbHNlIiAKICBkYXRhLWljb249InN0YXIiIAogIHdpZHRoPSIxZW0iIAogIGhlaWdodD0iMWVtIiAKICBmaWxsPSJjdXJyZW50Q29sb3IiIAogIGFyaWEtaGlkZGVuPSJ0cnVlIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgCj4KICA8cGF0aCAKICAgIGQ9Ik05MDguMSAzNTMuMWwtMjUzLjktMzYuOUw1NDAuNyA4Ni4xYy0zLjEtNi4zLTguMi0xMS40LTE0LjUtMTQuNS0xNS44LTcuOC0zNS0xLjMtNDIuOSAxNC41TDM2OS44IDMxNi4ybC0yNTMuOSAzNi45Yy03IDEtMTMuNCA0LjMtMTguMyA5LjNhMzIuMDUgMzIuMDUgMCAwMC42IDQ1LjNsMTgzLjcgMTc5LjEtNDMuNCAyNTIuOWEzMS45NSAzMS45NSAwIDAwNDYuNCAzMy43TDUxMiA3NTRsMjI3LjEgMTE5LjRjNi4yIDMuMyAxMy40IDQuNCAyMC4zIDMuMiAxNy40LTMgMjkuMS0xOS41IDI2LjEtMzYuOWwtNDMuNC0yNTIuOSAxODMuNy0xNzkuMWM1LTQuOSA4LjMtMTEuMyA5LjMtMTguMyAyLjctMTcuNS05LjUtMzMuNy0yNy0zNi4zeiI+CiAgPC9wYXRoPgo8L3N2Zz4=";
-  const SVG_Time = "data:image/svg+xml;base64,PHN2ZyBzdHJva2U9ImN1cnJlbnRDb2xvciIgCiAgZmlsbD0iY3VycmVudENvbG9yIiAKICBzdHJva2Utd2lkdGg9IjAiIAogIHZpZXdCb3g9IjAgMCAyNCAyNCIgCiAgY2xhc3M9Ii10cmFuc2xhdGUteS1bMnB4XSIgCiAgaGVpZ2h0PSIxOCIgCiAgd2lkdGg9IjE4IiAKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogIHN0eWxlPSJ2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOyI+CiAgPHBhdGggZD0iTTEyIDJDNi40ODYgMiAyIDYuNDg2IDIgMTJzNC40ODYgMTAgMTAgMTAgMTAtNC40ODYgMTAtMTBTMTcuNTE0IDIgMTIgMnptMCAxOGMtNC40MTEgMC04LTMuNTg5LTgtOHMzLjU4OS04IDgtOCA4IDMuNTg5IDggOC0zLjU4OSA4LTggOHoiPgogIDwvcGF0aD4KICA8cGF0aCBkPSJNMTMgN2gtMnY2aDZ2LTJoLTR6Ij4KICA8L3BhdGg+Cjwvc3ZnPg==";
   const SVG_Preview = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMXtmaWxsOiMyZWIxYjc7fQogICAgICAuY2xzLTJ7ZmlsbDojNTZiNTRlO30KICAgICAgLmNscy0ze2ZpbGw6IzVkYzZkMTt9CiAgICAgIC5jbHMtNHtmaWxsOiM2MGNjNWE7fQogICAgICAuY2xzLTV7ZmlsbDojZmZjZTY5O30KICAgICAgLmNscy02e2ZpbGw6IzZjMmU3Yzt9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8ZyBpZD0iSWNvbnMiPgogICAgPHJlY3QgY2xhc3M9ImNscy0xIiBoZWlnaHQ9IjIyIiByeD0iNCIgd2lkdGg9IjIyIiB4PSIxIiB5PSIxIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0yMywxOHYxYTQsNCwwLDAsMS00LDRINWE0LDQsMCwwLDEtMy45LTMuMWw3LjE5LTcuMTlhMS4wMDgsMS4wMDgsMCwwLDEsMS40MiwwbDEuOCwxLjhhMSwxLDAsMCwwLDEuNDYtLjA1bDIuMzMtMi42NWExLDEsMCwwLDEsMS40Ni0uMDVaIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik0yMyw1djlhNC4wMjUsNC4wMjUsMCwwLDEtMS4xNywyLjgzbC01LjA3LTUuMDdhMSwxLDAsMCwwLTEuNDYuMDVsLTIuMzMsMi42NWExLDEsMCwwLDEtMS40Ni4wNWwtMS44LTEuOGExLjAwOCwxLjAwOCwwLDAsMC0xLjQyLDBMMy4zNiwxNy42NEEzLjk4OCwzLjk4OCwwLDAsMSwxLDE0VjVBNCw0LDAsMCwxLDUsMUgxOUE0LDQsMCwwLDEsMjMsNVoiLz4KICAgIDxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTIxLjgzLDE2LjgzQTQuMDI1LDQuMDI1LDAsMCwxLDE5LDE4SDVhMy45MzEsMy45MzEsMCwwLDEtMS42NC0uMzZsNC45My00LjkzYTEuMDA4LDEuMDA4LDAsMCwxLDEuNDIsMGwxLjgsMS44YTEsMSwwLDAsMCwxLjQ2LS4wNWwyLjMzLTIuNjVhMSwxLDAsMCwxLDEuNDYtLjA1WiIvPgogICAgPGNpcmNsZSBjbGFzcz0iY2xzLTUiIGN4PSI3IiBjeT0iNyIgcj0iMiIvPgogIDwvZz4KICA8ZyBkYXRhLW5hbWU9IkxheWVyIDQiIGlkPSJMYXllcl80Ij4KICAgIDxwYXRoIGNsYXNzPSJjbHMtNiIgZD0iTTE5LDBINUE1LjAwNiw1LjAwNiwwLDAsMCwwLDVWMTlhNS4wMDYsNS4wMDYsMCwwLDAsNSw1SDE5YTUuMDA2LDUuMDA2LDAsMCwwLDUtNVY1QTUuMDA2LDUuMDA2LDAsMCwwLDE5LDBabTMsMTlhMywzLDAsMCwxLTMsM0g1YTMsMywwLDAsMS0zLTNWNUEzLDMsMCwwLDEsNSwySDE5YTMsMywwLDAsMSwzLDNaIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik03LDEwQTMsMywwLDEsMCw0LDcsMywzLDAsMCwwLDcsMTBaTTcsNkExLDEsMCwxLDEsNiw3LDEsMSwwLDAsMSw3LDZaIi8+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTYiIGQ9Ik0xNi43MDcsMTAuMjkzYS45NTYuOTU2LDAsMCwwLS43NC0uMjkzLDEuMDA2LDEuMDA2LDAsMCwwLS43Mi4zNDFMMTIuMjE3LDEzLjhsLTIuNTEtMi41MTFhMSwxLDAsMCwwLTEuNDE0LDBsLTQsNGExLDEsMCwxLDAsMS40MTQsMS40MTRMOSwxMy40MTRsMS45LDEuOUw4LjI0NywxOC4zNDFhMSwxLDAsMCwwLDEuNTA2LDEuMzE4bDMuMjE4LTMuNjc4LjAwNiwwLC4wMDctLjAxMSwzLjA2NS0zLjUsMi4yNDQsMi4yNDRhMSwxLDAsMCwwLDEuNDE0LTEuNDE0WiIvPgogIDwvZz4KPC9zdmc+";
   const CONFIG = {
     /** 是否非 NexusPHP 架构 */
@@ -5500,7 +5648,7 @@
       /** 大小图标 */
       SIZE: SVG_Size,
       /** 评论图标 */
-      COMMENT: SVG_Comment,
+      // COMMENT: SVG_Comment,
       /** 上传人数图标 */
       SEEDERS: SVG_Seeders,
       /** 下载人数图标 */
@@ -5512,13 +5660,17 @@
       /** 置顶图标 (没用, 看的是 css URL) */
       PIN: "/static/trans.gif",
       /** 时间图标 */
-      TIME: SVG_Time,
+      // TIME: SVG_Time,
       /** 预览图标 */
       PREVIEW: SVG_Preview
     },
     /**如果站点有必要设置分类颜色, 可以用自定义的 */
     CATEGORY_COLOR: {
       // 成人分类
+      115: "#f52bcb",
+      // AV(有码) 父
+      120: "#f52bcb",
+      // AV(无码) 父
       410: "#f52bcb",
       // 有码 HD
       429: "#f52bcb",
@@ -5550,6 +5702,8 @@
       413: "#f49800",
       // H-Comic
       // 综合分类
+      100: "#c74854",
+      // Movie 父
       401: "#c74854",
       // Movie SD
       419: "#c01a20",
@@ -5560,29 +5714,49 @@
       // Movie BluRay
       439: "#1b2a51",
       // Movie Remux
+      105: "#276fb8",
+      // TV影剧综艺 父
       403: "#c74854",
-      // TV SD
+      // TV影剧综艺 SD
       402: "#276fb8",
-      // TV HD
-      435: "#4dbebd ",
-      // TV DVD
+      // TV影剧综艺 HD
+      435: "#4dbebd",
+      // TV影剧综艺 DVD
       438: "#1897d6",
-      // TV BluRay
+      // TV影剧综艺 BluRay
+      444: "#23ac38",
+      // 纪录片 父
       404: "#23ac38",
-      // 纪录教育
+      // 纪录片
+      449: "#996c34",
+      // Anime 父
       405: "#996c34",
       // Anime
+      443: "#7FC269",
+      // 教育 父
+      427: "#7FC269",
+      // 教育文档
+      441: "#7FC269",
+      // 教育影片
+      442: "#7FC269",
+      // 教育音频
+      447: "#f39800",
+      // Game 父
+      423: "#f39800",
+      // Game
+      448: "#f39800",
+      // TV Game
+      450: "#996c34",
+      // Other 父
       407: "#23ac38",
       // Sport
       422: "#f39800",
       // Software
-      423: "#f39800",
-      // Game
-      427: "#f39800",
-      // EBook
       409: "#996c34",
       // Other
       // 音乐分类
+      110: "#8a57a1",
+      // 音乐 父
       406: "#8a57a1",
       // MV
       408: "#8a57a1",
@@ -5592,39 +5766,62 @@
     },
     CATEGORY_NAME: {
       // 成人分类
-      410: " 有码 HD",
-      429: " 无码 HD",
-      424: " 有码 Xvid",
-      430: " 无码 Xvid",
-      437: " 有码 DVD",
-      426: " 无码 DVD",
-      431: " 有码 BluRay",
-      432: " 无码 BluRay",
-      440: " GAY",
-      436: " 0 day",
-      425: " 写真 video",
-      433: " 写真 pic",
-      411: " H-Game",
-      412: " H-Anime",
-      413: " H-Comic",
+      115: "AV(有码)",
+      // AV(有码)
+      120: "AV(无码)",
+      // AV(无码)
+      410: "有码 HD",
+      429: "无码 HD",
+      424: "有码 Xvid",
+      430: "无码 Xvid",
+      437: "有码 DVD",
+      426: "无码 DVD",
+      431: "有码 BluRay",
+      432: "无码 BluRay",
+      440: "GAY",
+      436: "0 day",
+      425: "写真 video",
+      433: "写真 pic",
+      411: "H-Game",
+      412: "H-Anime",
+      413: "H-Comic",
       // 综合分类
+      100: "Movie",
+      // Movie 父
       401: "Movie SD",
       419: "Movie HD",
-      420: "Movie DVD    ",
+      420: "Movie DVD",
       421: "Movie BluRay",
       439: "Movie Remux",
+      105: "TV",
+      // 影剧综艺 父
       403: "TV SD",
       402: "TV HD",
-      435: " TV DVD",
+      435: "TV DVDiSo",
       438: "TV BluRay",
-      404: "纪录教育",
+      444: "Documentary",
+      // 纪录片 父
+      404: "Documentary",
+      449: "Anime",
+      // 动漫 父
       405: "Anime",
-      407: "Sport",
-      422: "Software",
+      443: "教育",
+      // 父
+      427: "教育文档",
+      441: "教育影片",
+      442: "教育音频",
+      447: "Game",
+      // 父
       423: "Game",
-      427: "EBook",
+      448: "TV Game",
+      450: "其他",
+      // 父
+      407: "Sport",
+      422: "软件",
       409: "Other",
       // 音乐分类
+      110: "Music",
+      // 音乐 父
       406: "MV",
       408: "Music AAC/ALAC",
       434: "Music 无损"
@@ -5641,24 +5838,14 @@
     },
     /** NOTE: 站点特殊操作 */
     special: function() {
-      console.log("======= M-Team 特殊操作 =======");
-      let count = 0;
-      let length;
-      interval = setInterval(() => {
-        length = table_Iframe_Set();
-        count++;
-        console.log(`[${count}]原表格点击标题显示 iframe List: ${length}`);
-        show_pic();
-        if (length) {
-          clearInterval(interval);
-        }
-      }, 750);
+      let len1 = table_Iframe_Set();
+      let len2 = old_form_show_pic();
+      return len1 && len2;
     },
     /** NOTE: 站点下一页加载后操作 */
     pageLoaded: function() {
     }
   };
-  let interval;
   function table_Iframe_Set() {
     const lists = Array.from(document.querySelectorAll(".ant-table-row-level-0 .ant-col a[href]"));
     lists.forEach(
@@ -5672,12 +5859,36 @@
     );
     return lists.length;
   }
-  function show_pic() {
-    const lists = Array.from(document.querySelectorAll(".ant-image"));
+  function old_form_show_pic() {
+    const elementsToRemove = document.querySelectorAll(".ant-image-mask");
+    elementsToRemove.forEach((element2) => {
+      element2.remove();
+    });
+    const lists = Array.from(document.querySelectorAll(".torrent-list__thumbnail"));
     lists.forEach((el) => {
       el.classList += " preview_Origin";
     });
+    return lists.length;
   }
+  const selector = ".preview_Origin";
+  document.body.addEventListener("mouseover", function(e) {
+    if (e.target.matches(selector)) {
+      const event = e;
+      const imgEle = e.target;
+      handleMouseOver(event, imgEle);
+    }
+  });
+  document.body.addEventListener("mouseout", function(e) {
+    if (e.target.matches(selector)) {
+      handleMouseOut();
+    }
+  });
+  document.body.addEventListener("mousemove", function(e) {
+    if (e.target.matches(selector)) {
+      const imgEle = e.target;
+      handleMouseMove(e, imgEle);
+    }
+  });
   const SITE = {
     "kamept.com": CONFIG$1,
     // 旧 M-Team
@@ -5818,11 +6029,11 @@
         b = element("b");
         t1 = text(t1_value);
         html_tag.a = t0;
-        attr(a, "class", "two-lines svelte-4b9kml");
+        attr(a, "class", "two-lines svelte-1d0ss3t");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
         attr(a, "target", "_blank");
-        attr(div, "class", "card-title svelte-4b9kml");
+        attr(div, "class", "card-title svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -5878,7 +6089,7 @@
         if (!src_url_equal(img.src, img_src_value = _PicErrorLOGO))
           attr(img, "src", img_src_value);
         attr(img, "alt", "pic error");
-        attr(img, "class", "svelte-4b9kml");
+        attr(img, "class", "svelte-1d0ss3t");
         attr(div2, "class", "pic_error");
         attr(div2, "style", "");
       },
@@ -5917,7 +6128,7 @@
     return {
       c() {
         img = element("img");
-        attr(img, "class", "nexus-lazy-load_Kesa svelte-4b9kml");
+        attr(img, "class", "nexus-lazy-load_Kesa svelte-1d0ss3t");
         if (!src_url_equal(img.src, img_src_value = CONFIG$1.LOADING_PIC))
           attr(img, "src", img_src_value);
         attr(img, "data-src", img_data_src_value = /*torrentInfo*/
@@ -5978,8 +6189,8 @@
         ctx[2].PREVIEW))
           attr(img, "src", img_src_value);
         attr(img, "alt", "PREVIEW");
-        attr(img, "class", "svelte-4b9kml");
-        attr(div, "class", "hover-trigger svelte-4b9kml");
+        attr(img, "class", "svelte-1d0ss3t");
+        attr(div, "class", "hover-trigger svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -6183,26 +6394,26 @@
         t25 = text(" ");
         b6 = element("b");
         t26 = text(t26_value);
-        attr(div0, "class", "cl-tags svelte-4b9kml");
+        attr(div0, "class", "cl-tags svelte-1d0ss3t");
         html_tag.a = t3;
-        attr(div1, "class", "cl-center svelte-4b9kml");
+        attr(div1, "class", "cl-center svelte-1d0ss3t");
         html_tag_1.a = t6;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div2, "class", "cl-center svelte-4b9kml");
+        attr(div2, "class", "cl-center svelte-1d0ss3t");
         html_tag_2.a = t9;
-        attr(div3, "class", "btnCollet cl-center svelte-4b9kml");
+        attr(div3, "class", "btnCollet cl-center svelte-1d0ss3t");
         attr(div3, "id", div3_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div4, "class", "cl-center svelte-4b9kml");
-        attr(div5, "class", "card-line svelte-4b9kml");
-        attr(div6, "class", "card-line svelte-4b9kml");
+        attr(div4, "class", "cl-center svelte-1d0ss3t");
+        attr(div5, "class", "card-line svelte-1d0ss3t");
+        attr(div6, "class", "card-line svelte-1d0ss3t");
         html_tag_3.a = t16;
         html_tag_4.a = t19;
         html_tag_5.a = t22;
         html_tag_6.a = t25;
-        attr(div7, "class", "card-line svelte-4b9kml");
-        attr(div8, "class", "card-details svelte-4b9kml");
+        attr(div7, "class", "card-line svelte-1d0ss3t");
+        attr(div8, "class", "card-details svelte-1d0ss3t");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6428,8 +6639,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-4b9kml");
-        attr(div1, "class", "card-alter svelte-4b9kml");
+        ctx[0].free_type + " svelte-1d0ss3t");
+        attr(div1, "class", "card-alter svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6491,7 +6702,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-4b9kml")) {
+        ctx2[0].free_type + " svelte-1d0ss3t")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -6616,7 +6827,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-4b9kml");
+        attr(a, "class", "card-description svelte-1d0ss3t");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -6695,7 +6906,7 @@
         t4 = space();
         if (if_block5)
           if_block5.c();
-        attr(div, "class", "card-details svelte-4b9kml");
+        attr(div, "class", "card-details svelte-1d0ss3t");
       },
       m(target, anchor) {
         if (if_block0)
@@ -6867,8 +7078,8 @@
         if (if_block2)
           if_block2.c();
         attr(div0, "class", div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx[0].free_type + " svelte-4b9kml");
-        attr(div1, "class", "card-alter svelte-4b9kml");
+        ctx[0].free_type + " svelte-1d0ss3t");
+        attr(div1, "class", "card-alter svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div1, anchor);
@@ -6930,7 +7141,7 @@
         }
         if (dirty & /*torrentInfo*/
         1 && div0_class_value !== (div0_class_value = "top_and_free " + /*torrentInfo*/
-        ctx2[0].free_type + " svelte-4b9kml")) {
+        ctx2[0].free_type + " svelte-1d0ss3t")) {
           attr(div0, "class", div0_class_value);
         }
       },
@@ -7055,7 +7266,7 @@
       c() {
         a = element("a");
         t = text(t_value);
-        attr(a, "class", "card-description svelte-4b9kml");
+        attr(a, "class", "card-description svelte-1d0ss3t");
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].torrentLink);
       },
@@ -7092,7 +7303,7 @@
     return {
       c() {
         div = element("div");
-        attr(div, "class", "cl-tags svelte-4b9kml");
+        attr(div, "class", "cl-tags svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7180,17 +7391,17 @@
         b1 = element("b");
         b1.textContent = "收藏";
         html_tag.a = t0;
-        attr(div0, "class", "cl-center svelte-4b9kml");
+        attr(div0, "class", "cl-center svelte-1d0ss3t");
         html_tag_1.a = t3;
         attr(a, "href", a_href_value = /*torrentInfo*/
         ctx[0].downloadLink);
-        attr(div1, "class", "cl-center svelte-4b9kml");
+        attr(div1, "class", "cl-center svelte-1d0ss3t");
         html_tag_2.a = t6;
-        attr(div2, "class", "btnCollet cl-center svelte-4b9kml");
+        attr(div2, "class", "btnCollet cl-center svelte-1d0ss3t");
         attr(div2, "id", div2_id_value = "tI_" + /*torrentInfo*/
         ctx[0].torrentIndex);
-        attr(div3, "class", "cl-center svelte-4b9kml");
-        attr(div4, "class", "card-line svelte-4b9kml");
+        attr(div3, "class", "cl-center svelte-1d0ss3t");
+        attr(div4, "class", "card-line svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div4, anchor);
@@ -7279,7 +7490,7 @@
         b.textContent = "上传时间:";
         t1 = space();
         t2 = text(t2_value);
-        attr(div, "class", "card-line svelte-4b9kml");
+        attr(div, "class", "card-line svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7378,7 +7589,7 @@
         html_tag_1.a = t3;
         html_tag_2.a = t6;
         html_tag_3.a = t9;
-        attr(div, "class", "card-line svelte-4b9kml");
+        attr(div, "class", "card-line svelte-1d0ss3t");
       },
       m(target, anchor) {
         insert(target, div, anchor);
@@ -7442,7 +7653,7 @@
       }
     };
   }
-  function create_fragment$6(ctx) {
+  function create_fragment$b(ctx) {
     let div4;
     let div3;
     let div0;
@@ -7516,7 +7727,7 @@
         t7 = space();
         if (if_block4)
           if_block4.c();
-        attr(div0, "class", "card-category svelte-4b9kml");
+        attr(div0, "class", "card-category svelte-1d0ss3t");
         attr(div0, "data-href", div0_data_href_value = /*torrentInfo*/
         ctx[0].categoryLink);
         set_style(div0, "background-color", CONFIG$1.CATEGORY[
@@ -7530,10 +7741,10 @@
           /*torrentInfo*/
           ctx[0].categoryNumber
         ]) : "black");
-        attr(div1, "class", "card-index svelte-4b9kml");
-        attr(div2, "class", "card-image svelte-4b9kml");
-        attr(div3, "class", "card-holder svelte-4b9kml");
-        attr(div4, "class", "card svelte-4b9kml");
+        attr(div1, "class", "card-index svelte-1d0ss3t");
+        attr(div2, "class", "card-image svelte-1d0ss3t");
+        attr(div3, "class", "card-holder svelte-1d0ss3t");
+        attr(div4, "class", "card svelte-1d0ss3t");
         set_style(
           div4,
           "width",
@@ -7841,7 +8052,7 @@
   class Kamept extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$6, create_fragment$6, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
+      init(this, options, instance$6, create_fragment$b, safe_not_equal, { torrentInfo: 0, cardWidth: 1, ICON: 2 });
     }
   }
   function get_each_context$2(ctx, list, i) {
@@ -8055,7 +8266,7 @@
       }
     };
   }
-  function create_fragment$5(ctx) {
+  function create_fragment$a(ctx) {
     let current_block_type_index;
     let if_block0;
     let t;
@@ -8388,7 +8599,7 @@
   class Index extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$5, create_fragment$5, safe_not_equal, { originTable: 7, waterfallNode: 8 });
+      init(this, options, instance$5, create_fragment$a, safe_not_equal, { originTable: 7, waterfallNode: 8 });
     }
   }
   function create_else_block$1(ctx) {
@@ -8451,7 +8662,7 @@
       }
     };
   }
-  function create_fragment$4(ctx) {
+  function create_fragment$9(ctx) {
     let div;
     let button;
     let button_disabled_value;
@@ -8554,7 +8765,53 @@
   class BtnTurnPage extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$4, create_fragment$4, safe_not_equal, {});
+      init(this, options, instance$4, create_fragment$9, safe_not_equal, {});
+    }
+  }
+  function create_fragment$8(ctx) {
+    let svg;
+    let g;
+    let circle;
+    let path;
+    return {
+      c() {
+        svg = svg_element("svg");
+        g = svg_element("g");
+        circle = svg_element("circle");
+        path = svg_element("path");
+        attr(circle, "cx", "12");
+        attr(circle, "cy", "12");
+        attr(circle, "r", "10");
+        attr(circle, "stroke", "#1C274C");
+        attr(circle, "stroke-width", "1.5");
+        attr(path, "d", "M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5");
+        attr(path, "stroke", "#1C274C");
+        attr(path, "stroke-width", "1.5");
+        attr(path, "stroke-linecap", "round");
+        attr(g, "id", "SVGRepo_iconCarrier");
+        attr(svg, "viewBox", "0 0 24 24");
+        attr(svg, "fill", "none");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, g);
+        append(g, circle);
+        append(g, path);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_roundClose extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$8, safe_not_equal, {});
     }
   }
   function create_if_block$3(ctx) {
@@ -8564,10 +8821,12 @@
     let iframe_src_value;
     let t;
     let div0;
+    let iconroundclose;
     let div2_transition;
     let current;
     let mounted;
     let dispose;
+    iconroundclose = new Icon_roundClose({});
     return {
       c() {
         div2 = element("div");
@@ -8575,7 +8834,7 @@
         iframe = element("iframe");
         t = space();
         div0 = element("div");
-        div0.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"><circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle><path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path></g></svg>`;
+        create_component(iconroundclose.$$.fragment);
         if (!src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
         ctx[1]))
           attr(iframe, "src", iframe_src_value);
@@ -8588,11 +8847,11 @@
           /*$_current_domain*/
           ctx[2]
         ].Iframe_Width : 1e3) + "px");
-        attr(iframe, "class", "svelte-12ghpfg");
-        attr(div0, "class", "_iframeCloseBtn svelte-12ghpfg");
-        attr(div1, "class", "_iframe svelte-12ghpfg");
+        attr(iframe, "class", "svelte-1exar3b");
+        attr(div0, "class", "_iframeCloseBtn svelte-1exar3b");
+        attr(div1, "class", "_iframe svelte-1exar3b");
         attr(div2, "id", "_iframe");
-        attr(div2, "class", "svelte-12ghpfg");
+        attr(div2, "class", "svelte-1exar3b");
       },
       m(target, anchor) {
         insert(target, div2, anchor);
@@ -8600,6 +8859,7 @@
         append(div1, iframe);
         append(div1, t);
         append(div1, div0);
+        mount_component(iconroundclose, div0, null);
         current = true;
         if (!mounted) {
           dispose = [
@@ -8639,6 +8899,7 @@
       i(local) {
         if (current)
           return;
+        transition_in(iconroundclose.$$.fragment, local);
         add_render_callback(() => {
           if (!current)
             return;
@@ -8649,6 +8910,7 @@
         current = true;
       },
       o(local) {
+        transition_out(iconroundclose.$$.fragment, local);
         if (!div2_transition)
           div2_transition = create_bidirectional_transition(div2, fade, { duration: 300 }, false);
         div2_transition.run(0);
@@ -8657,6 +8919,7 @@
       d(detaching) {
         if (detaching)
           detach(div2);
+        destroy_component(iconroundclose);
         if (detaching && div2_transition)
           div2_transition.end();
         mounted = false;
@@ -8664,7 +8927,7 @@
       }
     };
   }
-  function create_fragment$3(ctx) {
+  function create_fragment$7(ctx) {
     let if_block_anchor;
     let current;
     let mounted;
@@ -8807,10 +9070,168 @@
   class Main extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
+      init(this, options, instance$3, create_fragment$7, safe_not_equal, {});
     }
   }
   const _PicNoLOGO = "data:image/svg+xml;base64,PHN2ZwogIHZpZXdCb3g9Ii0yLjQgLTIuNCAyOC44MCAyOC44MCIKICBmaWxsPSJub25lIgogIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICBzdHJva2U9IiMwMDAwMDAiCj4KICA8ZyBpZD0iU1ZHUmVwb19iZ0NhcnJpZXIiIHN0cm9rZS13aWR0aD0iMCIgLz4KICA8ZyBpZD0iU1ZHUmVwb19pY29uQ2FycmllciI+CiAgICA8cGF0aAogICAgICBkPSJNMTUuNiAxNS42QzE1LjYgMTUuNiAxNC4yNSAxMy44IDEyIDEzLjhDOS43NSAxMy44IDguNCAxNS42IDguNCAxNS42TTE0LjcgOS4zSDE0LjcwOU05LjMgOS4zSDkuMzA5TTIxIDEyQzIxIDE2Ljk3MDYgMTYuOTcwNiAyMSAxMiAyMUM3LjAyOTQ0IDIxIDMgMTYuOTcwNiAzIDEyQzMgNy4wMjk0NCA3LjAyOTQ0IDMgMTIgM0MxNi45NzA2IDMgMjEgNy4wMjk0NCAyMSAxMlpNMTUuMTUgOS4zQzE1LjE1IDkuNTQ4NTMgMTQuOTQ4NSA5Ljc1IDE0LjcgOS43NUMxNC40NTE1IDkuNzUgMTQuMjUgOS41NDg1MyAxNC4yNSA5LjNDMTQuMjUgOS4wNTE0NyAxNC40NTE1IDguODUgMTQuNyA4Ljg1QzE0Ljk0ODUgOC44NSAxNS4xNSA5LjA1MTQ3IDE1LjE1IDkuM1pNOS43NSA5LjNDOS43NSA5LjU0ODUzIDkuNTQ4NTMgOS43NSA5LjMgOS43NUM5LjA1MTQ3IDkuNzUgOC44NSA5LjU0ODUzIDguODUgOS4zQzguODUgOS4wNTE0NyA5LjA1MTQ3IDguODUgOS4zIDguODVDOS41NDg1MyA4Ljg1IDkuNzUgOS4wNTE0NyA5Ljc1IDkuM1oiCiAgICAgIHN0cm9rZT0iIzAwMDAwMCIKICAgICAgc3Ryb2tlLXdpZHRoPSIxLjgiCiAgICAgIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIKICAgICAgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIKICAgIC8+CiAgPC9nPgo8L3N2Zz4=";
+  function create_fragment$6(ctx) {
+    let svg;
+    let path0;
+    let path1;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path0 = svg_element("path");
+        path1 = svg_element("path");
+        attr(path0, "d", "M7 7h10v2H7zm0 4h7v2H7z");
+        attr(path1, "d", "M20 2H4c-1.103 0-2 .897-2 2v18l5.333-4H20c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm0 14H6.667L4 18V4h16v12z");
+        attr(svg, "stroke", "currentColor");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "stroke-width", "0");
+        attr(svg, "viewBox", "0 0 24 24");
+        attr(svg, "height", "18");
+        attr(svg, "width", "18");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+        set_style(svg, "vertical-align", "middle");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path0);
+        append(svg, path1);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_comment extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$6, safe_not_equal, {});
+    }
+  }
+  function create_fragment$5(ctx) {
+    let svg;
+    let path0;
+    let path1;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path0 = svg_element("path");
+        path1 = svg_element("path");
+        attr(path0, "d", "M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z");
+        attr(path1, "d", "M13 7h-2v6h6v-2h-4z");
+        attr(svg, "stroke", "currentColor");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "stroke-width", "0");
+        attr(svg, "viewBox", "0 0 24 24");
+        attr(svg, "height", "18");
+        attr(svg, "width", "18");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+        set_style(svg, "vertical-align", "middle");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path0);
+        append(svg, path1);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_time extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$5, safe_not_equal, {});
+    }
+  }
+  function create_fragment$4(ctx) {
+    let svg;
+    let path0;
+    let path1;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path0 = svg_element("path");
+        path1 = svg_element("path");
+        attr(path0, "d", "M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z");
+        attr(path1, "d", "M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z");
+        attr(svg, "stroke", "currentColor");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "stroke-width", "0");
+        attr(svg, "viewBox", "0 0 24 24");
+        attr(svg, "height", "25");
+        attr(svg, "width", "25");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+        set_style(svg, "vertical-align", "middle");
+        set_style(svg, "--darkreader-inline-fill", "currentColor");
+        set_style(svg, "--darkreader-inline-stroke", "currentColor");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path0);
+        append(svg, path1);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_size extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$4, safe_not_equal, {});
+    }
+  }
+  function create_fragment$3(ctx) {
+    let svg;
+    let path;
+    return {
+      c() {
+        svg = svg_element("svg");
+        path = svg_element("path");
+        attr(path, "d", "M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z");
+        attr(svg, "viewBox", "64 64 896 896");
+        attr(svg, "focusable", "false");
+        attr(svg, "data-icon", "download");
+        attr(svg, "width", "1em");
+        attr(svg, "height", "1em");
+        attr(svg, "fill", "currentColor");
+        attr(svg, "aria-hidden", "true");
+        attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+      },
+      m(target, anchor) {
+        insert(target, svg, anchor);
+        append(svg, path);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching)
+          detach(svg);
+      }
+    };
+  }
+  class Icon_download extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment$3, safe_not_equal, {});
+    }
+  }
   function get_each_context$1(ctx, list, i) {
     const child_ctx = ctx.slice();
     child_ctx[38] = list[i];
@@ -9206,6 +9627,7 @@
     let div3;
     let div0;
     let span0;
+    let iconsize;
     let t3;
     let t4_value = (Number(
       /*torrentInfo*/
@@ -9214,14 +9636,15 @@
     let t4;
     let t5;
     let div1;
+    let span1;
+    let icondownload;
     let t6;
     let div2;
     let span2;
     let promise_1;
     let t7;
     let div5;
-    let img0;
-    let img0_src_value;
+    let icontime;
     let t8;
     let t9_value = `${/*_CT*/
   ctx[19].day} 日`;
@@ -9235,8 +9658,7 @@
     let t11;
     let t12;
     let div6;
-    let img1;
-    let img1_src_value;
+    let iconcomment;
     let t13;
     let b0;
     let t14_value = (
@@ -9245,8 +9667,8 @@
     );
     let t14;
     let t15;
-    let img2;
-    let img2_src_value;
+    let img0;
+    let img0_src_value;
     let t16;
     let b1;
     let t17_value = (
@@ -9255,8 +9677,8 @@
     );
     let t17;
     let t18;
-    let img3;
-    let img3_src_value;
+    let img1;
+    let img1_src_value;
     let t19;
     let b2;
     let t20_value = (
@@ -9264,6 +9686,7 @@
       ctx[0].status.leechers + ""
     );
     let t20;
+    let current;
     let mounted;
     let dispose;
     let if_block0 = (
@@ -9279,6 +9702,8 @@
       /*torrentInfo*/
       ctx[0].labels != 0 && create_if_block_13(ctx)
     );
+    iconsize = new Icon_size({});
+    icondownload = new Icon_download({});
     let info = {
       ctx,
       current: null,
@@ -9292,6 +9717,8 @@
     };
     handle_promise(promise_1 = /*promise*/
     ctx[5], info);
+    icontime = new Icon_time({});
+    iconcomment = new Icon_comment({});
     return {
       c() {
         if (if_block0)
@@ -9308,41 +9735,43 @@
         div3 = element("div");
         div0 = element("div");
         span0 = element("span");
-        span0.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="25" width="25" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; --darkreader-inline-fill: currentColor; --darkreader-inline-stroke: currentColor;"><path d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path><path d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"></path></svg>`;
+        create_component(iconsize.$$.fragment);
         t3 = text("\n               ");
         t4 = text(t4_value);
         t5 = text("\n\n            \n              \n            \n            ");
         div1 = element("div");
-        div1.innerHTML = `<span class="icon_holder svelte-rhfb99"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
+        span1 = element("span");
+        create_component(icondownload.$$.fragment);
         t6 = text("\n\n            \n              \n            \n            ");
         div2 = element("div");
         span2 = element("span");
         info.block.c();
         t7 = space();
         div5 = element("div");
-        img0 = element("img");
+        create_component(icontime.$$.fragment);
         t8 = text("\n           ");
         t9 = text(t9_value);
         t10 = space();
         t11 = text(t11_value);
         t12 = space();
         div6 = element("div");
-        img1 = element("img");
+        create_component(iconcomment.$$.fragment);
         t13 = text("\n           \n          ");
         b0 = element("b");
         t14 = text(t14_value);
         t15 = text("\n            \n          ");
-        img2 = element("img");
+        img0 = element("img");
         t16 = text("\n           \n          ");
         b1 = element("b");
         t17 = text(t17_value);
         t18 = text("\n            \n          ");
-        img3 = element("img");
+        img1 = element("img");
         t19 = text("\n           \n          ");
         b2 = element("b");
         t20 = text(t20_value);
         attr(span0, "class", "icon_holder svelte-rhfb99");
         attr(div0, "class", "cl-btn svelte-rhfb99");
+        attr(span1, "class", "icon_holder svelte-rhfb99");
         attr(div1, "class", "cl-btn svelte-rhfb99");
         set_style(div1, "cursor", "pointer");
         attr(span2, "class", "icon_holder svelte-rhfb99");
@@ -9350,19 +9779,13 @@
         set_style(div2, "cursor", "pointer");
         attr(div3, "class", "cl-center svelte-rhfb99");
         attr(div4, "class", "card-line svelte-rhfb99");
-        if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.TIME))
-          attr(img0, "src", img0_src_value);
-        attr(img0, "alt", "SVG_Time");
         attr(div5, "class", "card-line cl-btn svelte-rhfb99");
-        if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.COMMENT))
+        if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.SEEDERS))
+          attr(img0, "src", img0_src_value);
+        attr(img0, "alt", "SVG_Seeders");
+        if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.LEECHERS))
           attr(img1, "src", img1_src_value);
-        attr(img1, "alt", "SVG_Comment");
-        if (!src_url_equal(img2.src, img2_src_value = CONFIG.ICON.SEEDERS))
-          attr(img2, "src", img2_src_value);
-        attr(img2, "alt", "SVG_Seeders");
-        if (!src_url_equal(img3.src, img3_src_value = CONFIG.ICON.LEECHERS))
-          attr(img3, "src", img3_src_value);
-        attr(img3, "alt", "SVG_Leechers");
+        attr(img1, "alt", "SVG_Leechers");
         attr(div6, "class", "card-line svelte-rhfb99");
         attr(div7, "class", "card-details svelte-rhfb99");
       },
@@ -9381,10 +9804,13 @@
         append(div4, div3);
         append(div3, div0);
         append(div0, span0);
+        mount_component(iconsize, span0, null);
         append(div0, t3);
         append(div0, t4);
         append(div3, t5);
         append(div3, div1);
+        append(div1, span1);
+        mount_component(icondownload, span1, null);
         append(div3, t6);
         append(div3, div2);
         append(div2, span2);
@@ -9393,27 +9819,28 @@
         info.anchor = null;
         append(div7, t7);
         append(div7, div5);
-        append(div5, img0);
+        mount_component(icontime, div5, null);
         append(div5, t8);
         append(div5, t9);
         append(div5, t10);
         append(div5, t11);
         append(div7, t12);
         append(div7, div6);
-        append(div6, img1);
+        mount_component(iconcomment, div6, null);
         append(div6, t13);
         append(div6, b0);
         append(b0, t14);
         append(div6, t15);
-        append(div6, img2);
+        append(div6, img0);
         append(div6, t16);
         append(div6, b1);
         append(b1, t17);
         append(div6, t18);
-        append(div6, img3);
+        append(div6, img1);
         append(div6, t19);
         append(div6, b2);
         append(b2, t20);
+        current = true;
         if (!mounted) {
           dispose = [
             listen(
@@ -9480,8 +9907,8 @@
           if_block2.d(1);
           if_block2 = null;
         }
-        if (dirty[0] & /*torrentInfo*/
-        1 && t4_value !== (t4_value = (Number(
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t4_value !== (t4_value = (Number(
           /*torrentInfo*/
           ctx[0].size
         ) / 1024 / 1024 / 1024).toFixed(2) + "G"))
@@ -9494,18 +9921,34 @@
         else {
           update_await_block_branch(info, ctx, dirty);
         }
-        if (dirty[0] & /*torrentInfo*/
-        1 && t14_value !== (t14_value = /*torrentInfo*/
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t14_value !== (t14_value = /*torrentInfo*/
         ctx[0].status.comments + ""))
           set_data(t14, t14_value);
-        if (dirty[0] & /*torrentInfo*/
-        1 && t17_value !== (t17_value = /*torrentInfo*/
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t17_value !== (t17_value = /*torrentInfo*/
         ctx[0].status.seeders + ""))
           set_data(t17, t17_value);
-        if (dirty[0] & /*torrentInfo*/
-        1 && t20_value !== (t20_value = /*torrentInfo*/
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t20_value !== (t20_value = /*torrentInfo*/
         ctx[0].status.leechers + ""))
           set_data(t20, t20_value);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(iconsize.$$.fragment, local);
+        transition_in(icondownload.$$.fragment, local);
+        transition_in(icontime.$$.fragment, local);
+        transition_in(iconcomment.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(iconsize.$$.fragment, local);
+        transition_out(icondownload.$$.fragment, local);
+        transition_out(icontime.$$.fragment, local);
+        transition_out(iconcomment.$$.fragment, local);
+        current = false;
       },
       d(detaching) {
         if (if_block0)
@@ -9522,9 +9965,13 @@
           detach(t2);
         if (detaching)
           detach(div7);
+        destroy_component(iconsize);
+        destroy_component(icondownload);
         info.block.d();
         info.token = null;
         info = null;
+        destroy_component(icontime);
+        destroy_component(iconcomment);
         mounted = false;
         run_all(dispose);
       }
@@ -9927,6 +10374,7 @@
   function create_then_block_1(ctx) {
     let svg;
     let path;
+    let svg_style_value;
     return {
       c() {
         svg = svg_element("svg");
@@ -9939,12 +10387,8 @@
         attr(svg, "height", "1em");
         attr(svg, "fill", "currentColor");
         attr(svg, "aria-hidden", "true");
-        set_style(
-          svg,
-          "color",
-          /*collectionMark*/
-          ctx[4] ? "orange" : "black"
-        );
+        attr(svg, "style", svg_style_value = /*collectionMark*/
+        ctx[4] ? "color:orange" : "");
         attr(svg, "xmlns", "http://www.w3.org/2000/svg");
       },
       m(target, anchor) {
@@ -9953,13 +10397,9 @@
       },
       p(ctx2, dirty) {
         if (dirty[0] & /*collectionMark*/
-        16) {
-          set_style(
-            svg,
-            "color",
-            /*collectionMark*/
-            ctx2[4] ? "orange" : "black"
-          );
+        16 && svg_style_value !== (svg_style_value = /*collectionMark*/
+        ctx2[4] ? "color:orange" : "")) {
+          attr(svg, "style", svg_style_value);
         }
       },
       d(detaching) {
@@ -9994,6 +10434,7 @@
     let div;
     let t3;
     let t4;
+    let current;
     let if_block0 = (
       /*$_CARD_SHOW*/
       ctx[10].free && /*torrentInfo*/
@@ -10063,6 +10504,7 @@
         append(div, t4);
         if (if_block5)
           if_block5.m(div, null);
+        current = true;
       },
       p(ctx2, dirty) {
         if (
@@ -10120,14 +10562,22 @@
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
+            if (dirty[0] & /*$_CARD_SHOW*/
+            1024) {
+              transition_in(if_block3, 1);
+            }
           } else {
             if_block3 = create_if_block_3(ctx2);
             if_block3.c();
+            transition_in(if_block3, 1);
             if_block3.m(div, t3);
           }
         } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
+          group_outros();
+          transition_out(if_block3, 1, 1, () => {
+            if_block3 = null;
+          });
+          check_outros();
         }
         if (
           /*$_CARD_SHOW*/
@@ -10135,14 +10585,22 @@
         ) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
+            if (dirty[0] & /*$_CARD_SHOW*/
+            1024) {
+              transition_in(if_block4, 1);
+            }
           } else {
             if_block4 = create_if_block_2(ctx2);
             if_block4.c();
+            transition_in(if_block4, 1);
             if_block4.m(div, t4);
           }
         } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
+          group_outros();
+          transition_out(if_block4, 1, 1, () => {
+            if_block4 = null;
+          });
+          check_outros();
         }
         if (
           /*$_CARD_SHOW*/
@@ -10150,15 +10608,37 @@
         ) {
           if (if_block5) {
             if_block5.p(ctx2, dirty);
+            if (dirty[0] & /*$_CARD_SHOW*/
+            1024) {
+              transition_in(if_block5, 1);
+            }
           } else {
             if_block5 = create_if_block_1(ctx2);
             if_block5.c();
+            transition_in(if_block5, 1);
             if_block5.m(div, null);
           }
         } else if (if_block5) {
-          if_block5.d(1);
-          if_block5 = null;
+          group_outros();
+          transition_out(if_block5, 1, 1, () => {
+            if_block5 = null;
+          });
+          check_outros();
         }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block3);
+        transition_in(if_block4);
+        transition_in(if_block5);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block3);
+        transition_out(if_block4);
+        transition_out(if_block5);
+        current = false;
       },
       d(detaching) {
         if (if_block0)
@@ -10554,6 +11034,7 @@
     let div3;
     let div0;
     let span0;
+    let iconsize;
     let t0;
     let t1_value = (Number(
       /*torrentInfo*/
@@ -10562,12 +11043,17 @@
     let t1;
     let t2;
     let div1;
+    let span1;
+    let icondownload;
     let t3;
     let div2;
     let span2;
     let promise_1;
+    let current;
     let mounted;
     let dispose;
+    iconsize = new Icon_size({});
+    icondownload = new Icon_download({});
     let info = {
       ctx,
       current: null,
@@ -10587,18 +11073,20 @@
         div3 = element("div");
         div0 = element("div");
         span0 = element("span");
-        span0.innerHTML = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="25" width="25" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; --darkreader-inline-fill: currentColor; --darkreader-inline-stroke: currentColor;"><path d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path><path d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"></path></svg>`;
+        create_component(iconsize.$$.fragment);
         t0 = text("\n                 ");
         t1 = text(t1_value);
         t2 = text("\n\n              \n                \n              \n              ");
         div1 = element("div");
-        div1.innerHTML = `<span class="icon_holder svelte-rhfb99"><svg viewBox="64 64 896 896" focusable="false" data-icon="download" width="1em" height="1em" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path></svg></span>`;
+        span1 = element("span");
+        create_component(icondownload.$$.fragment);
         t3 = text("\n\n              \n                \n              \n              ");
         div2 = element("div");
         span2 = element("span");
         info.block.c();
         attr(span0, "class", "icon_holder svelte-rhfb99");
         attr(div0, "class", "cl-btn svelte-rhfb99");
+        attr(span1, "class", "icon_holder svelte-rhfb99");
         attr(div1, "class", "cl-btn svelte-rhfb99");
         set_style(div1, "cursor", "pointer");
         attr(span2, "class", "icon_holder svelte-rhfb99");
@@ -10612,16 +11100,20 @@
         append(div4, div3);
         append(div3, div0);
         append(div0, span0);
+        mount_component(iconsize, span0, null);
         append(div0, t0);
         append(div0, t1);
         append(div3, t2);
         append(div3, div1);
+        append(div1, span1);
+        mount_component(icondownload, span1, null);
         append(div3, t3);
         append(div3, div2);
         append(div2, span2);
         info.block.m(span2, info.anchor = null);
         info.mount = () => span2;
         info.anchor = null;
+        current = true;
         if (!mounted) {
           dispose = [
             listen(
@@ -10642,8 +11134,8 @@
       },
       p(new_ctx, dirty) {
         ctx = new_ctx;
-        if (dirty[0] & /*torrentInfo*/
-        1 && t1_value !== (t1_value = (Number(
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t1_value !== (t1_value = (Number(
           /*torrentInfo*/
           ctx[0].size
         ) / 1024 / 1024 / 1024).toFixed(2) + "G"))
@@ -10657,9 +11149,23 @@
           update_await_block_branch(info, ctx, dirty);
         }
       },
+      i(local) {
+        if (current)
+          return;
+        transition_in(iconsize.$$.fragment, local);
+        transition_in(icondownload.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(iconsize.$$.fragment, local);
+        transition_out(icondownload.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching)
           detach(div4);
+        destroy_component(iconsize);
+        destroy_component(icondownload);
         info.block.d();
         info.token = null;
         info = null;
@@ -10762,8 +11268,7 @@
   }
   function create_if_block_2(ctx) {
     let div;
-    let img;
-    let img_src_value;
+    let icontime;
     let t0;
     let t1_value = `${/*_CT*/
   ctx[19].day} 日`;
@@ -10775,38 +11280,48 @@
     ctx[19].hour} 时` : ""
     );
     let t3;
+    let current;
+    icontime = new Icon_time({});
     return {
       c() {
         div = element("div");
-        img = element("img");
+        create_component(icontime.$$.fragment);
         t0 = text("\n             ");
         t1 = text(t1_value);
         t2 = space();
         t3 = text(t3_value);
-        if (!src_url_equal(img.src, img_src_value = CONFIG.ICON.TIME))
-          attr(img, "src", img_src_value);
-        attr(img, "alt", "SVG_Time");
         attr(div, "class", "card-line cl-btn svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
-        append(div, img);
+        mount_component(icontime, div, null);
         append(div, t0);
         append(div, t1);
         append(div, t2);
         append(div, t3);
+        current = true;
       },
       p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(icontime.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(icontime.$$.fragment, local);
+        current = false;
+      },
       d(detaching) {
         if (detaching)
           detach(div);
+        destroy_component(icontime);
       }
     };
   }
   function create_if_block_1(ctx) {
     let div;
-    let img0;
-    let img0_src_value;
+    let iconcomment;
     let t0;
     let b0;
     let t1_value = (
@@ -10815,8 +11330,8 @@
     );
     let t1;
     let t2;
-    let img1;
-    let img1_src_value;
+    let img0;
+    let img0_src_value;
     let t3;
     let b1;
     let t4_value = (
@@ -10825,8 +11340,8 @@
     );
     let t4;
     let t5;
-    let img2;
-    let img2_src_value;
+    let img1;
+    let img1_src_value;
     let t6;
     let b2;
     let t7_value = (
@@ -10834,68 +11349,79 @@
       ctx[0].status.leechers + ""
     );
     let t7;
+    let current;
+    iconcomment = new Icon_comment({});
     return {
       c() {
         div = element("div");
-        img0 = element("img");
+        create_component(iconcomment.$$.fragment);
         t0 = text("\n             \n            ");
         b0 = element("b");
         t1 = text(t1_value);
         t2 = text("\n              \n            ");
-        img1 = element("img");
+        img0 = element("img");
         t3 = text("\n             \n            ");
         b1 = element("b");
         t4 = text(t4_value);
         t5 = text("\n              \n            ");
-        img2 = element("img");
+        img1 = element("img");
         t6 = text("\n             \n            ");
         b2 = element("b");
         t7 = text(t7_value);
-        if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.COMMENT))
+        if (!src_url_equal(img0.src, img0_src_value = CONFIG.ICON.SEEDERS))
           attr(img0, "src", img0_src_value);
-        attr(img0, "alt", "SVG_Comment");
-        if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.SEEDERS))
+        attr(img0, "alt", "SVG_Seeders");
+        if (!src_url_equal(img1.src, img1_src_value = CONFIG.ICON.LEECHERS))
           attr(img1, "src", img1_src_value);
-        attr(img1, "alt", "SVG_Seeders");
-        if (!src_url_equal(img2.src, img2_src_value = CONFIG.ICON.LEECHERS))
-          attr(img2, "src", img2_src_value);
-        attr(img2, "alt", "SVG_Leechers");
+        attr(img1, "alt", "SVG_Leechers");
         attr(div, "class", "card-line svelte-rhfb99");
       },
       m(target, anchor) {
         insert(target, div, anchor);
-        append(div, img0);
+        mount_component(iconcomment, div, null);
         append(div, t0);
         append(div, b0);
         append(b0, t1);
         append(div, t2);
-        append(div, img1);
+        append(div, img0);
         append(div, t3);
         append(div, b1);
         append(b1, t4);
         append(div, t5);
-        append(div, img2);
+        append(div, img1);
         append(div, t6);
         append(div, b2);
         append(b2, t7);
+        current = true;
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*torrentInfo*/
-        1 && t1_value !== (t1_value = /*torrentInfo*/
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t1_value !== (t1_value = /*torrentInfo*/
         ctx2[0].status.comments + ""))
           set_data(t1, t1_value);
-        if (dirty[0] & /*torrentInfo*/
-        1 && t4_value !== (t4_value = /*torrentInfo*/
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t4_value !== (t4_value = /*torrentInfo*/
         ctx2[0].status.seeders + ""))
           set_data(t4, t4_value);
-        if (dirty[0] & /*torrentInfo*/
-        1 && t7_value !== (t7_value = /*torrentInfo*/
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t7_value !== (t7_value = /*torrentInfo*/
         ctx2[0].status.leechers + ""))
           set_data(t7, t7_value);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(iconcomment.$$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(iconcomment.$$.fragment, local);
+        current = false;
       },
       d(detaching) {
         if (detaching)
           detach(div);
+        destroy_component(iconcomment);
       }
     };
   }
@@ -10925,6 +11451,7 @@
     let t6;
     let t7;
     let t8;
+    let current;
     let mounted;
     let dispose;
     let if_block0 = (
@@ -11063,6 +11590,7 @@
         if (if_block4)
           if_block4.m(div3, null);
         ctx[27](div4);
+        current = true;
         if (!mounted) {
           dispose = [
             listen(
@@ -11088,18 +11616,18 @@
         }
       },
       p(ctx2, dirty) {
-        if (dirty[0] & /*torrentInfo*/
+        if (!current || dirty[0] & /*torrentInfo*/
         1 && !src_url_equal(img.src, img_src_value = /*torrentInfo*/
         ctx2[0]._categoryImg)) {
           attr(img, "src", img_src_value);
         }
-        if (dirty[0] & /*torrentInfo*/
-        1 && t1_value !== (t1_value = CONFIG.CATEGORY_NAME[
+        if ((!current || dirty[0] & /*torrentInfo*/
+        1) && t1_value !== (t1_value = CONFIG.CATEGORY_NAME[
           /*torrentInfo*/
           ctx2[0].category
         ] + ""))
           set_data(t1, t1_value);
-        if (dirty[0] & /*torrentInfo*/
+        if (!current || dirty[0] & /*torrentInfo*/
         1 && div0_data_href_value !== (div0_data_href_value = `https://${location.host}/browse?cat=` + /*torrentInfo*/
         ctx2[0].category)) {
           attr(div0, "data-href", div0_data_href_value);
@@ -11130,8 +11658,8 @@
             if_block1.m(div2, t4);
           }
         }
-        if (dirty[0] & /*index*/
-        4 && t5_value !== (t5_value = /*index*/
+        if ((!current || dirty[0] & /*index*/
+        4) && t5_value !== (t5_value = /*index*/
         ctx2[2] + 1 + ""))
           set_data(t5, t5_value);
         if (
@@ -11160,14 +11688,22 @@
         ) {
           if (if_block3) {
             if_block3.p(ctx2, dirty);
+            if (dirty[0] & /*$_CARD_SHOW, _hover*/
+            1088) {
+              transition_in(if_block3, 1);
+            }
           } else {
             if_block3 = create_if_block_12(ctx2);
             if_block3.c();
+            transition_in(if_block3, 1);
             if_block3.m(div3, t8);
           }
         } else if (if_block3) {
-          if_block3.d(1);
-          if_block3 = null;
+          group_outros();
+          transition_out(if_block3, 1, 1, () => {
+            if_block3 = null;
+          });
+          check_outros();
         }
         if (!/*$_CARD_SHOW*/
         (ctx2[10].all || /*_hover*/
@@ -11176,16 +11712,24 @@
         ctx2[11].mt.hide_gay == true)) {
           if (if_block4) {
             if_block4.p(ctx2, dirty);
+            if (dirty[0] & /*$_CARD_SHOW, _hover, torrentInfo, $_SITE_SETTING*/
+            3137) {
+              transition_in(if_block4, 1);
+            }
           } else {
             if_block4 = create_if_block$2(ctx2);
             if_block4.c();
+            transition_in(if_block4, 1);
             if_block4.m(div3, null);
           }
         } else if (if_block4) {
-          if_block4.d(1);
-          if_block4 = null;
+          group_outros();
+          transition_out(if_block4, 1, 1, () => {
+            if_block4 = null;
+          });
+          check_outros();
         }
-        if (dirty[0] & /*cardWidth*/
+        if (!current || dirty[0] & /*cardWidth*/
         2) {
           set_style(
             div4,
@@ -11194,12 +11738,12 @@
             ctx2[1] + "px"
           );
         }
-        if (dirty[0] & /*index*/
+        if (!current || dirty[0] & /*index*/
         4) {
           set_style(div4, "z-index", 1e4 - /*index*/
           ctx2[2]);
         }
-        if (dirty[0] & /*$_current_bgColor*/
+        if (!current || dirty[0] & /*$_current_bgColor*/
         512) {
           set_style(
             div4,
@@ -11208,15 +11752,25 @@
             ctx2[9]
           );
         }
-        if (dirty[0] & /*$_current_bgColor*/
+        if (!current || dirty[0] & /*$_current_bgColor*/
         512) {
           set_style(div4, "background", "linear-gradient( to bottom, " + /*_categoryColor*/
           (ctx2[24] ?? _defaultColor) + " 18px, " + /*$_current_bgColor*/
           ctx2[9] + " 18px)");
         }
       },
-      i: noop,
-      o: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(if_block3);
+        transition_in(if_block4);
+        current = true;
+      },
+      o(local) {
+        transition_out(if_block3);
+        transition_out(if_block4);
+        current = false;
+      },
       d(detaching) {
         if (detaching)
           detach(div4);
@@ -11416,8 +11970,8 @@
   }
   function get_each_context(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[33] = list[i];
-    child_ctx[35] = i;
+    child_ctx[35] = list[i];
+    child_ctx[37] = i;
     return child_ctx;
   }
   function create_if_block$1(ctx) {
@@ -11468,11 +12022,11 @@
       props: {
         index: (
           /*index*/
-          ctx[35]
+          ctx[37]
         ),
         torrentInfo: (
           /*info*/
-          ctx[33]
+          ctx[35]
         ),
         cardWidth: (
           /*CARD*/
@@ -11499,11 +12053,11 @@
         if (dirty[0] & /*infoList*/
         8)
           testmteam_changes.index = /*index*/
-          ctx[35];
+          ctx[37];
         if (dirty[0] & /*infoList*/
         8)
           testmteam_changes.torrentInfo = /*info*/
-          ctx[33];
+          ctx[35];
         if (dirty[0] & /*CARD*/
         1)
           testmteam_changes.cardWidth = /*CARD*/
@@ -11541,8 +12095,8 @@
     );
     const get_key = (ctx2) => (
       /*info*/
-      ctx2[33].id + /*index*/
-      ctx2[35]
+      ctx2[35].id + /*index*/
+      ctx2[37]
     );
     for (let i = 0; i < each_value.length; i += 1) {
       let child_ctx = get_each_context(ctx, each_value, i);
@@ -11682,20 +12236,20 @@
     };
   }
   function instance$1($$self, $$props, $$invalidate) {
-    let $_current_domain;
     let $_list_viewMode;
     let $_Global_Masonry;
     let $_card_layout;
     let $_animated;
+    let $_current_domain;
     let $_turnPage;
     let $_current_bgColor;
-    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(11, $_current_domain = $$value));
     component_subscribe($$self, _list_viewMode, ($$value) => $$invalidate(12, $_list_viewMode = $$value));
     component_subscribe($$self, _Global_Masonry, ($$value) => $$invalidate(13, $_Global_Masonry = $$value));
     component_subscribe($$self, _card_layout, ($$value) => $$invalidate(8, $_card_layout = $$value));
     component_subscribe($$self, _animated, ($$value) => $$invalidate(9, $_animated = $$value));
-    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(14, $_turnPage = $$value));
-    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(15, $_current_bgColor = $$value));
+    component_subscribe($$self, _current_domain, ($$value) => $$invalidate(14, $_current_domain = $$value));
+    component_subscribe($$self, _turnPage, ($$value) => $$invalidate(15, $_turnPage = $$value));
+    component_subscribe($$self, _current_bgColor, ($$value) => $$invalidate(16, $_current_bgColor = $$value));
     let { waterfallNode } = $$props;
     let { waterfallParentNode } = $$props;
     let { update_ORIGIN_TL_Node } = $$props;
@@ -11759,6 +12313,7 @@
         const list = data.data.data;
         $$invalidate(3, infoList = [...list]);
       }).then(() => {
+        var _a;
         PAGE.$setPage(payload.pageNumber);
         masonry2.reloadItems();
         $$invalidate(2, loading_first = false);
@@ -11767,6 +12322,7 @@
         masonry2.once("layoutComplete", () => {
           NEXUS_TOOLS();
         });
+        (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
       }).catch((error) => {
         console.error("网络请求错误:", error);
       });
@@ -11852,7 +12408,6 @@
     const originalPushState = history.pushState;
     function OverWritePushState() {
       history.pushState = function(state, title, path) {
-        var _a;
         $$invalidate(1, loading_hide = false);
         console.log(`%c ====> URL跳转劫持: %c${path}`, "color: cyan", "color: white");
         if (path.includes("/browse") || path == "/browse") {
@@ -11868,15 +12423,37 @@
           Object.assign(payload, searchApiList);
           console.log(payload);
           Request(payload, () => {
+            var _a;
             PAGE.$setPage(payload.pageNumber);
             update_ORIGIN_TL_Node();
+            let res = (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
+            let count = 0;
+            intervalID = setInterval(
+              () => {
+                var _a2;
+                if (res) {
+                  clearInterval(intervalID);
+                  console.log(`触发特殊次数: [${count}]`);
+                }
+                count += 1;
+                res = (_a2 = SITE[$_current_domain]) == null ? void 0 : _a2.special();
+                if (res) {
+                  clearInterval(intervalID);
+                  console.log(`触发特殊次数: [${count}]`);
+                }
+                if (count >= 5) {
+                  clearInterval(intervalID);
+                  console.log("======> 触发特殊次数: [${count}] setInterval 已取消. <======");
+                }
+              },
+              1e3
+            );
           });
           ChangeShowMode();
         } else {
           $$invalidate(4, waterfallParentNode.style.display = "none", waterfallParentNode);
           document.querySelector(originSelector).style.display = "block";
         }
-        (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
         originalPushState.apply(history, arguments);
       };
     }
@@ -11931,8 +12508,45 @@
         debounceLoad();
     }
     window.$$$turnPage = turnPage;
+    let intervalID;
+    function observerDomChange() {
+      console.log("------------------OB START------------------");
+      let attempts = 0;
+      const maxAttempts = 10;
+      const interval = 2e3;
+      const findTargetElement = () => {
+        attempts++;
+        const targetElement = document.querySelector(".ant-spin-container");
+        if (targetElement) {
+          console.log(`<special> 第 ${attempts} 次找到目标元素，开始监视...`);
+          startObserving(targetElement);
+        } else if (attempts < maxAttempts) {
+          console.log(`<special> 第 ${attempts} 次未找到目标元素，继续尝试...`);
+          setTimeout(findTargetElement, interval);
+        } else {
+          console.warn("<special> 未找到 .ant-spin-container, M-Team 特殊函数失效");
+        }
+      };
+      const startObserving = (targetElement) => {
+        const observer = new MutationObserver((mutationsList, observer2) => {
+          mutationsList.forEach((mutation) => {
+            var _a;
+            if (mutation.type === "childList" || mutation.type === "attributes") {
+              console.log("<special> <-- 原表格 DOM 发生了变化 -->");
+              (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
+            }
+          });
+        });
+        const config = {
+          attributes: true,
+          childList: true,
+          subtree: false
+        };
+        observer.observe(targetElement, config);
+      };
+      findTargetElement();
+    }
     onMount(() => {
-      var _a;
       $$invalidate(7, masonry2 = new Masonry(
         waterfallNode,
         {
@@ -11960,8 +12574,12 @@
           scan_and_launch();
       });
       RequestExample();
-      (_a = SITE[$_current_domain]) == null ? void 0 : _a.special();
       OverWritePushState();
+      observerDomChange();
+    });
+    onDestroy(() => {
+      if (intervalID)
+        clearInterval(intervalID);
     });
     $$self.$$set = ($$props2) => {
       if ("waterfallNode" in $$props2)
@@ -12028,10 +12646,12 @@
     let iframe_src_value;
     let t;
     let div0;
+    let iconroundclose;
     let div2_transition;
     let current;
     let mounted;
     let dispose;
+    iconroundclose = new Icon_roundClose({});
     return {
       c() {
         div2 = element("div");
@@ -12039,7 +12659,7 @@
         iframe = element("iframe");
         t = space();
         div0 = element("div");
-        div0.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"><circle cx="12" cy="12" r="10" stroke="#1C274C" stroke-width="1.5"></circle><path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path></g></svg>`;
+        create_component(iconroundclose.$$.fragment);
         if (!src_url_equal(iframe.src, iframe_src_value = /*$_iframe_url*/
         ctx[2]))
           attr(iframe, "src", iframe_src_value);
@@ -12052,11 +12672,11 @@
           /*$_current_domain*/
           ctx[3]
         ].Iframe_Width : 1e3) + "px");
-        attr(iframe, "class", "svelte-12ghpfg");
-        attr(div0, "class", "_iframeCloseBtn svelte-12ghpfg");
-        attr(div1, "class", "_iframe svelte-12ghpfg");
+        attr(iframe, "class", "svelte-1exar3b");
+        attr(div0, "class", "_iframeCloseBtn svelte-1exar3b");
+        attr(div1, "class", "_iframe svelte-1exar3b");
         attr(div2, "id", "_iframe");
-        attr(div2, "class", "svelte-12ghpfg");
+        attr(div2, "class", "svelte-1exar3b");
       },
       m(target, anchor) {
         insert(target, div2, anchor);
@@ -12065,6 +12685,7 @@
         ctx[7](iframe);
         append(div1, t);
         append(div1, div0);
+        mount_component(iconroundclose, div0, null);
         current = true;
         if (!mounted) {
           dispose = [
@@ -12110,6 +12731,7 @@
       i(local) {
         if (current)
           return;
+        transition_in(iconroundclose.$$.fragment, local);
         add_render_callback(() => {
           if (!current)
             return;
@@ -12120,6 +12742,7 @@
         current = true;
       },
       o(local) {
+        transition_out(iconroundclose.$$.fragment, local);
         if (!div2_transition)
           div2_transition = create_bidirectional_transition(div2, fade, { duration: 300 }, false);
         div2_transition.run(0);
@@ -12129,6 +12752,7 @@
         if (detaching)
           detach(div2);
         ctx[7](null);
+        destroy_component(iconroundclose);
         if (detaching && div2_transition)
           div2_transition.end();
         mounted = false;
@@ -12212,9 +12836,9 @@
       }
     };
   }
-  function getDOMElement(selector, maxRetries = 5, interval2 = 200, func2 = (el) => {
+  function getDOMElement(selector2, maxRetries = 5, interval = 200, func2 = (el) => {
   }) {
-    const element2 = document.querySelector(selector);
+    const element2 = document.querySelector(selector2);
     if (element2) {
       func2(element2);
       return element2;
@@ -12222,12 +12846,12 @@
     if (maxRetries > 0) {
       setTimeout(
         () => {
-          getDOMElement(selector, maxRetries - 1, interval2, func2);
+          getDOMElement(selector2, maxRetries - 1, interval, func2);
         },
-        interval2
+        interval
       );
     } else {
-      console.log(`无法找到元素: ${selector}`);
+      console.log(`无法找到元素: ${selector2}`);
     }
   }
   function instance($$self, $$props, $$invalidate) {
@@ -12258,17 +12882,27 @@
     }
     function iframeJump2Info() {
       let count = 0;
+      let error_count = 0;
+      let dom_trigger;
       intervalID = setInterval(
         () => {
           var _a;
-          const dom = (_a = iframeDom == null ? void 0 : iframeDom.contentDocument) == null ? void 0 : _a.querySelector(".app-content__inner");
-          count += 1;
-          const dom_trigger = iframeDom.contentDocument.querySelector(".ant-descriptions-view .ant-descriptions-item-label span");
-          console.log(dom_trigger.textContent, dom_trigger.textContent.length);
-          if (dom) {
-            dom.scrollIntoView();
+          try {
+            const dom = (_a = iframeDom == null ? void 0 : iframeDom.contentDocument) == null ? void 0 : _a.querySelector(".app-content__inner");
+            count += 1;
+            dom_trigger = iframeDom.contentDocument.querySelector(".ant-descriptions-view .ant-descriptions-item-label span");
+            if (dom) {
+              dom.scrollIntoView();
+            }
+            console.log(` iframeJump2Info ==> 轮询次数: [${count}] 轮询文本: [${dom_trigger.textContent}] 轮询长度: [${dom_trigger.textContent.length}] -----`);
+          } catch (error) {
+            error_count++;
+            console.warn(`DOM丢失: ${error_count}`);
+            if (error_count >= 5) {
+              clearInterval(intervalID);
+              console.log("------> setInterval 已取消, 请忽略 DOM 丢失的 Errors & Warns. <------");
+            }
           }
-          console.log(`[${count}] iframeJump2Info -----`);
           if (dom_trigger.textContent.length)
             clearInterval(intervalID);
         },
@@ -12345,18 +12979,50 @@
   }
   console.log("________PT-TorrentList-Masonry________");
   if (GET_SITE_ARCHITECTURE() == "NEW_MT") {
-    if (location.pathname.includes("/browse")) {
-      new Main_newMT({
-        target: (() => {
-          const app2 = document.createElement("div");
-          document.body.append(app2);
-          return app2;
-        })()
-      });
+    let app2;
+    if (location.pathname.includes("/browse") || location.pathname == "/browse") {
+      get_store_value(_SITE_SETTING).mt.path_in_browse = true;
     }
-    new BtnReload({
-      target: document.body
-    });
+    if (location.pathname.includes("/browse")) {
+      if (!app2) {
+        app2 = new Main_newMT({
+          target: (() => {
+            const app3 = document.createElement("div");
+            document.body.append(app3);
+            return app3;
+          })()
+        });
+      }
+    }
+    const originalPushState = history.pushState;
+    history.pushState = function(state, title, path) {
+      console.log(
+        `%c [main] ====> URL跳转劫持: %c${path}`,
+        "color: green",
+        "color: white"
+      );
+      if (path.includes("/browse") || path == "/browse") {
+        let tmp = get_store_value(_SITE_SETTING);
+        tmp.mt.path_in_browse = true;
+        _SITE_SETTING.set(tmp);
+        console.log("侧边栏: ", get_store_value(_SITE_SETTING).mt.path_in_browse);
+        if (!app2) {
+          app2 = new Main_newMT({
+            target: (() => {
+              const app3 = document.createElement("div");
+              document.body.append(app3);
+              return app3;
+            })()
+          });
+        }
+      } else {
+        let tmp = get_store_value(_SITE_SETTING);
+        tmp.mt.path_in_browse = false;
+        _SITE_SETTING.set(tmp);
+        console.log("侧边栏: ", get_store_value(_SITE_SETTING).mt.path_in_browse);
+      }
+      originalPushState.apply(history, arguments);
+    };
   } else {
     const list_selector = GET_TORRENT_LIST_SELECTOR();
     const _ORIGIN_TL_Node = document.querySelector(list_selector);
