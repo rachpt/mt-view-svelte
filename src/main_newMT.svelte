@@ -322,5 +322,17 @@
     right: 10px;
 
     border-radius: 40px;
+    transition: all .5s;;
+
+    /* 悬浮 */
+    &:hover{
+      opacity: .7;
+      transform: scale(1.2);
+    }
+    /* 点击(长按才明显) */
+    &:active{
+      opacity: .9;
+      transform: scale(1.9);
+    }
   }
 </style>
