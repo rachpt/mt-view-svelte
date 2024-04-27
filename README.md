@@ -58,6 +58,7 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
 
 - 图片懒加载: 节省性能
 - 开启动画比关闭动画节省性能: 重绘次数减少
+- **原生的种子列表同样支持悬浮大图和内置种子详情窗口**
 - 填充文本...
 
 ## 其他信息

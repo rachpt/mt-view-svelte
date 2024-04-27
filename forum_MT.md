@@ -1,4 +1,10 @@
+<!-- 标题 -->
 # PT 瀑布流视图 [丰富配置|原版体验|屏蔽Gay片|悬浮预览|小窗详情...]
+
+<!-- 更新只更新下面的部分 -->
+# 最新版本: 1.1.10(2024.4.27)
+## BUG 反馈 TG 群组: [PT_Masonry](https://t.me/+wLPO7JyNz_o1YWRl)
+
 # 链接: [https://greasyfork.org/zh-CN/scripts/470821](https://greasyfork.org/zh-CN/scripts/470821)
 
 | 目前支持站点: Kame MT 
@@ -32,13 +38,11 @@
 
 (可能会时常调整)
 
-<!-- TODO: 这里要调整 -->
-
 - 手动整理卡片: 
   1. 可以点击卡片之间的缝隙  
   2. 可以点击侧边栏的整理按钮  
 - 双击切换按钮可以重置瀑布流布局  
-  <span style="color:orange;">改变浏览器宽度的话布局会乱</span>
+  *改变浏览器宽度的话布局会乱*
 
     ![pic_flowPanel](https://raw.githubusercontent.com/KesaubeEire/PT_Masonry_View_Svelte/newMT/readme/pic_flowPanel.png)
 
@@ -51,6 +55,7 @@
 
 - 图片懒加载: 节省性能
 - 开启动画比关闭动画节省性能: 重绘次数减少
+- **原生的种子列表同样支持悬浮大图和内置种子详情窗口**
 - 填充文本...
 
 ## 其他信息
@@ -67,5 +72,3 @@
 有些渠道和平台可能平常不会关注  
 如果有遇到 bug 或者有什么其他功能的需求或者建议  
 欢迎来 TG 群组反馈: [PT_Masonry](https://t.me/+wLPO7JyNz_o1YWRl)
-
-# 最新版本: 1.1.10(2024.4.27)
