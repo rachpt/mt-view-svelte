@@ -14,6 +14,8 @@
   import _PicNoLOGO from "../assets/pic_no.svg";
   import IconComment from "../assets/icon_comment.svelte";
   import IconTime from "../assets/icon_time.svelte";
+  import IconSize from "../assets/icon_size.svelte";
+  import IconDownload from "../assets/icon_download.svelte";
 
   // ------------------------------------------------
 
@@ -457,26 +459,7 @@
             <!-- 大小 -->
             <div class="cl-btn">
               <span class="icon_holder">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  height="25"
-                  width="25"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="
-                    vertical-align: middle; 
-                    --darkreader-inline-fill: currentColor; 
-                    --darkreader-inline-stroke: currentColor;"
-                >
-                  <path
-                    d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
-                  />
-                  <path
-                    d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"
-                  />
-                </svg>
+                <IconSize></IconSize>
               </span>
               &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
                 2,
@@ -492,20 +475,7 @@
               style="cursor: pointer;"
             >
               <span class="icon_holder">
-                <svg
-                  viewBox="64 64 896 896"
-                  focusable="false"
-                  data-icon="download"
-                  width="1em"
-                  height="1em"
-                  fill="currentColor"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
-                  />
-                </svg>
+                <IconDownload></IconDownload>
               </span>
               <!-- &nbsp;下载 -->
             </div>
@@ -649,26 +619,7 @@
               <!-- 大小 -->
               <div class="cl-btn">
                 <span class="icon_holder">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 24 24"
-                    height="25"
-                    width="25"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style="
-                    vertical-align: middle; 
-                    --darkreader-inline-fill: currentColor; 
-                    --darkreader-inline-stroke: currentColor;"
-                  >
-                    <path
-                      d="M12 5c-3.859 0-7 3.141-7 7s3.141 7 7 7 7-3.141 7-7-3.141-7-7-7zm0 12c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
-                    />
-                    <path
-                      d="M12 9c-1.627 0-3 1.373-3 3s1.373 3 3 3 3-1.373 3-3-1.373-3-3-3z"
-                    />
-                  </svg>
+                  <IconSize></IconSize>
                 </span>
                 &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
                   2,
@@ -684,20 +635,7 @@
                 style="cursor: pointer;"
               >
                 <span class="icon_holder">
-                  <svg
-                    viewBox="64 64 896 896"
-                    focusable="false"
-                    data-icon="download"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M505.7 661a8 8 0 0012.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
-                    />
-                  </svg>
+                  <IconDownload></IconDownload>
                 </span>
                 <!-- &nbsp;下载 -->
               </div>
