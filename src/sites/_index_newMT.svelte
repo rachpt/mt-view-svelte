@@ -569,36 +569,50 @@
   /** 监视原表格是否有 DOM 变化 */
   function observerDomChange() {
     console.log("------------------OB START------------------");
-    // 要监视的目标元素
-    const targetElement = document.querySelector(".ant-spin-container");
+    let attempts = 0; // 当前已尝试次数
+    const maxAttempts = 10; // 尝试次数上限
+    const interval = 2000; // 2 秒
 
-    // 创建一个 Mutation Observer 实例
-    const observer = new MutationObserver((mutationsList, observer) => {
-      // 遍历每一个变化
-      mutationsList.forEach((mutation) => {
-        // 检查变化类型
-        if (mutation.type === "childList" || mutation.type === "attributes") {
-          console.log("<-- 原表格 DOM 发生了变化 -->");
-          // 在这里可以执行你的操作，比如重新渲染、更新状态等
+    // 寻找目标元素
+    const findTargetElement = () => {
+      attempts++;
+      const targetElement = document.querySelector(".ant-spin-container");
+      if (targetElement) {
+        console.log(`<special> 第 ${attempts} 次找到目标元素，开始监视...`);
+        startObserving(targetElement);
+      } else if (attempts < maxAttempts) {
+        console.log(`<special> 第 ${attempts} 次未找到目标元素，继续尝试...`);
+        setTimeout(findTargetElement, interval);
+      } else {
+        console.warn(
+          "<special> 未找到 .ant-spin-container, M-Team 特殊函数失效",
+        );
+      }
+    };
 
-          // NOTE: 如果站点有特殊操作, 这里执行
-          // console.log(`[Special]<MTeam> ===> Mutation | target: ${mutation.target}<${mutation.type}>`);
-          // console.log(`target:`);
-          // console.log(mutation.target);
-          // console.log(`type: <${mutation.type}>`);
-          GLOBAL_SITE[$_current_domain]?.special();
-        }
+    // 找到后开始 OB
+    const startObserving = (targetElement) => {
+      const observer = new MutationObserver((mutationsList, observer) => {
+        mutationsList.forEach((mutation) => {
+          if (mutation.type === "childList" || mutation.type === "attributes") {
+            console.log("<special> <-- 原表格 DOM 发生了变化 -->");
+            // NOTE: 如果站点有特殊操作, 这里执行
+            GLOBAL_SITE[$_current_domain]?.special();
+          }
+        });
       });
-    });
 
-    // 配置 Mutation Observer 监视的选项
-    const config = { attributes: true, childList: true, subtree: false };
+      // 配置 Mutation Observer 监视的选项
+      const config = { attributes: true, childList: true, subtree: false };
 
-    // 开始监视目标元素
-    observer.observe(targetElement, config);
+      // 开始监视目标元素
+      observer.observe(targetElement, config);
 
-    // 在不需要时停止监视
-    // observer.disconnect();
+      // 在不需要时停止监视
+      // observer.disconnect();
+    };
+
+    findTargetElement();
   }
 
   // 7. onMount 启动 ------------------------------------------------
