@@ -62,6 +62,6 @@ button#sort_masonry {
 }
 
 /* newMT: 菜单栏专用*/
-.ant-menu-submenu {
+.ant-menu-submenu-popup {
   z-index: 12000;
 }
