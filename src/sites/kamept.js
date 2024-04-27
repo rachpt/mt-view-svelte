@@ -53,7 +53,7 @@ const CONFIG = {
 
   /** NOTE: 站点特殊操作 */
   special: function () {
-    // 给龟站的搜索箱默认设置为"不扩展", 否则平常占地方(from tg by LNN)
+    // 1. 给龟站的搜索箱默认设置为"不扩展", 否则平常占地方(from tg by LNN)
     // $('ksearchboxmain').style.display = 'none'
     /**兼容 $ 没有的站点
      * @param {*} id 
@@ -64,19 +64,19 @@ const CONFIG = {
     }
     legacy$('ksearchboxmain') ? legacy$('ksearchboxmain').style.display = 'none' : null;
 
-    // "点此查看即将断种资源" 文字设置为黑色(from tg by LNN)
+    // 2. "点此查看即将断种资源" 文字设置为黑色(from tg by LNN)
     const link = document.querySelector('a[href="?sort=7&type=asc&seeders_begin=1"]');
     // @ts-ignore
     link ? link.childNodes[0].style.color = 'black' : null;
 
 
-    // 让勋章不被卡片遮盖
+    // 3. 让勋章不被卡片遮盖
     let np = document.querySelector('img#nexus-preview');
     if (np)
       np.style.zIndex = 12000;
     // -------------------------------
 
-    // 原表格点击图片显示 iframe
+    // 4. 原表格点击图片显示 iframe
     table_Iframe_Set()
   },
 
