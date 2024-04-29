@@ -78,7 +78,7 @@ export const _show_nexus_pic = persistStore('_show_nexus_pic', 1);
 export const _trigger_nexus_pic = persistStore('_trigger_nexus_pic', 1);
 
 /** 是否延迟显示悬浮预览大图 */
-export const _delay_nexus_pic = persistStore('_delay_nexus_pic', 600);
+export const _delay_nexus_pic = persistStore('_delay_nexus_pic', 0);
 
 // 卡片类变量 -------------------------------------
 

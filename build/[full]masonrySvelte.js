@@ -2,7 +2,7 @@
 // @name            PT种子列表瀑布流视图(Svelte重构)
 // @name:en         PT_Masonry_View_Svelte
 // @namespace       https://github.com/KesaubeEire/PT_Masonry_View_Svelte
-// @version         1.1.10
+// @version         1.1.11
 // @author          Kesa
 // @description     PT种子列表无限下拉瀑布流视图(Svelte重构)
 // @description:en  PT Masonry View by Svelte.
@@ -2747,7 +2747,7 @@
   const _show_debug_btn = persistStore("_show_debug_btn", 0);
   const _show_nexus_pic = persistStore("_show_nexus_pic", 1);
   const _trigger_nexus_pic = persistStore("_trigger_nexus_pic", 1);
-  const _delay_nexus_pic = persistStore("_delay_nexus_pic", 600);
+  const _delay_nexus_pic = persistStore("_delay_nexus_pic", 0);
   const _animated = persistStore("_animated", true);
   const _card_layout = persistStore("_card_layout", {
     // 列数
@@ -9234,13 +9234,13 @@
   }
   function get_each_context$1(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[38] = list[i];
+    child_ctx[39] = list[i];
     child_ctx[2] = i;
     return child_ctx;
   }
   function get_each_context_1(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[38] = list[i];
+    child_ctx[39] = list[i];
     child_ctx[2] = i;
     return child_ctx;
   }
@@ -9712,8 +9712,8 @@
       pending: create_pending_block_1,
       then: create_then_block_1,
       catch: create_catch_block_1,
-      value: 36,
-      error: 37
+      value: 37,
+      error: 38
     };
     handle_promise(promise_1 = /*promise*/
     ctx[5], info);
@@ -10346,7 +10346,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[37].message + ""
+      ctx[38].message + ""
     );
     let t;
     return {
@@ -10362,7 +10362,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
         32 && t_value !== (t_value = /*error*/
-        ctx2[37].message + ""))
+        ctx2[38].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -11062,8 +11062,8 @@
       pending: create_pending_block,
       then: create_then_block,
       catch: create_catch_block,
-      value: 36,
-      error: 37
+      value: 37,
+      error: 38
     };
     handle_promise(promise_1 = /*promise*/
     ctx[5], info);
@@ -11178,7 +11178,7 @@
     let p;
     let t_value = (
       /*error*/
-      ctx[37].message + ""
+      ctx[38].message + ""
     );
     let t;
     return {
@@ -11194,7 +11194,7 @@
       p(ctx2, dirty) {
         if (dirty[0] & /*promise*/
         32 && t_value !== (t_value = /*error*/
-        ctx2[37].message + ""))
+        ctx2[38].message + ""))
           set_data(t, t_value);
       },
       d(detaching) {
@@ -11812,6 +11812,14 @@
     component_subscribe($$self, _CARD_SHOW, ($$value) => $$invalidate(10, $_CARD_SHOW = $$value));
     component_subscribe($$self, _SITE_SETTING, ($$value) => $$invalidate(11, $_SITE_SETTING = $$value));
     component_subscribe($$self, _trigger_nexus_pic, ($$value) => $$invalidate(12, $_trigger_nexus_pic = $$value));
+    const auth = localStorage.getItem("auth") || "";
+    const headers = {
+      // Formdata 这里不能用下面这个 content-type
+      // "Content-Type": "application/json;charset=UTF-8",
+      // 这个才是 Formdata 该用的, 但是不如不加
+      // 'Content-Type': 'multipart/form-data; charset=UTF-8',
+      Authorization: auth
+    };
     function fetchData(api, payload, func2) {
       if (!CONFIG.API[api]) {
         console.warn(`没有名为 ${api} 的 API 接口.`);
@@ -11819,7 +11827,7 @@
       }
       const url = location.origin + CONFIG.API[api].url;
       const method = CONFIG.API[api].method;
-      fetch(url, { method, body: payload }).then((response) => response.json()).then((data) => {
+      fetch(url, { method, headers, body: payload }).then((response) => response.json()).then((data) => {
         func2(data);
       }).catch((error) => console.error(error));
     }
@@ -11872,24 +11880,8 @@
     formdata.append("id", torrentInfo.id);
     formdata.append("make", !collectionMark);
     let promise2;
-    async function torrent_collection(api, payload, func2) {
-      if (!CONFIG.API[api]) {
-        console.warn(`没有名为 ${api} 的 API 接口.`);
-        return;
-      }
-      const url = location.origin + CONFIG.API[api].url;
-      const method = CONFIG.API[api].method;
-      const res = await fetch(url, { method, body: payload });
-      const json = await res.json();
-      if (res.ok) {
-        func2(json);
-        return json;
-      } else {
-        throw new Error(json);
-      }
-    }
     function handleCollection() {
-      $$invalidate(5, promise2 = torrent_collection("collection", formdata, collectionCallBack));
+      $$invalidate(5, promise2 = fetchData("collection", formdata, collectionCallBack));
     }
     function collectionCallBack(data) {
       console.log(data);
@@ -11970,8 +11962,8 @@
   }
   function get_each_context(ctx, list, i) {
     const child_ctx = ctx.slice();
-    child_ctx[35] = list[i];
-    child_ctx[37] = i;
+    child_ctx[37] = list[i];
+    child_ctx[39] = i;
     return child_ctx;
   }
   function create_if_block$1(ctx) {
@@ -12022,11 +12014,11 @@
       props: {
         index: (
           /*index*/
-          ctx[37]
+          ctx[39]
         ),
         torrentInfo: (
           /*info*/
-          ctx[35]
+          ctx[37]
         ),
         cardWidth: (
           /*CARD*/
@@ -12053,11 +12045,11 @@
         if (dirty[0] & /*infoList*/
         8)
           testmteam_changes.index = /*index*/
-          ctx[37];
+          ctx[39];
         if (dirty[0] & /*infoList*/
         8)
           testmteam_changes.torrentInfo = /*info*/
-          ctx[35];
+          ctx[37];
         if (dirty[0] & /*CARD*/
         1)
           testmteam_changes.cardWidth = /*CARD*/
@@ -12095,8 +12087,8 @@
     );
     const get_key = (ctx2) => (
       /*info*/
-      ctx2[35].id + /*index*/
-      ctx2[37]
+      ctx2[37].id + /*index*/
+      ctx2[39]
     );
     for (let i = 0; i < each_value.length; i += 1) {
       let child_ctx = get_each_context(ctx, each_value, i);
@@ -12296,6 +12288,11 @@
       return widthCard;
     }
     let infoList = [];
+    const auth = localStorage.getItem("auth") || "";
+    const headers = {
+      "Content-Type": "application/json;charset=UTF-8",
+      Authorization: auth
+    };
     function RequestExample() {
       console.log("当前页面 path:	", location.pathname);
       let pageSize = getPageSize();
@@ -12304,9 +12301,7 @@
       console.log(payload);
       fetch(searchApiURL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8"
-        },
+        headers,
         body: JSON.stringify(payload)
       }).then((response) => response.json()).then((data) => {
         console.log(data);
@@ -12331,9 +12326,7 @@
       console.log("当前页面 path:	", location.pathname);
       fetch(searchApiURL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8"
-        },
+        headers,
         body: JSON.stringify(payload)
       }).then((response) => response.json()).then((data) => {
         console.log(data);
@@ -12485,9 +12478,7 @@
       console.log(payload);
       fetch(searchApiURL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8"
-        },
+        headers,
         body: JSON.stringify(payload)
       }).then((response) => response.json()).then((data) => {
         console.log(data);

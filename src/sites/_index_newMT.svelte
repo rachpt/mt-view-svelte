@@ -158,6 +158,16 @@
   //   console.log(infoList);
   // }
 
+  //NOTE: 24.4.28 M-Team 改版后需要 Authorization
+  // 从LocalStorage获取auth内容
+  const auth = localStorage.getItem("auth") || "";
+
+  /** Headers */
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+    Authorization: auth,
+  };
+
   /**初始化 search 请求->已封装好载荷(payload)*/
   function RequestExample() {
     // ------------ 页面请求
@@ -179,9 +189,7 @@
 
     fetch(searchApiURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-      },
+      headers,
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
@@ -249,9 +257,7 @@
 
     fetch(searchApiURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-      },
+      headers,
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
@@ -513,9 +519,7 @@
     // -- 2. fetch payload, 并在获得后更新 List
     fetch(searchApiURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-      },
+      headers,
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())

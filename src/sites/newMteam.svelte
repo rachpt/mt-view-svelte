@@ -18,6 +18,20 @@
   import IconDownload from "../assets/icon_download.svelte";
 
   // ------------------------------------------------
+  //NOTE: 24.4.28 M-Team 改版后需要 Authorization
+  // 从LocalStorage获取auth内容
+  const auth = localStorage.getItem("auth") || "";
+
+  /** Headers */
+  const headers = {
+    // Formdata 这里不能用下面这个 content-type
+    // "Content-Type": "application/json;charset=UTF-8",
+
+    // 这个才是 Formdata 该用的, 但是不如不加
+    // 'Content-Type': 'multipart/form-data; charset=UTF-8',
+
+    Authorization: auth,
+  };
 
   /**fetch API 处理
    * @param api API名称
@@ -32,7 +46,9 @@
     const url = location.origin + config.API[api].url;
     const method = config.API[api].method;
 
-    fetch(url, { method, body: payload })
+    // console.log(payload);
+
+    fetch(url, { method, headers, body: payload })
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
@@ -164,27 +180,10 @@
   /**svelte promise await*/
   let promise;
 
-  async function torrent_collection(api, payload, func) {
-    if (!config.API[api]) {
-      console.warn(`没有名为 ${api} 的 API 接口.`);
-      return;
-    }
-    const url = location.origin + config.API[api].url;
-    const method = config.API[api].method;
-
-    const res = await fetch(url, { method, body: payload });
-    const json = await res.json();
-
-    if (res.ok) {
-      func(json);
-      return json;
-    } else {
-      throw new Error(json);
-    }
-  }
-
+  /**收藏请求 */
   function handleCollection() {
-    promise = torrent_collection("collection", formdata, collectionCallBack);
+    // console.log(formdata);
+    promise = fetchData("collection", formdata, collectionCallBack);
   }
 
   function collectionCallBack(data) {
