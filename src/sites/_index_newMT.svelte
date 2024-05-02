@@ -323,6 +323,7 @@
     let pageNumber = Number(urlObject.searchParams.get("pageNumber")) || 1;
     let pageSize = getPageSize(100);
     let sortParam = urlObject.searchParams.get("sort");
+    let onlyFav = Number(urlObject.searchParams.get("onlyFav"));
 
     let output = {};
 
@@ -332,6 +333,7 @@
     if (standards.length) output.standards = standards;
     if (pageNumber) output.pageNumber = pageNumber;
     if (pageSize) output.pageSize = pageSize;
+    if (onlyFav) output.onlyFav = onlyFav;
 
     // NOTE: 这里存在将来变更的隐患捏
     if (sortParam) {
