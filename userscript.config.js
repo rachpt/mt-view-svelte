@@ -22,11 +22,15 @@ export const config = {
     "https://test2.m-team.cc/*",
   ],
   exclude: [
+    // np
     "*/offers.php*",
     "*/index.php*",
     "*/forums.php*",
     "*/viewrequests.php*",
     "*/seek.php*",
+
+    // M-Team
+    "*m-team*/detail/*",
   ],
 
   // 暂时弃用这个设计, 可能没啥用还容易导致 bug
