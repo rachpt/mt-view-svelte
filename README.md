@@ -107,6 +107,7 @@ https://github.com/KesaubeEire/PT_Masonry_View_Svelte/assets/20382002/3e827f13-2
   - [x] 侧边栏拓展: 整理瀑布流 [2024.4.18 v1.1.10]  
 
 ## FIX HISTORY
+- js 丢失 svelte store 环境的bug => 论坛编辑帖子会崩溃 (C.state 相关) <套了一层 Svelte 解决> [2024.5.11 v1.1.12]
 - M-Team api 更新修复 [2024.4.29 v1.1.11]
 - Kame 不知道为什么图片的底边 margin 会多出来 3px, 这里抵消掉 [2024.4.27 v1.1.10]
 - 调整 ant-menu-sub-popup 的 css 样式层级 [2024.4.27 v1.1.10]
