@@ -70,6 +70,29 @@
     CHANGE_CARD_LAYOUT();
   }
 
+  // 提取url中的排序参数， 暴露queryParams供后续请求使用
+  const queryRawParams = Object.fromEntries(
+    new URL(location.href).searchParams.entries(),
+  );
+  const queryParams = {};
+  if (queryRawParams.sort) {
+    const [field = "", direction = ""] = queryRawParams.sort.split(":");
+    
+    switch (field.toLowerCase()) {
+      case "size":
+        queryParams.sortField = "SIZE";
+        break;
+      case "createddate":
+        queryParams.sortField = "CREATED_DATE";
+        break;
+      case "status":
+        queryParams.sortField = "SEEDERS";
+        break;
+    }
+    if (direction === "descend") queryParams.sortDirection = "DESC";
+    else if (direction === "ascend") queryParams.sortDirection = "ASC";
+  }
+
   // loading 相关变量
   /** loading 样式变化 trigger 声明 */
   let loading_hide = false;
@@ -176,6 +199,7 @@
     let pageSize = getPageSize();
 
     const payload = {
+      ...queryParams,
       pageNumber: 1,
       pageSize,
       visible: 1,
@@ -403,6 +427,7 @@
 
         // 装载 payload
         const payload = {
+          ...queryParams,
           pageNumber: 1,
           pageSize: pageSizeParam,
           visible: 1,
@@ -504,6 +529,7 @@
   function loadNextPage() {
     // -- 1. 对 目标页数页数 & 单页数量 进行统计 -> 打包要 POST 的 payload
     const payload = {
+      ...queryParams,
       pageNumber: PAGE.$getCurrentPage() + 1,
       pageSize: getPageSize(),
       visible: 1,
