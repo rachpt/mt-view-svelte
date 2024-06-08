@@ -1,4 +1,4 @@
-import { _iframe_switch, _iframe_url } from '../stores'
+import { _iframe_switch, _iframe_url } from "../stores";
 export { CONFIG as config };
 const CONFIG = {
   /** 默认的种子表格 dom selector */
@@ -16,28 +16,27 @@ const CONFIG = {
   /** 如果站点有必要设置分类颜色, 可以用自定义的 */
   CATEGORY: {
     // [粉色]AV: 同人AV 男娘 VR同人
-    410: '#FF66FF',
-    413: '#FF66FF',
-    414: '#FF66FF',
+    410: "#FF66FF",
+    413: "#FF66FF",
+    414: "#FF66FF",
     // [绿色]图: cos图 画师CG 游戏CG 单行本 同人志
-    417: '#59CD90',
-    433: '#59CD90',
-    434: '#59CD90',
-    424: '#59CD90',
-    435: '#59CD90',
+    417: "#59CD90",
+    433: "#59CD90",
+    434: "#59CD90",
+    424: "#59CD90",
+    435: "#59CD90",
     // [黄色]动画: 里番 2D 3D
-    411: '#FAC05E',
-    419: '#FAC05E',
-    423: '#FAC05E',
+    411: "#FAC05E",
+    419: "#FAC05E",
+    423: "#FAC05E",
     // [紫色]声音: 外语音声 中文音声 视频音声 音乐
-    420: '#3FA7D6',
-    421: '#3FA7D6',
-    422: '#3FA7D6',
-    437: '#3FA7D6',
+    420: "#3FA7D6",
+    421: "#3FA7D6",
+    422: "#3FA7D6",
+    437: "#3FA7D6",
     // [红色]游戏: 游戏 中文游戏
-    415: '#EE6352',
-    418: '#EE6352',
-
+    415: "#EE6352",
+    418: "#EE6352",
   },
   /** 索引 */
   INDEX: 0,
@@ -56,28 +55,33 @@ const CONFIG = {
     // 1. 给龟站的搜索箱默认设置为"不扩展", 否则平常占地方(from tg by LNN)
     // $('ksearchboxmain').style.display = 'none'
     /**兼容 $ 没有的站点
-     * @param {*} id 
+     * @param {*} id
      * @returns dom
      */
     function legacy$(id) {
-      return document.getElementById(id)
+      return document.getElementById(id);
     }
-    legacy$('ksearchboxmain') ? legacy$('ksearchboxmain').style.display = 'none' : null;
+    legacy$("ksearchboxmain")
+      ? (legacy$("ksearchboxmain").style.display = "none")
+      : null;
 
     // 2. "点此查看即将断种资源" 文字设置为黑色(from tg by LNN)
-    const link = document.querySelector('a[href="?sort=7&type=asc&seeders_begin=1"]');
+    const link = document.querySelector(
+      'a[href="?sort=7&type=asc&seeders_begin=1"]'
+    );
     // @ts-ignore
-    link ? link.childNodes[0].style.color = 'black' : null;
-
+    link ? (link.childNodes[0].style.color = "black") : null;
 
     // 3. 让勋章不被卡片遮盖
-    let np = document.querySelector('img#nexus-preview');
-    if (np)
-      np.style.zIndex = 12000;
+    /**
+     * @type {HTMLImageElement}
+     */
+    let np = document.querySelector("img#nexus-preview");
+    if (np) np.style.zIndex = "12000";
     // -------------------------------
 
     // 4. 原表格点击图片显示 iframe
-    table_Iframe_Set()
+    table_Iframe_Set();
   },
 
   /** NOTE: 站点下一页加载后操作 */
@@ -90,23 +94,28 @@ const CONFIG = {
     // -------------------------------
 
     // 原表格点击图片显示 iframe
-    table_Iframe_Set()
-  }
+    table_Iframe_Set();
+  },
 };
 
 /** 原表格点击图片显示 iframe */
 function table_Iframe_Set() {
-  const lists = Array.from(document.querySelectorAll('.torrentname'))
-  lists.forEach(el => el.addEventListener('click', function (event) {
-    // 阻止 a 标签的默认行为
-    event.preventDefault();
+  const lists = Array.from(document.querySelectorAll(".torrentname"));
+  lists.forEach((el) =>
+    el.addEventListener("click", function (event) {
+      // 阻止 a 标签的默认行为
+      event.preventDefault();
 
-    // 对 iframe 进行操作
-    _iframe_switch.set(1)
+      // 对 iframe 进行操作
+      _iframe_switch.set(1);
 
-    // console.log(el.children[0].children[0].children[1].querySelector('a').href);
-    _iframe_url.set(el.children[0].children[0].children[1].querySelector('a').href + "#kdescr")
-  }))
+      // console.log(el.children[0].children[0].children[1].querySelector('a').href);
+      _iframe_url.set(
+        el.children[0].children[0].children[1].querySelector("a").href +
+          "#kdescr"
+      );
+    })
+  );
 }
 
 /** 将 种子列表dom 的信息变为 json对象列表
@@ -134,8 +143,8 @@ function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
     const categoryLinkDOM = categoryImg.parentNode;
     const categoryLink = categoryLinkDOM.href;
     const categoryNumber = categoryLink.slice(-3);
-    const _categoryImg = categoryImg.cloneNode(true)
-    _categoryImg.className = "card-category-img"
+    const _categoryImg = categoryImg.cloneNode(true);
+    _categoryImg.className = "card-category-img";
     // console.log(categoryLinkDOM);
     // console.log(categoryLink, categoryNumber);
 
@@ -145,7 +154,9 @@ function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
 
     // 获取种子名称
     const torrentNameLink = row.querySelector(".torrentname a");
-    const torrentName = torrentNameLink ? torrentNameLink.textContent.trim() : "";
+    const torrentName = torrentNameLink
+      ? torrentNameLink.textContent.trim()
+      : "";
 
     // 获取种子详情链接
     const torrentLink = torrentNameLink.href;
@@ -157,20 +168,23 @@ function TORRENT_LIST_TO_JSON(torrent_list_Dom) {
     const torrentId = match ? parseInt(match[1]) : null;
 
     // 获取预览图片链接
-    const picLink = row.querySelector(".torrentname img").getAttribute("data-src");
+    const picLink = row
+      .querySelector(".torrentname img")
+      .getAttribute("data-src");
 
     // 获取描述
     const desCell = row.querySelector(".torrentname td:nth-child(2)");
     const length = desCell.childNodes.length - 1;
     const desDom = desCell.childNodes[length];
-    const description = desDom.nodeName == '#text' ? desDom.textContent.trim() : "";
+    const description =
+      desDom.nodeName == "#text" ? desDom.textContent.trim() : "";
 
     // 获取置顶信息
     const place_at_the_top = row.querySelectorAll(".torrentname img.sticky");
     const pattMsg = place_at_the_top[0] ? place_at_the_top[0].title : "";
 
     // 获取临时标签: 新 / 热门 等
-    const tempTagDom = Array.from(row.querySelectorAll('.torrentname font'));
+    const tempTagDom = Array.from(row.querySelectorAll(".torrentname font"));
     // console.log(tempTagDom);
 
     // 获取免费折扣类型

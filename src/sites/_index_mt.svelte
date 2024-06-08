@@ -26,14 +26,14 @@
   import {
     // @ts-ignore
     GLOBAL_SITE,
-    GET_CURRENT_PT_DOMAIN,
+    getCurrentPtDomain,
     // @ts-ignore
     GET_TORRENT_LIST_SELECTOR,
     GET_SITE_BACKGROUND_COLOR,
   } from "./index";
   import "../utils/masonry.pkgd.Kesa";
-  import TestMteam from "./newMteam.svelte";
-  import { config } from "./newMteam";
+  import TestMteam from "./mteam.svelte";
+  import { config } from "./mteam";
   // 父子参数 ------------------------------------------------
 
   /** 父传值: 瀑布流dom*/
@@ -72,12 +72,12 @@
 
   // 提取url中的排序参数， 暴露queryParams供后续请求使用
   const queryRawParams = Object.fromEntries(
-    new URL(location.href).searchParams.entries(),
+    new URL(location.href).searchParams.entries()
   );
   const queryParams = {};
   if (queryRawParams.sort) {
     const [field = "", direction = ""] = queryRawParams.sort.split(":");
-    
+
     switch (field.toLowerCase()) {
       case "size":
         queryParams.sortField = "SIZE";
@@ -103,7 +103,7 @@
   waterfallParentNode.style.height = "116px";
 
   // 1. 获取当前域名 & 背景颜色 --------------------------------------------------------------------------------------
-  $_current_domain = GET_CURRENT_PT_DOMAIN();
+  $_current_domain = getCurrentPtDomain();
 
   /** 获取主题背景色 */
   const bgColor = GET_SITE_BACKGROUND_COLOR();
@@ -116,10 +116,19 @@
 
   /** 切换显示模式 */
   function ChangeShowMode() {
+    /**
+     * @type {HTMLElement}
+     */
     const _$_ORIGIN_TL_Node = document.querySelector(originSelector);
+    /**
+     * @type {HTMLElement}
+     */
     const _$nextPageNode = document.querySelector(".nextPage");
+    /**
+     * @type {HTMLElement}
+     */
     const _$waterfallNode = document.querySelector(
-      ".waterfall.waterfall_newMT",
+      ".waterfall.waterfall_newMT"
     );
     // 一组: 原表格
     if (_$_ORIGIN_TL_Node)
@@ -161,7 +170,7 @@
 
     // 配置宽度
     Array.from(document.querySelectorAll(".card")).forEach(
-      (el) => (el.style.width = widthCard + "px"),
+      (/** @type {HTMLElement} */ el) => (el.style.width = widthCard + "px")
     );
 
     if (masonry) {
@@ -200,16 +209,11 @@
 
     const payload = {
       ...queryParams,
+      ...UrlPath_2_ParamList(),
       pageNumber: 1,
-      pageSize,
       visible: 1,
-      // mode: UrlPath_2_ParamList(),
-      // sortDirection: "DESC",
-      // sortField: "CREATED_DATE",
+      pageSize,
     };
-    Object.assign(payload, UrlPath_2_ParamList());
-
-    console.log(payload);
 
     fetch(searchApiURL, {
       method: "POST",
@@ -253,15 +257,6 @@
       });
   }
 
-  /** payload 示例
-  /* categories:[],
-  /* pageNumber: 7,
-  /* pageSize: 100,
-  /* sortDirection: "DESC",
-  /* sortField: "CREATED_DATE",
-  /* visible: 1,
-  */
-
   /**常规 search 请求
    * 详见 {@link https://test2.m-team.cc/api/doc.html#/%E5%B8%B8%E8%A7%84%E6%8E%A5%E5%8F%A3/%E7%A7%8D%E5%AD%90/search newMT接口文档}
    * @param {object} payload - 自定义载荷(payload)
@@ -277,7 +272,6 @@
   function Request(payload, successCallback = null) {
     // ------------ 页面请求
     console.log("当前页面 path:\t", location.pathname);
-    // const url = "https://test2.m-team.cc/api/torrent/search";
 
     fetch(searchApiURL, {
       method: "POST",
@@ -328,63 +322,45 @@
    * @param path 默认值为 URL pathname
    */
   function UrlPath_2_ParamList(path = location.href) {
-    // 补全 url
-    // if (path != location.pathname) console.log(`path自定义路径: ${path}`);
-    let url = path;
-    // 以 /browse 开头的是非完整链接, 不能自动获取 searchParam, 需要补全
-    if (path.indexOf("/browse") == 0) {
-      url = location.origin + path;
-    }
-    console.log(`url 补全: ${url}`);
+    const url = new URL(
+      path.startsWith("/browse") ? location.origin + path : path
+    );
+    const result = {};
 
-    let urlObject = new URL(url);
+    const mode = url.pathname.split("/").slice(2).pop();
+    const categories = url.searchParams.getAll("cat");
+    const standards = url.searchParams.getAll("stand");
+    const pageNumber = Number(url.searchParams.get("pageNumber")) || 1;
+    const pageSize = getPageSize(100);
+    const sortParam = url.searchParams.get("sort");
+    const onlyFav = Number(url.searchParams.get("onlyFav"));
 
-    // 从 url对象 获得 mode / categories / standards 等参数
-    // -- mode
-    let mode = urlObject.pathname.split("/")[2];
-    let categories = urlObject.searchParams.getAll("cat");
-    let standards = urlObject.searchParams.getAll("stand");
-    let pageNumber = Number(urlObject.searchParams.get("pageNumber")) || 1;
-    let pageSize = getPageSize(100);
-    let sortParam = urlObject.searchParams.get("sort");
-    let onlyFav = Number(urlObject.searchParams.get("onlyFav"));
+    result.mode = mode || "normal";
 
-    let output = {};
-
-    if (mode) output.mode = mode;
-    else output.mode = "normal";
-    if (categories) output.categories = categories;
-    if (standards.length) output.standards = standards;
-    if (pageNumber) output.pageNumber = pageNumber;
-    if (pageSize) output.pageSize = pageSize;
-    if (onlyFav) output.onlyFav = onlyFav;
+    if (categories) result.categories = categories;
+    if (standards.length) result.standards = standards;
+    if (pageNumber) result.pageNumber = pageNumber;
+    if (pageSize) result.pageSize = pageSize;
+    if (onlyFav) result.onlyFav = onlyFav;
 
     // NOTE: 这里存在将来变更的隐患捏
     if (sortParam) {
       // console.log(sortParam);
       let field = sortParam.split(":")[0].toUpperCase();
-      if (field.includes("DATE")) output.sortField = "CREATED_DATE";
-      if (field.includes("SIZE")) output.sortField = "SIZE";
-      if (field.includes("SEEDER")) output.sortField = "SEEDERS";
-      if (field.includes("LEECHER")) output.sortField = "LEECHERS";
-      if (field.includes("TIME")) output.sortField = "TIMES_COMPLETED";
+      if (field.includes("DATE")) result.sortField = "CREATED_DATE";
+      if (field.includes("SIZE")) result.sortField = "SIZE";
+      if (field.includes("SEEDER")) result.sortField = "SEEDERS";
+      if (field.includes("LEECHER")) result.sortField = "LEECHERS";
+      if (field.includes("TIME")) result.sortField = "TIMES_COMPLETED";
       // output.sortField;
 
       let direction = sortParam.split(":")[1].toUpperCase();
-      if (direction.includes("ASC")) output.sortDirection = "ASC";
-      if (direction.includes("DESC")) output.sortDirection = "DESC";
+      if (direction.includes("ASC")) result.sortDirection = "ASC";
+      if (direction.includes("DESC")) result.sortDirection = "DESC";
       // output.sortDirection;
     }
 
-    // 设置当前页数
-    // PAGE.$setPage(pageNumber);
-    // console.log('========------------===========');
-    // console.log(pageNumber);
-    // console.log('========------------===========');
-
-    // 输出
-    // console.log(output);
-    return output;
+    return result;
   }
 
   // FIXME: 这里在每次切换 /browse 又回来之后, _ORIGIN_TL_Node 会丢失
@@ -407,7 +383,7 @@
       console.log(
         `%c ====> URL跳转劫持: %c${path}`,
         "color: cyan",
-        "color: white",
+        "color: white"
       );
 
       // 判读是否在 /browse path 内, 在就进行 search api 筛选
@@ -428,17 +404,13 @@
         // 装载 payload
         const payload = {
           ...queryParams,
+          ...searchApiList,
           pageNumber: 1,
           pageSize: pageSizeParam,
           visible: 1,
-          // mode: searchApiList,
-          // sortDirection: "DESC",
-          // sortField: "CREATED_DATE",
         };
 
-        Object.assign(payload, searchApiList);
-        console.log(payload);
-
+        // @ts-ignore
         Request(payload, () => {
           // 设置页数
           PAGE.$setPage(payload.pageNumber);
@@ -468,7 +440,7 @@
             if (count >= 5) {
               clearInterval(intervalID);
               console.log(
-                "======> 触发特殊次数: [${count}] setInterval 已取消. <======",
+                "======> 触发特殊次数: [${count}] setInterval 已取消. <======"
               );
             }
           }, 1000);
@@ -586,6 +558,7 @@
     // 加载下一页
     if (!$_turnPage) debounceLoad();
   }
+  // @ts-ignore
   window.$$$turnPage = turnPage;
 
   // NOTE: 响应式变化: 卡片动画缓动
@@ -617,7 +590,7 @@
         setTimeout(findTargetElement, interval);
       } else {
         console.warn(
-          "<special> 未找到 .ant-spin-container, M-Team 特殊函数失效",
+          "<special> 未找到 .ant-spin-container, M-Team 特殊函数失效"
         );
       }
     };

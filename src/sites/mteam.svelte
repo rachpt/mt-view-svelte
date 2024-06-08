@@ -9,7 +9,7 @@
     _trigger_nexus_pic,
   } from "../stores";
   import { sortMasonry } from "../utils";
-  import { config } from "./newMteam";
+  import { config } from "./mteam";
   import _PicErrorLOGO from "../assets/pic_error.svg";
   import _PicNoLOGO from "../assets/pic_no.svg";
   import IconComment from "../assets/icon_comment.svelte";
@@ -461,7 +461,7 @@
                 <IconSize></IconSize>
               </span>
               &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
-                2,
+                2
               ) + "G"}
             </div>
 
@@ -621,7 +621,7 @@
                   <IconSize></IconSize>
                 </span>
                 &nbsp;{(Number(torrentInfo.size) / 1024 / 1024 / 1024).toFixed(
-                  2,
+                  2
                 ) + "G"}
               </div>
 

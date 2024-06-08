@@ -20,7 +20,7 @@
   } from "../utils";
   import {
     GLOBAL_SITE,
-    GET_CURRENT_PT_DOMAIN,
+    getCurrentPtDomain,
     GET_TORRENT_LIST_SELECTOR,
     GET_SITE_BACKGROUND_COLOR,
   } from "./index";
@@ -54,6 +54,7 @@
     sortMasonry("fast");
     sortMasonry("fast");
   }
+  // @ts-ignore
   window.CHANGE_CARD_LAYOUT = CHANGE_CARD_LAYOUT;
 
   /**调整瀑布流列数 & 间隔
@@ -74,7 +75,7 @@
 
     // 配置宽度
     Array.from(document.querySelectorAll(".card")).forEach(
-      (el) => (el.style.width = widthCard + "px"),
+      (/** @type {HTMLDivElement} */ el) => (el.style.width = widthCard + "px")
     );
 
     if (masonry) {
@@ -120,13 +121,14 @@
       }, PAGE.GAP);
     }
   }
+  // @ts-ignore
   window.$$$turnPage = turnPage;
 
   // ------------------------------------------------
   // FIXME: 瀑布流渲染流程------------------------------------------------
 
   // 1. 获取当前域名 & 背景颜色 --------------------------------------------------------------------------------------
-  $_current_domain = GET_CURRENT_PT_DOMAIN();
+  $_current_domain = getCurrentPtDomain();
   // console.log($_current_domain);
 
   /** 获取主题背景色 */
@@ -201,7 +203,7 @@
     // 如果 "page" 参数不存在，则将页数设为 0，否则打印当前页数
     if (!PAGE.PAGE_CURRENT) {
       console.log(
-        `网页链接没有page参数, 无法跳转下一页, 生成PAGE.PAGE_CURRENT为0`,
+        `网页链接没有page参数, 无法跳转下一页, 生成PAGE.PAGE_CURRENT为0`
       );
       PAGE.PAGE_CURRENT = 0;
     } else {

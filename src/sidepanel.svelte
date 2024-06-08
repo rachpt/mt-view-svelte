@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import {
@@ -56,12 +58,12 @@
     const res_X = posRangeIn(
       e.clientX - offsetX,
       0,
-      window.innerWidth - (sideDom.getBoundingClientRect().width + 5),
+      window.innerWidth - (sideDom.getBoundingClientRect().width + 5)
     );
     const res_Y = posRangeIn(
       e.clientY - offsetY,
       0,
-      window.innerHeight - (sideDom.getBoundingClientRect().height + 5),
+      window.innerHeight - (sideDom.getBoundingClientRect().height + 5)
     );
 
     // console.log(sideDom.getBoundingClientRect().width);
@@ -632,11 +634,12 @@
   }
 
   #reset_panel_pos {
-    width: 100%;
+    bottom: 0;
+    width: 50%;
+    position: fixed;
     text-align: center;
-    /* background-color: #fff; */
-    border: 1px solid black;
     border-radius: 16px;
-    /* padding: 8px 0; */
+    border: 1px solid black;
+    background-color: #587993;
   }
 </style>

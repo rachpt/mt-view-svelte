@@ -1,5 +1,5 @@
 <script>
-  import AppNMT from "./main_newMT.svelte";
+  import AppNMT from "./main_mt.svelte";
   import { get } from "svelte/store";
   import { _SITE_SETTING } from "./stores/index.js";
 

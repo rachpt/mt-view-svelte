@@ -1,6 +1,6 @@
 import AppNP from './main.svelte';
 import { _SITE_SETTING } from './stores';
-import SideBar_SWITCH from './afterMain_newMT.svelte';
+import SideBar_SWITCH from './afterMain_mt.svelte';
 // ----
 import { GET_TORRENT_LIST_SELECTOR, GET_SITE_ARCHITECTURE } from './sites/index.js';
 // -------------------------------------------------------------

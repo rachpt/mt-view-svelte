@@ -1,12 +1,9 @@
 import { config as config_Kame } from "./kamept";
-import { config as config_newMteam } from "./newMteam";
+import { config as config_newMteam } from "./mteam";
 
 /** 站点参数相关参数顶层对象 */
-const SITE = {
+const sites = {
   "kamept.com": config_Kame,
-
-  // 旧 M-Team
-  // "kp.m-team.cc": config_Mteam,
 
   // 新 M-Team
   "kp.m-team.cc": config_newMteam,
@@ -19,49 +16,40 @@ const SITE = {
 };
 
 /** 获得当前PT站的名字 @returns 当前PT站名 */
-function GET_CURRENT_PT_DOMAIN() {
-  const domain = window.location.hostname;
-  // 输出当前链接的域名
-  // console.log("当前站点: ", domain);
-  return domain;
+export function getCurrentPtDomain() {
+  return window.location.hostname;
 }
 
 /** 判断该页面是否存在种子列表
  * @returns selector
  */
 let cache_selector;
-function GET_TORRENT_LIST_SELECTOR() {
+export function GET_TORRENT_LIST_SELECTOR() {
   if (cache_selector) return cache_selector;
 
-  const domain = GET_CURRENT_PT_DOMAIN();
+  const domain = getCurrentPtDomain();
   console.log("|-> 当前站点: ", domain);
-  console.log('|-> 当前页面: ', window.location.pathname);
+  console.log("|-> 当前页面: ", window.location.pathname);
 
-  const res = SITE[domain]?.torrentListTable ?? null;
-  console.log('|-> 站点selector:', res);
+  const res = sites[domain]?.torrentListTable ?? null;
+  console.log("|-> 站点selector:", res);
   cache_selector = res;
-  return res
+  return res;
 }
 
-/** NOTE: 获取站点架构: 主要应对新MT架构的 
+/** NOTE: 获取站点架构: 主要应对新MT架构的
  * nexusPHP: SITE[domain]?.architecture = null
-*/
-function GET_SITE_ARCHITECTURE() {
-  const domain = GET_CURRENT_PT_DOMAIN();
-  console.log("PT架构:\t", SITE[domain]?.architecture);
-  return SITE[domain]?.architecture;
+ */
+export function GET_SITE_ARCHITECTURE() {
+  const domain = getCurrentPtDomain();
+  console.log("PT架构:\t", sites[domain]?.architecture);
+  return sites[domain]?.architecture;
 }
 
 /**NOTE: 获取站点背景颜色 */
-function GET_SITE_BACKGROUND_COLOR() {
-  const domain = GET_CURRENT_PT_DOMAIN();
-  return SITE[domain]?.get_bg_color()
+export function GET_SITE_BACKGROUND_COLOR() {
+  const domain = getCurrentPtDomain();
+  return sites[domain]?.get_bg_color();
 }
 
-export {
-  GET_CURRENT_PT_DOMAIN,
-  SITE as GLOBAL_SITE,
-  GET_TORRENT_LIST_SELECTOR,
-  GET_SITE_ARCHITECTURE,
-  GET_SITE_BACKGROUND_COLOR,
-}
+export { sites as GLOBAL_SITE };

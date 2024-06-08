@@ -542,4 +542,5 @@ function parseLocalStorage(key) {
   }
 }
 
+// @ts-ignore
 window.parseLocalStorage = parseLocalStorage;

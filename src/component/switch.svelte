@@ -67,7 +67,8 @@
         bind:checked
         on:change={() => {
           console.log(title_fixed, checked);
-          if (func != null) func();
+          // @ts-ignore
+          if (func) func();
         }}
       />
       <label for="_t{id}" />

@@ -1,0 +1,20 @@
+version: "0.2"
+ignorePaths: []
+dictionaryDefinitions: []
+dictionaries: []
+words:
+  - ALAC
+  - kamept
+  - Kesa
+  - Leechers
+  - localstorage
+  - Mteam
+  - nocheck
+  - pkgd
+  - Remux
+  - sysinfo
+  - userscript
+  - viewrequests
+  - Xvid
+ignoreWords: []
+import: []

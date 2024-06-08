@@ -3,7 +3,7 @@
   import "./utils/masonry.pkgd.Kesa";
   import { onDestroy } from "svelte";
   import Sidepanel from "./sidepanel.svelte";
-  import NEW_MT_Waterfall from "./sites/_index_newMT.svelte";
+  import NEW_MT_Waterfall from "./sites/_index_mt.svelte";
   import {
     _Global_Masonry,
     _list_viewMode,
@@ -24,6 +24,7 @@
 
   // 1. 隐藏原种子列表并进行前置操作 --------------------------------------------------------------------------------------
   let _ORIGIN_TL_Node = document.querySelector(GET_TORRENT_LIST_SELECTOR());
+  // @ts-ignore
   window._ORIGIN_TL_Node = _ORIGIN_TL_Node;
 
   /**重置原列表节点DOM*/

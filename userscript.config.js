@@ -1,4 +1,4 @@
-export const config = {
+export default {
   name: {
     "": "PT种子列表瀑布流视图(Svelte重构)",
     en: "PT_Masonry_View_Svelte",
@@ -39,7 +39,4 @@ export const config = {
 
   grant: "none",
   license: "MIT",
-
-  // NOTE: 经常修改这里就行了
-  version: "1.1.12",
 }
